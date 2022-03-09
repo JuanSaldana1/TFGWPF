@@ -21,11 +21,9 @@ namespace WpfApp3 {
             Usuario = EditTextUser.Text;
             Contrasena = EditTextPassword.Password;
             BaseDatos = EditTextDatabase.Text;
-            string listadeBasesDeDatos = "";
-            // BaseDatos = servidor;
+            var listadeBasesDeDatos = "";
 
-            string cadenaConexion = "server=" + Servidor + "; port=" + Puerto + "; user id=" + Usuario + "; password=" + Contrasena + "; database=" + BaseDatos + ";";
-
+            var cadenaConexionMySQL = "server=" + Servidor + "; port=" + Puerto + "; user id=" + Usuario + "; password=" + Contrasena + "; database=" + BaseDatos + ";";
 
             if (Servidor.Length == 0 || Puerto.Length == 0 || Usuario.Length == 0 || Contrasena.Length == 0 || BaseDatos.Length == 0) {
                 SnackbarSeven.MessageQueue?.Enqueue("Rellena todos los campos");
@@ -33,7 +31,7 @@ namespace WpfApp3 {
                 SnackbarSeven.MessageQueue?.Enqueue("El campo servidor debe estar compuesto por números");
             } else {
                 try {
-                    MySqlConnection conexionBd = new MySqlConnection(cadenaConexion);
+                    var conexionBd = new MySqlConnection(cadenaConexionMySQL);
                     conexionBd.Open();
                     Console.WriteLine(conexionBd);
                     // Si ha establecido bien la conexión, cierra la ventana de login y abre la de LISTA Y CRUD
@@ -51,7 +49,7 @@ namespace WpfApp3 {
                 } catch (MySqlException ex) {
                     SnackbarSeven.MessageQueue?.Enqueue(ex.Message);
                     Console.WriteLine(ex.StackTrace);
-                    ListaYCRUD listaYcrud = new ListaYCRUD();
+                    var listaYcrud = new ListaYCRUD();
                     listaYcrud.Show();
                     Close();
                 }

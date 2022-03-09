@@ -5,8 +5,8 @@ using System.Windows;
 namespace WpfApp3 {
     internal class Connection {
         public MySqlConnection GetConexion() {
-            string cadenaConexion = "server=" + MainWindow.Servidor + "; port=" + MainWindow.Puerto + "; user id=" + MainWindow.Usuario + "; password=" + MainWindow.Contrasena + "; database=" + MainWindow.BaseDatos + ";";
-            MySqlConnection conexionBd = new MySqlConnection(cadenaConexion);
+            var cadenaConexion = "server=" + MainWindow.Servidor + "; port=" + MainWindow.Puerto + "; user id=" + MainWindow.Usuario + "; password=" + MainWindow.Contrasena + "; database=" + MainWindow.BaseDatos + ";";
+            var conexionBd = new MySqlConnection(cadenaConexion);
             try {
                 conexionBd.Open();
                 return conexionBd;
