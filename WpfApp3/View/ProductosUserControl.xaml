@@ -1,0 +1,166 @@
+﻿<UserControl
+    x:Class="WpfApp3.View.ProductosUserControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:model="clr-namespace:WpfApp3.Model"
+    d:DataContext="{d:DesignInstance Type=model:UserModel}"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    Background="{DynamicResource MaterialDesignPaper}"
+    FontFamily="{DynamicResource MaterialDesignFont}"
+    TextElement.FontSize="13"
+    TextElement.FontWeight="Regular"
+    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+    TextOptions.TextFormattingMode="Ideal"
+    TextOptions.TextRenderingMode="Auto"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.DialogHost.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <!--<StackPanel
+                Orientation="Horizontal"
+                Margin="20, 10, 0, 0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top">-->
+
+            <ListView
+                x:Name="MyListView"
+                Margin="30,0,0,0"
+                ItemsSource="{Binding Productos}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:Card
+                                Width="220"
+                                Margin="20,0,0,0"
+                                Background="PapayaWhip"
+                                UniformCornerRadius="4">
+
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="140" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Image
+                                        Grid.Row="0"
+                                        Height="140"
+                                        Source="{Binding ProductImage}"
+                                        Stretch="UniformToFill" />
+
+                                    <StackPanel Grid.Row="1" Margin="8,24,8,4">
+                                        <TextBox
+                                            Name="textViewNombreArticulo"
+                                            Margin="0"
+                                            Text="{Binding ProductName}"
+                                            TextChanged="ArticuloChanged" />
+
+                                        <TextBlock
+                                            VerticalAlignment="Center"
+                                            Style="{StaticResource MaterialDesignBody1TextBlock}"
+                                            Text="{Binding ProductDescription}"
+                                            TextWrapping="Wrap" />
+
+                                        <CheckBox
+                                            Content="{Binding ProductCategory}"
+                                            IsChecked="True"
+                                            Style="{StaticResource MaterialDesignFilterChipPrimaryCheckBox}" />
+
+                                    </StackPanel>
+
+                                    <Separator
+                                        Grid.Row="2"
+                                        Margin="8,0,8,0"
+                                        Style="{StaticResource MaterialDesignDarkSeparator}" />
+
+                                    <TextBlock
+                                        Grid.Row="3"
+                                        Margin="8,4,8,4"
+                                        Style="{StaticResource MaterialDesignBody2TextBlock}"
+                                        Text="Tonight's availability" />
+
+                                    <Grid Grid.Row="4">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <materialDesign:PackIcon
+                                            Grid.Column="0"
+                                            Margin="8,4,4,4"
+                                            VerticalAlignment="Center"
+                                            Kind="Clock" />
+
+                                        <ListBox
+                                            Grid.Column="1"
+                                            Margin="4,8,8,4"
+                                            SelectedIndex="0"
+                                            Style="{StaticResource MaterialDesignToolToggleFlatListBox}">
+
+                                            <ListBox.Resources>
+                                                <Style BasedOn="{StaticResource MaterialDesignToolToggleListBoxItem}" TargetType="{x:Type ListBoxItem}">
+
+                                                    <Setter Property="Padding" Value="4,6,4,6" />
+                                                </Style>
+                                            </ListBox.Resources>
+                                            <ListBoxItem>
+                                                <TextBlock Text="18:00" />
+                                            </ListBoxItem>
+                                            <ListBoxItem>
+                                                <TextBlock Text="19:00" />
+                                            </ListBoxItem>
+                                            <ListBoxItem>
+                                                <TextBlock Text="22:00" />
+                                            </ListBoxItem>
+                                        </ListBox>
+                                    </Grid>
+                                    <StackPanel Grid.Row="5">
+                                        <Button
+                                            Margin="8,4,8,8"
+                                            HorizontalAlignment="Left"
+                                            Click="Button_Click"
+                                            Content="RESERVE"
+                                            Style="{StaticResource MaterialDesignFlatButton}" />
+                                    </StackPanel>
+                                </Grid>
+                            </materialDesign:Card>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <!--</StackPanel>-->
+
+        </ScrollViewer>
+
+        <Button
+            Grid.Row="0"
+            Margin="0,0,48,30"
+            Background="#3f51b5"
+            Foreground="White"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom"
+            Content="{materialDesign:PackIcon Kind=Plus, Size=22}"
+            Height="50"
+            Style="{StaticResource MaterialDesignRaisedButton}"
+            materialDesign:ButtonAssist.CornerRadius="10"/>
+        <materialDesign:Snackbar x:Name="SnackbarSeven" MessageQueue="{materialDesign:MessageQueue}">
+            <materialDesign:SnackbarMessage ActionContent="UNDO" />
+        </materialDesign:Snackbar>
+    </Grid>
+</UserControl>
