@@ -6,7 +6,7 @@ namespace WpfApp3.ViewModel {
     internal class CategoryViewModel {
         private IList<CategoryModel> Categorias { get; set; } = new List<CategoryModel>();
         public CategoryViewModel() {
-            string cadenaConexion = "server=" + MainWindow.Servidor + "; port=" + MainWindow.Puerto + "; user id=" + MainWindow.Usuario + "; password=" + MainWindow.Contrasena + "; database=" + MainWindow.BaseDatos + ";";
+            var cadenaConexion = "server=" + MainWindow.Servidor + "; port=" + MainWindow.Puerto + "; user id=" + MainWindow.Usuario + "; password=" + MainWindow.Contrasena + "; database=" + MainWindow.BaseDatos + ";";
             //string cadenaConexion = "server=192.168.1.208; port=3306; user id=Usuario; password=Lvepv.js12; database=LasDiademasDeMisHijas;";
             MySqlConnection conexionBd = new MySqlConnection(cadenaConexion);
             string mySelectQuery = "SELECT CategoryId, Name FROM Categorias";
@@ -17,13 +17,11 @@ namespace WpfApp3.ViewModel {
 
             if (myReader.HasRows) {
                 while (myReader.Read()) {
-                    Categorias.Add(new CategoryModel() {
-                    });
+                    Categorias.Add(new CategoryModel());
                 }
             }
             myReader.Close();
             conexionBd.Close();
         }
-        
     }
 }
