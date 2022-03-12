@@ -1,6 +1,6 @@
-﻿using MySqlConnector;
-using System;
+﻿using System;
 using System.Windows;
+using MySqlConnector;
 using WpfApp3.View;
 
 namespace WpfApp3 {
@@ -22,16 +22,29 @@ namespace WpfApp3 {
             Contrasena = EditTextPassword.Password;
             BaseDatos = EditTextDatabase.Text;
             var listadeBasesDeDatos = "";
+            var cadenaConexion = "";
+            switch (OutlinedComboBox.Text) {
+                case "PostgreSQL":
+                    cadenaConexion = "server=" + Servidor + "; port=" + Puerto + "; user id=" + Usuario +
+                                     "; password=" + Contrasena + "; database=" + BaseDatos + ";";
+                    return;
+                case "MySQL":
+                    cadenaConexion = "server=" + Servidor + "; port=" + Puerto + "; user id=" + Usuario +
+                                     "; password=" + Contrasena + "; database=" + BaseDatos + ";";
+                    return;
+            }
 
-            var cadenaConexionMySQL = "server=" + Servidor + "; port=" + Puerto + "; user id=" + Usuario + "; password=" + Contrasena + "; database=" + BaseDatos + ";";
-
-            if (Servidor.Length == 0 || Puerto.Length == 0 || Usuario.Length == 0 || Contrasena.Length == 0 || BaseDatos.Length == 0) {
+            if (Servidor.Length == 0 || Puerto.Length == 0 || Usuario.Length == 0 || Contrasena.Length == 0 ||
+                BaseDatos.Length == 0) {
                 SnackbarSeven.MessageQueue?.Enqueue("Rellena todos los campos");
-            } else if (Servidor.Contains("A")) {
+                SnackbarSeven.MessageQueue?.Enqueue("La opión seleccionada es " + OutlinedComboBox.Text);
+            }
+            else if (Servidor.Contains("A")) {
                 SnackbarSeven.MessageQueue?.Enqueue("El campo servidor debe estar compuesto por números");
-            } else {
+            }
+            else {
                 try {
-                    var conexionBd = new MySqlConnection(cadenaConexionMySQL);
+                    var conexionBd = new MySqlConnection(cadenaConexion);
                     conexionBd.Open();
                     Console.WriteLine(conexionBd);
                     // Si ha establecido bien la conexión, cierra la ventana de login y abre la de LISTA Y CRUD
@@ -42,11 +55,13 @@ namespace WpfApp3 {
                     while (reader.Read()) {
                         listadeBasesDeDatos += reader.GetString(0) + '\n';
                     }
+
                     MessageBox.Show(listadeBasesDeDatos);
                     ListaYCRUD listaYcrud = new ListaYCRUD();
                     listaYcrud.Show();
                     Close();
-                } catch (MySqlException ex) {
+                }
+                catch (MySqlException ex) {
                     SnackbarSeven.MessageQueue?.Enqueue(ex.Message);
                     Console.WriteLine(ex.StackTrace);
                     var listaYcrud = new ListaYCRUD();

@@ -8,7 +8,7 @@
     xmlns:model="clr-namespace:WpfApp3.Model"
     Title="MainWindow"
     Width="500"
-    Height="450"
+    Height="500"
     d:DataContext="{d:DesignInstance Type=model:UserModel}"
     Background="{DynamicResource MaterialDesignPaper}"
     FontFamily="{DynamicResource MaterialDesignFont}"
@@ -24,18 +24,37 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="5*" />
+            <RowDefinition Height="6*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="5*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="6*" />
         </Grid.RowDefinitions>
 
         <!--  LABELS(text views)  -->
+
+        <ComboBox
+            Grid.ColumnSpan="2"
+            Height="50"
+            Margin="0, 100,0, 0"
+            x:Name="OutlinedComboBox"
+            Style="{StaticResource MaterialDesignOutlinedComboBox}"
+            IsEnabled="True"
+            materialDesign:HintAssist.Hint="Motor BD"
+            Width="140">
+            <ComboBoxItem
+                Content="PostgreSQL" />
+            <ComboBoxItem
+                Content="MySQL" />
+            <ComboBoxItem
+                Content="Item 3" />
+        </ComboBox>
+
         <Label
             Name="TextViewServidor"
-            Grid.Row="0"
+            Grid.Row="1"
             Grid.Column="0"
             HorizontalAlignment="Right"
             VerticalAlignment="Bottom"
@@ -45,7 +64,7 @@
             FontSize="15.75" />
 
         <StackPanel
-            Grid.Row="1"
+            Grid.Row="2"
             Grid.Column="0"
             HorizontalAlignment="Right"
             VerticalAlignment="Center"
@@ -66,7 +85,7 @@
 
 
         <StackPanel
-            Grid.Row="2"
+            Grid.Row="3"
             Grid.Column="0"
             HorizontalAlignment="Right"
             VerticalAlignment="Center"
@@ -86,7 +105,7 @@
 
 
         <StackPanel
-            Grid.Row="3"
+            Grid.Row="4"
             Grid.Column="0"
             HorizontalAlignment="Right"
             VerticalAlignment="Center"
@@ -106,7 +125,7 @@
         </StackPanel>
 
         <StackPanel
-            Grid.Row="4"
+            Grid.Row="5"
             Grid.Column="0"
             HorizontalAlignment="Right"
             VerticalAlignment="Center"
@@ -129,7 +148,7 @@
         <!--  TEXTBOX(EDIT TEXTS)  -->
         <TextBox
             Name="EditTextServer"
-            Grid.Row="0"
+            Grid.Row="1"
             Grid.Column="1"
             Width="175"
             Height="27"
@@ -140,7 +159,7 @@
 
         <TextBox
             Name="EditTextPuerto"
-            Grid.Row="1"
+            Grid.Row="2"
             Grid.Column="1"
             Width="175"
             Height="27"
@@ -149,16 +168,17 @@
             materialDesign:TextFieldAssist.HasClearButton="True" />
         <TextBox
             Name="EditTextUser"
-            Grid.Row="2"
+            Grid.Row="3"
             Grid.Column="1"
             Width="175"
             Height="27"
             HorizontalAlignment="Left"
             VerticalAlignment="Bottom"
             materialDesign:TextFieldAssist.HasClearButton="True" />
+
         <PasswordBox
             Name="EditTextPassword"
-            Grid.Row="3"
+            Grid.Row="4"
             Grid.Column="1"
             Width="175"
             Height="27"
@@ -167,7 +187,7 @@
             materialDesign:TextFieldAssist.HasClearButton="True" />
         <TextBox
             Name="EditTextDatabase"
-            Grid.Row="4"
+            Grid.Row="5"
             Grid.Column="1"
             Width="175"
             Height="27"
@@ -177,7 +197,7 @@
 
         <Button
             Name="ButtonConectar"
-            Grid.Row="5"
+            Grid.Row="6"
             Grid.Column="0"
             Grid.ColumnSpan="2"
             Width="140"
@@ -191,7 +211,7 @@
 
         <materialDesign:Snackbar
             x:Name="SnackbarSeven"
-            Grid.Row="5"
+            Grid.Row="6"
             Grid.Column="0"
             Grid.ColumnSpan="2"
             HorizontalAlignment="Center"

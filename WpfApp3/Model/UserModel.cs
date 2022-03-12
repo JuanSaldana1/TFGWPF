@@ -69,13 +69,12 @@ namespace WpfApp3.Model {
         }
 
         private bool SetProperty<T>(ref T field, T newValue, [CallerMemberName] string propertyName = null) {
-            if (!Equals(field, newValue)) {
-                field = newValue;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-                return true;
+            if (Equals(field, newValue)) {
+                return false;
             }
-
-            return false;
+            field = newValue;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            return true;
         }
 
         private System.Collections.IEnumerable ventas;

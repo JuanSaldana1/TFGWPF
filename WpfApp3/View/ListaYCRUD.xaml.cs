@@ -7,15 +7,18 @@ namespace WpfApp3.View {
     /// </summary>
     public partial class ListaYCRUD {
         public IList<string> ListaTablas { get; set; } = new List<string>();
+
         public ListaYCRUD() {
             InitializeComponent();
             TextViewNombreBaseDatos.Text = "Estás editando " + MainWindow.BaseDatos;
-            ProductosUserControl productosUserControl = new ProductosUserControl();
-            UsuariosUserControl usuariosUserControl = new UsuariosUserControl();
+            var productosUserControl = new ProductosUserControl();
+            var usuariosUserControl = new UsuariosUserControl();
             userControlUsuarios.Content = usuariosUserControl;
             userControlProductos.Content = productosUserControl;
 
-            string cadenaConexion = "server=" + MainWindow.Servidor + "; port=" + MainWindow.Puerto + "; user id=" + MainWindow.Usuario + "; password=" + MainWindow.Contrasena + "; database=" + MainWindow.BaseDatos + ";";
+            var cadenaConexion = "server=" + MainWindow.Servidor + "; port=" + MainWindow.Puerto + "; user id=" +
+                                 MainWindow.Usuario + "; password=" + MainWindow.Contrasena + "; database=" +
+                                 MainWindow.BaseDatos + ";";
             //string cadenaConexion = "server=192.168.1.208; port=3306; user id=Usuario; password=Lvepv.js12; database=LasDiademasDeMisHijas;";
             MySqlConnection conexionBd = new MySqlConnection(cadenaConexion);
             string mySelectQuery = "SHOW TABLES";
@@ -28,6 +31,7 @@ namespace WpfApp3.View {
                     ListaTablas.Add(myReader.GetString(0));
                 }
             }
+
             myReader.Close();
             conexionBd.Close();
         }
