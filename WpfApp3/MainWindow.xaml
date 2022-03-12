@@ -18,6 +18,16 @@
     TextOptions.TextFormattingMode="Ideal"
     TextOptions.TextRenderingMode="Auto"
     mc:Ignorable="d">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.DialogHost.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -43,6 +53,7 @@
             Style="{StaticResource MaterialDesignOutlinedComboBox}"
             IsEnabled="True"
             materialDesign:HintAssist.Hint="Motor BD"
+            materialDesign:TextFieldAssist.HasClearButton="True"
             Width="140">
             <ComboBoxItem
                 Content="PostgreSQL" />
@@ -102,7 +113,6 @@
                 FontSize="15.75" />
 
         </StackPanel>
-
 
         <StackPanel
             Grid.Row="4"
@@ -185,6 +195,7 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Bottom"
             materialDesign:TextFieldAssist.HasClearButton="True" />
+
         <TextBox
             Name="EditTextDatabase"
             Grid.Row="5"
@@ -196,6 +207,49 @@
             materialDesign:TextFieldAssist.HasClearButton="True" />
 
         <Button
+            Grid.Row="6"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
+            HorizontalAlignment="Center"
+            Margin="0,0,0,50"
+            materialDesign:DialogHost.DialogClosingAttached="Sample2_DialogHost_OnDialogClosing"
+            materialDesign:ButtonAssist.CornerRadius="15"
+            Width="128"
+            Click="ButtonConectar_Click"
+            Content="CONTECTATE!"
+            Style="{StaticResource MaterialDesignRaisedDarkButton}">
+            <Button.CommandParameter>
+                <StackPanel
+                    Margin="16">
+                    <ProgressBar
+                        Style="{StaticResource MaterialDesignCircularProgressBar}"
+                        HorizontalAlignment="Center"
+                        Margin="16"
+                        IsIndeterminate="True"
+                        Value="0" />
+                    <ListBox
+                        IsEnabled="{Binding IsChecked, ElementName=EnableListBox}">
+                        <TextBlock
+                            Text="Plain" />
+                        <TextBlock
+                            Text="Old" />
+                        <TextBlock
+                            Text="ListBox" />
+                        <TextBlock
+                            Text="Full of junk" />
+                    </ListBox>
+                    <Button
+                        Style="{StaticResource MaterialDesignFlatButton}"
+                        IsCancel="True"
+                        Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                        CommandParameter="Sample2Cancel"
+                        HorizontalAlignment="Center"
+                        Content="CANCEL" />
+                </StackPanel>
+            </Button.CommandParameter>
+        </Button>
+        <!--<Button
             Name="ButtonConectar"
             Grid.Row="6"
             Grid.Column="0"
@@ -207,7 +261,7 @@
             materialDesign:ButtonAssist.CornerRadius="15"
             Click="ButtonConectar_Click"
             Content="CONTECTATE!"
-            Style="{StaticResource MaterialDesignRaisedDarkButton}" />
+            Style="{StaticResource MaterialDesignRaisedDarkButton}" />-->
 
         <materialDesign:Snackbar
             x:Name="SnackbarSeven"

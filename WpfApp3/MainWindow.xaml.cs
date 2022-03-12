@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows;
+using MaterialDesignThemes.Wpf;
 using MySqlConnector;
 using WpfApp3.View;
 
@@ -37,7 +39,7 @@ namespace WpfApp3 {
             if (Servidor.Length == 0 || Puerto.Length == 0 || Usuario.Length == 0 || Contrasena.Length == 0 ||
                 BaseDatos.Length == 0) {
                 SnackbarSeven.MessageQueue?.Enqueue("Rellena todos los campos");
-                SnackbarSeven.MessageQueue?.Enqueue("La opión seleccionada es " + OutlinedComboBox.Text);
+                SnackbarSeven.MessageQueue?.Enqueue("La opción seleccionada es " + OutlinedComboBox.Text);
             }
             else if (Servidor.Contains("A")) {
                 SnackbarSeven.MessageQueue?.Enqueue("El campo servidor debe estar compuesto por números");
@@ -70,5 +72,8 @@ namespace WpfApp3 {
                 }
             }
         }
+
+        private void Sample2_DialogHost_OnDialogClosing(object sender, DialogClosingEventArgs eventArgs)
+            => Debug.WriteLine($"SAMPLE 2: Closing dialog with parameter: {eventArgs.Parameter ?? string.Empty}");
     }
 }
