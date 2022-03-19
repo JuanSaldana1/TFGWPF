@@ -7,31 +7,39 @@ using WpfApp3.View;
 
 namespace WpfApp3 {
     public partial class MainWindow {
-        public MainWindow() {
-            InitializeComponent();
-        }
-
+        private string _listadeBasesDeDatos = "";
+        public static string MotorBd { get; set; }
         public static string Servidor { get; set; }
         public static string Puerto { get; set; }
         public static string Usuario { get; set; }
         public static string Contrasena { get; set; }
         public static string BaseDatos { get; set; }
+        public static string CadenaConexion { get; set; }
+
+        public MainWindow() {
+            InitializeComponent();
+            DataContext = _listadeBasesDeDatos;
+        }
+
 
         private void ButtonConectar_Click(object sender, RoutedEventArgs e) {
+            MotorBd = OutlinedComboBox.Text;
             Servidor = EditTextServer.Text;
             Puerto = EditTextPuerto.Text;
             Usuario = EditTextUser.Text;
             Contrasena = EditTextPassword.Password;
             BaseDatos = EditTextDatabase.Text;
-            var listadeBasesDeDatos = "";
-            var cadenaConexion = "";
-            switch (OutlinedComboBox.Text) {
-                case "PostgreSQL":
-                    cadenaConexion = "server=" + Servidor + "; port=" + Puerto + "; user id=" + Usuario +
+
+            CadenaConexion = "server=" + Servidor + "; port=" + Puerto + "; user id=" + Usuario + "; password=" +
+                             Contrasena + "; database=" + BaseDatos + ";";
+            switch (MotorBd) {
+                case "MySQL":
+                    BaseDatos = "sys";
+                    CadenaConexion = "server=" + Servidor + "; port=" + Puerto + "; user id=" + Usuario +
                                      "; password=" + Contrasena + "; database=" + BaseDatos + ";";
                     return;
-                case "MySQL":
-                    cadenaConexion = "server=" + Servidor + "; port=" + Puerto + "; user id=" + Usuario +
+                case "PostgreSQL":
+                    CadenaConexion = "server=" + Servidor + "; port=" + Puerto + "; user id=" + Usuario +
                                      "; password=" + Contrasena + "; database=" + BaseDatos + ";";
                     return;
             }
@@ -46,7 +54,7 @@ namespace WpfApp3 {
             }
             else {
                 try {
-                    var conexionBd = new MySqlConnection(cadenaConexion);
+                    var conexionBd = new MySqlConnection(CadenaConexion);
                     conexionBd.Open();
                     Console.WriteLine(conexionBd);
                     // Si ha establecido bien la conexión, cierra la ventana de login y abre la de LISTA Y CRUD
@@ -55,10 +63,10 @@ namespace WpfApp3 {
                     MySqlCommand command = new MySqlCommand("SHOW DATABASES", conexionBd);
                     reader = command.ExecuteReader();
                     while (reader.Read()) {
-                        listadeBasesDeDatos += reader.GetString(0) + '\n';
+                        _listadeBasesDeDatos += reader.GetString(0) + '\n';
                     }
 
-                    MessageBox.Show(listadeBasesDeDatos);
+                    MessageBox.Show(_listadeBasesDeDatos);
                     ListaYCRUD listaYcrud = new ListaYCRUD();
                     listaYcrud.Show();
                     Close();
@@ -75,5 +83,9 @@ namespace WpfApp3 {
 
         private void Sample2_DialogHost_OnDialogClosing(object sender, DialogClosingEventArgs eventArgs)
             => Debug.WriteLine($"SAMPLE 2: Closing dialog with parameter: {eventArgs.Parameter ?? string.Empty}");
+
+        private void ButtonConectar1_Click(object sender, RoutedEventArgs e) {
+            SnackbarSeven.MessageQueue?.Enqueue(ListBoxBasesDeDatos.SelectedValue);
+        }
     }
 }

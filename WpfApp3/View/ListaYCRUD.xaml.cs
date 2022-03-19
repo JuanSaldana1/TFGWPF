@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using MySql.Data.MySqlClient;
 
 namespace WpfApp3.View {
@@ -10,11 +11,12 @@ namespace WpfApp3.View {
 
         public ListaYCRUD() {
             InitializeComponent();
+            Console.WriteLine(ListaTablas);
             TextViewNombreBaseDatos.Text = "Estás editando " + MainWindow.BaseDatos;
             var productosUserControl = new ProductosUserControl();
             var usuariosUserControl = new UsuariosUserControl();
-            userControlUsuarios.Content = usuariosUserControl;
             userControlProductos.Content = productosUserControl;
+            userControlUsuarios.Content = usuariosUserControl;
 
             var cadenaConexion = "server=" + MainWindow.Servidor + "; port=" + MainWindow.Puerto + "; user id=" +
                                  MainWindow.Usuario + "; password=" + MainWindow.Contrasena + "; database=" +
@@ -30,6 +32,7 @@ namespace WpfApp3.View {
                 while (myReader.Read()) {
                     ListaTablas.Add(myReader.GetString(0));
                 }
+                Console.WriteLine(ListaTablas);
             }
 
             myReader.Close();

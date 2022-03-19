@@ -5,8 +5,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:model="clr-namespace:WpfApp3.Model"
-    d:DataContext="{d:DesignInstance Type=model:UserModel}"
+    xmlns:viewModel="clr-namespace:WpfApp3.ViewModel"
+    d:DataContext="{d:DesignInstance Type=viewModel:ProductViewModel}"
     d:DesignHeight="450"
     d:DesignWidth="800"
     Background="{DynamicResource MaterialDesignPaper}"
@@ -31,11 +31,6 @@
     </UserControl.Resources>
     <Grid>
         <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-            <!--<StackPanel
-                Orientation="Horizontal"
-                Margin="20, 10, 0, 0"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top">-->
 
             <ListView
                 x:Name="MyListView"
@@ -45,14 +40,14 @@
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:Card
-                                Width="220"
+                                Width="300"
                                 Margin="20,0,0,0"
                                 Background="PapayaWhip"
-                                UniformCornerRadius="4">
+                                UniformCornerRadius="6">
 
                                 <Grid>
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="140" />
+                                        <RowDefinition Height="*" />
                                         <RowDefinition Height="*" />
                                         <RowDefinition Height="Auto" />
                                         <RowDefinition Height="Auto" />
@@ -61,9 +56,10 @@
                                     </Grid.RowDefinitions>
                                     <Image
                                         Grid.Row="0"
-                                        Height="140"
+                                        Height="200"
+                                        VerticalAlignment="Center"
                                         Source="{Binding ProductImage}"
-                                        Stretch="UniformToFill" />
+                                        Stretch="Uniform" />
 
                                     <StackPanel Grid.Row="1" Margin="8,24,8,4">
                                         <TextBox
@@ -105,7 +101,7 @@
                                             Grid.Column="0"
                                             Margin="8,4,4,4"
                                             VerticalAlignment="Center"
-                                            Kind="Clock" />
+                                            Kind="ClockOutline" />
 
                                         <ListBox
                                             Grid.Column="1"
@@ -150,15 +146,16 @@
 
         <Button
             Grid.Row="0"
+            Height="50"
             Margin="0,0,48,30"
-            Background="#3f51b5"
-            Foreground="White"
             HorizontalAlignment="Right"
             VerticalAlignment="Bottom"
-            Content="{materialDesign:PackIcon Kind=Plus, Size=22}"
-            Height="50"
-            Style="{StaticResource MaterialDesignRaisedButton}"
-            materialDesign:ButtonAssist.CornerRadius="10"/>
+            materialDesign:ButtonAssist.CornerRadius="10"
+            Background="#3f51b5"
+            Content="{materialDesign:PackIcon Kind=Plus,
+                                              Size=22}"
+            Foreground="White"
+            Style="{StaticResource MaterialDesignRaisedButton}" />
         <materialDesign:Snackbar x:Name="SnackbarSeven" MessageQueue="{materialDesign:MessageQueue}">
             <materialDesign:SnackbarMessage ActionContent="UNDO" />
         </materialDesign:Snackbar>
