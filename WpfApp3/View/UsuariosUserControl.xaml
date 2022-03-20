@@ -17,338 +17,388 @@
     TextOptions.TextFormattingMode="Ideal"
     TextOptions.TextRenderingMode="Auto"
     mc:Ignorable="d">
-    <Grid>
-        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.DialogHost.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
 
-
-            <StackPanel
-                Margin="20,10,0,0"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                Orientation="Horizontal">
-
-                <materialDesign:Flipper
-                    Width="200"
-                    Height="250"
-                    Margin="20,7,0,0"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    materialDesign:ShadowAssist.ShadowDepth="Depth0">
-
-                    <materialDesign:Flipper.FrontContent>
-                        <Grid Background="Cyan">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="*" />
-                            </Grid.RowDefinitions>
-
-                            <Image Source="https://2.bp.blogspot.com/-mqHhCQC7R9A/WQ9u5CaUf3I/AAAAAAAADmg/USAWJSXTrAIuEvbA7uOo08nMz0pee3hSACK4B/s113/12211.jpg" />
-
-                            <StackPanel
-                                Grid.Row="1"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center">
-
-                                <TextBlock Text="James Willock" />
-
-                                <Button
-                                    Margin="0,4,0,0"
-                                    Command="{x:Static materialDesign:Flipper.FlipCommand}"
-                                    Style="{StaticResource MaterialDesignFlatButton}">
-
-                                    <materialDesign:PackIcon Kind="PencilOutline" />
-                                </Button>
-
-                            </StackPanel>
-                        </Grid>
-                    </materialDesign:Flipper.FrontContent>
-
-                    <materialDesign:Flipper.BackContent>
-                        <StackPanel
-                            Width="200"
-                            Height="250"
-                            Background="AliceBlue"
-                            Orientation="Vertical">
-
-                            <!--  Barra superior  -->
-                            <materialDesign:ColorZone Mode="SecondaryMid">
-
-                                <StackPanel Orientation="Horizontal">
-
-                                    <Button
-                                        HorizontalAlignment="Left"
-                                        Command="{x:Static materialDesign:Flipper.FlipCommand}"
-                                        Style="{StaticResource MaterialDesignToolForegroundButton}">
-
-                                        <materialDesign:PackIcon HorizontalAlignment="Center" Kind="ArrowLeft" />
-                                    </Button>
-
-                                    <TextBlock VerticalAlignment="Center" Text="EDITAR USUARIO" />
-
-                                </StackPanel>
-                            </materialDesign:ColorZone>
-
-                            <StackPanel Orientation="Vertical">
-
-                                <TextBox
-                                    materialDesign:HintAssist.Hint="First name"
-                                    materialDesign:HintAssist.IsFloating="True"
-                                    materialDesign:TextFieldAssist.HasClearButton="True"
-                                    Text="James" />
-
-                                <TextBox
-                                    materialDesign:HintAssist.Hint="Last name"
-                                    materialDesign:HintAssist.IsFloating="True"
-                                    materialDesign:TextFieldAssist.HasClearButton="True"
-                                    Text="Willock" />
-
-                                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-
-                                    <TextBlock VerticalAlignment="Center" Text="Email Contact" />
-
-                                    <ToggleButton />
-
-                                </StackPanel>
-
-                                <StackPanel Orientation="Horizontal">
-
-                                    <TextBlock VerticalAlignment="Center" Text="Telephone Contact" />
-
-                                    <ToggleButton />
-
-                                </StackPanel>
-
-                                <StackPanel
-                                    Margin="0,40,0,0"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    Orientation="Horizontal">
-
-                                    <Button
-                                        Name="ButtonSave"
-                                        Margin="2,0,2,0"
-                                        Click="ButtonSave_Click"
-                                        Command="{x:Static materialDesign:Flipper.FlipCommand}" />
-
-                                    <Button
-                                        Name="ButtonUpdate"
-                                        Margin="2,0,2,0"
-                                        Command="{x:Static materialDesign:Flipper.FlipCommand}" />
-
-                                    <Button
-                                        Name="ButtonDelete"
-                                        Margin="2,0,2,0"
-                                        Command="{x:Static materialDesign:Flipper.FlipCommand}" />
-
-                                </StackPanel>
-                            </StackPanel>
-                        </StackPanel>
-                    </materialDesign:Flipper.BackContent>
-                </materialDesign:Flipper>
-
-                <materialDesign:Flipper
-                    Width="200"
-                    Height="250"
-                    Margin="20,7,0,0"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    materialDesign:ShadowAssist.ShadowDepth="Depth0">
-
-                    <materialDesign:Flipper.FrontContent>
-                        <Grid Background="Cyan">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="*" />
-                            </Grid.RowDefinitions>
-                            <Image Source="https://3.bp.blogspot.com/-E09UMBffz94/Uqlzcne9khI/AAAAAAAAAMM/mRJFed3yajU/s150/DSC01825.JPG" />
-                            <StackPanel
-                                Grid.Row="1"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center">
-                                <TextBlock Text="James Willock" />
-                                <Button
-                                    Margin="0,4,0,0"
-                                    Command="{x:Static materialDesign:Flipper.FlipCommand}"
-                                    Content="EDIT"
-                                    Style="{StaticResource MaterialDesignFlatButton}" />
-                            </StackPanel>
-                        </Grid>
-                    </materialDesign:Flipper.FrontContent>
-                    <materialDesign:Flipper.BackContent>
-                        <StackPanel
-                            Width="200"
-                            Height="250"
-                            Background="AliceBlue"
-                            Orientation="Vertical">
-                            <!--  Barra superior  -->
-                            <materialDesign:ColorZone Mode="SecondaryMid">
-                                <StackPanel Orientation="Horizontal">
-                                    <Button
-                                        HorizontalAlignment="Left"
-                                        Command="{x:Static materialDesign:Flipper.FlipCommand}"
-                                        Style="{StaticResource MaterialDesignToolForegroundButton}">
-                                        <materialDesign:PackIcon HorizontalAlignment="Center" Kind="ArrowLeft" />
-                                    </Button>
-                                    <TextBlock VerticalAlignment="Center" Text="EDITAR USUARIO" />
-                                </StackPanel>
-                            </materialDesign:ColorZone>
-
-                            <StackPanel Orientation="Vertical">
-                                <TextBox
-                                    materialDesign:HintAssist.Hint="First name"
-                                    materialDesign:HintAssist.IsFloating="True"
-                                    materialDesign:TextFieldAssist.HasClearButton="True"
-                                    Text="James" />
-                                <TextBox
-                                    materialDesign:HintAssist.Hint="Last name"
-                                    materialDesign:HintAssist.IsFloating="True"
-                                    materialDesign:TextFieldAssist.HasClearButton="True"
-                                    Text="Willock" />
-                                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-                                    <TextBlock VerticalAlignment="Center" Text="Email Contact" />
-                                    <ToggleButton />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock VerticalAlignment="Center" Text="Telephone Contact" />
-                                    <ToggleButton />
-                                </StackPanel>
-                                <StackPanel
-                                    Margin="0,40,0,0"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    Orientation="Horizontal">
-                                    <Button
-                                        Name="buttonSave1"
-                                        Margin="2,0,2,0"
-                                        Click="ButtonSave_Click"
-                                        Command="{x:Static materialDesign:Flipper.FlipCommand}">
-                                        <materialDesign:PackIcon Kind="ContentSaveCheckOutline" />
-                                    </Button>
-                                    <Button
-                                        Name="buttonUpdate1"
-                                        Margin="2,0,2,0"
-                                        Command="{x:Static materialDesign:Flipper.FlipCommand}" />
-                                    <Button
-                                        Name="buttonDelete1"
-                                        Margin="2,0,2,0"
-                                        Command="{x:Static materialDesign:Flipper.FlipCommand}">
-                                        <materialDesign:PackIcon Kind="DeleteOutline" />
-                                    </Button>
-                                </StackPanel>
-                            </StackPanel>
-                        </StackPanel>
-                    </materialDesign:Flipper.BackContent>
-                </materialDesign:Flipper>
-
-                <materialDesign:Flipper
-                    Width="200"
-                    Height="250"
-                    Margin="20,7,0,0"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    materialDesign:ShadowAssist.ShadowDepth="Depth0">
-                    <materialDesign:Flipper.FrontContent>
-                        <Grid Background="Cyan">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="*" />
-                            </Grid.RowDefinitions>
-                            <Image Source="https://1.bp.blogspot.com/_-whoc19AV00/TUcZ8u_lciI/AAAAAAAAAD4/DqanaR0-jso/s150/cintas%2Bbonitas.JPG" />
-                            <StackPanel
-                                Grid.Row="1"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center">
-                                <TextBlock Text="Myriam" />
-                                <Button
-                                    Margin="0,4,0,0"
-                                    Command="{x:Static materialDesign:Flipper.FlipCommand}"
-                                    Content="EDIT"
-                                    Style="{StaticResource MaterialDesignFlatButton}" />
-                            </StackPanel>
-                        </Grid>
-                    </materialDesign:Flipper.FrontContent>
-                    <materialDesign:Flipper.BackContent>
-                        <StackPanel
-                            Width="200"
-                            Height="250"
-                            Background="AliceBlue"
-                            Orientation="Vertical">
-                            <!--  Barra superior  -->
-                            <materialDesign:ColorZone Mode="SecondaryMid">
-                                <StackPanel Orientation="Horizontal">
-                                    <Button
-                                        Width="Auto"
-                                        HorizontalAlignment="Left"
-                                        Background="Transparent"
-                                        BorderThickness="0"
-                                        Command="{x:Static materialDesign:Flipper.FlipCommand}"
-                                        Foreground="Black">
-                                        <materialDesign:PackIcon VerticalAlignment="Center" Kind="ArrowLeft" />
-                                    </Button>
-                                    <TextBlock VerticalAlignment="Center" Text="EDITAR USUARIO" />
-                                </StackPanel>
-                            </materialDesign:ColorZone>
-
-
-                            <StackPanel Orientation="Vertical">
-                                <TextBox
-                                    materialDesign:HintAssist.Hint="First name"
-                                    materialDesign:HintAssist.IsFloating="True"
-                                    materialDesign:TextFieldAssist.HasClearButton="True"
-                                    Text="James" />
-                                <TextBox
-                                    materialDesign:HintAssist.Hint="Last name"
-                                    materialDesign:HintAssist.IsFloating="True"
-                                    materialDesign:TextFieldAssist.HasClearButton="True"
-                                    Text="Willock" />
-                                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-                                    <TextBlock VerticalAlignment="Center" Text="Email Contact" />
-                                    <ToggleButton />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock VerticalAlignment="Center" Text="Telephone Contact" />
-                                    <ToggleButton />
-                                </StackPanel>
-                                <StackPanel
-                                    Margin="0,40,0,0"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    Orientation="Horizontal">
-                                    <Button
-                                        Name="buttonSave2"
-                                        Margin="2,0,2,0"
-                                        Click="ButtonSave_Click"
-                                        Command="{x:Static materialDesign:Flipper.FlipCommand}" />
-                                    <Button
-                                        Name="buttonUpdate2"
-                                        Margin="2,0,2,0"
-                                        Command="{x:Static materialDesign:Flipper.FlipCommand}" />
-                                    <Button
-                                        Name="buttonDelete2"
-                                        Margin="2,0,2,0"
-                                        Command="{x:Static materialDesign:Flipper.FlipCommand}" />
-                                </StackPanel>
-                            </StackPanel>
-                        </StackPanel>
-                    </materialDesign:Flipper.BackContent>
-                </materialDesign:Flipper>
-
+    <materialDesign:DialogHost DialogMargin="8" Style="{StaticResource MaterialDesignEmbeddedDialogHost}">
+        <materialDesign:DialogHost.DialogContent>
+            <StackPanel Margin="16">
+                <TextBlock
+                    Padding="0 16"
+                    VerticalAlignment="Center"
+                    Style="{StaticResource MaterialDesignHeadline1TextBlock}"
+                    Text="Crea un Usuario" />
+                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                    <Button
+                        Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                        Content="ACCEPT"
+                        IsDefault="True"
+                        Margin="0,8,8,0"
+                        Style="{StaticResource MaterialDesignFlatButton}">
+                        <Button.CommandParameter>
+                            <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
+                                True
+                            </system:Boolean>
+                        </Button.CommandParameter>
+                    </Button>
+                    <Button
+                        Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                        Content="CANCEL"
+                        IsCancel="True"
+                        Margin="0,8,8,0"
+                        Style="{StaticResource MaterialDesignFlatButton}">
+                        <Button.CommandParameter>
+                            <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
+                                False
+                            </system:Boolean>
+                        </Button.CommandParameter>
+                    </Button>
+                </StackPanel>
             </StackPanel>
-        </ScrollViewer>
-        <Button
-            Grid.Row="0"
-            Margin="0,0,48,30"
-            Background="#3f51b5"
-            Foreground="White"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Bottom"
-            Content="{materialDesign:PackIcon Kind=Plus, Size=22}"
-            Height="50"
-            Style="{StaticResource MaterialDesignRaisedButton}"
-            materialDesign:ButtonAssist.CornerRadius="10"/>
-        <!--  and here's another  -->
-        <materialDesign:Snackbar x:Name="SnackbarSeven" MessageQueue="{materialDesign:MessageQueue}">
-            <materialDesign:SnackbarMessage ActionContent="UNDO" />
-        </materialDesign:Snackbar>
-    </Grid>
+        </materialDesign:DialogHost.DialogContent>
+        <Grid>
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+
+
+                <StackPanel
+                    Margin="20,10,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Orientation="Horizontal">
+
+                    <materialDesign:Flipper
+                        Width="200"
+                        Height="250"
+                        Margin="20,7,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        materialDesign:ShadowAssist.ShadowDepth="Depth0">
+
+                        <materialDesign:Flipper.FrontContent>
+                            <Grid Background="Cyan">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+
+                                <Image
+                                    Source="https://2.bp.blogspot.com/-mqHhCQC7R9A/WQ9u5CaUf3I/AAAAAAAADmg/USAWJSXTrAIuEvbA7uOo08nMz0pee3hSACK4B/s113/12211.jpg" />
+
+                                <StackPanel
+                                    Grid.Row="1"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center">
+
+                                    <TextBlock Text="James Willock" />
+
+                                    <Button
+                                        Margin="0,4,0,0"
+                                        Command="{x:Static materialDesign:Flipper.FlipCommand}"
+                                        Style="{StaticResource MaterialDesignFlatButton}">
+
+                                        <materialDesign:PackIcon Kind="PencilOutline" />
+                                    </Button>
+
+                                </StackPanel>
+                            </Grid>
+                        </materialDesign:Flipper.FrontContent>
+
+                        <materialDesign:Flipper.BackContent>
+                            <StackPanel
+                                Width="200"
+                                Height="250"
+                                Background="AliceBlue"
+                                Orientation="Vertical">
+
+                                <!--  Barra superior  -->
+                                <materialDesign:ColorZone Mode="SecondaryMid">
+
+                                    <StackPanel Orientation="Horizontal">
+
+                                        <Button
+                                            HorizontalAlignment="Left"
+                                            Command="{x:Static materialDesign:Flipper.FlipCommand}"
+                                            Style="{StaticResource MaterialDesignToolForegroundButton}">
+
+                                            <materialDesign:PackIcon HorizontalAlignment="Center" Kind="ArrowLeft" />
+                                        </Button>
+
+                                        <TextBlock VerticalAlignment="Center" Text="EDITAR USUARIO" />
+
+                                    </StackPanel>
+                                </materialDesign:ColorZone>
+
+                                <StackPanel Orientation="Vertical">
+
+                                    <TextBox
+                                        materialDesign:HintAssist.Hint="First name"
+                                        materialDesign:HintAssist.IsFloating="True"
+                                        materialDesign:TextFieldAssist.HasClearButton="True"
+                                        Text="James" />
+
+                                    <TextBox
+                                        materialDesign:HintAssist.Hint="Last name"
+                                        materialDesign:HintAssist.IsFloating="True"
+                                        materialDesign:TextFieldAssist.HasClearButton="True"
+                                        Text="Willock" />
+
+                                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+
+                                        <TextBlock VerticalAlignment="Center" Text="Email Contact" />
+
+                                        <ToggleButton />
+
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal">
+
+                                        <TextBlock VerticalAlignment="Center" Text="Telephone Contact" />
+
+                                        <ToggleButton />
+
+                                    </StackPanel>
+
+                                    <StackPanel
+                                        Margin="0,40,0,0"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Orientation="Horizontal">
+
+                                        <Button
+                                            Name="ButtonSave"
+                                            Margin="2,0,2,0"
+                                            Click="ButtonSave_Click"
+                                            Command="{x:Static materialDesign:Flipper.FlipCommand}" />
+
+                                        <Button
+                                            Name="ButtonUpdate"
+                                            Margin="2,0,2,0"
+                                            Command="{x:Static materialDesign:Flipper.FlipCommand}" />
+
+                                        <Button
+                                            Name="ButtonDelete"
+                                            Margin="2,0,2,0"
+                                            Command="{x:Static materialDesign:Flipper.FlipCommand}" />
+
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                        </materialDesign:Flipper.BackContent>
+                    </materialDesign:Flipper>
+
+                    <materialDesign:Flipper
+                        Width="200"
+                        Height="250"
+                        Margin="20,7,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        materialDesign:ShadowAssist.ShadowDepth="Depth0">
+
+                        <materialDesign:Flipper.FrontContent>
+                            <Grid Background="Cyan">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Image
+                                    Source="https://3.bp.blogspot.com/-E09UMBffz94/Uqlzcne9khI/AAAAAAAAAMM/mRJFed3yajU/s150/DSC01825.JPG" />
+                                <StackPanel
+                                    Grid.Row="1"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center">
+                                    <TextBlock Text="James Willock" />
+                                    <Button
+                                        Margin="0,4,0,0"
+                                        Command="{x:Static materialDesign:Flipper.FlipCommand}"
+                                        Content="EDIT"
+                                        Style="{StaticResource MaterialDesignFlatButton}" />
+                                </StackPanel>
+                            </Grid>
+                        </materialDesign:Flipper.FrontContent>
+                        <materialDesign:Flipper.BackContent>
+                            <StackPanel
+                                Width="200"
+                                Height="250"
+                                Background="AliceBlue"
+                                Orientation="Vertical">
+                                <!--  Barra superior  -->
+                                <materialDesign:ColorZone Mode="SecondaryMid">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button
+                                            HorizontalAlignment="Left"
+                                            Command="{x:Static materialDesign:Flipper.FlipCommand}"
+                                            Style="{StaticResource MaterialDesignToolForegroundButton}">
+                                            <materialDesign:PackIcon HorizontalAlignment="Center" Kind="ArrowLeft" />
+                                        </Button>
+                                        <TextBlock VerticalAlignment="Center" Text="EDITAR USUARIO" />
+                                    </StackPanel>
+                                </materialDesign:ColorZone>
+
+                                <StackPanel Orientation="Vertical">
+                                    <TextBox
+                                        materialDesign:HintAssist.Hint="First name"
+                                        materialDesign:HintAssist.IsFloating="True"
+                                        materialDesign:TextFieldAssist.HasClearButton="True"
+                                        Text="James" />
+                                    <TextBox
+                                        materialDesign:HintAssist.Hint="Last name"
+                                        materialDesign:HintAssist.IsFloating="True"
+                                        materialDesign:TextFieldAssist.HasClearButton="True"
+                                        Text="Willock" />
+                                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                        <TextBlock VerticalAlignment="Center" Text="Email Contact" />
+                                        <ToggleButton />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock VerticalAlignment="Center" Text="Telephone Contact" />
+                                        <ToggleButton />
+                                    </StackPanel>
+                                    <StackPanel
+                                        Margin="0,40,0,0"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Orientation="Horizontal">
+                                        <Button
+                                            Name="buttonSave1"
+                                            Margin="2,0,2,0"
+                                            Click="ButtonSave_Click"
+                                            Command="{x:Static materialDesign:Flipper.FlipCommand}">
+                                            <materialDesign:PackIcon Kind="ContentSaveCheckOutline" />
+                                        </Button>
+                                        <Button
+                                            Name="buttonUpdate1"
+                                            Margin="2,0,2,0"
+                                            Command="{x:Static materialDesign:Flipper.FlipCommand}" />
+                                        <Button
+                                            Name="buttonDelete1"
+                                            Margin="2,0,2,0"
+                                            Command="{x:Static materialDesign:Flipper.FlipCommand}">
+                                            <materialDesign:PackIcon Kind="DeleteOutline" />
+                                        </Button>
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                        </materialDesign:Flipper.BackContent>
+                    </materialDesign:Flipper>
+
+                    <materialDesign:Flipper
+                        Width="200"
+                        Height="250"
+                        Margin="20,7,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        materialDesign:ShadowAssist.ShadowDepth="Depth0">
+                        <materialDesign:Flipper.FrontContent>
+                            <Grid Background="Cyan">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Image
+                                    Source="https://1.bp.blogspot.com/_-whoc19AV00/TUcZ8u_lciI/AAAAAAAAAD4/DqanaR0-jso/s150/cintas%2Bbonitas.JPG" />
+                                <StackPanel
+                                    Grid.Row="1"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center">
+                                    <TextBlock Text="Myriam" />
+                                    <Button
+                                        Margin="0,4,0,0"
+                                        Command="{x:Static materialDesign:Flipper.FlipCommand}"
+                                        Content="EDIT"
+                                        Style="{StaticResource MaterialDesignFlatButton}" />
+                                </StackPanel>
+                            </Grid>
+                        </materialDesign:Flipper.FrontContent>
+                        <materialDesign:Flipper.BackContent>
+                            <StackPanel
+                                Width="200"
+                                Height="250"
+                                Background="AliceBlue"
+                                Orientation="Vertical">
+                                <!--  Barra superior  -->
+                                <materialDesign:ColorZone Mode="SecondaryMid">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button
+                                            Width="Auto"
+                                            HorizontalAlignment="Left"
+                                            Background="Transparent"
+                                            BorderThickness="0"
+                                            Command="{x:Static materialDesign:Flipper.FlipCommand}"
+                                            Foreground="Black">
+                                            <materialDesign:PackIcon VerticalAlignment="Center" Kind="ArrowLeft" />
+                                        </Button>
+                                        <TextBlock VerticalAlignment="Center" Text="EDITAR USUARIO" />
+                                    </StackPanel>
+                                </materialDesign:ColorZone>
+
+
+                                <StackPanel Orientation="Vertical">
+                                    <TextBox
+                                        materialDesign:HintAssist.Hint="First name"
+                                        materialDesign:HintAssist.IsFloating="True"
+                                        materialDesign:TextFieldAssist.HasClearButton="True"
+                                        Text="James" />
+                                    <TextBox
+                                        materialDesign:HintAssist.Hint="Last name"
+                                        materialDesign:HintAssist.IsFloating="True"
+                                        materialDesign:TextFieldAssist.HasClearButton="True"
+                                        Text="Willock" />
+                                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                        <TextBlock VerticalAlignment="Center" Text="Email Contact" />
+                                        <ToggleButton />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock VerticalAlignment="Center" Text="Telephone Contact" />
+                                        <ToggleButton />
+                                    </StackPanel>
+                                    <StackPanel
+                                        Margin="0,40,0,0"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Orientation="Horizontal">
+                                        <Button
+                                            Name="buttonSave2"
+                                            Margin="2,0,2,0"
+                                            Click="ButtonSave_Click"
+                                            Command="{x:Static materialDesign:Flipper.FlipCommand}" />
+                                        <Button
+                                            Name="buttonUpdate2"
+                                            Margin="2,0,2,0"
+                                            Command="{x:Static materialDesign:Flipper.FlipCommand}" />
+                                        <Button
+                                            Name="buttonDelete2"
+                                            Margin="2,0,2,0"
+                                            Command="{x:Static materialDesign:Flipper.FlipCommand}" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                        </materialDesign:Flipper.BackContent>
+                    </materialDesign:Flipper>
+
+                </StackPanel>
+            </ScrollViewer>
+            <Button
+                Grid.Row="0"
+                Margin="0,0,48,30"
+                Background="#3f51b5"
+                Foreground="White"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Content="{materialDesign:PackIcon Kind=Plus, Size=22}"
+                Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
+                Height="50"
+                Style="{StaticResource MaterialDesignRaisedButton}"
+                materialDesign:ButtonAssist.CornerRadius="10" />
+            <!--  and here's another  -->
+            <materialDesign:Snackbar x:Name="SnackbarSeven" MessageQueue="{materialDesign:MessageQueue}">
+                <materialDesign:SnackbarMessage ActionContent="UNDO" />
+            </materialDesign:Snackbar>
+        </Grid>
+    </materialDesign:DialogHost>
 </UserControl>

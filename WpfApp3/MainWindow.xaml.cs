@@ -3,6 +3,10 @@ using System.Diagnostics;
 using System.Windows;
 using MaterialDesignThemes.Wpf;
 using MySqlConnector;
+using ToastNotifications;
+using ToastNotifications.Lifetime;
+using ToastNotifications.Messages;
+using ToastNotifications.Position;
 using WpfApp3.View;
 
 namespace WpfApp3 {
@@ -15,6 +19,21 @@ namespace WpfApp3 {
         public static string Contrasena { get; set; }
         public static string BaseDatos { get; set; }
         public static string CadenaConexion { get; set; }
+
+        Notifier notifier = new Notifier(cfg => {
+            cfg.PositionProvider = new WindowPositionProvider(
+                parentWindow: Application.Current.MainWindow,
+                corner: Corner.TopRight,
+                offsetX: 10,
+                offsetY: 10
+            );
+
+            cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
+                notificationLifetime: TimeSpan.FromSeconds(3),
+                maximumNotificationCount: MaximumNotificationCount.FromCount(5));
+
+            cfg.Dispatcher = Application.Current.Dispatcher;
+        });
 
         public MainWindow() {
             InitializeComponent();
@@ -47,7 +66,12 @@ namespace WpfApp3 {
             if (Servidor.Length == 0 || Puerto.Length == 0 || Usuario.Length == 0 || Contrasena.Length == 0 ||
                 BaseDatos.Length == 0) {
                 SnackbarSeven.MessageQueue?.Enqueue("Rellena todos los campos");
+                notifier.ShowInformation("Rellena todos los campos");
+                notifier.ShowSuccess("Rellena todos los campos");
+                notifier.ShowWarning("Rellena todos los campos");
+                notifier.ShowError("Rellena todos los campos");
                 SnackbarSeven.MessageQueue?.Enqueue("La opción seleccionada es " + OutlinedComboBox.Text);
+                notifier.Dispose();
             }
             else if (Servidor.Contains("A")) {
                 SnackbarSeven.MessageQueue?.Enqueue("El campo servidor debe estar compuesto por números");
