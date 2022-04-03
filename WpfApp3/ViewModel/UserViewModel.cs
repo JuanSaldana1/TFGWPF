@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using MySql.Data.MySqlClient;
+using WpfApp3.Model;
 
 namespace WpfApp3.ViewModel {
     internal class UserViewModel {
-        private IList<UserViewModel> Usuarios { get; set; } = new List<UserViewModel>();
+        public IList<UserModel> Usuarios { get; set; } = new List<UserModel>();
 
         public UserViewModel() {
             string cadenaConexion = "server=" + MainWindow.Servidor + "; port=" + MainWindow.Puerto + "; user id=" +

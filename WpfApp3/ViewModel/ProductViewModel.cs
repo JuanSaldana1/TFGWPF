@@ -17,10 +17,10 @@ namespace WpfApp3.ViewModel {
             conexionBd.Open();
             MySqlDataReader myReader;
             myReader = myCommand.ExecuteReader();
-        
+
 
             if (myReader.HasRows) {
-                
+
                 while (myReader.Read()) {
                     Productos.Add(new ProductoModel() {
                         ProductId = myReader.GetInt32(0),

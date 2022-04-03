@@ -11,7 +11,7 @@ using WpfApp3.View;
 
 namespace WpfApp3 {
     public partial class MainWindow {
-        private string _listadeBasesDeDatos = "";
+        private string listadeBasesDeDatos = "";
         public static string MotorBd { get; set; }
         public static string Servidor { get; set; }
         public static string Puerto { get; set; }
@@ -37,9 +37,8 @@ namespace WpfApp3 {
 
         public MainWindow() {
             InitializeComponent();
-            DataContext = _listadeBasesDeDatos;
+            DataContext = listadeBasesDeDatos;
         }
-
 
         private void ButtonConectar_Click(object sender, RoutedEventArgs e) {
             MotorBd = OutlinedComboBox.Text;
@@ -56,10 +55,66 @@ namespace WpfApp3 {
                     BaseDatos = "sys";
                     CadenaConexion = "server=" + Servidor + "; port=" + Puerto + "; user id=" + Usuario +
                                      "; password=" + Contrasena + "; database=" + BaseDatos + ";";
+                    try {
+                        var conexionBd = new MySqlConnection(CadenaConexion);
+                        conexionBd.Open();
+                        Console.WriteLine(conexionBd);
+                        // Si ha establecido bien la conexión, cierra la ventana de login y abre la de LISTA Y CRUD
+                        SnackbarSeven.MessageQueue?.Enqueue("Has entrado correctamente");
+                        MySqlDataReader reader;
+                        MySqlCommand command = new MySqlCommand("SHOW DATABASES", conexionBd);
+                        reader = command.ExecuteReader();
+                        while (reader.Read()) {
+                            listadeBasesDeDatos += reader.GetString(0) + '\n';
+                        }
+
+                        MessageBox.Show(listadeBasesDeDatos);
+                        DataContext = listadeBasesDeDatos;
+                        ListaYCRUD listaYcrud = new ListaYCRUD();
+                        listaYcrud.Show();
+                        Close();
+                    }
+                    catch (MySqlException ex) {
+                        SnackbarSeven.MessageQueue?.Enqueue(ex.Message);
+                        Console.WriteLine(ex.StackTrace);
+                        var listaYcrud = new ListaYCRUD();
+                        listaYcrud.Show();
+                        Close();
+                    }
+
                     return;
                 case "PostgreSQL":
-                    CadenaConexion = "server=" + Servidor + "; port=" + Puerto + "; user id=" + Usuario +
-                                     "; password=" + Contrasena + "; database=" + BaseDatos + ";";
+                    BaseDatos = "postgres";
+                    CadenaConexion = "User ID=" + Usuario + "; Password=" + Contrasena + "; Host=" + Servidor +
+                                     "; Port=" + Puerto + "; Database=" + BaseDatos +
+                                     "; Pooling=true; Min Pool Size=0;";
+                    Console.Write(CadenaConexion);
+                    try {
+                        var conexionBd = new MySqlConnection(CadenaConexion);
+                        conexionBd.Open();
+                        Console.WriteLine(conexionBd);
+                        // Si ha establecido bien la conexión, cierra la ventana de login y abre la de LISTA Y CRUD
+                        SnackbarSeven.MessageQueue?.Enqueue("Has entrado correctamente");
+                        MySqlDataReader reader;
+                        MySqlCommand command = new MySqlCommand("SHOW DATABASES", conexionBd);
+                        reader = command.ExecuteReader();
+                        while (reader.Read()) {
+                            listadeBasesDeDatos += reader.GetString(0) + '\n';
+                        }
+
+                        MessageBox.Show(listadeBasesDeDatos);
+                        ListaYCRUD listaYcrud = new ListaYCRUD();
+                        listaYcrud.Show();
+                        Close();
+                    }
+                    catch (MySqlException ex) {
+                        SnackbarSeven.MessageQueue?.Enqueue(ex.Message);
+                        Console.WriteLine(ex.StackTrace);
+                        var listaYcrud = new ListaYCRUD();
+                        listaYcrud.Show();
+                        Close();
+                    }
+
                     return;
             }
 
@@ -87,10 +142,10 @@ namespace WpfApp3 {
                     MySqlCommand command = new MySqlCommand("SHOW DATABASES", conexionBd);
                     reader = command.ExecuteReader();
                     while (reader.Read()) {
-                        _listadeBasesDeDatos += reader.GetString(0) + '\n';
+                        listadeBasesDeDatos += reader.GetString(0) + '\n';
                     }
 
-                    MessageBox.Show(_listadeBasesDeDatos);
+                    MessageBox.Show(listadeBasesDeDatos);
                     ListaYCRUD listaYcrud = new ListaYCRUD();
                     listaYcrud.Show();
                     Close();

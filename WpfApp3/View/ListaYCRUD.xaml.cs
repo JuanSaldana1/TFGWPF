@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows;
+using MaterialDesignThemes.Wpf;
 using MySql.Data.MySqlClient;
+using PaletteHelper = MaterialDesignExtensions.Themes.PaletteHelper;
 
 namespace WpfApp3.View {
     /// <summary>
@@ -32,11 +35,23 @@ namespace WpfApp3.View {
                 while (myReader.Read()) {
                     ListaTablas.Add(myReader.GetString(0));
                 }
+
                 Console.WriteLine(ListaTablas);
             }
 
             myReader.Close();
             conexionBd.Close();
+        }
+
+        private void MenuDarkModeButton_Click(object sender, RoutedEventArgs e)
+            => ModifyTheme(DarkModeToggleButton.IsChecked == true);
+
+        private static void ModifyTheme(bool isDarkTheme) {
+            var paletteHelper = new PaletteHelper();
+            var theme = paletteHelper.GetTheme();
+
+            theme.SetBaseTheme(isDarkTheme ? Theme.Dark : Theme.Light);
+            paletteHelper.SetTheme(theme);
         }
     }
 }

@@ -1,10 +1,7 @@
-﻿using MaterialDesignThemes.Wpf;
-using MySqlConnector;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using WpfApp3.Model;
+using MaterialDesignThemes.Wpf;
 using WpfApp3.ViewModel;
 
 namespace WpfApp3.View {
@@ -22,11 +19,11 @@ namespace WpfApp3.View {
         }
 
         private Action Deshacer() {
-            try {
-            }
+            try { }
             catch (NotImplementedException nIe) {
                 _ = MessageBox.Show(nIe.Message);
             }
+
             return null;
         }
 
@@ -37,7 +34,6 @@ namespace WpfApp3.View {
             typeof(DialogHost)
         );
 
-        private void ArticuloChanged(object sender, TextChangedEventArgs e) {
-        }
+        private void ArticuloChanged(object sender, TextChangedEventArgs e) { }
     }
 }

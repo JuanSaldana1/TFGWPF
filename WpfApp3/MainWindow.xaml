@@ -30,13 +30,14 @@
         <materialDesign:DialogHost.DialogContent>
             <StackPanel Margin="16">
                 <ListBox Name="ListBoxBasesDeDatos">
-                    <TextBlock DataContext="{Binding}" Text="" />
+                    <TextBlock DataContext="{Binding}" />
                     <TextBlock Text="Old" />
                     <TextBlock Text="ListBox" />
                     <TextBlock Text="Full of junk" />
                 </ListBox>
                 <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
                     <Button
+                        Click="ButtonConectar_Click"
                         Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
                         Content="ACCEPT"
                         IsDefault="True"
@@ -245,7 +246,7 @@
                     materialDesign:TextFieldAssist.HasClearButton="True" />
 
                 <Button
-                    Click="ButtonConectar_Click"
+                    Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
                     Content="CONÉCTATE"
                     Grid.Column="0"
                     Grid.ColumnSpan="2"
