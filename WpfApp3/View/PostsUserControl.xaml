@@ -1,4 +1,10 @@
 ﻿<UserControl
+    FontFamily="{DynamicResource MaterialDesignFont}"
+    TextElement.FontSize="13"
+    TextElement.FontWeight="Regular"
+    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+    TextOptions.TextFormattingMode="Ideal"
+    TextOptions.TextRenderingMode="Auto"
     d:DataContext="{d:DesignInstance Type=viewModel:PostViewModel}"
     d:DesignHeight="450"
     d:DesignWidth="800"
@@ -13,11 +19,11 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/materialdesign3.font.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/materialdesign3.defaults.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
-                <!--<ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />-->
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.DialogHost.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
@@ -57,7 +63,7 @@
                                     <StackPanel Grid.Row="1" Margin="8,24,8,4">
                                         <TextBox
                                             Margin="0"
-                                            Name="textViewNombreArticulo"
+                                            Name="textViewTituloPost"
                                             Text="{Binding PostTitle}"
                                             TextChanged="PostChanged" />
 
@@ -67,10 +73,13 @@
                                             TextWrapping="Wrap"
                                             VerticalAlignment="Center" />
 
-                                        <CheckBox
-                                            Content="{Binding PostPublishDate}"
-                                            IsChecked="True"
-                                            Style="{StaticResource MaterialDesignFilterChipPrimaryCheckBox}" />
+                                        <DatePicker
+                                            HorizontalAlignment="Left"
+                                            Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
+                                            Text="{Binding PostPublishDate}"
+                                            Width="100"
+                                            materialDesign:HintAssist.Hint="Pick Date"
+                                            materialDesign:TextFieldAssist.HasClearButton="True" />
 
                                     </StackPanel>
 
@@ -122,7 +131,7 @@
                                     <StackPanel Grid.Row="5">
                                         <Button
                                             Click="Button_Click"
-                                            Content="Guardar Cambios"
+                                            Content="RESERVE"
                                             HorizontalAlignment="Left"
                                             Margin="8,4,8,8"
                                             Style="{StaticResource MaterialDesignFlatButton}" />

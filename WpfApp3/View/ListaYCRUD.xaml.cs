@@ -18,8 +18,12 @@ namespace WpfApp3.View {
             TextViewNombreBaseDatos.Text = "Estás editando " + MainWindow.BaseDatos;
             var productosUserControl = new ProductosUserControl();
             var usuariosUserControl = new UsuariosUserControl();
+            var postsUserControl = new PostsUserControl();
+            var categoriasUserControl = new CategoriasUserControl();
             userControlProductos.Content = productosUserControl;
             userControlUsuarios.Content = usuariosUserControl;
+            userControlPosts.Content = postsUserControl;
+            userControlCategorías.Content = categoriasUserControl;
 
             var cadenaConexion = "server=" + MainWindow.Servidor + "; port=" + MainWindow.Puerto + "; user id=" +
                                  MainWindow.Usuario + "; password=" + MainWindow.Contrasena + "; database=" +

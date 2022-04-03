@@ -10,7 +10,7 @@ namespace WpfApp3.ViewModel {
             string cadenaConexion = MainWindow.CadenaConexion;
             MySqlConnection conexionBd = new MySqlConnection(cadenaConexion);
             string mySelectQuery =
-                "SELECT IdPost, Titulo, Descripcion, FechaPublicacion, Imagen1, Imagen2, IdComentario FROM Posts";
+                "SELECT IdPost, Titulo, Descripcion, FechaPublicacion, Imagen1, Imagen2 FROM Posts";
             MySqlCommand myCommand = new MySqlCommand(mySelectQuery, conexionBd);
             conexionBd.Open();
             MySqlDataReader myReader;
@@ -24,8 +24,8 @@ namespace WpfApp3.ViewModel {
                         PostTitle = myReader.GetString(1),
                         PostDescription = myReader.GetString(2),
                         PostPublishDate = myReader.GetDateTime(3),
-                        PostSecondImage = myReader.GetString(5),
-                        PostFirstImage = myReader.GetString(6)
+                        PostFirstImage = myReader.GetString(4),
+                        PostSecondImage = myReader.GetString(5)
                     });
                 }
             }

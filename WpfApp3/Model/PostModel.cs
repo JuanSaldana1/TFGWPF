@@ -23,7 +23,7 @@ namespace WpfApp3.Model {
             get => title;
             set {
                 title = value;
-                OnPropertyChanged("ProductName");
+                OnPropertyChanged("PostTitle");
             }
         }
 
@@ -31,7 +31,7 @@ namespace WpfApp3.Model {
             get => description;
             set {
                 description = value;
-                OnPropertyChanged("ProductDescription");
+                OnPropertyChanged("PostDescription");
             }
         }
 
@@ -39,7 +39,7 @@ namespace WpfApp3.Model {
             get => publishedAt;
             set {
                 publishedAt = value;
-                OnPropertyChanged("ProductPrice");
+                OnPropertyChanged("PostPublishDate");
             }
         }
 
@@ -47,7 +47,7 @@ namespace WpfApp3.Model {
             get => image1;
             set {
                 image1 = value;
-                OnPropertyChanged("ProductImage");
+                OnPropertyChanged("PostFirstImage");
             }
         }
 
@@ -55,7 +55,7 @@ namespace WpfApp3.Model {
             get => image2;
             set {
                 image2 = value;
-                OnPropertyChanged("ProductStock");
+                OnPropertyChanged("PostSecondImage");
             }
         }
 

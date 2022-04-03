@@ -9,9 +9,18 @@ namespace WpfApp3.View {
     /// Lógica de interacción para ProductosUserControl.xaml
     /// </summary>
     public partial class ProductosUserControl {
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+
         public ProductosUserControl() {
             InitializeComponent();
             MyListView.DataContext = new ProductViewModel();
+            try {
+                Logger.Info("Hello world");
+                Console.ReadKey();
+            }
+            catch (Exception ex) {
+                Logger.Error(ex, "Goodbye cruel world");
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e) {
@@ -34,6 +43,8 @@ namespace WpfApp3.View {
             typeof(DialogHost)
         );
 
-        private void ArticuloChanged(object sender, TextChangedEventArgs e) { }
+        private void ArticuloChanged(object sender, TextChangedEventArgs e) {
+            Console.WriteLine("Artículo cambiado");
+        }
     }
 }

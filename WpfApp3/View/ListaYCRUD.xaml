@@ -1,5 +1,4 @@
 ﻿<Window
-    Background="{DynamicResource MaterialDesignPaper}"
     FontFamily="{DynamicResource MaterialDesignFont}"
     TextElement.FontSize="16"
     TextElement.FontWeight="Regular"

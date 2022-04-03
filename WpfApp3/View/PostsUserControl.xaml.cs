@@ -4,7 +4,10 @@ using System.Windows.Controls;
 using WpfApp3.ViewModel;
 
 namespace WpfApp3.View {
-    public partial class PostsUserControl : UserControl {
+    /// <summary>
+    /// Lógica de interacción para PostsUserControl.xaml
+    /// </summary>
+    public partial class PostsUserControl {
         public PostsUserControl() {
             InitializeComponent();
             MyListView.DataContext = new PostViewModel();
