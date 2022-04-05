@@ -19,7 +19,7 @@
     <Grid>
         <materialDesign:ColorZone
             DockPanel.Dock="Top"
-            Mode="PrimaryMid"
+            Mode="PrimaryLight"
             Padding="16"
             materialDesign:ShadowAssist.ShadowDepth="Depth2">
             <DockPanel>
@@ -65,10 +65,10 @@
 
                 <TextBlock
                     AutomationProperties.Name="Material Design In XAML Toolkit"
-                    FontSize="22"
                     HorizontalAlignment="Center"
                     Margin="-152,0,0,0"
                     Name="TextViewNombreBaseDatos"
+                    Style="{StaticResource MaterialDesignDisplayLargeTextBlock}"
                     VerticalAlignment="Center" />
             </DockPanel>
         </materialDesign:ColorZone>

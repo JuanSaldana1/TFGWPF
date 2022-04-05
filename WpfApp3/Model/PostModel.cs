@@ -7,6 +7,7 @@ namespace WpfApp3.Model {
         private int idPost;
         private string title;
         private string description;
+        private string url;
         private DateTime publishedAt;
         private string image1;
         private string image2;
@@ -32,6 +33,14 @@ namespace WpfApp3.Model {
             set {
                 description = value;
                 OnPropertyChanged("PostDescription");
+            }
+        }
+
+        public string PostUrl {
+            get => url;
+            set {
+                url = value;
+                OnPropertyChanged("PostUrl");
             }
         }
 

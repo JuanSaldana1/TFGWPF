@@ -5,11 +5,11 @@
     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
     TextOptions.TextFormattingMode="Ideal"
     TextOptions.TextRenderingMode="Auto"
-    d:DataContext="{d:DesignInstance Type=viewModel:PostViewModel}"
+    d:DataContext="{d:DesignInstance Type=viewModel:CommentViewModel}"
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d"
-    x:Class="WpfApp3.View.PostsUserControl"
+    x:Class="WpfApp3.View.ComentariosUserControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
@@ -32,14 +32,14 @@
         <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
 
             <ListView
-                ItemsSource="{Binding Posts}"
+                ItemsSource="{Binding Comments}"
                 Margin="30,0,0,0"
                 x:Name="MyListView">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:Card
-                                Background="#a5d6a7"
+                                Background="PapayaWhip"
                                 Margin="20,0,0,0"
                                 UniformCornerRadius="6"
                                 Width="300">
@@ -53,39 +53,32 @@
                                         <RowDefinition Height="Auto" />
                                         <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
-                                    <Image
-                                        Grid.Row="0"
-                                        Height="200"
-                                        Source="{Binding PostFirstImage}"
-                                        Stretch="Uniform"
-                                        VerticalAlignment="Center" />
 
                                     <StackPanel Grid.Row="1" Margin="8,24,8,4">
                                         <TextBox
                                             Margin="0"
-                                            Name="textViewTituloPost"
-                                            Text="{Binding PostTitle}"
-                                            TextChanged="PostChanged" />
+                                            Name="textViewNombreArticulo"
+                                            Text="{Binding CommentTitle}"
+                                            TextChanged="CommentChanged" />
 
                                         <TextBlock
-                                            Style="{StaticResource MaterialDesignBody1TextBlock}"
-                                            Text="{Binding PostDescription}"
+                                            Style="{StaticResource MaterialDesignHeadlineSmallTextBlock}"
+                                            Text="{Binding CommentContent}"
                                             TextWrapping="Wrap"
                                             VerticalAlignment="Center" />
-
-                                        <TextBlock>
-                                            <Hyperlink NavigateUri="{Binding PostUrl}" RequestNavigate="Hyperlink_RequestNavigate">
-                                                Click here
-                                            </Hyperlink>
-                                        </TextBlock>
 
                                         <DatePicker
                                             HorizontalAlignment="Left"
                                             Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
-                                            Text="{Binding PostPublishDate}"
+                                            Text="{Binding CommentPublishDate}"
                                             Width="150"
                                             materialDesign:HintAssist.Hint="Pick Date"
                                             materialDesign:TextFieldAssist.HasClearButton="True" />
+
+                                        <CheckBox
+                                            Content="Anónimo"
+                                            IsChecked="{Binding IsAnonymous}"
+                                            Style="{StaticResource MaterialDesignFilterChipPrimaryCheckBox}" />
 
                                     </StackPanel>
 
@@ -137,7 +130,7 @@
                                     <StackPanel Grid.Row="5">
                                         <Button
                                             Click="Button_Click"
-                                            Content="Guardar Cambios"
+                                            Content="RESERVE"
                                             HorizontalAlignment="Left"
                                             Margin="8,4,8,8"
                                             Style="{StaticResource MaterialDesignFlatButton}" />
