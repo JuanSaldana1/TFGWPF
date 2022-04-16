@@ -21,6 +21,13 @@
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Font.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.TextBlock.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Window.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.NavigationRail.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.NavigationBar.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.NavigationDrawer.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.DialogHost.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
@@ -254,9 +261,10 @@
                     HorizontalAlignment="Center"
                     Margin="0,0,0,50"
                     Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                    ToolTip="Establece una conexión con la base de datos"
                     VerticalAlignment="Bottom"
                     Width="140"
-                    materialDesign:ButtonAssist.CornerRadius="15" />
+                    materialDesign:ButtonAssist.CornerRadius="10" />
 
                 <materialDesign:Snackbar
                     Grid.Column="0"

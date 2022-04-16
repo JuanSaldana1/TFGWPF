@@ -23,9 +23,9 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Font.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.TextBlock.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Window.xaml" />
-                <!--<ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.NavigationRail.xaml" />
-            <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.NavigationBar.xaml" />
-            <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.NavigationDrawer.xaml" />-->
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.NavigationRail.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.NavigationBar.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.NavigationDrawer.xaml" />
 
                 <!--  MaterialDesign2  -->
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Badged.xaml" />
@@ -123,32 +123,6 @@
                     VerticalAlignment="Center" />
             </DockPanel>
         </materialDesign:ColorZone>
-
-        <!--<materialDesign:ColorZone
-            Background="#3f51b5"
-            Height="60"
-            VerticalAlignment="Top">
-            <DockPanel>
-                <TextBlock
-                    FontFamily="Champagne &amp; Limousines"
-                    FontSize="22"
-                    Foreground="White"
-                    HorizontalAlignment="Center"
-                    Name="TextViewNombreBaseDatos"
-                    VerticalAlignment="Center" />
-
-                <materialDesign:PopupBox
-                    DockPanel.Dock="Right"
-                    HorizontalAlignment="Right"
-                    PlacementMode="BottomAndAlignRightEdges">
-                    <ListBox>
-                        <ListBoxItem Content="Hello World" />
-                        <ListBoxItem Content="Nice Popup" />
-                        <ListBoxItem Content="Goodbye" />
-                    </ListBox>
-                </materialDesign:PopupBox>
-            </DockPanel>
-        </materialDesign:ColorZone>-->
 
         <TabControl
             Margin="0,60,0,0"

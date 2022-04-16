@@ -29,137 +29,6 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
-        <!--<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-
-            <ListView
-                ItemsSource="{Binding Comments}"
-                Margin="30,0,0,0"
-                x:Name="MyListView">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:Card
-                                Background="PapayaWhip"
-                                Margin="20,0,0,0"
-                                UniformCornerRadius="6"
-                                Width="300">
-
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="*" />
-                                        <RowDefinition Height="*" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-
-                                    <StackPanel Grid.Row="1" Margin="8,24,8,4">
-                                        <TextBox
-                                            Margin="0"
-                                            Name="textViewNombreArticulo"
-                                            Text="{Binding CommentTitle}"
-                                            TextChanged="CommentChanged" />
-
-                                        <TextBlock
-                                            Style="{StaticResource MaterialDesignHeadlineSmallTextBlock}"
-                                            Text="{Binding CommentContent}"
-                                            TextWrapping="Wrap"
-                                            VerticalAlignment="Center" />
-
-                                        <DatePicker
-                                            HorizontalAlignment="Left"
-                                            Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
-                                            Text="{Binding CommentPublishDate}"
-                                            Width="150"
-                                            materialDesign:HintAssist.Hint="Pick Date"
-                                            materialDesign:TextFieldAssist.HasClearButton="True" />
-
-                                        <CheckBox
-                                            Content="Anónimo"
-                                            IsChecked="{Binding IsAnonymous}"
-                                            Style="{StaticResource MaterialDesignFilterChipPrimaryCheckBox}" />
-
-                                    </StackPanel>
-
-                                    <Separator
-                                        Grid.Row="2"
-                                        Margin="8,0,8,0"
-                                        Style="{StaticResource MaterialDesignDarkSeparator}" />
-
-                                    <TextBlock
-                                        Grid.Row="3"
-                                        Margin="8,4,8,4"
-                                        Style="{StaticResource MaterialDesignBody2TextBlock}"
-                                        Text="Tonight's availability" />
-
-                                    <Grid Grid.Row="4">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto" />
-                                            <ColumnDefinition Width="Auto" />
-                                        </Grid.ColumnDefinitions>
-                                        <materialDesign:PackIcon
-                                            Grid.Column="0"
-                                            Kind="ClockOutline"
-                                            Margin="8,4,4,4"
-                                            VerticalAlignment="Center" />
-
-                                        <ListBox
-                                            Grid.Column="1"
-                                            Margin="4,8,8,4"
-                                            SelectedIndex="0"
-                                            Style="{StaticResource MaterialDesignToolToggleFlatListBox}">
-
-                                            <ListBox.Resources>
-                                                <Style BasedOn="{StaticResource MaterialDesignToolToggleListBoxItem}" TargetType="{x:Type ListBoxItem}">
-
-                                                    <Setter Property="Padding" Value="4,6,4,6" />
-                                                </Style>
-                                            </ListBox.Resources>
-                                            <ListBoxItem>
-                                                <TextBlock Text="18:00" />
-                                            </ListBoxItem>
-                                            <ListBoxItem>
-                                                <TextBlock Text="19:00" />
-                                            </ListBoxItem>
-                                            <ListBoxItem>
-                                                <TextBlock Text="22:00" />
-                                            </ListBoxItem>
-                                        </ListBox>
-                                    </Grid>
-                                    <StackPanel Grid.Row="5">
-                                        <Button
-                                            Click="Button_Click"
-                                            Content="RESERVE"
-                                            HorizontalAlignment="Left"
-                                            Margin="8,4,8,8"
-                                            Style="{StaticResource MaterialDesignFlatButton}" />
-                                    </StackPanel>
-                                </Grid>
-                            </materialDesign:Card>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-            </StackPanel>
-
-        </ScrollViewer>
-
-        <Button
-            Background="#3f51b5"
-            Content="{materialDesign:PackIcon Kind=Plus,
-                                              Size=22}"
-            Foreground="White"
-            Grid.Row="0"
-            Height="50"
-            HorizontalAlignment="Right"
-            Margin="0,0,48,30"
-            Style="{StaticResource MaterialDesignRaisedButton}"
-            VerticalAlignment="Bottom"
-            materialDesign:ButtonAssist.CornerRadius="10" />
-        <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}" x:Name="SnackbarSeven">
-            <materialDesign:SnackbarMessage ActionContent="UNDO" />
-        </materialDesign:Snackbar>-->
         <ListBox
             ItemsSource="{Binding Comments}"
             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
@@ -169,7 +38,6 @@
                     <StackPanel Orientation="Vertical">
                         <materialDesign:Card
                             Background="PapayaWhip"
-                            Margin="20,0,0,0"
                             UniformCornerRadius="6"
                             Width="300">
 
@@ -186,7 +54,7 @@
                                 <StackPanel Grid.Row="1" Margin="8,24,8,4">
                                     <TextBox
                                         Margin="0"
-                                        Name="textViewNombreArticulo"
+                                        Name="textViewCommentTitle"
                                         Text="{Binding CommentTitle}"
                                         TextChanged="CommentChanged" />
 
