@@ -13,7 +13,7 @@ namespace WpfApp3.ViewModel {
             //string cadenaConexion = "server=192.168.1.208; port=3306; user id=Usuario; password=Lvepv.js12; database=LasDiademasDeMisHijas;";
             MySqlConnection conexionBd = new MySqlConnection(cadenaConexion);
             string mySelectQuery =
-                "SELECT UserId, Username, Name, Surname, Email, Follower, ProfilePhoto FROM Usuarios";
+                "SELECT UserId, Username, Name, Surname, Email, Rol, Follower, ProfilePhoto FROM Usuarios";
             MySqlCommand myCommand = new MySqlCommand(mySelectQuery, conexionBd);
             conexionBd.Open();
             MySqlDataReader myReader;
@@ -21,6 +21,16 @@ namespace WpfApp3.ViewModel {
 
             if (myReader.HasRows) {
                 while (myReader.Read()) {
+                    Usuarios.Add(new UserModel() {
+                        UserId = myReader.GetInt32(0),
+                        Username = myReader.GetString(1),
+                        Name = myReader.GetString(2),
+                        Surname = myReader.GetString(3),
+                        Email = myReader.GetString(4),
+                        Rol = myReader.GetString(5),
+                        Follower = myReader.GetString(6),
+                        ProfilePhoto = myReader.GetString(7)
+                    });
                 }
             }
 

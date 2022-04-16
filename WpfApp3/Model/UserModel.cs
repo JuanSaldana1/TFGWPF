@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace WpfApp3.Model {
@@ -8,8 +9,8 @@ namespace WpfApp3.Model {
         private string name;
         private string email;
         private string surname;
-        //private enum rol;
-        private bool follower;
+        private string rol;
+        private string follower;
         private string profilePhoto;
 
         public int UserId {
@@ -47,11 +48,19 @@ namespace WpfApp3.Model {
                 OnPropertyChanged("Surname");
             }
         }
-        public bool Follower {
+        public string Follower {
             get => follower;
             set {
                 follower = value;
                 OnPropertyChanged("Follower");
+            }
+        }
+        
+        public string Rol {
+            get => rol;
+            set {
+                rol = value;
+                OnPropertyChanged("Rol");
             }
         }
         public string ProfilePhoto {

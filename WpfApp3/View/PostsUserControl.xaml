@@ -39,7 +39,6 @@
                     <StackPanel Orientation="Vertical">
                         <materialDesign:Card
                             Background="#a5d6a7"
-                            Margin="20,0,0,0"
                             UniformCornerRadius="6"
                             Width="400">
 

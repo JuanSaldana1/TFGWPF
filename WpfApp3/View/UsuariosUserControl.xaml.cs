@@ -1,7 +1,5 @@
-﻿using Microsoft.Win32;
-using MySql.Data.MySqlClient;
-using System.Data;
-using System.Windows;
+﻿using System.Windows;
+using Microsoft.Win32;
 using WpfApp3.Model;
 using WpfApp3.ViewModel;
 
@@ -10,26 +8,11 @@ namespace WpfApp3.View {
     /// Lógica de interacción para UsuariosUserControl.xaml
     /// </summary>
     public partial class UsuariosUserControl {
-        public static string Nombre { get; set; }
-        public static string Correo { get; set; }
         public static string ImagenPerfil { get; set; }
-        public static string Usuario { get; set; }
 
         public UsuariosUserControl() {
             InitializeComponent();
-            //SpeechRecognizer speechRecognizer = new SpeechRecognizer();
-
-            string cadenaConexion = MainWindow.CadenaConexion;
-            // string cadenaConexion = "server=192.168.1.208; port=3306; user id=Usuario; password=Lvepv.js12; database=LasDiademasDeMisHijas;";
-            var conexionBd = new MySqlConnection(cadenaConexion);
-            MySqlCommand cmd = new MySqlCommand("SELECT * FROM Usuarios", conexionBd);
-            MySqlCommand cmdFotos = new MySqlCommand("SELECT ProfilePhoto FROM Usuarios", conexionBd);
-            conexionBd.Open();
-            DataTable dataTable = new DataTable();
-            DataTable dataTable1 = new DataTable();
-            dataTable.Load(cmd.ExecuteReader());
-            dataTable1.Load(cmdFotos.ExecuteReader());
-            conexionBd.Close();
+            MyListView.DataContext = new UserViewModel();
         }
 
         public void ButtonSave_Click(object sender, RoutedEventArgs e) {
@@ -47,7 +30,7 @@ namespace WpfApp3.View {
             openFileDialog.ShowDialog();
             SnackbarSeven.MessageQueue?.Enqueue(openFileDialog.FileName);
             ImagenPerfil = openFileDialog.FileName;
-            TextBlockFileName.Text = ImagenPerfil;
+            /*TextBlockFileName.Text = ImagenPerfil;*/
         }
     }
 }
