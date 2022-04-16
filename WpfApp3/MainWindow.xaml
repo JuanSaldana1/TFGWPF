@@ -195,7 +195,7 @@
                     Height="27"
                     HorizontalAlignment="Left"
                     Name="EditTextServer"
-                    Text="192.168.1.208"
+                    Text="192.168.1.207"
                     VerticalAlignment="Bottom"
                     Width="175"
                     materialDesign:HintAssist.Hint="192.168.0.0"

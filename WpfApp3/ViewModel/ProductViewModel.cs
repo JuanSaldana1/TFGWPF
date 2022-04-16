@@ -20,7 +20,6 @@ namespace WpfApp3.ViewModel {
 
 
             if (myReader.HasRows) {
-
                 while (myReader.Read()) {
                     Productos.Add(new ProductoModel() {
                         ProductId = myReader.GetInt32(0),

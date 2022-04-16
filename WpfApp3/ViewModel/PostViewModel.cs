@@ -16,7 +16,6 @@ namespace WpfApp3.ViewModel {
             MySqlDataReader myReader;
             myReader = myCommand.ExecuteReader();
 
-
             if (myReader.HasRows) {
                 while (myReader.Read()) {
                     Posts.Add(new PostModel() {

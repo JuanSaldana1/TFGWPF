@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace WpfApp3.Model {
@@ -26,6 +27,7 @@ namespace WpfApp3.Model {
                 OnPropertyChanged("ProductName");
             }
         }
+
         public string ProductDescription {
             get => productDescription;
             set {
@@ -33,6 +35,7 @@ namespace WpfApp3.Model {
                 OnPropertyChanged("ProductDescription");
             }
         }
+
         public double ProductPrice {
             get => productPrice;
             set {
@@ -40,6 +43,7 @@ namespace WpfApp3.Model {
                 OnPropertyChanged("ProductPrice");
             }
         }
+
         public string ProductImage {
             get => productImage;
             set {
@@ -47,6 +51,7 @@ namespace WpfApp3.Model {
                 OnPropertyChanged("ProductImage");
             }
         }
+
         public int ProductStock {
             get => productStock;
             set {
@@ -54,6 +59,7 @@ namespace WpfApp3.Model {
                 OnPropertyChanged("ProductStock");
             }
         }
+
         public string ProductCategory {
             get => productCategory;
             set {
@@ -63,9 +69,10 @@ namespace WpfApp3.Model {
         }
         //internal CategoryModel ProductCategory { get => productCategory; set => productCategory = value; }
 
-        #region INotifyPropertyChanged Members  
+        #region INotifyPropertyChanged Members
 
         public event PropertyChangedEventHandler PropertyChanged;
+
         private void OnPropertyChanged(string propertyName) {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
@@ -78,7 +85,12 @@ namespace WpfApp3.Model {
         }
 
         private System.Collections.IEnumerable ventas;
-        public System.Collections.IEnumerable Ventas { get => ventas; set => SetProperty(ref ventas, value); }
+
+        public System.Collections.IEnumerable Ventas {
+            get => ventas;
+            set => SetProperty(ref ventas, value);
+        }
+
         #endregion
     }
 }

@@ -46,5 +46,9 @@ namespace WpfApp3.View {
         private void ArticuloChanged(object sender, TextChangedEventArgs e) {
             Console.WriteLine("Artículo cambiado");
         }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e) {
+            throw new NotImplementedException();
+        }
     }
 }

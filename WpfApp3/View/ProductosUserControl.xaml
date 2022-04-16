@@ -19,10 +19,8 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/materialdesign3.defaults.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinDefault.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.DialogHost.xaml" />
             </ResourceDictionary.MergedDictionaries>
@@ -53,6 +51,7 @@
                                         <RowDefinition Height="Auto" />
                                         <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
+
                                     <Image
                                         Grid.Row="0"
                                         Height="200"
@@ -96,34 +95,15 @@
                                             <ColumnDefinition Width="Auto" />
                                             <ColumnDefinition Width="Auto" />
                                         </Grid.ColumnDefinitions>
-                                        <materialDesign:PackIcon
-                                            Grid.Column="0"
-                                            Kind="ClockOutline"
-                                            Margin="8,4,4,4"
-                                            VerticalAlignment="Center" />
+                                        <StackPanel>
+                                            <TextBlock Text="Stock" />
+                                            <TextBlock Text="{Binding ProductStock}" />
+                                        </StackPanel>
 
-                                        <ListBox
-                                            Grid.Column="1"
-                                            Margin="4,8,8,4"
-                                            SelectedIndex="0"
-                                            Style="{StaticResource MaterialDesignToolToggleFlatListBox}">
-
-                                            <ListBox.Resources>
-                                                <Style BasedOn="{StaticResource MaterialDesignToolToggleListBoxItem}" TargetType="{x:Type ListBoxItem}">
-
-                                                    <Setter Property="Padding" Value="4,6,4,6" />
-                                                </Style>
-                                            </ListBox.Resources>
-                                            <ListBoxItem>
-                                                <TextBlock Text="18:00" />
-                                            </ListBoxItem>
-                                            <ListBoxItem>
-                                                <TextBlock Text="19:00" />
-                                            </ListBoxItem>
-                                            <ListBoxItem>
-                                                <TextBlock Text="22:00" />
-                                            </ListBoxItem>
-                                        </ListBox>
+                                        <StackPanel Grid.Column="1">
+                                            <Button Click="ButtonBase_OnClick" Name="ButtonAddStock" />
+                                            <Button Click="ButtonBase_OnClick" Name="ButtonRemoveStock" />
+                                        </StackPanel>
                                     </Grid>
                                     <StackPanel Grid.Row="5">
                                         <Button
