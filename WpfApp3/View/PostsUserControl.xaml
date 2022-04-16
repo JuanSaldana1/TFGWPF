@@ -22,166 +22,159 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinDefault.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/materialdesign3.defaults.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Defaults.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.DialogHost.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Listbox.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
-        <ProgressBar IsIndeterminate="True" />
-        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-            <hc:FlexPanel Width="800">
+        <ListBox
+            ItemsSource="{Binding Posts}"
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+            x:Name="MyListView">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <materialDesign:Card
+                            Background="#a5d6a7"
+                            Margin="20,0,0,0"
+                            UniformCornerRadius="6"
+                            Width="400">
 
-                <ListView
-                    ItemsSource="{Binding Posts}"
-                    Margin="30,0,0,0"
-                    x:Name="MyListView">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <hc:FlexPanel Width="800">
-                                <materialDesign:Card
-                                    Background="#a5d6a7"
-                                    Margin="20,0,0,0"
-                                    UniformCornerRadius="6"
-                                    Width="400">
-
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="*" />
-                                            <RowDefinition Height="*" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                        </Grid.RowDefinitions>
-                                        <hc:TransitioningContentControl>
-                                            <hc:Carousel
-                                                Height="200"
-                                                IsCenter="True"
-                                                VerticalAlignment="Center"
-                                                Width="300">
-                                                <Image
-                                                    Height="200"
-                                                    Source="{Binding PostFirstImage}"
-                                                    Stretch="UniformToFill"
-                                                    VerticalAlignment="Center" />
-                                                <Image
-                                                    Height="200"
-                                                    Source="{Binding PostSecondImage}"
-                                                    Stretch="Uniform"
-                                                    VerticalAlignment="Center" />
-                                            </hc:Carousel>
-                                        </hc:TransitioningContentControl>
-                                        <!--<Image
-                                        Grid.Row="0"
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <hc:TransitioningContentControl>
+                                    <hc:Carousel
                                         Height="200"
-                                        Source="{Binding PostFirstImage}"
-                                        Stretch="Uniform"
-                                        VerticalAlignment="Center" />-->
+                                        IsCenter="True"
+                                        VerticalAlignment="Center"
+                                        Width="300">
+                                        <Image
+                                            Height="200"
+                                            Source="{Binding PostFirstImage}"
+                                            Stretch="UniformToFill"
+                                            VerticalAlignment="Center" />
+                                        <Image
+                                            Height="200"
+                                            Source="{Binding PostSecondImage}"
+                                            Stretch="Uniform"
+                                            VerticalAlignment="Center" />
+                                    </hc:Carousel>
+                                </hc:TransitioningContentControl>
+                                <Image
+                                    Grid.Row="0"
+                                    Height="200"
+                                    Source="{Binding PostFirstImage}"
+                                    Stretch="Uniform"
+                                    VerticalAlignment="Center" />
 
-                                        <StackPanel Grid.Row="1" Margin="8,24,8,4">
-                                            <TextBox
-                                                Margin="0"
-                                                Name="textViewTituloPost"
-                                                Text="{Binding PostTitle}"
-                                                TextChanged="PostChanged" />
+                                <StackPanel Grid.Row="1" Margin="8,24,8,4">
+                                    <TextBox
+                                        Margin="0"
+                                        Name="textViewTituloPost"
+                                        Text="{Binding PostTitle}"
+                                        TextChanged="PostChanged" />
 
-                                            <TextBlock
-                                                Style="{StaticResource MaterialDesignBody1TextBlock}"
-                                                Text="{Binding PostDescription}"
-                                                TextWrapping="Wrap"
-                                                VerticalAlignment="Center" />
+                                    <TextBlock
+                                        Style="{StaticResource MaterialDesignBody1TextBlock}"
+                                        Text="{Binding PostDescription}"
+                                        TextWrapping="Wrap"
+                                        VerticalAlignment="Center" />
 
-                                            <TextBlock>
-                                                <Button>
-                                                    <Hyperlink
-                                                        FontSize="29"
-                                                        NavigateUri="{Binding PostUrl}"
-                                                        RequestNavigate="Hyperlink_RequestNavigate">
-                                                        Enlace al post
-                                                    </Hyperlink>
-                                                </Button>
-                                            </TextBlock>
+                                    <TextBlock>
+                                        <Button>
+                                            <Hyperlink
+                                                FontSize="29"
+                                                NavigateUri="{Binding PostUrl}"
+                                                RequestNavigate="Hyperlink_RequestNavigate">
+                                                Enlace al post
+                                            </Hyperlink>
+                                        </Button>
+                                    </TextBlock>
 
-                                            <DatePicker
-                                                HorizontalAlignment="Left"
-                                                Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
-                                                Text="{Binding PostPublishDate}"
-                                                Width="150"
-                                                materialDesign:HintAssist.Hint="Elija la fecha de publicación"
-                                                materialDesign:TextFieldAssist.HasClearButton="True" />
+                                    <DatePicker
+                                        HorizontalAlignment="Left"
+                                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
+                                        Text="{Binding PostPublishDate}"
+                                        Width="150"
+                                        materialDesign:HintAssist.Hint="Elija la fecha de publicación"
+                                        materialDesign:TextFieldAssist.HasClearButton="True" />
 
-                                        </StackPanel>
+                                </StackPanel>
 
-                                        <Separator
-                                            Grid.Row="2"
-                                            Margin="8,0,8,0"
-                                            Style="{StaticResource MaterialDesignDarkSeparator}" />
+                                <Separator
+                                    Grid.Row="2"
+                                    Margin="8,0,8,0"
+                                    Style="{StaticResource MaterialDesignDarkSeparator}" />
 
-                                        <TextBlock
-                                            Grid.Row="3"
-                                            Margin="8,4,8,4"
-                                            Style="{StaticResource MaterialDesignBody2TextBlock}"
-                                            Text="Tonight's availability" />
+                                <TextBlock
+                                    Grid.Row="3"
+                                    Margin="8,4,8,4"
+                                    Style="{StaticResource MaterialDesignBody2TextBlock}"
+                                    Text="Tonight's availability" />
 
-                                        <Grid Grid.Row="4">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto" />
-                                                <ColumnDefinition Width="Auto" />
-                                            </Grid.ColumnDefinitions>
-                                            <materialDesign:PackIcon
-                                                Grid.Column="0"
-                                                Kind="ClockOutline"
-                                                Margin="8,4,4,4"
-                                                VerticalAlignment="Center" />
+                                <Grid Grid.Row="4">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <materialDesign:PackIcon
+                                        Grid.Column="0"
+                                        Kind="ClockOutline"
+                                        Margin="8,4,4,4"
+                                        VerticalAlignment="Center" />
 
-                                            <ListBox
-                                                Grid.Column="1"
-                                                Margin="4,8,8,4"
-                                                SelectedIndex="0"
-                                                Style="{StaticResource MaterialDesignToolToggleFlatListBox}">
+                                    <ListBox
+                                        Grid.Column="1"
+                                        Margin="4,8,8,4"
+                                        SelectedIndex="0"
+                                        Style="{StaticResource MaterialDesignToolToggleFlatListBox}">
 
-                                                <ListBox.Resources>
-                                                    <Style BasedOn="{StaticResource MaterialDesignToolToggleListBoxItem}" TargetType="{x:Type ListBoxItem}">
+                                        <ListBox.Resources>
+                                            <Style BasedOn="{StaticResource MaterialDesignToolToggleListBoxItem}" TargetType="{x:Type ListBoxItem}">
 
-                                                        <Setter Property="Padding" Value="4,6,4,6" />
-                                                    </Style>
-                                                </ListBox.Resources>
-                                                <ListBoxItem>
-                                                    <TextBlock Text="18:00" />
-                                                </ListBoxItem>
-                                                <ListBoxItem>
-                                                    <TextBlock Text="19:00" />
-                                                </ListBoxItem>
-                                                <ListBoxItem>
-                                                    <TextBlock Text="22:00" />
-                                                </ListBoxItem>
-                                            </ListBox>
-                                        </Grid>
-                                        <StackPanel Grid.Row="5">
-                                            <Button
-                                                Click="Button_Click"
-                                                Content="Guardar Cambios"
-                                                HorizontalAlignment="Left"
-                                                Margin="8,4,8,8"
-                                                Style="{StaticResource MaterialDesignFlatButton}" />
-                                        </StackPanel>
-                                    </Grid>
-                                </materialDesign:Card>
-                            </hc:FlexPanel>
-
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-
-                </ListView>
-                <!--</StackPanel>-->
-            </hc:FlexPanel>
-        </ScrollViewer>
-
+                                                <Setter Property="Padding" Value="4,6,4,6" />
+                                            </Style>
+                                        </ListBox.Resources>
+                                        <ListBoxItem>
+                                            <TextBlock Text="18:00" />
+                                        </ListBoxItem>
+                                        <ListBoxItem>
+                                            <TextBlock Text="19:00" />
+                                        </ListBoxItem>
+                                        <ListBoxItem>
+                                            <TextBlock Text="22:00" />
+                                        </ListBoxItem>
+                                    </ListBox>
+                                </Grid>
+                                <StackPanel Grid.Row="5">
+                                    <Button
+                                        Click="Button_Click"
+                                        Content="Guardar Cambios"
+                                        HorizontalAlignment="Left"
+                                        Margin="8,4,8,8"
+                                        Style="{StaticResource MaterialDesignFlatButton}" />
+                                </StackPanel>
+                            </Grid>
+                        </materialDesign:Card>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel IsItemsHost="True" Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+        </ListBox>
         <Button
             Background="#3f51b5"
             Content="{materialDesign:PackIcon Kind=Plus,

@@ -19,6 +19,7 @@
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Defaults.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Font.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.TextBlock.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Window.xaml" />
@@ -118,7 +119,7 @@
                     HorizontalAlignment="Center"
                     Margin="-152,0,0,0"
                     Name="TextViewNombreBaseDatos"
-                    Style="{StaticResource MaterialDesignDisplayLargeTextBlock}"
+                    Style="{StaticResource MaterialDesignHeadlineLargeTextBlock}"
                     VerticalAlignment="Center" />
             </DockPanel>
         </materialDesign:ColorZone>

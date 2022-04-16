@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using MaterialDesignThemes.Wpf;
 using WpfApp3.ViewModel;
 
 namespace WpfApp3.View {
@@ -23,10 +22,9 @@ namespace WpfApp3.View {
             catch (NotImplementedException nIe) {
                 _ = MessageBox.Show(nIe.Message);
             }
-
             return null;
         }
-        
+
         private void CommentChanged(object sender, TextChangedEventArgs e) {
             Console.WriteLine("Artículo cambiado");
         }
