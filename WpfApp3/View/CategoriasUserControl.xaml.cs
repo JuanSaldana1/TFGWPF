@@ -17,7 +17,7 @@ namespace WpfApp3.View {
         private Action Deshacer() {
             try { }
             catch (NotImplementedException nIe) {
-                _ = MessageBox.Show(nIe.Message);
+                _ = MessageBox.Show("This is a test text!", "Some title", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);;
             }
 
             return null;
