@@ -21,260 +21,229 @@
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Defaults.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Font.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.TextBlock.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Window.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.NavigationRail.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.NavigationBar.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.NavigationDrawer.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.DialogHost.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Defaults.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Font.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.TextBlock.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Window.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.NavigationRail.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.NavigationBar.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.NavigationDrawer.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.DialogHost.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
 
-    <materialDesign:DialogHost DialogMargin="8" Style="{StaticResource MaterialDesignEmbeddedDialogHost}">
-        <materialDesign:DialogHost.DialogContent>
-            <StackPanel Margin="16">
-                <ListBox Name="ListBoxBasesDeDatos">
-                    <TextBlock DataContext="{Binding}" />
-                    <TextBlock Text="Old" />
-                    <TextBlock Text="ListBox" />
-                    <TextBlock Text="Full of junk" />
-                </ListBox>
-                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-                    <Button
-                        Click="ButtonConectar_Click"
-                        Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
-                        Content="ACCEPT"
-                        IsDefault="True"
-                        Margin="0,8,8,0"
-                        Style="{StaticResource MaterialDesignFlatButton}">
-                        <Button.CommandParameter>
-                            <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
-                                True
-                            </system:Boolean>
-                        </Button.CommandParameter>
-                    </Button>
-                    <Button
-                        Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
-                        Content="CANCEL"
-                        IsCancel="True"
-                        Margin="0,8,8,0"
-                        Style="{StaticResource MaterialDesignFlatButton}">
-                        <Button.CommandParameter>
-                            <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
-                                False
-                            </system:Boolean>
-                        </Button.CommandParameter>
-                    </Button>
-                </StackPanel>
-            </StackPanel>
-        </materialDesign:DialogHost.DialogContent>
-        <Border
-            BorderBrush="{DynamicResource PrimaryHueMidBrush}"
-            BorderThickness="1"
-            ClipToBounds="True"
-            HorizontalAlignment="Stretch">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="6*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="6*" />
-                </Grid.RowDefinitions>
-                <ComboBox
-                    Grid.ColumnSpan="2"
-                    Height="50"
-                    IsEnabled="True"
-                    Margin="0,100,0,0"
-                    Style="{StaticResource MaterialDesignOutlinedComboBox}"
-                    Width="140"
-                    materialDesign:HintAssist.Hint="Motor BD"
-                    materialDesign:TextFieldAssist.HasClearButton="True"
-                    x:Name="OutlinedComboBox">
-                    <ComboBoxItem Content="PostgreSQL" />
-                    <ComboBoxItem Content="MySQL" />
-                    <ComboBoxItem Content="Item 3" />
-                </ComboBox>
+    <Border
+        BorderBrush="{DynamicResource PrimaryHueMidBrush}"
+        BorderThickness="1"
+        ClipToBounds="True"
+        HorizontalAlignment="Stretch">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="6*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="6*" />
+            </Grid.RowDefinitions>
+            <ComboBox
+                Grid.ColumnSpan="2"
+                Height="50"
+                IsEnabled="True"
+                Margin="0,100,0,0"
+                Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                Width="140"
+                materialDesign:HintAssist.Hint="Motor BD"
+                materialDesign:TextFieldAssist.HasClearButton="True"
+                x:Name="OutlinedComboBox">
+                <ComboBoxItem Content="PostgreSQL" />
+                <ComboBoxItem Content="MySQL" />
+                <ComboBoxItem Content="Item 3" />
+            </ComboBox>
+            <TextBlock
+                FontFamily="Roboto"
+                FontSize="15.75"
+                Grid.Column="0"
+                Grid.Row="1"
+                HorizontalAlignment="Right"
+                Name="TextViewServidor"
+                Text="Servidor: "
+                TextAlignment="Center"
+                VerticalAlignment="Bottom" />
+
+            <StackPanel
+                Grid.Column="0"
+                Grid.Row="2"
+                HorizontalAlignment="Right"
+                Orientation="Horizontal"
+                VerticalAlignment="Center">
+
+                <materialDesign:PackIcon Kind="Ethernet" VerticalAlignment="Center" />
+
                 <TextBlock
                     FontFamily="Roboto"
                     FontSize="15.75"
-                    Grid.Column="0"
-                    Grid.Row="1"
                     HorizontalAlignment="Right"
-                    Name="TextViewServidor"
-                    Text="Servidor: "
+                    Name="TextViewPuerto"
+                    Text="Puerto: "
                     TextAlignment="Center"
                     VerticalAlignment="Bottom" />
 
-                <StackPanel
-                    Grid.Column="0"
-                    Grid.Row="2"
+            </StackPanel>
+
+            <StackPanel
+                Grid.Column="0"
+                Grid.Row="3"
+                HorizontalAlignment="Right"
+                Orientation="Horizontal"
+                VerticalAlignment="Center">
+
+                <materialDesign:PackIcon Kind="AccountOutline" VerticalAlignment="Center" />
+
+                <TextBlock
+                    FontFamily="Roboto"
+                    FontSize="15.75"
                     HorizontalAlignment="Right"
-                    Orientation="Horizontal"
-                    VerticalAlignment="Center">
+                    Name="TextViewUsuario"
+                    Text="Usuario: "
+                    TextAlignment="Center"
+                    VerticalAlignment="Bottom" />
 
-                    <materialDesign:PackIcon Kind="Ethernet" VerticalAlignment="Center" />
+            </StackPanel>
 
-                    <TextBlock
-                        FontFamily="Roboto"
-                        FontSize="15.75"
-                        HorizontalAlignment="Right"
-                        Name="TextViewPuerto"
-                        Text="Puerto: "
-                        TextAlignment="Center"
-                        VerticalAlignment="Bottom" />
+            <StackPanel
+                Grid.Column="0"
+                Grid.Row="4"
+                HorizontalAlignment="Right"
+                Orientation="Horizontal"
+                VerticalAlignment="Center">
 
-                </StackPanel>
+                <materialDesign:PackIcon Kind="FormTextboxPassword" VerticalAlignment="Center" />
 
-                <StackPanel
-                    Grid.Column="0"
-                    Grid.Row="3"
+                <TextBlock
+                    FontFamily="Roboto"
+                    FontSize="15.75"
                     HorizontalAlignment="Right"
-                    Orientation="Horizontal"
-                    VerticalAlignment="Center">
+                    Name="TextViewContrasena"
+                    Text="Contraseña: "
+                    TextAlignment="Center"
+                    VerticalAlignment="Bottom" />
 
-                    <materialDesign:PackIcon Kind="AccountOutline" VerticalAlignment="Center" />
+            </StackPanel>
 
-                    <TextBlock
-                        FontFamily="Roboto"
-                        FontSize="15.75"
-                        HorizontalAlignment="Right"
-                        Name="TextViewUsuario"
-                        Text="Usuario: "
-                        TextAlignment="Center"
-                        VerticalAlignment="Bottom" />
+            <StackPanel
+                Grid.Column="0"
+                Grid.Row="5"
+                HorizontalAlignment="Right"
+                Orientation="Horizontal"
+                VerticalAlignment="Center">
 
-                </StackPanel>
+                <materialDesign:PackIcon Kind="DatabaseOutline" VerticalAlignment="Center" />
 
-                <StackPanel
-                    Grid.Column="0"
-                    Grid.Row="4"
+                <TextBlock
+                    FontFamily="Roboto"
+                    FontSize="15.75"
                     HorizontalAlignment="Right"
-                    Orientation="Horizontal"
-                    VerticalAlignment="Center">
+                    Name="TextViewNombreBaseDeDatos"
+                    Text="Base de datos: "
+                    TextAlignment="Center"
+                    VerticalAlignment="Bottom" />
 
-                    <materialDesign:PackIcon Kind="FormTextboxPassword" VerticalAlignment="Center" />
+            </StackPanel>
 
-                    <TextBlock
-                        FontFamily="Roboto"
-                        FontSize="15.75"
-                        HorizontalAlignment="Right"
-                        Name="TextViewContrasena"
-                        Text="Contraseña: "
-                        TextAlignment="Center"
-                        VerticalAlignment="Bottom" />
+            <!--  TEXTBOX(EDIT TEXTS)  -->
+            <TextBox
+                Grid.Column="1"
+                Grid.Row="1"
+                Height="27"
+                HorizontalAlignment="Left"
+                Name="EditTextServer"
+                Text="3.83.36.12"
+                VerticalAlignment="Bottom"
+                Width="175"
+                materialDesign:HintAssist.Hint="192.168.0.0"
+                materialDesign:TextFieldAssist.HasClearButton="True" />
 
-                </StackPanel>
+            <TextBox
+                Grid.Column="1"
+                Grid.Row="2"
+                Height="27"
+                HorizontalAlignment="Left"
+                Name="EditTextPuerto"
+                Text="3306"
+                VerticalAlignment="Bottom"
+                Width="175"
+                materialDesign:TextFieldAssist.HasClearButton="True" />
 
-                <StackPanel
-                    Grid.Column="0"
-                    Grid.Row="5"
-                    HorizontalAlignment="Right"
-                    Orientation="Horizontal"
-                    VerticalAlignment="Center">
+            <TextBox
+                Grid.Column="1"
+                Grid.Row="3"
+                Height="27"
+                HorizontalAlignment="Left"
+                Name="EditTextUser"
+                Text="Usuario"
+                VerticalAlignment="Bottom"
+                Width="175"
+                materialDesign:TextFieldAssist.HasClearButton="True" />
 
-                    <materialDesign:PackIcon Kind="DatabaseOutline" VerticalAlignment="Center" />
+            <PasswordBox
+                Grid.Column="1"
+                Grid.Row="4"
+                Height="27"
+                HorizontalAlignment="Left"
+                Name="EditTextPassword"
+                Password="Lvepv.js12"
+                VerticalAlignment="Bottom"
+                Width="175"
+                materialDesign:TextFieldAssist.HasClearButton="True" />
 
-                    <TextBlock
-                        FontFamily="Roboto"
-                        FontSize="15.75"
-                        HorizontalAlignment="Right"
-                        Name="TextViewNombreBaseDeDatos"
-                        Text="Base de datos: "
-                        TextAlignment="Center"
-                        VerticalAlignment="Bottom" />
+            <TextBox
+                Grid.Column="1"
+                Grid.Row="5"
+                Height="27"
+                HorizontalAlignment="Left"
+                Name="EditTextDatabase"
+                Text="LasDiademasDeMisHijas"
+                VerticalAlignment="Bottom"
+                Width="175"
+                materialDesign:TextFieldAssist.HasClearButton="True" />
 
-                </StackPanel>
+            <Button
+                Click="ButtonConectar_Click"
+                Content="CONÉCTATE"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Grid.Row="6"
+                HorizontalAlignment="Center"
+                Margin="0,0,0,50"
+                Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                ToolTip="Establece una conexión con la base de datos"
+                VerticalAlignment="Bottom"
+                Width="140"
+                materialDesign:ButtonAssist.CornerRadius="10" />
 
-                <!--  TEXTBOX(EDIT TEXTS)  -->
-                <TextBox
-                    Grid.Column="1"
-                    Grid.Row="1"
-                    Height="27"
-                    HorizontalAlignment="Left"
-                    Name="EditTextServer"
-                    Text="3.83.36.12"
-                    VerticalAlignment="Bottom"
-                    Width="175"
-                    materialDesign:HintAssist.Hint="192.168.0.0"
-                    materialDesign:TextFieldAssist.HasClearButton="True" />
-
-                <TextBox
-                    Grid.Column="1"
-                    Grid.Row="2"
-                    Height="27"
-                    HorizontalAlignment="Left"
-                    Name="EditTextPuerto"
-                    Text="3306"
-                    VerticalAlignment="Bottom"
-                    Width="175"
-                    materialDesign:TextFieldAssist.HasClearButton="True" />
-
-                <TextBox
-                    Grid.Column="1"
-                    Grid.Row="3"
-                    Height="27"
-                    HorizontalAlignment="Left"
-                    Name="EditTextUser"
-                    Text="Usuario"
-                    VerticalAlignment="Bottom"
-                    Width="175"
-                    materialDesign:TextFieldAssist.HasClearButton="True" />
-
-                <PasswordBox
-                    Grid.Column="1"
-                    Grid.Row="4"
-                    Height="27"
-                    HorizontalAlignment="Left"
-                    Name="EditTextPassword"
-                    Password="Lvepv.js12"
-                    VerticalAlignment="Bottom"
-                    Width="175"
-                    materialDesign:TextFieldAssist.HasClearButton="True" />
-
-                <TextBox
-                    Grid.Column="1"
-                    Grid.Row="5"
-                    Height="27"
-                    HorizontalAlignment="Left"
-                    Name="EditTextDatabase"
-                    Text="LasDiademasDeMisHijas"
-                    VerticalAlignment="Bottom"
-                    Width="175"
-                    materialDesign:TextFieldAssist.HasClearButton="True" />
-
-                <Button
-                    Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
-                    Content="CONÉCTATE"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="2"
-                    Grid.Row="6"
-                    HorizontalAlignment="Center"
-                    Margin="0,0,0,50"
-                    Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                    ToolTip="Establece una conexión con la base de datos"
-                    VerticalAlignment="Bottom"
-                    Width="140"
-                    materialDesign:ButtonAssist.CornerRadius="10" />
-
-                <materialDesign:Snackbar
-                    Grid.Column="0"
-                    Grid.ColumnSpan="2"
-                    Grid.Row="6"
-                    HorizontalAlignment="Center"
-                    MessageQueue="{materialDesign:MessageQueue}"
-                    VerticalAlignment="Bottom"
-                    x:Name="SnackbarSeven" />
-            </Grid>
-        </Border>
-    </materialDesign:DialogHost>
+            <materialDesign:Snackbar
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Grid.Row="6"
+                HorizontalAlignment="Center"
+                MessageQueue="{materialDesign:MessageQueue}"
+                VerticalAlignment="Bottom"
+                x:Name="SnackbarSeven" />
+        </Grid>
+    </Border>
 </Window>

@@ -75,14 +75,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Connection.cs" />
     <Compile Include="Model\CategoryModel.cs" />
     <Compile Include="Model\CommentModel.cs" />
+    <Compile Include="Model\OrderModel.cs" />
     <Compile Include="Model\PostModel.cs" />
     <Compile Include="Model\ProductModel.cs" />
     <Compile Include="Model\UserModel.cs" />
     <Compile Include="ViewModel\CategoryViewModel.cs" />
     <Compile Include="ViewModel\CommentViewModel.cs" />
+    <Compile Include="ViewModel\OrderViewModel.cs" />
     <Compile Include="ViewModel\PostViewModel.cs" />
     <Compile Include="ViewModel\ProductViewModel.cs" />
     <Compile Include="ViewModel\UserViewModel.cs" />
@@ -94,6 +95,9 @@
     </Compile>
     <Compile Include="View\ListaYCRUD.xaml.cs">
       <DependentUpon>ListaYCRUD.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PedidosUserControl.xaml.cs">
+      <DependentUpon>PedidosUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PostsUserControl.xaml.cs">
       <DependentUpon>PostsUserControl.xaml</DependentUpon>
@@ -125,6 +129,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\PedidosUserControl.xaml" />
     <Page Include="View\PostsUserControl.xaml" />
     <Page Include="View\ProductosUserControl.xaml">
       <SubType>Designer</SubType>

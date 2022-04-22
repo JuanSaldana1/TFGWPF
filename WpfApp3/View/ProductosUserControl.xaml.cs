@@ -47,8 +47,12 @@ namespace WpfApp3.View {
             Console.WriteLine("Artículo cambiado");
         }
 
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e) {
-            throw new NotImplementedException();
+        private void ButtonAddStock_OnClick(object sender, RoutedEventArgs e) {
+            SnackbarSeven.MessageQueue?.Enqueue("Has aumentado tu stock en 1");
+        }
+
+        private void ButtonRestStock_OnClick(object sender, RoutedEventArgs e) {
+            SnackbarSeven.MessageQueue?.Enqueue("Has reducido tu stock en 1");
         }
     }
 }

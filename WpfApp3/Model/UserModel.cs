@@ -1,9 +1,9 @@
-﻿using System;
+﻿using System.Collections;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace WpfApp3.Model {
-    internal class UserModel : Connection {
+    internal class UserModel : INotifyPropertyChanged {
         private int userId;
         private string username;
         private string name;
@@ -20,6 +20,7 @@ namespace WpfApp3.Model {
                 OnPropertyChanged("UserId");
             }
         }
+
         public string Username {
             get => username;
             set {
@@ -27,6 +28,7 @@ namespace WpfApp3.Model {
                 OnPropertyChanged("Username");
             }
         }
+
         public string Name {
             get => name;
             set {
@@ -34,6 +36,7 @@ namespace WpfApp3.Model {
                 OnPropertyChanged("Name");
             }
         }
+
         public string Email {
             get => email;
             set {
@@ -41,6 +44,7 @@ namespace WpfApp3.Model {
                 OnPropertyChanged("Email");
             }
         }
+
         public string Surname {
             get => surname;
             set {
@@ -48,6 +52,7 @@ namespace WpfApp3.Model {
                 OnPropertyChanged("Surname");
             }
         }
+
         public string Follower {
             get => follower;
             set {
@@ -55,7 +60,7 @@ namespace WpfApp3.Model {
                 OnPropertyChanged("Follower");
             }
         }
-        
+
         public string Rol {
             get => rol;
             set {
@@ -63,6 +68,7 @@ namespace WpfApp3.Model {
                 OnPropertyChanged("Rol");
             }
         }
+
         public string ProfilePhoto {
             get => profilePhoto;
             set {
@@ -70,9 +76,11 @@ namespace WpfApp3.Model {
                 OnPropertyChanged("ProfilePhoto");
             }
         }
-        #region INotifyPropertyChanged Members  
+
+        #region INotifyPropertyChanged Members
 
         public event PropertyChangedEventHandler PropertyChanged;
+
         private void OnPropertyChanged(string propertyName) {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
@@ -81,14 +89,19 @@ namespace WpfApp3.Model {
             if (Equals(field, newValue)) {
                 return false;
             }
+
             field = newValue;
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
             return true;
         }
 
-        private System.Collections.IEnumerable ventas;
+        private IEnumerable ventas;
 
-        public System.Collections.IEnumerable Ventas { get => ventas; set => SetProperty(ref ventas, value); }
+        public IEnumerable Ventas {
+            get => ventas;
+            set => SetProperty(ref ventas, value);
+        }
+
         #endregion
     }
 }

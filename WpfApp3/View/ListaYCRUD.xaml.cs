@@ -21,11 +21,13 @@ namespace WpfApp3.View {
             var postsUserControl = new PostsUserControl();
             var categoriasUserControl = new CategoriasUserControl();
             var comentariosUserControl = new ComentariosUserControl();
+            var pedidosUserControl = new PedidosUserControl();
             userControlProductos.Content = productosUserControl;
             userControlUsuarios.Content = usuariosUserControl;
             userControlPosts.Content = postsUserControl;
             userControlCategorías.Content = categoriasUserControl;
             userControlComentarios.Content = comentariosUserControl;
+            userControlPedidos.Content = pedidosUserControl;
 
             var cadenaConexion = "server=" + MainWindow.Servidor + "; port=" + MainWindow.Puerto + "; user id=" +
                                  MainWindow.Usuario + "; password=" + MainWindow.Contrasena + "; database=" +

@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace WpfApp3.Model {
-    internal class ProductoModel : Connection {
+    internal class ProductoModel : INotifyPropertyChanged {
         private int productId;
         private string productName;
         private string productDescription;
@@ -67,7 +67,6 @@ namespace WpfApp3.Model {
                 OnPropertyChanged("ProductCategory");
             }
         }
-        //internal CategoryModel ProductCategory { get => productCategory; set => productCategory = value; }
 
         #region INotifyPropertyChanged Members
 
@@ -84,9 +83,9 @@ namespace WpfApp3.Model {
             }
         }
 
-        private System.Collections.IEnumerable ventas;
+        private IEnumerable ventas;
 
-        public System.Collections.IEnumerable Ventas {
+        public IEnumerable Ventas {
             get => ventas;
             set => SetProperty(ref ventas, value);
         }

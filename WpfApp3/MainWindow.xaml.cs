@@ -8,6 +8,7 @@ using ToastNotifications.Lifetime;
 using ToastNotifications.Messages;
 using ToastNotifications.Position;
 using WpfApp3.View;
+using MessageBox = ModernWpf.MessageBox;
 
 namespace WpfApp3 {
     public partial class MainWindow {
@@ -68,7 +69,9 @@ namespace WpfApp3 {
                             listadeBasesDeDatos += reader.GetString(0) + '\n';
                         }
 
-                        MessageBox.Show(listadeBasesDeDatos);
+                        MessageBox.Show(listadeBasesDeDatos, "Bases de datos de este puerto:",
+                            MessageBoxButton.YesNoCancel, MessageBoxImage.Information);
+                        /*MessageBox.Show(listadeBasesDeDatos);*/
                         DataContext = listadeBasesDeDatos;
                         ListaYCRUD listaYcrud = new ListaYCRUD();
                         listaYcrud.Show();
@@ -102,7 +105,9 @@ namespace WpfApp3 {
                             listadeBasesDeDatos += reader.GetString(0) + '\n';
                         }
 
-                        MessageBox.Show(listadeBasesDeDatos);
+                        MessageBox.Show(listadeBasesDeDatos, "Bases de datos de este puerto:",
+                            MessageBoxButton.YesNoCancel, MessageBoxImage.Information);
+                        /*MessageBox.Show(listadeBasesDeDatos);*/
                         ListaYCRUD listaYcrud = new ListaYCRUD();
                         listaYcrud.Show();
                         Close();
@@ -145,7 +150,9 @@ namespace WpfApp3 {
                         listadeBasesDeDatos += reader.GetString(0) + '\n';
                     }
 
-                    MessageBox.Show(listadeBasesDeDatos);
+                    MessageBox.Show(listadeBasesDeDatos, "Bases de datos de este puerto:",
+                        MessageBoxButton.OK, MessageBoxImage.Information);
+                    /*MessageBox.Show(listadeBasesDeDatos);*/
                     ListaYCRUD listaYcrud = new ListaYCRUD();
                     listaYcrud.Show();
                     Close();
@@ -162,9 +169,5 @@ namespace WpfApp3 {
 
         private void Sample2_DialogHost_OnDialogClosing(object sender, DialogClosingEventArgs eventArgs)
             => Debug.WriteLine($"SAMPLE 2: Closing dialog with parameter: {eventArgs.Parameter ?? string.Empty}");
-
-        private void ButtonConectar1_Click(object sender, RoutedEventArgs e) {
-            SnackbarSeven.MessageQueue?.Enqueue(ListBoxBasesDeDatos.SelectedValue);
-        }
     }
 }

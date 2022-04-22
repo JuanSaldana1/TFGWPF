@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using MaterialDesignThemes.Wpf;
+using MessageBox = ModernWpf.MessageBox;
 
 
 namespace WpfApp3.View {
@@ -17,7 +17,8 @@ namespace WpfApp3.View {
         private Action Deshacer() {
             try { }
             catch (NotImplementedException nIe) {
-                _ = MessageBox.Show("This is a test text!", "Some title", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);;
+                _ = MessageBox.Show("This is a test text!", "Some title", MessageBoxButton.YesNoCancel,
+                    MessageBoxImage.Question);
             }
 
             return null;
