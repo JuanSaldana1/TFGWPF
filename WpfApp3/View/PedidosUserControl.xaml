@@ -28,15 +28,20 @@
                         <materialDesign:Card>
                             <StackPanel>
                                 <Expander
+                                    Name="Expander"
                                     HorizontalAlignment="Stretch"
-                                    Header="Expander Example 2a">
+                                    Header="{Binding OrderDate}">
                                     <StackPanel
                                         Orientation="Vertical"
                                         TextBlock.Foreground="{DynamicResource MaterialDesignBody}"
                                         Margin="24,8,24,16">
+
                                         <TextBlock
                                             Text="Your Content" />
-                                        <TextBlock Text="{Binding ProductName}" />
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding ProductName}" />
+                                            <TextBlock Text="{Binding Quantity}" Margin="5, 0" />
+                                        </StackPanel>
                                     </StackPanel>
                                 </Expander>
                             </StackPanel>

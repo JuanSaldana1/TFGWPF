@@ -22,10 +22,14 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinDefault.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Defaults.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.DialogHost.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Listbox.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Defaults.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.DialogHost.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Listbox.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -65,26 +69,21 @@
                                         <Image
                                             Height="200"
                                             Source="{Binding PostSecondImage}"
-                                            Stretch="Uniform"
+                                            Stretch="UniformToFill"
                                             VerticalAlignment="Center" />
                                     </hc:Carousel>
                                 </hc:TransitioningContentControl>
-                                <Image
-                                    Grid.Row="0"
-                                    Height="200"
-                                    Source="{Binding PostFirstImage}"
-                                    Stretch="Uniform"
-                                    VerticalAlignment="Center" />
 
                                 <StackPanel Grid.Row="1" Margin="8,24,8,4">
                                     <TextBox
+                                        FontSize="19"
                                         Margin="0"
                                         Name="textViewTituloPost"
                                         Text="{Binding PostTitle}"
                                         TextChanged="PostChanged" />
 
                                     <TextBlock
-                                        Style="{StaticResource MaterialDesignBody1TextBlock}"
+                                        Style="{StaticResource MaterialDesignBodyLargeTextBlock}"
                                         Text="{Binding PostDescription}"
                                         TextWrapping="Wrap"
                                         VerticalAlignment="Center" />
@@ -92,9 +91,7 @@
                                     <TextBlock>
                                         <Button>
                                             <Hyperlink
-                                                FontSize="29"
-                                                NavigateUri="{Binding PostUrl}"
-                                                RequestNavigate="Hyperlink_RequestNavigate">
+                                                NavigateUri="{Binding PostUrl}">
                                                 Enlace al post
                                             </Hyperlink>
                                         </Button>
@@ -139,7 +136,8 @@
                                         Style="{StaticResource MaterialDesignToolToggleFlatListBox}">
 
                                         <ListBox.Resources>
-                                            <Style BasedOn="{StaticResource MaterialDesignToolToggleListBoxItem}" TargetType="{x:Type ListBoxItem}">
+                                            <Style BasedOn="{StaticResource MaterialDesignToolToggleListBoxItem}"
+                                                   TargetType="{x:Type ListBoxItem}">
 
                                                 <Setter Property="Padding" Value="4,6,4,6" />
                                             </Style>

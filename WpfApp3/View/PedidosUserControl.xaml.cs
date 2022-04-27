@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Windows;
-using System.Windows.Controls;
 using WpfApp3.ViewModel;
 
 namespace WpfApp3.View;
 
-public partial class PedidosUserControl : UserControl {
+public partial class PedidosUserControl {
     public PedidosUserControl() {
         InitializeComponent();
         MyListView.DataContext = new OrderViewModel();

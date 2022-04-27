@@ -4,7 +4,7 @@ using WpfApp3.Model;
 
 namespace WpfApp3.ViewModel {
     internal class CategoryViewModel {
-        private IList<CategoryModel> Categorias { get; set; } = new List<CategoryModel>();
+        public IList<CategoryModel> Categorias { get; set; } = new List<CategoryModel>();
         public CategoryViewModel() {
             var cadenaConexion = "server=" + MainWindow.Servidor + "; port=" + MainWindow.Puerto + "; user id=" + MainWindow.Usuario + "; password=" + MainWindow.Contrasena + "; database=" + MainWindow.BaseDatos + ";";
             //string cadenaConexion = "server=192.168.1.208; port=3306; user id=Usuario; password=Lvepv.js12; database=LasDiademasDeMisHijas;";

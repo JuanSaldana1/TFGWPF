@@ -24,6 +24,8 @@ namespace WpfApp3.View {
             return null;
         }
 
-        private void CategoryChanged(object sender, TextChangedEventArgs e) { }
+        private void CategoryChanged(object sender, TextChangedEventArgs e) {
+            SnackbarSeven.MessageQueue?.Enqueue("Artículo cambiado");
+        }
     }
 }

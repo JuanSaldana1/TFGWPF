@@ -45,9 +45,9 @@ namespace WpfApp3.Model {
         }
 
         public DateTime PostPublishDate {
-            get => publishedAt;
+            get => publishedAt.Date;
             set {
-                publishedAt = value;
+                publishedAt = value.Date;
                 OnPropertyChanged("PostPublishDate");
             }
         }

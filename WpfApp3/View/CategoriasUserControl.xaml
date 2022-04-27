@@ -29,120 +29,23 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
-        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-
-            <ListView
-                ItemsSource="{Binding}"
-                Margin="30,0,0,0"
-                x:Name="MyListView">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:Card
-                                Background="PapayaWhip"
-                                Margin="20,0,0,0"
-                                UniformCornerRadius="6"
-                                Width="300">
-
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="*" />
-                                        <RowDefinition Height="*" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-                                    <Image
-                                        Grid.Row="0"
-                                        Height="200"
-                                        Source="{Binding ProductImage}"
-                                        Stretch="Uniform"
-                                        VerticalAlignment="Center" />
-
-                                    <StackPanel Grid.Row="1" Margin="8,24,8,4">
-                                        <TextBox
-                                            Margin="0"
-                                            Name="textViewNombreArticulo"
-                                            Text="{Binding ProductName}"
-                                            TextChanged="CategoryChanged" />
-
-                                        <TextBlock
-                                            Style="{StaticResource MaterialDesignBody1TextBlock}"
-                                            Text="{Binding ProductDescription}"
-                                            TextWrapping="Wrap"
-                                            VerticalAlignment="Center" />
-
-                                        <CheckBox
-                                            Content="{Binding ProductCategory}"
-                                            IsChecked="True"
-                                            Style="{StaticResource MaterialDesignFilterChipPrimaryCheckBox}" />
-
-                                    </StackPanel>
-
-                                    <Separator
-                                        Grid.Row="2"
-                                        Margin="8,0,8,0"
-                                        Style="{StaticResource MaterialDesignDarkSeparator}" />
-
-                                    <TextBlock
-                                        Grid.Row="3"
-                                        Margin="8,4,8,4"
-                                        Style="{StaticResource MaterialDesignBody2TextBlock}"
-                                        Text="Tonight's availability" />
-
-                                    <Grid Grid.Row="4">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto" />
-                                            <ColumnDefinition Width="Auto" />
-                                        </Grid.ColumnDefinitions>
-                                        <materialDesign:PackIcon
-                                            Grid.Column="0"
-                                            Kind="ClockOutline"
-                                            Margin="8,4,4,4"
-                                            VerticalAlignment="Center" />
-
-                                        <ListBox
-                                            Grid.Column="1"
-                                            Margin="4,8,8,4"
-                                            SelectedIndex="0"
-                                            Style="{StaticResource MaterialDesignToolToggleFlatListBox}">
-
-                                            <ListBox.Resources>
-                                                <Style BasedOn="{StaticResource MaterialDesignToolToggleListBoxItem}" TargetType="{x:Type ListBoxItem}">
-
-                                                    <Setter Property="Padding" Value="4,6,4,6" />
-                                                </Style>
-                                            </ListBox.Resources>
-                                            <ListBoxItem>
-                                                <TextBlock Text="18:00" />
-                                            </ListBoxItem>
-                                            <ListBoxItem>
-                                                <TextBlock Text="19:00" />
-                                            </ListBoxItem>
-                                            <ListBoxItem>
-                                                <TextBlock Text="22:00" />
-                                            </ListBoxItem>
-                                        </ListBox>
-                                    </Grid>
-                                    <StackPanel Grid.Row="5">
-                                        <Button
-                                            Click="Button_Click"
-                                            Content="Guardar cambios"
-                                            HorizontalAlignment="Left"
-                                            Margin="8,4,8,8"
-                                            Style="{StaticResource MaterialDesignFlatButton}" />
-                                    </StackPanel>
-                                </Grid>
-                            </materialDesign:Card>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-            <!--</StackPanel>-->
-
-        </ScrollViewer>
-
+        <ListBox
+            ItemsSource="{Binding Categorias}"
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+            x:Name="MyListView">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical">
+                        
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel IsItemsHost="True" Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+        </ListBox>
         <Button
             Background="#3f51b5"
             Content="{materialDesign:PackIcon Kind=Plus,

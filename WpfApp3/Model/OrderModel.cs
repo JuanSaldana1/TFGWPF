@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
@@ -7,6 +8,7 @@ namespace WpfApp3.Model;
 public class OrderModel {
     private int orderId;
     private int productId;
+    private DateTime orderDate;
     private int quantity;
     private int lineId;
     private string productName;
@@ -24,6 +26,14 @@ public class OrderModel {
         set {
             productId = value;
             OnPropertyChanged("ProductId");
+        }
+    }
+    
+    public DateTime OrderDate {
+        get => orderDate;
+        set {
+            orderDate = value;
+            OnPropertyChanged("OrderDate");
         }
     }
 
