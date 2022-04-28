@@ -22,14 +22,10 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinDefault.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml" />
-                <ResourceDictionary
-                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Defaults.xaml" />
-                <ResourceDictionary
-                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
-                <ResourceDictionary
-                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.DialogHost.xaml" />
-                <ResourceDictionary
-                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Listbox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.DialogHost.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Listbox.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -44,13 +40,13 @@
                         <materialDesign:Card
                             Background="#a5d6a7"
                             UniformCornerRadius="6"
+                            Padding="9"
                             Width="400">
 
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*" />
                                     <RowDefinition Height="*" />
-                                    <RowDefinition Height="Auto" />
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="Auto" />
@@ -74,10 +70,9 @@
                                     </hc:Carousel>
                                 </hc:TransitioningContentControl>
 
-                                <StackPanel Grid.Row="1" Margin="8,24,8,4">
+                                <StackPanel Grid.Row="1">
                                     <TextBox
                                         FontSize="19"
-                                        Margin="0"
                                         Name="textViewTituloPost"
                                         Text="{Binding PostTitle}"
                                         TextChanged="PostChanged" />
@@ -109,56 +104,18 @@
 
                                 <Separator
                                     Grid.Row="2"
-                                    Margin="8,0,8,0"
                                     Style="{StaticResource MaterialDesignDarkSeparator}" />
 
                                 <TextBlock
                                     Grid.Row="3"
-                                    Margin="8,4,8,4"
                                     Style="{StaticResource MaterialDesignBody2TextBlock}"
                                     Text="Tonight's availability" />
-
-                                <Grid Grid.Row="4">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="Auto" />
-                                    </Grid.ColumnDefinitions>
-                                    <materialDesign:PackIcon
-                                        Grid.Column="0"
-                                        Kind="ClockOutline"
-                                        Margin="8,4,4,4"
-                                        VerticalAlignment="Center" />
-
-                                    <ListBox
-                                        Grid.Column="1"
-                                        Margin="4,8,8,4"
-                                        SelectedIndex="0"
-                                        Style="{StaticResource MaterialDesignToolToggleFlatListBox}">
-
-                                        <ListBox.Resources>
-                                            <Style BasedOn="{StaticResource MaterialDesignToolToggleListBoxItem}"
-                                                   TargetType="{x:Type ListBoxItem}">
-
-                                                <Setter Property="Padding" Value="4,6,4,6" />
-                                            </Style>
-                                        </ListBox.Resources>
-                                        <ListBoxItem>
-                                            <TextBlock Text="18:00" />
-                                        </ListBoxItem>
-                                        <ListBoxItem>
-                                            <TextBlock Text="19:00" />
-                                        </ListBoxItem>
-                                        <ListBoxItem>
-                                            <TextBlock Text="22:00" />
-                                        </ListBoxItem>
-                                    </ListBox>
-                                </Grid>
-                                <StackPanel Grid.Row="5">
+                                
+                                <StackPanel Grid.Row="4">
                                     <Button
                                         Click="Button_Click"
                                         Content="Guardar Cambios"
                                         HorizontalAlignment="Left"
-                                        Margin="8,4,8,8"
                                         Style="{StaticResource MaterialDesignFlatButton}" />
                                 </StackPanel>
                             </Grid>

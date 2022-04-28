@@ -2,12 +2,10 @@
 using System.Windows;
 using System.Windows.Controls;
 using WpfApp3.ViewModel;
+using MessageBox = ModernWpf.MessageBox;
 
 namespace WpfApp3.View;
 
-/// <summary>
-/// Lógica de interacción para ComentariosUserControl.xaml
-/// </summary>
 public partial class ComentariosUserControl {
   public ComentariosUserControl() {
     InitializeComponent();
@@ -27,9 +25,5 @@ public partial class ComentariosUserControl {
     }
 
     return null;
-  }
-
-  private void CommentChanged(object sender, TextChangedEventArgs e) {
-    Console.WriteLine("Comentario cambiado");
   }
 }
