@@ -47,6 +47,7 @@
                         <materialDesign:Card
                             Background="PapayaWhip"
                             UniformCornerRadius="6"
+                            Padding="9"
                             Width="300">
 
                             <Grid>
@@ -66,9 +67,8 @@
                                     Stretch="Uniform"
                                     VerticalAlignment="Center" />
 
-                                <StackPanel Grid.Row="1" Margin="8,24,8,4">
+                                <StackPanel Grid.Row="1">
                                     <TextBox
-                                        Margin="0"
                                         Name="textViewNombreArticulo"
                                         Text="{Binding ProductName}"
                                         TextChanged="ArticuloChanged" />
@@ -88,12 +88,10 @@
 
                                 <Separator
                                     Grid.Row="2"
-                                    Margin="8,0,8,0"
                                     Style="{StaticResource MaterialDesignDarkSeparator}" />
 
                                 <TextBlock
                                     Grid.Row="3"
-                                    Margin="8,4,8,4"
                                     Style="{StaticResource MaterialDesignBody2TextBlock}"
                                     Text="Tonight's availability" />
 
@@ -120,9 +118,8 @@
                                 <StackPanel Grid.Row="5">
                                     <Button
                                         Click="Button_Click"
-                                        Content="RESERVE"
+                                        Content="Reservar"
                                         HorizontalAlignment="Left"
-                                        Margin="8,4,8,8"
                                         Style="{StaticResource MaterialDesignFlatButton}" />
                                 </StackPanel>
                             </Grid>
