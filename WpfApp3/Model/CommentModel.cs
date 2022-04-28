@@ -10,6 +10,9 @@ namespace WpfApp3.Model {
         private DateTime commentPublishDate;
         private int userId;
         private bool isAnonymous;
+        private string userName;
+        private string userEmail;
+        private string profilePhoto;
 
         public int CommentId {
             get => commentId;
@@ -56,6 +59,30 @@ namespace WpfApp3.Model {
             set {
                 isAnonymous = value;
                 OnPropertyChanged("IsAnonymous");
+            }
+        }
+
+        public string UserName {
+            get => userName;
+            set {
+                userName = value;
+                OnPropertyChanged("UserName");
+            }
+        }
+        
+        public string UserEmail {
+            get => userEmail;
+            set {
+                userEmail = value;
+                OnPropertyChanged("UserEmail");
+            }
+        }
+        
+        public string ProfilePhoto {
+            get => profilePhoto;
+            set {
+                profilePhoto = value;
+                OnPropertyChanged("ProfilePhoto");
             }
         }
 

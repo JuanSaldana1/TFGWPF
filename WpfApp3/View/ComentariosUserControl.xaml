@@ -53,12 +53,12 @@
 
                                 <StackPanel Grid.Row="1" Margin="8,24,8,4">
                                     <TextBox
-                                        Margin="0"
-                                        Name="textViewCommentTitle"
+                                        Name="EditTextCommentTitle"
                                         Text="{Binding CommentTitle}"
                                         TextChanged="CommentChanged" />
 
                                     <TextBlock
+                                        Name="TextViewCommentContent"
                                         Style="{StaticResource MaterialDesignHeadlineSmallTextBlock}"
                                         Text="{Binding CommentContent}"
                                         TextWrapping="Wrap"
@@ -95,39 +95,24 @@
                                         <ColumnDefinition Width="Auto" />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
-                                    <materialDesign:PackIcon
-                                        Grid.Column="0"
-                                        Kind="ClockOutline"
-                                        Margin="8,4,4,4"
-                                        VerticalAlignment="Center" />
-
-                                    <ListBox
-                                        Grid.Column="1"
-                                        Margin="4,8,8,4"
-                                        SelectedIndex="0"
-                                        Style="{StaticResource MaterialDesignToolToggleFlatListBox}">
-
-                                        <ListBox.Resources>
-                                            <Style BasedOn="{StaticResource MaterialDesignToolToggleListBoxItem}" TargetType="{x:Type ListBoxItem}">
-
-                                                <Setter Property="Padding" Value="4,6,4,6" />
-                                            </Style>
-                                        </ListBox.Resources>
-                                        <ListBoxItem>
-                                            <TextBlock Text="18:00" />
-                                        </ListBoxItem>
-                                        <ListBoxItem>
-                                            <TextBlock Text="19:00" />
-                                        </ListBoxItem>
-                                        <ListBoxItem>
-                                            <TextBlock Text="22:00" />
-                                        </ListBoxItem>
-                                    </ListBox>
+                                    <ToggleButton Grid.Column="0"
+                                                  Style="{StaticResource MaterialDesignActionToggleButton}"
+                                                  ToolTip="Selecciona la foto de perfil">
+                                        <Image Source="{Binding ProfilePhoto}" />
+                                    </ToggleButton>
+                                    <StackPanel
+                                        Margin="12 0 0 0"
+                                        VerticalAlignment="Center"
+                                        Grid.Column="1">
+                                        <TextBlock Text="{Binding UserName}" FontWeight="Bold" />
+                                        <TextBlock Text="{Binding UserEmail}" />
+                                    </StackPanel>
                                 </Grid>
                                 <StackPanel Grid.Row="5">
                                     <Button
                                         Click="Button_Click"
-                                        Content="RESERVE"
+                                        Content="Editar"
+                                        ToolTip="Aplicar los cambios hechos."
                                         HorizontalAlignment="Left"
                                         Margin="8,4,8,8"
                                         Style="{StaticResource MaterialDesignFlatButton}" />

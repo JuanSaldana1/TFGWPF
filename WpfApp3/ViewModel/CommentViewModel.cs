@@ -11,7 +11,7 @@ namespace WpfApp3.ViewModel {
             string cadenaConexion = MainWindow.CadenaConexion;
             MySqlConnection conexionBd = new MySqlConnection(cadenaConexion);
             string mySelectQuery =
-                "SELECT IdComentario, Titulo, Texto, FechaPublicacion, IdUsuario, Anonimo FROM Comentarios";
+                "SELECT IdComentario, Titulo, Texto, FechaPublicacion, IdUsuario, Anonimo, Usuarios.Name, Usuarios.ProfilePhoto, Usuarios.Email FROM Comentarios join Usuarios on Comentarios.IdUsuario = Usuarios.UserId";
             MySqlCommand myCommand = new MySqlCommand(mySelectQuery, conexionBd);
             conexionBd.Open();
             MySqlDataReader myReader;
@@ -26,7 +26,10 @@ namespace WpfApp3.ViewModel {
                         CommentContent = myReader.GetString(2),
                         CommentPublishDate = myReader.GetDateTime(3),
                         CommentUserId = myReader.GetInt32(4),
-                        IsAnonymous = myReader.GetBoolean(5)
+                        IsAnonymous = myReader.GetBoolean(5),
+                        UserName = myReader.GetString(6),
+                        ProfilePhoto = myReader.GetString(7),
+                        UserEmail = myReader.GetString(8)
                     });
                 }
             }
