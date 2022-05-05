@@ -22,10 +22,14 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinDefault.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Defaults.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.DialogHost.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Listbox.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Defaults.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.DialogHost.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Listbox.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -47,6 +51,7 @@
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*" />
                                     <RowDefinition Height="*" />
+                                    <RowDefinition Height="Auto" />
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="Auto" />
@@ -84,12 +89,13 @@
                                         VerticalAlignment="Center" />
 
                                     <TextBlock>
-                                        <Button>
-                                            <Hyperlink
-                                                NavigateUri="{Binding PostUrl}">
-                                                Enlace al post
-                                            </Hyperlink>
-                                        </Button>
+                                        <Hyperlink NavigateUri="{Binding PostUrl}">
+                                            <Run>
+                                                <Run.Text>
+                                                    Enlace al post
+                                                </Run.Text>
+                                            </Run>
+                                        </Hyperlink>
                                     </TextBlock>
 
                                     <DatePicker
@@ -106,12 +112,7 @@
                                     Grid.Row="2"
                                     Style="{StaticResource MaterialDesignDarkSeparator}" />
 
-                                <TextBlock
-                                    Grid.Row="3"
-                                    Style="{StaticResource MaterialDesignBody2TextBlock}"
-                                    Text="Tonight's availability" />
-                                
-                                <StackPanel Grid.Row="4">
+                                <StackPanel Grid.Row="3">
                                     <Button
                                         Click="Button_Click"
                                         Content="Guardar Cambios"

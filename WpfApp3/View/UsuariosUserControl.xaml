@@ -169,7 +169,7 @@
                                                         Content="Seleccionar Imagen de perfil"
                                                         Name="BtnOpenFile"
                                                         Style="{StaticResource MaterialDesignRaisedSecondaryLightButton}"
-                                                        ToolTip="Resource name: MaterialDesignRaisedSecondaryLightButton"
+                                                        ToolTip="Abrir archivo"
                                                         Width="auto" />
                                                     <TextBlock
                                                         Foreground="Black"
@@ -233,13 +233,9 @@
                                                     <Button
                                                         Click="ButtonSave_Click"
                                                         Command="{x:Static materialDesign:Flipper.FlipCommand}"
+                                                        ToolTip="Guardar cambios"
                                                         Margin="2,0,2,0"
                                                         Name="ButtonSave" />
-
-                                                    <Button
-                                                        Command="{x:Static materialDesign:Flipper.FlipCommand}"
-                                                        Margin="2,0,2,0"
-                                                        Name="ButtonUpdate" />
 
                                                     <Button
                                                         Command="{x:Static materialDesign:Flipper.FlipCommand}"

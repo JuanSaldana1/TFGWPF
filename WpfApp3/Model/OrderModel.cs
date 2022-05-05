@@ -6,82 +6,82 @@ using System.Runtime.CompilerServices;
 namespace WpfApp3.Model;
 
 public class OrderModel {
-    private int orderId;
-    private int productId;
-    private DateTime orderDate;
-    private int quantity;
-    private int lineId;
-    private string productName;
+  private int orderId;
+  private int productId;
+  private DateTime orderDate;
+  private int quantity;
+  private int lineId;
+  private string productName;
 
-    public int OrderId {
-        get => orderId;
-        set {
-            orderId = value;
-            OnPropertyChanged("OrderId");
-        }
+  public int OrderId {
+    get => orderId;
+    set {
+      orderId = value;
+      OnPropertyChanged("OrderId");
     }
+  }
 
-    public int ProductId {
-        get => productId;
-        set {
-            productId = value;
-            OnPropertyChanged("ProductId");
-        }
+  public int ProductId {
+    get => productId;
+    set {
+      productId = value;
+      OnPropertyChanged("ProductId");
     }
-    
-    public DateTime OrderDate {
-        get => orderDate;
-        set {
-            orderDate = value;
-            OnPropertyChanged("OrderDate");
-        }
+  }
+
+  public DateTime OrderDate {
+    get => orderDate;
+    set {
+      orderDate = value;
+      OnPropertyChanged("OrderDate");
     }
+  }
 
-    public int Quantity {
-        get => quantity;
-        set {
-            quantity = value;
-            OnPropertyChanged("Quantity");
-        }
+  public int Quantity {
+    get => quantity;
+    set {
+      quantity = value;
+      OnPropertyChanged("Quantity");
     }
+  }
 
-    public int LineId {
-        get => lineId;
-        set {
-            lineId = value;
-            OnPropertyChanged("LineId");
-        }
+  public int LineId {
+    get => lineId;
+    set {
+      lineId = value;
+      OnPropertyChanged("LineId");
     }
+  }
 
-    public string ProductName {
-        get => productName;
-        set {
-            productName = value;
-            OnPropertyChanged("ProductName");
-        }
+  public string ProductName {
+    get => productName;
+    set {
+      productName = value;
+      OnPropertyChanged("ProductName");
     }
+  }
 
-    #region INotifyPropertyChanged Members
+  #region INotifyPropertyChanged Members
 
-    public event PropertyChangedEventHandler PropertyChanged;
+  public event PropertyChangedEventHandler PropertyChanged;
 
-    private void OnPropertyChanged(string propertyName) {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+  private void OnPropertyChanged(string propertyName) {
+    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+  }
+
+  private void SetProperty<T>(ref T field, T newValue, [CallerMemberName] string propertyName = null) {
+    if (!Equals(field, newValue)) {
+      field = newValue;
+      PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
+  }
 
-    private void SetProperty<T>(ref T field, T newValue, [CallerMemberName] string propertyName = null) {
-        if (!Equals(field, newValue)) {
-            field = newValue;
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-    }
+  private IEnumerable ventas;
 
-    private IEnumerable ventas;
+  public IEnumerable Ventas {
+    get => ventas;
+    set => SetProperty(ref ventas, value);
+  }
 
-    public IEnumerable Ventas {
-        get => ventas;
-        set => SetProperty(ref ventas, value);
-    }
-
-    #endregion
+  #endregion
 }

@@ -93,6 +93,9 @@
     <Compile Include="View\ComentariosUserControl.xaml.cs">
       <DependentUpon>ComentariosUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ConsultasUserControl.xaml.cs">
+      <DependentUpon>ConsultasUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ListaYCRUD.xaml.cs">
       <DependentUpon>ListaYCRUD.xaml</DependentUpon>
     </Compile>
@@ -125,6 +128,7 @@
     </Compile>
     <Page Include="View\CategoriasUserControl.xaml" />
     <Page Include="View\ComentariosUserControl.xaml" />
+    <Page Include="View\ConsultasUserControl.xaml" />
     <Page Include="View\ListaYCRUD.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -210,16 +214,16 @@
       <Version>2.4.9</Version>
     </PackageReference>
     <PackageReference Include="MaterialDesignColors">
-      <Version>2.0.6-ci152</Version>
+      <Version>2.0.7-ci169</Version>
     </PackageReference>
     <PackageReference Include="MaterialDesignExtensions">
       <Version>4.0.0-a02</Version>
     </PackageReference>
     <PackageReference Include="MaterialDesignThemes">
-      <Version>4.5.0-ci152</Version>
+      <Version>4.6.0-ci169</Version>
     </PackageReference>
     <PackageReference Include="MaterialDesignThemes.MahApps">
-      <Version>0.2.1</Version>
+      <Version>0.2.3-ci169</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Windows.SDK.Contracts">
       <Version>10.0.22000.196</Version>
@@ -234,13 +238,13 @@
       <Version>0.9.4</Version>
     </PackageReference>
     <PackageReference Include="MySql.Data">
-      <Version>8.0.28</Version>
+      <Version>8.0.29</Version>
     </PackageReference>
     <PackageReference Include="MySqlConnector">
       <Version>2.1.8</Version>
     </PackageReference>
     <PackageReference Include="NHibernate">
-      <Version>5.3.11</Version>
+      <Version>5.3.12</Version>
     </PackageReference>
     <PackageReference Include="NLog">
       <Version>4.7.15</Version>

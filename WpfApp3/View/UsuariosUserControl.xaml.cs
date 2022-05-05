@@ -3,34 +3,36 @@ using Microsoft.Win32;
 using WpfApp3.Model;
 using WpfApp3.ViewModel;
 
-namespace WpfApp3.View {
-    /// <summary>
-    /// Lógica de interacción para UsuariosUserControl.xaml
-    /// </summary>
-    public partial class UsuariosUserControl {
-        public static string ImagenPerfil { get; set; }
+namespace WpfApp3.View;
 
-        public UsuariosUserControl() {
-            InitializeComponent();
-            MyListView.DataContext = new UserViewModel();
-        }
+/// <summary>
+/// Lógica de interacción para UsuariosUserControl.xaml
+/// </summary>
+public partial class UsuariosUserControl {
+  public static string ImagenPerfil { get; set; }
 
-        public void ButtonSave_Click(object sender, RoutedEventArgs e) {
-            UserViewModel listaUsuarios = new UserViewModel();
-            UserModel nuevoUsuario = new UserModel();
-            nuevoUsuario.Name = EditTextUserName.Text;
-            SnackbarSeven.MessageQueue?.Enqueue("Se ha creado el usuario con nombre: " + nuevoUsuario.Name);
-            listaUsuarios.Usuarios.Add(nuevoUsuario);
-        }
+  public UsuariosUserControl() {
+    InitializeComponent();
+    MyListView.DataContext = new UserViewModel();
+  }
 
-        private void BtnOpenFile_Click(object sender, RoutedEventArgs e) {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.DefaultExt = ".png"; // Default file extension
-            openFileDialog.Filter = "Image Files (*.bmp;*.png;*.jpg)|*.bmp;*.png;*.jpg"; // Filter files by extension
-            openFileDialog.ShowDialog();
-            SnackbarSeven.MessageQueue?.Enqueue(openFileDialog.FileName);
-            ImagenPerfil = openFileDialog.FileName;
-            /*TextBlockFileName.Text = ImagenPerfil;*/
-        }
-    }
+  public void ButtonSave_Click(object sender, RoutedEventArgs e) {
+    UserViewModel listaUsuarios = new UserViewModel();
+    UserModel nuevoUsuario = new UserModel();
+    nuevoUsuario.Name = EditTextUserName.Text;
+    SnackbarSeven.MessageQueue?.Enqueue("Se ha creado el usuario con nombre: " + nuevoUsuario.Name);
+    SnackbarSeven.MessageQueue?.Enqueue(sender.ToString());
+    SnackbarSeven.MessageQueue?.Enqueue(e.ToString());
+    listaUsuarios.ChangeName(EditTextUserName.Text, 3);
+    listaUsuarios.Usuarios.Add(nuevoUsuario);
+  }
+
+  private void BtnOpenFile_Click(object sender, RoutedEventArgs e) {
+    OpenFileDialog openFileDialog = new OpenFileDialog();
+    openFileDialog.DefaultExt = ".png"; // Default file extension
+    openFileDialog.Filter = "Image Files (*.bmp;*.png;*.jpg)|*.bmp;*.png;*.jpg"; // Filter files by extension
+    openFileDialog.ShowDialog();
+    SnackbarSeven.MessageQueue?.Enqueue(openFileDialog.FileName);
+    ImagenPerfil = openFileDialog.FileName;
+  }
 }

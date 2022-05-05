@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows;
-using System.Windows.Controls;
 using WpfApp3.ViewModel;
 using MessageBox = ModernWpf.MessageBox;
 
