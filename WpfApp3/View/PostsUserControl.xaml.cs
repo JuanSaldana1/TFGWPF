@@ -13,6 +13,11 @@ public partial class PostsUserControl {
     MyListView.DataContext = new PostViewModel();
   }
 
+  private void BasicRatingBar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<int> e) {
+    Debug.WriteLine($"BasicRatingBar value changed from {e.OldValue} to {e.NewValue}.");
+    SnackbarSeven.MessageQueue?.Enqueue($"BasicRatingBar value changed from {e.OldValue} to {e.NewValue}.");
+  }
+
   private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e) {
     // for .NET Core you need to add UseShellExecute = true
     // see https://docs.microsoft.com/dotnet/api/system.diagnostics.processstartinfo.useshellexecute#property-value

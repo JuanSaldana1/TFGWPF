@@ -76,6 +76,7 @@
                                     <TextBlock
                                         Style="{StaticResource MaterialDesignBody1TextBlock}"
                                         Text="{Binding ProductDescription}"
+                                        DataContextChanged="FrameworkElement_OnDataContextChanged"
                                         TextWrapping="Wrap"
                                         VerticalAlignment="Center" />
 
@@ -99,6 +100,7 @@
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto" />
                                         <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock Text="Stock" />
@@ -115,6 +117,11 @@
                                             <materialDesign:PackIcon Kind="ArrowDown" />
                                         </Button>
                                     </StackPanel>
+                                    <materialDesign:RatingBar
+                                        Grid.Column="2"
+                                        x:Name="BasicRatingBar"
+                                        Value="3"
+                                        ValueChanged="BasicRatingBar_ValueChanged" />
                                 </Grid>
                                 <StackPanel Grid.Row="5">
                                     <Button

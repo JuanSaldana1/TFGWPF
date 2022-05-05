@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using MaterialDesignThemes.Wpf;
@@ -15,13 +16,6 @@ public partial class ProductosUserControl {
   public ProductosUserControl() {
     InitializeComponent();
     MyListView.DataContext = new ProductViewModel();
-    try {
-      Logger.Info("Hello world");
-      Console.ReadKey();
-    }
-    catch (Exception ex) {
-      Logger.Error(ex, "Goodbye cruel world");
-    }
   }
 
   private void Button_Click(object sender, RoutedEventArgs e) {
@@ -45,7 +39,7 @@ public partial class ProductosUserControl {
   );
 
   private void ArticuloChanged(object sender, TextChangedEventArgs e) {
-    Console.WriteLine("Artículo cambiado");
+    SnackbarSeven.MessageQueue?.Enqueue($"BasicRatingBar value changed from {e.Changes}");
   }
 
   private void ButtonAddStock_OnClick(object sender, RoutedEventArgs e) {
@@ -55,4 +49,11 @@ public partial class ProductosUserControl {
   private void ButtonRestStock_OnClick(object sender, RoutedEventArgs e) {
     SnackbarSeven.MessageQueue?.Enqueue("Has reducido tu stock en 1");
   }
+
+  private void FrameworkElement_OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs e) {
+    SnackbarSeven.MessageQueue?.Enqueue($"BasicRatingBar value changed from {e.OldValue} to {e.NewValue}.");
+  }
+
+  private void BasicRatingBar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<int> e)
+    => Debug.WriteLine($"La valoración ha cambiado de {e.OldValue} a {e.NewValue} estrellas.");
 }

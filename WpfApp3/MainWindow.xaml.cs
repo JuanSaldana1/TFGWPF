@@ -5,7 +5,6 @@ using MaterialDesignThemes.Wpf;
 using MySqlConnector;
 using ToastNotifications;
 using ToastNotifications.Lifetime;
-using ToastNotifications.Messages;
 using ToastNotifications.Position;
 using WpfApp3.View;
 using MessageBox = ModernWpf.MessageBox;
@@ -42,7 +41,7 @@ public partial class MainWindow {
     DataContext = listadeBasesDeDatos;
   }
 
-  private void ButtonConectar_Click(object sender, RoutedEventArgs e) {
+  public void Conectar() {
     MotorBd = OutlinedComboBox.Text;
     Servidor = EditTextServer.Text;
     Puerto = EditTextPuerto.Text;
@@ -64,26 +63,24 @@ public partial class MainWindow {
           // Si ha establecido bien la conexión, cierra la ventana de login y abre la de LISTA Y CRUD
           SnackbarSeven.MessageQueue?.Enqueue("Has entrado correctamente");
           MySqlDataReader reader;
-          MySqlCommand command = new MySqlCommand("SHOW DATABASES", conexionBd);
+          var command = new MySqlCommand("SHOW DATABASES", conexionBd);
           reader = command.ExecuteReader();
-          while (reader.Read()) {
-            listadeBasesDeDatos += reader.GetString(0) + '\n';
+          if (reader.HasRows) {
+            while (reader.Read()) {
+              listadeBasesDeDatos += reader.GetString(0) + '\n';
+            }
           }
 
           MessageBox.Show(listadeBasesDeDatos, "Bases de datos de este puerto:",
             MessageBoxButton.YesNoCancel, MessageBoxImage.Information);
           /*MessageBox.Show(listadeBasesDeDatos);*/
           DataContext = listadeBasesDeDatos;
-          ListaYCRUD listaYcrud = new ListaYCRUD();
+          var listaYcrud = new ListaYCRUD();
           listaYcrud.Show();
           Close();
         }
         catch (MySqlException ex) {
-          SnackbarSeven.MessageQueue?.Enqueue(ex.Message);
-          Console.WriteLine(ex.StackTrace);
-          var listaYcrud = new ListaYCRUD();
-          listaYcrud.Show();
-          Close();
+          MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         return;
@@ -92,7 +89,6 @@ public partial class MainWindow {
         CadenaConexion = "User ID=" + Usuario + "; Password=" + Contrasena + "; Host=" + Servidor +
                          "; Port=" + Puerto + "; Database=" + BaseDatos +
                          "; Pooling=true; Min Pool Size=0;";
-        Console.Write(CadenaConexion);
         try {
           var conexionBd = new MySqlConnection(CadenaConexion);
           conexionBd.Open();
@@ -100,7 +96,7 @@ public partial class MainWindow {
           // Si ha establecido bien la conexión, cierra la ventana de login y abre la de LISTA Y CRUD
           SnackbarSeven.MessageQueue?.Enqueue("Has entrado correctamente");
           MySqlDataReader reader;
-          MySqlCommand command = new MySqlCommand("SHOW DATABASES", conexionBd);
+          var command = new MySqlCommand("SHOW DATABASES", conexionBd);
           reader = command.ExecuteReader();
           while (reader.Read()) {
             listadeBasesDeDatos += reader.GetString(0) + '\n';
@@ -108,17 +104,12 @@ public partial class MainWindow {
 
           MessageBox.Show(listadeBasesDeDatos, "Bases de datos de este puerto:",
             MessageBoxButton.YesNoCancel, MessageBoxImage.Information);
-          /*MessageBox.Show(listadeBasesDeDatos);*/
-          ListaYCRUD listaYcrud = new ListaYCRUD();
+          var listaYcrud = new ListaYCRUD();
           listaYcrud.Show();
           Close();
         }
         catch (MySqlException ex) {
-          SnackbarSeven.MessageQueue?.Enqueue(ex.Message);
-          Console.WriteLine(ex.StackTrace);
-          var listaYcrud = new ListaYCRUD();
-          listaYcrud.Show();
-          Close();
+          MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         return;
@@ -127,12 +118,7 @@ public partial class MainWindow {
     if (Servidor.Length == 0 || Puerto.Length == 0 || Usuario.Length == 0 || Contrasena.Length == 0 ||
         BaseDatos.Length == 0) {
       SnackbarSeven.MessageQueue?.Enqueue("Rellena todos los campos");
-      notifier.ShowInformation("Rellena todos los campos");
-      notifier.ShowSuccess("Rellena todos los campos");
-      notifier.ShowWarning("Rellena todos los campos");
-      notifier.ShowError("Rellena todos los campos");
       SnackbarSeven.MessageQueue?.Enqueue("La opción seleccionada es " + OutlinedComboBox.Text);
-      notifier.Dispose();
     }
     else if (Servidor.Contains("A")) {
       SnackbarSeven.MessageQueue?.Enqueue("El campo servidor debe estar compuesto por números");
@@ -153,19 +139,18 @@ public partial class MainWindow {
 
         MessageBox.Show(listadeBasesDeDatos, "Bases de datos de este puerto:",
           MessageBoxButton.OK, MessageBoxImage.Information);
-        /*MessageBox.Show(listadeBasesDeDatos);*/
         ListaYCRUD listaYcrud = new ListaYCRUD();
         listaYcrud.Show();
         Close();
       }
       catch (MySqlException ex) {
-        SnackbarSeven.MessageQueue?.Enqueue(ex.Message);
-        Console.WriteLine(ex.StackTrace);
-        var listaYcrud = new ListaYCRUD();
-        listaYcrud.Show();
-        Close();
+        MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
       }
     }
+  }
+
+  private void ButtonConectar_Click(object sender, RoutedEventArgs e) {
+    Conectar();
   }
 
   private void Sample2_DialogHost_OnDialogClosing(object sender, DialogClosingEventArgs eventArgs)

@@ -2,35 +2,36 @@
 using MySql.Data.MySqlClient;
 using WpfApp3.Model;
 
-namespace WpfApp3.ViewModel {
-    public class PostViewModel {
-        public IList<PostModel> Posts { get; set; } = new List<PostModel>();
+namespace WpfApp3.ViewModel;
 
-        public PostViewModel() {
-            string cadenaConexion = MainWindow.CadenaConexion;
-            MySqlConnection conexionBd = new MySqlConnection(cadenaConexion);
-            string mySelectQuery =
-                "SELECT IdPost, Titulo, Descripcion, FechaPublicacion, Imagen1, Imagen2 FROM Posts";
-            MySqlCommand myCommand = new MySqlCommand(mySelectQuery, conexionBd);
-            conexionBd.Open();
-            MySqlDataReader myReader;
-            myReader = myCommand.ExecuteReader();
+public class PostViewModel {
+  public IList<PostModel> Posts { get; } = new List<PostModel>();
 
-            if (myReader.HasRows) {
-                while (myReader.Read()) {
-                    Posts.Add(new PostModel() {
-                        ProductId = myReader.GetInt32(0),
-                        PostTitle = myReader.GetString(1),
-                        PostDescription = myReader.GetString(2),
-                        PostPublishDate = myReader.GetDateTime(3),
-                        PostFirstImage = myReader.GetString(4),
-                        PostSecondImage = myReader.GetString(5)
-                    });
-                }
-            }
+  public PostViewModel() {
+    var cadenaConexion = MainWindow.CadenaConexion;
+    var conexionBd = new MySqlConnection(cadenaConexion);
+    var mySelectQuery =
+      "SELECT IdPost, Titulo, Descripcion, FechaPublicacion, Favorito, Imagen1, Imagen2 FROM Posts";
+    var myCommand = new MySqlCommand(mySelectQuery, conexionBd);
+    conexionBd.Open();
+    MySqlDataReader myReader;
+    myReader = myCommand.ExecuteReader();
 
-            myReader.Close();
-            conexionBd.Close();
-        }
+    if (myReader.HasRows) {
+      while (myReader.Read()) {
+        Posts.Add(new PostModel {
+          PostId = myReader.GetInt32(0),
+          PostTitle = myReader.GetString(1),
+          PostDescription = myReader.GetString(2),
+          PostPublishDate = myReader.GetDateTime(3),
+          IsFavorite = myReader.GetBoolean(4),
+          PostFirstImage = myReader.GetString(5),
+          PostSecondImage = myReader.GetString(6)
+        });
+      }
     }
+
+    myReader.Close();
+    conexionBd.Close();
+  }
 }

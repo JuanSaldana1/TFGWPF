@@ -10,14 +10,15 @@ public class PostModel {
   private string description;
   private string url;
   private DateTime publishedAt;
+  private bool isFavorite;
   private string image1;
   private string image2;
 
-  public int ProductId {
+  public int PostId {
     get => idPost;
     set {
       idPost = value;
-      OnPropertyChanged("ProductId");
+      OnPropertyChanged("PostId");
     }
   }
 
@@ -53,6 +54,14 @@ public class PostModel {
     }
   }
 
+  public bool IsFavorite {
+    get => isFavorite;
+    set {
+      isFavorite = value;
+      OnPropertyChanged("IsFavourite");
+    }
+  }
+
   public string PostFirstImage {
     get => image1;
     set {
@@ -84,11 +93,11 @@ public class PostModel {
     }
   }
 
-  private System.Collections.IEnumerable ventas;
+  private System.Collections.IEnumerable posts;
 
-  public System.Collections.IEnumerable Ventas {
-    get => ventas;
-    set => SetProperty(ref ventas, value);
+  public System.Collections.IEnumerable Posts {
+    get => posts;
+    set => SetProperty(ref posts, value);
   }
 
   #endregion

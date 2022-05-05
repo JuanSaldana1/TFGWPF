@@ -12,6 +12,7 @@ public class OrderModel {
   private int quantity;
   private int lineId;
   private string productName;
+  private string userName;
 
   public int OrderId {
     get => orderId;
@@ -60,6 +61,14 @@ public class OrderModel {
       OnPropertyChanged("ProductName");
     }
   }
+  
+  public string UserName {
+    get => userName;
+    set {
+      userName = value;
+      OnPropertyChanged("UserName");
+    }
+  }
 
   #region INotifyPropertyChanged Members
 
@@ -76,11 +85,11 @@ public class OrderModel {
     }
   }
 
-  private IEnumerable ventas;
+  private IEnumerable orders;
 
-  public IEnumerable Ventas {
-    get => ventas;
-    set => SetProperty(ref ventas, value);
+  public IEnumerable Orders {
+    get => orders;
+    set => SetProperty(ref orders, value);
   }
 
   #endregion

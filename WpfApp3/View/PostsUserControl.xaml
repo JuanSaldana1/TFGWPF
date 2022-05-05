@@ -97,6 +97,17 @@
                                             </Run>
                                         </Hyperlink>
                                     </TextBlock>
+                                    
+                                    <ToggleButton
+                                        Content="{materialDesign:PackIcon Kind=Heart, Size=21}"
+                                        Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
+                                        ToolTip="MaterialDesignFlatPrimaryToggleButton"
+                                        IsChecked="{Binding IsFavorite}" />
+                                    
+                                    <materialDesign:RatingBar
+                                        x:Name="BasicRatingBar"
+                                        Value="{Binding PostRating}"
+                                        ValueChanged="BasicRatingBar_ValueChanged" />
 
                                     <DatePicker
                                         HorizontalAlignment="Left"

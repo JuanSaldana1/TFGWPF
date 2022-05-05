@@ -12,6 +12,7 @@ internal class ProductoModel : INotifyPropertyChanged {
   private int categoryId;
   private string productCategory;
   private int productStock;
+  private int productRating;
   private string productImage;
   private int postId;
 
@@ -84,6 +85,14 @@ internal class ProductoModel : INotifyPropertyChanged {
     set {
       postId = value;
       OnPropertyChanged("PostId");
+    }
+  }
+
+  public int ProductRating {
+    get => productRating;
+    set {
+      productRating = value;
+      OnPropertyChanged("ProductRating");
     }
   }
 

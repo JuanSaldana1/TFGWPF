@@ -11,7 +11,7 @@ internal class ProductViewModel {
     string cadenaConexion = MainWindow.CadenaConexion;
     MySqlConnection conexionBd = new MySqlConnection(cadenaConexion);
     string mySelectQuery =
-      "SELECT ProductId, Name, Description, Price, C.Nombre, Stock, Image FROM Productos JOIN Categorias C on C.CategoryId = Productos.CategoryId";
+      "SELECT ProductId, Name, Description, Price, C.Nombre, Stock, Rating, Image FROM Productos JOIN Categorias C on C.CategoryId = Productos.CategoryId";
     MySqlCommand myCommand = new MySqlCommand(mySelectQuery, conexionBd);
     conexionBd.Open();
     MySqlDataReader myReader;
@@ -26,7 +26,8 @@ internal class ProductViewModel {
           ProductPrice = myReader.GetDouble(3),
           ProductCategory = myReader.GetString(4),
           ProductStock = myReader.GetInt32(5),
-          ProductImage = myReader.GetString(6)
+          ProductRating = myReader.GetInt32(6),
+          ProductImage = myReader.GetString(7)
         });
       }
     }

@@ -23,6 +23,7 @@ public partial class UsuariosUserControl {
     SnackbarSeven.MessageQueue?.Enqueue("Se ha creado el usuario con nombre: " + nuevoUsuario.Name);
     SnackbarSeven.MessageQueue?.Enqueue(sender.ToString());
     SnackbarSeven.MessageQueue?.Enqueue(e.ToString());
+    SnackbarSeven.MessageQueue?.Enqueue(EditTextUserName.Text + "\n");
     listaUsuarios.ChangeName(EditTextUserName.Text, 3);
     listaUsuarios.Usuarios.Add(nuevoUsuario);
   }

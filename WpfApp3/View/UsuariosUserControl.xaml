@@ -143,6 +143,7 @@
 
                                                 <!--  Nombre  -->
                                                 <TextBox
+                                                    Name="EditTextUserName"
                                                     Text="{Binding Username}"
                                                     materialDesign:HintAssist.Hint="First name"
                                                     materialDesign:HintAssist.IsFloating="True"
