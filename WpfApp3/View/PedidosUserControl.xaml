@@ -37,7 +37,7 @@
                                         Margin="24,8,24,16">
 
                                         <TextBlock
-                                            Text="Your Content" />
+                                            Text="{Binding UserName}" />
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock Text="{Binding ProductName}" />
                                             <TextBlock Text="{Binding Quantity}" Margin="5, 0" />

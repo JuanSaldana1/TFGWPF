@@ -11,7 +11,7 @@ public class OrderViewModel {
     var cadenaConexion = MainWindow.CadenaConexion;
     var conexionBd = new MySqlConnection(cadenaConexion);
     var mySelectQuery =
-      "SELECT OrderId, O.ProductId, OrderDate, Quantity, LineId, P.Name FROM Orders O join Productos P on O.ProductId = P.ProductId";
+      "SELECT OrderId, O.ProductId, OrderDate, Quantity, LineId, P.Name, U.Name FROM Orders O join Productos P on O.ProductId = P.ProductId JOIN Usuarios U on U.UserId = O.UserId";
     var myCommand = new MySqlCommand(mySelectQuery, conexionBd);
     conexionBd.Open();
     MySqlDataReader myReader;
@@ -25,7 +25,8 @@ public class OrderViewModel {
           OrderDate = myReader.GetDateTime(2),
           Quantity = myReader.GetInt32(3),
           LineId = myReader.GetInt32(4),
-          ProductName = myReader.GetString(5)
+          ProductName = myReader.GetString(5),
+          UserName = myReader.GetString(6)
         });
       }
     }
