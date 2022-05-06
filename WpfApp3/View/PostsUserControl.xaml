@@ -17,22 +17,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModel="clr-namespace:WpfApp3.ViewModel"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <UserControl.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinDefault.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml" />
-                <ResourceDictionary
-                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Defaults.xaml" />
-                <ResourceDictionary
-                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
-                <ResourceDictionary
-                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.DialogHost.xaml" />
-                <ResourceDictionary
-                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Listbox.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </UserControl.Resources>
     <Grid>
         <ListBox
             ItemsSource="{Binding Posts}"
@@ -75,61 +59,52 @@
                                     </hc:Carousel>
                                 </hc:TransitioningContentControl>
 
-                                <StackPanel Grid.Row="1">
-                                    <TextBox
-                                        FontSize="19"
-                                        Name="textViewTituloPost"
-                                        Text="{Binding PostTitle}"
-                                        TextChanged="PostChanged" />
 
-                                    <TextBlock
-                                        Style="{StaticResource MaterialDesignBodyLargeTextBlock}"
-                                        Text="{Binding PostDescription}"
-                                        TextWrapping="Wrap"
-                                        VerticalAlignment="Center" />
+                                <TextBox
+                                    FontSize="19"
+                                    Name="textViewTituloPost"
+                                    Text="{Binding PostTitle}"
+                                    TextChanged="PostChanged" />
+                                <TextBlock
+                                    Style="{StaticResource MaterialDesignBodyLargeTextBlock}"
+                                    Text="{Binding PostDescription}"
+                                    TextWrapping="Wrap"
+                                    VerticalAlignment="Center" />
 
-                                    <TextBlock>
-                                        <Hyperlink NavigateUri="{Binding PostUrl}">
-                                            <Run>
-                                                <Run.Text>
-                                                    Enlace al post
-                                                </Run.Text>
-                                            </Run>
-                                        </Hyperlink>
-                                    </TextBlock>
-                                    
-                                    <ToggleButton
-                                        Content="{materialDesign:PackIcon Kind=Heart, Size=21}"
-                                        Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
-                                        ToolTip="MaterialDesignFlatPrimaryToggleButton"
-                                        IsChecked="{Binding IsFavorite}" />
-                                    
-                                    <materialDesign:RatingBar
-                                        x:Name="BasicRatingBar"
-                                        Value="{Binding PostRating}"
-                                        ValueChanged="BasicRatingBar_ValueChanged" />
+                                <TextBlock>
+                                    <Hyperlink NavigateUri="{Binding PostUrl}">
+                                        <Run>
+                                            <Run.Text>
+                                                Enlace al post
+                                            </Run.Text>
+                                        </Run>
+                                    </Hyperlink>
+                                </TextBlock>
 
-                                    <DatePicker
-                                        HorizontalAlignment="Left"
-                                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
-                                        Text="{Binding PostPublishDate}"
-                                        Width="150"
-                                        materialDesign:HintAssist.Hint="Elija la fecha de publicación"
-                                        materialDesign:TextFieldAssist.HasClearButton="True" />
+                                <ToggleButton
+                                    Content="{materialDesign:PackIcon Kind=Heart, Size=21}"
+                                    Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
+                                    ToolTip="Favorito"
+                                    IsChecked="{Binding IsFavorite}" />
 
-                                </StackPanel>
+                                <DatePicker
+                                    HorizontalAlignment="Left"
+                                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
+                                    Text="{Binding PostPublishDate}"
+                                    Width="150"
+                                    materialDesign:HintAssist.Hint="Elija la fecha de publicación"
+                                    materialDesign:TextFieldAssist.HasClearButton="True" />
 
                                 <Separator
-                                    Grid.Row="2"
                                     Style="{StaticResource MaterialDesignDarkSeparator}" />
 
-                                <StackPanel Grid.Row="3">
-                                    <Button
-                                        Click="Button_Click"
-                                        Content="Guardar Cambios"
-                                        HorizontalAlignment="Left"
-                                        Style="{StaticResource MaterialDesignFlatButton}" />
-                                </StackPanel>
+                                <Button
+                                    Click="ButtonUpdateChanges_Click"
+                                    Content="Guardar Cambios"
+                                    HorizontalAlignment="Left"
+                                    Style="{StaticResource MaterialDesignFlatButton}" />
+
+
                             </Grid>
                         </materialDesign:Card>
                     </StackPanel>
