@@ -18,6 +18,7 @@
     xmlns:viewModel="clr-namespace:WpfApp3.ViewModel"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Grid>
+        <!--<Page Name="PostComponentPage"/>-->
         <ListBox
             ItemsSource="{Binding Posts}"
             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
@@ -25,16 +26,21 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Vertical">
+                        
                         <materialDesign:Card
-                            Background="#a5d6a7"
+                            Background="#F8BBD0"
                             UniformCornerRadius="6"
                             Padding="9"
                             Width="400">
+
+                            <!--<Page Name="PostComponentPage"/>-->
 
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*" />
                                     <RowDefinition Height="*" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="Auto" />
@@ -61,17 +67,19 @@
 
 
                                 <TextBox
+                                    Grid.Row="1"
                                     FontSize="19"
                                     Name="textViewTituloPost"
                                     Text="{Binding PostTitle}"
                                     TextChanged="PostChanged" />
                                 <TextBlock
+                                    Grid.Row="2"
                                     Style="{StaticResource MaterialDesignBodyLargeTextBlock}"
                                     Text="{Binding PostDescription}"
                                     TextWrapping="Wrap"
                                     VerticalAlignment="Center" />
 
-                                <TextBlock>
+                                <TextBlock Grid.Row="3">
                                     <Hyperlink NavigateUri="{Binding PostUrl}">
                                         <Run>
                                             <Run.Text>
@@ -82,12 +90,16 @@
                                 </TextBlock>
 
                                 <ToggleButton
+                                    Name="toggleButtonFavorito"
+                                    Checked="ToggleButton_OnChecked"
+                                    Grid.Row="4"
                                     Content="{materialDesign:PackIcon Kind=Heart, Size=21}"
                                     Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
                                     ToolTip="Favorito"
                                     IsChecked="{Binding IsFavorite}" />
 
                                 <DatePicker
+                                    Grid.Row="5"
                                     HorizontalAlignment="Left"
                                     Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
                                     Text="{Binding PostPublishDate}"
@@ -96,14 +108,15 @@
                                     materialDesign:TextFieldAssist.HasClearButton="True" />
 
                                 <Separator
+                                    Grid.Row="6"
                                     Style="{StaticResource MaterialDesignDarkSeparator}" />
 
                                 <Button
+                                    Grid.Row="7"
                                     Click="ButtonUpdateChanges_Click"
                                     Content="Guardar Cambios"
                                     HorizontalAlignment="Left"
                                     Style="{StaticResource MaterialDesignFlatButton}" />
-
 
                             </Grid>
                         </materialDesign:Card>

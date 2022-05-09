@@ -59,7 +59,6 @@ public partial class MainWindow {
         try {
           var conexionBd = new MySqlConnection(CadenaConexion);
           conexionBd.Open();
-          Console.WriteLine(conexionBd);
           // Si ha establecido bien la conexión, cierra la ventana de login y abre la de LISTA Y CRUD
           SnackbarSeven.MessageQueue?.Enqueue("Has entrado correctamente");
           MySqlDataReader reader;
@@ -127,11 +126,10 @@ public partial class MainWindow {
       try {
         var conexionBd = new MySqlConnection(CadenaConexion);
         conexionBd.Open();
-        Console.WriteLine(conexionBd);
         // Si ha establecido bien la conexión, cierra la ventana de login y abre la de LISTA Y CRUD
         SnackbarSeven.MessageQueue?.Enqueue("Has entrado correctamente");
         MySqlDataReader reader;
-        MySqlCommand command = new MySqlCommand("SHOW DATABASES", conexionBd);
+        var command = new MySqlCommand("SHOW DATABASES", conexionBd);
         reader = command.ExecuteReader();
         while (reader.Read()) {
           listadeBasesDeDatos += reader.GetString(0) + '\n';
@@ -139,7 +137,7 @@ public partial class MainWindow {
 
         MessageBox.Show(listadeBasesDeDatos, "Bases de datos de este puerto:",
           MessageBoxButton.OK, MessageBoxImage.Information);
-        ListaYCRUD listaYcrud = new ListaYCRUD();
+        var listaYcrud = new ListaYCRUD();
         listaYcrud.Show();
         Close();
       }

@@ -7,15 +7,13 @@ using System.Windows.Navigation;
 using MySql.Data.MySqlClient;
 using WpfApp3.ViewModel;
 
-namespace WpfApp3.View;
+namespace WpfApp3.View; 
 
-public partial class PostsUserControl {
-  public PostsUserControl() {
+public partial class PostsPage : Page {
+  public PostsPage() {
     InitializeComponent();
-    MyListView.DataContext = new PostViewModel();
-    // PostComponentPage.DataContext = new PostViewModel();
   }
-
+  
   private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e) {
     // for .NET Core you need to add UseShellExecute = true
     // see https://docs.microsoft.com/dotnet/api/system.diagnostics.processstartinfo.useshellexecute#property-value
@@ -24,7 +22,6 @@ public partial class PostsUserControl {
   }
 
   public void ButtonUpdateChanges_Click(object sender, RoutedEventArgs e) {
-    SnackbarSeven.MessageQueue?.Enqueue("");
   }
 
   private Action Deshacer() {
@@ -37,16 +34,11 @@ public partial class PostsUserControl {
   }
 
   public void PostChanged(object sender, TextChangedEventArgs e) {
-    SnackbarSeven.MessageQueue?.Enqueue(e.ToString());
-    SnackbarSeven.MessageQueue?.Enqueue(e.Changes.ToString());
+    
   }
 
   private void ToggleButton_OnChecked(object sender, RoutedEventArgs e) {
-    var toogleButton = sender as ToggleButton;
-    SnackbarSeven.MessageQueue?.Enqueue(sender.GetHashCode().ToString());
-    SnackbarSeven.MessageQueue?.Enqueue(toogleButton.Name);
-    SnackbarSeven.MessageQueue?.Enqueue(toogleButton.Content.ToString());
-    
+    var toogleButton1 = toggleButtonFavorito;
     try {
       var cadenaConexion = MainWindow.CadenaConexion;
       var conexionBd = new MySqlConnection(cadenaConexion);
@@ -55,7 +47,6 @@ public partial class PostsUserControl {
       var myCommand = new MySqlCommand(isFavouriteQuery, conexionBd);
       myCommand.ExecuteNonQuery();
       conexionBd.Close();
-      SnackbarSeven.MessageQueue?.Enqueue("Ahora este post está en favoritos");
     }
     catch (Exception exception) {
       Console.WriteLine(exception);

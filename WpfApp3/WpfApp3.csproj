@@ -81,14 +81,24 @@
     <Compile Include="Model\PostModel.cs" />
     <Compile Include="Model\ProductModel.cs" />
     <Compile Include="Model\UserModel.cs" />
+    <Compile Include="ViewModel\AnotherCommandImplementation.cs" />
     <Compile Include="ViewModel\CategoryViewModel.cs" />
     <Compile Include="ViewModel\CommentViewModel.cs" />
     <Compile Include="ViewModel\OrderViewModel.cs" />
+    <Compile Include="ViewModel\PaletteSelectorViewModel.cs" />
     <Compile Include="ViewModel\PostViewModel.cs" />
     <Compile Include="ViewModel\ProductViewModel.cs" />
+    <Compile Include="ViewModel\ThemeSettingsViewModel.cs" />
     <Compile Include="ViewModel\UserViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelBase.cs" />
+    <Compile Include="View\CategoriasPage.xaml.cs">
+      <DependentUpon>CategoriasPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\CategoriasUserControl.xaml.cs">
       <DependentUpon>CategoriasUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ColoresUserControl.xaml.cs">
+      <DependentUpon>ColoresUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ComentariosUserControl.xaml.cs">
       <DependentUpon>ComentariosUserControl.xaml</DependentUpon>
@@ -99,14 +109,27 @@
     <Compile Include="View\ListaYCRUD.xaml.cs">
       <DependentUpon>ListaYCRUD.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Page1.xaml.cs">
+      <DependentUpon>Page1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PaletteHelperExtensions.cs" />
+    <Compile Include="View\PaletteSelector.xaml.cs">
+      <DependentUpon>PaletteSelector.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\PedidosUserControl.xaml.cs">
       <DependentUpon>PedidosUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PostsPage.xaml.cs">
+      <DependentUpon>PostsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PostsUserControl.xaml.cs">
       <DependentUpon>PostsUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ProductosUserControl.xaml.cs">
       <DependentUpon>ProductosUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ThemeSettings.xaml.cs">
+      <DependentUpon>ThemeSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\UsuariosUserControl.xaml.cs">
       <DependentUpon>UsuariosUserControl.xaml</DependentUpon>
@@ -126,19 +149,25 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\CategoriasPage.xaml" />
     <Page Include="View\CategoriasUserControl.xaml" />
+    <Page Include="View\ColoresUserControl.xaml" />
     <Page Include="View\ComentariosUserControl.xaml" />
     <Page Include="View\ConsultasUserControl.xaml" />
     <Page Include="View\ListaYCRUD.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Page1.xaml" />
+    <Page Include="View\PaletteSelector.xaml" />
     <Page Include="View\PedidosUserControl.xaml" />
+    <Page Include="View\PostsPage.xaml" />
     <Page Include="View\PostsUserControl.xaml" />
     <Page Include="View\ProductosUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\ThemeSettings.xaml" />
     <Page Include="View\UsuariosUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -214,16 +243,16 @@
       <Version>2.4.9</Version>
     </PackageReference>
     <PackageReference Include="MaterialDesignColors">
-      <Version>2.0.7-ci169</Version>
+      <Version>2.0.7-ci172</Version>
     </PackageReference>
     <PackageReference Include="MaterialDesignExtensions">
       <Version>4.0.0-a02</Version>
     </PackageReference>
     <PackageReference Include="MaterialDesignThemes">
-      <Version>4.6.0-ci169</Version>
+      <Version>4.6.0-ci172</Version>
     </PackageReference>
     <PackageReference Include="MaterialDesignThemes.MahApps">
-      <Version>0.2.3-ci169</Version>
+      <Version>0.2.3-ci172</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Windows.SDK.Contracts">
       <Version>10.0.22000.196</Version>
@@ -291,6 +320,9 @@
     <PackageReference Include="ToastNotifications.Messages">
       <Version>2.5.1</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="View\Components" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

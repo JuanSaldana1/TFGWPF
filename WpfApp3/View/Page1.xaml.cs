@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using MySql.Data.MySqlClient;
 
-namespace WpfApp3;
+namespace WpfApp3.View; 
 
-public partial class Window1 {
-  public Window1() {
+public partial class Page1 : Page {
+  public Page1() {
     InitializeComponent();
   }
-
+  
   private void ToggleButton_OnChecked(object sender, RoutedEventArgs e) {
     var toogleButton = sender as ToggleButton;
     var toogleButton1 = ToggleButtonFavorito;

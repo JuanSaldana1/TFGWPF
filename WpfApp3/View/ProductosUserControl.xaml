@@ -25,7 +25,7 @@
                 <DataTemplate>
                     <StackPanel Orientation="Vertical">
                         <materialDesign:Card
-                            Background="PapayaWhip"
+                            Background="#625B71"
                             UniformCornerRadius="6"
                             Padding="9"
                             Width="300">

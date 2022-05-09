@@ -36,4 +36,8 @@ public class CommentViewModel {
     myReader.Close();
     conexionBd.Close();
   }
+
+  public void updateFavourite() {
+    
+  }
 }
