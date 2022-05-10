@@ -4,13 +4,13 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using MySql.Data.MySqlClient;
 
-namespace WpfApp3.View; 
+namespace WpfApp3.View;
 
 public partial class Page1 : Page {
   public Page1() {
     InitializeComponent();
   }
-  
+
   private void ToggleButton_OnChecked(object sender, RoutedEventArgs e) {
     var toogleButton = sender as ToggleButton;
     var toogleButton1 = ToggleButtonFavorito;

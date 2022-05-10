@@ -25,8 +25,9 @@
                 <DataTemplate>
                     <StackPanel Orientation="Vertical">
                         <materialDesign:Card
-                            Background="#6750A4"
+                            Background="{DynamicResource PrimaryHueLightBrush}"
                             UniformCornerRadius="6"
+                            x:Uid="1"
                             Padding="9"
                             Width="300">
 
@@ -101,10 +102,17 @@
                                 <Separator
                                     Grid.Row="5"
                                     Style="{StaticResource MaterialDesignDarkSeparator}" />
-                                <StackPanel Grid.Row="6">
+                                <StackPanel Grid.Row="6" Orientation="Horizontal">
                                     <Button
                                         Click="Button_Click"
                                         Content="Editar"
+                                        ToolTip="Aplicar los cambios hechos."
+                                        HorizontalAlignment="Left"
+                                        Style="{StaticResource MaterialDesignFlatButton}" />
+                                    <Button
+                                        Name="ButtonEliminarComentario"
+                                        Click="ButtonEliminarComentario_Click"
+                                        Content="{materialDesign:PackIcon DeleteOutline}"
                                         ToolTip="Aplicar los cambios hechos."
                                         HorizontalAlignment="Left"
                                         Style="{StaticResource MaterialDesignFlatButton}" />

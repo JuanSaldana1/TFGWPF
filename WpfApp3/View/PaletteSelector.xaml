@@ -111,7 +111,7 @@
             DockPanel.Dock="Top"
             Margin="2">
             <DockPanel>
-                
+
                 <TextBlock
                     Margin="16"
                     TextWrapping="Wrap"

@@ -5,8 +5,6 @@ using WpfApp3.Model;
 namespace WpfApp3.ViewModel;
 
 public class OrderViewModel {
-  public IList<OrderModel> Orders { get; } = new List<OrderModel>();
-
   public OrderViewModel() {
     var cadenaConexion = MainWindow.CadenaConexion;
     var conexionBd = new MySqlConnection(cadenaConexion);
@@ -17,8 +15,8 @@ public class OrderViewModel {
     MySqlDataReader myReader;
     myReader = myCommand.ExecuteReader();
 
-    if (myReader.HasRows) {
-      while (myReader.Read()) {
+    if (myReader.HasRows)
+      while (myReader.Read())
         Orders.Add(new OrderModel {
           OrderId = myReader.GetInt32(0),
           ProductId = myReader.GetInt32(1),
@@ -28,10 +26,10 @@ public class OrderViewModel {
           ProductName = myReader.GetString(5),
           UserName = myReader.GetString(6)
         });
-      }
-    }
 
     myReader.Close();
     conexionBd.Close();
   }
+
+  public IList<OrderModel> Orders { get; } = new List<OrderModel>();
 }

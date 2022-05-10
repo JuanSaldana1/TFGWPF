@@ -5,8 +5,6 @@ using WpfApp3.Model;
 namespace WpfApp3.ViewModel;
 
 public class CommentViewModel {
-  public IList<CommentModel> Comments { get; } = new List<CommentModel>();
-
   public CommentViewModel() {
     var cadenaConexion = MainWindow.CadenaConexion;
     var conexionBd = new MySqlConnection(cadenaConexion);
@@ -17,8 +15,8 @@ public class CommentViewModel {
     MySqlDataReader myReader;
     myReader = myCommand.ExecuteReader();
 
-    if (myReader.HasRows) {
-      while (myReader.Read()) {
+    if (myReader.HasRows)
+      while (myReader.Read())
         Comments.Add(new CommentModel {
           CommentId = myReader.GetInt32(0),
           CommentTitle = myReader.GetString(1),
@@ -30,14 +28,12 @@ public class CommentViewModel {
           ProfilePhoto = myReader.GetString(7),
           UserEmail = myReader.GetString(8)
         });
-      }
-    }
 
     myReader.Close();
     conexionBd.Close();
   }
 
-  public void updateFavourite() {
-    
-  }
+  public IList<CommentModel> Comments { get; } = new List<CommentModel>();
+
+  public void updateFavourite() { }
 }

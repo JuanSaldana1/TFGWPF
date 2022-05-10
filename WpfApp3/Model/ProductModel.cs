@@ -5,16 +5,16 @@ using System.Runtime.CompilerServices;
 namespace WpfApp3.Model;
 
 internal class ProductoModel : INotifyPropertyChanged {
-  private int productId;
-  private string productName;
-  private string productDescription;
-  private double productPrice;
   private int categoryId;
-  private string productCategory;
-  private int productStock;
-  private int productRating;
-  private string productImage;
   private int postId;
+  private string productCategory;
+  private string productDescription;
+  private int productId;
+  private string productImage;
+  private string productName;
+  private double productPrice;
+  private int productRating;
+  private int productStock;
 
   public int ProductId {
     get => productId;

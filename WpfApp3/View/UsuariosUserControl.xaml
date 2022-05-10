@@ -118,7 +118,8 @@
                                                         HorizontalAlignment="Left"
                                                         Style="{StaticResource MaterialDesignToolForegroundButton}">
 
-                                                        <materialDesign:PackIcon HorizontalAlignment="Center" Kind="ArrowLeft" />
+                                                        <materialDesign:PackIcon HorizontalAlignment="Center"
+                                                            Kind="ArrowLeft" />
                                                     </Button>
 
                                                     <TextBlock Text="Editar usuario" VerticalAlignment="Center" />
@@ -199,7 +200,8 @@
                                                             Margin="0,8,8,0"
                                                             Style="{StaticResource MaterialDesignFlatButton}">
                                                             <Button.CommandParameter>
-                                                                <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
+                                                                <system:Boolean
+                                                                    xmlns:system="clr-namespace:System;assembly=mscorlib">
                                                                     True
                                                                 </system:Boolean>
                                                             </Button.CommandParameter>
@@ -211,7 +213,8 @@
                                                             Margin="0,8,8,0"
                                                             Style="{StaticResource MaterialDesignFlatButton}">
                                                             <Button.CommandParameter>
-                                                                <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
+                                                                <system:Boolean
+                                                                    xmlns:system="clr-namespace:System;assembly=mscorlib">
                                                                     False
                                                                 </system:Boolean>
                                                             </Button.CommandParameter>
@@ -246,10 +249,8 @@
                 </ListBox.ItemsPanel>
             </ListBox>
             <Button
-                Background="#3f51b5"
                 Content="{materialDesign:PackIcon Kind=Plus,
-                                                  Size=22}"
-                Foreground="White"
+                                              Size=22}"
                 Grid.Row="0"
                 Height="50"
                 HorizontalAlignment="Right"

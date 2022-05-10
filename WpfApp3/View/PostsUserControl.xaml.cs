@@ -46,7 +46,7 @@ public partial class PostsUserControl {
     SnackbarSeven.MessageQueue?.Enqueue(sender.GetHashCode().ToString());
     SnackbarSeven.MessageQueue?.Enqueue(toogleButton.Name);
     SnackbarSeven.MessageQueue?.Enqueue(toogleButton.Content.ToString());
-    
+
     try {
       var cadenaConexion = MainWindow.CadenaConexion;
       var conexionBd = new MySqlConnection(cadenaConexion);

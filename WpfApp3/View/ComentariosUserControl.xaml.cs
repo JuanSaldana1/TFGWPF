@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using MySql.Data.MySqlClient;
 using WpfApp3.ViewModel;
 using MessageBox = ModernWpf.MessageBox;
 
@@ -24,5 +25,28 @@ public partial class ComentariosUserControl {
     }
 
     return null;
+  }
+
+  private void ButtonEliminarComentario_Click(object sender, RoutedEventArgs e) {
+    MessageBox.Show(sender + "\n" + sender.GetType() + "\n" + e + "\n" + e.Source + "\n" +
+                    e.Source.GetType());
+    MessageBox.Show(MyListView.SelectedItem.ToString());
+    MessageBox.Show(MyListView.SelectedItem.GetHashCode().ToString());
+    MessageBox.Show(MyListView.SelectedItem.GetType().ToString());
+    MessageBox.Show(MyListView.SelectedItems.ToString());
+    MessageBox.Show(MyListView.Uid);
+    MessageBox.Show(MyListView.Items.ToString());
+    MessageBox.Show(MyListView.PersistId.ToString());
+    try {
+      var cadenaConexion = MainWindow.CadenaConexion;
+      var conexionBd = new MySqlConnection(cadenaConexion);
+      var deleteQuery = "DELETE FROM Comentarios WHERE IdComentario = '" + MyListView.SelectedItem.GetHashCode() + "';";
+      var myCommand = new MySqlCommand(deleteQuery, conexionBd);
+      conexionBd.Open();
+      myCommand.ExecuteReader();
+    }
+    catch (Exception ex) {
+      MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+    }
   }
 }

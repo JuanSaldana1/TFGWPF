@@ -6,19 +6,19 @@ using WpfApp3.ViewModel;
 namespace WpfApp3.View;
 
 /// <summary>
-/// Lógica de interacción para UsuariosUserControl.xaml
+///   Lógica de interacción para UsuariosUserControl.xaml
 /// </summary>
 public partial class UsuariosUserControl {
-  public static string ImagenPerfil { get; set; }
-
   public UsuariosUserControl() {
     InitializeComponent();
     MyListView.DataContext = new UserViewModel();
   }
 
+  public static string ImagenPerfil { get; set; }
+
   public void ButtonSave_Click(object sender, RoutedEventArgs e) {
-    UserViewModel listaUsuarios = new UserViewModel();
-    UserModel nuevoUsuario = new UserModel();
+    var listaUsuarios = new UserViewModel();
+    var nuevoUsuario = new UserModel();
     nuevoUsuario.Name = EditTextUserName.Text;
     SnackbarSeven.MessageQueue?.Enqueue("Se ha creado el usuario con nombre: " + nuevoUsuario.Name);
     SnackbarSeven.MessageQueue?.Enqueue(sender.ToString());
@@ -29,7 +29,7 @@ public partial class UsuariosUserControl {
   }
 
   private void BtnOpenFile_Click(object sender, RoutedEventArgs e) {
-    OpenFileDialog openFileDialog = new OpenFileDialog();
+    var openFileDialog = new OpenFileDialog();
     openFileDialog.DefaultExt = ".png"; // Default file extension
     openFileDialog.Filter = "Image Files (*.bmp;*.png;*.jpg)|*.bmp;*.png;*.jpg"; // Filter files by extension
     openFileDialog.ShowDialog();

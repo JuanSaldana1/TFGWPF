@@ -6,12 +6,12 @@ using System.Runtime.CompilerServices;
 namespace WpfApp3.Model;
 
 public class OrderModel {
+  private int lineId;
+  private DateTime orderDate;
   private int orderId;
   private int productId;
-  private DateTime orderDate;
-  private int quantity;
-  private int lineId;
   private string productName;
+  private int quantity;
   private string userName;
 
   public int OrderId {
@@ -61,7 +61,7 @@ public class OrderModel {
       OnPropertyChanged("ProductName");
     }
   }
-  
+
   public string UserName {
     get => userName;
     set {

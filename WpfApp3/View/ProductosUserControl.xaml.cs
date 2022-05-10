@@ -3,15 +3,23 @@ using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using MaterialDesignThemes.Wpf;
+using NLog;
 using WpfApp3.ViewModel;
 
 namespace WpfApp3.View;
 
 /// <summary>
-/// Lógica de interacción para ProductosUserControl.xaml
+///   Lógica de interacción para ProductosUserControl.xaml
 /// </summary>
 public partial class ProductosUserControl {
-  private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+  private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+  public static readonly RoutedEvent DialogClosingEvent = EventManager.RegisterRoutedEvent(
+    "DialogClosing1",
+    RoutingStrategy.Bubble,
+    typeof(DialogClosingEventHandler),
+    typeof(DialogHost)
+  );
 
   public ProductosUserControl() {
     InitializeComponent();
@@ -31,13 +39,6 @@ public partial class ProductosUserControl {
     return null;
   }
 
-  public static readonly RoutedEvent DialogClosingEvent = EventManager.RegisterRoutedEvent(
-    "DialogClosing1",
-    RoutingStrategy.Bubble,
-    typeof(DialogClosingEventHandler),
-    typeof(DialogHost)
-  );
-
   private void ArticuloChanged(object sender, TextChangedEventArgs e) {
     SnackbarSeven.MessageQueue?.Enqueue($"BasicRatingBar value changed from {e.Changes}");
   }
@@ -54,6 +55,7 @@ public partial class ProductosUserControl {
     SnackbarSeven.MessageQueue?.Enqueue($"BasicRatingBar value changed from {e.OldValue} to {e.NewValue}.");
   }
 
-  private void BasicRatingBar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<int> e)
-    => Debug.WriteLine($"La valoración ha cambiado de {e.OldValue} a {e.NewValue} estrellas.");
+  private void BasicRatingBar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<int> e) {
+    Debug.WriteLine($"La valoración ha cambiado de {e.OldValue} a {e.NewValue} estrellas.");
+  }
 }

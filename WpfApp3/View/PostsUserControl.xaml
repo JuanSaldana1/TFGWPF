@@ -26,7 +26,7 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Vertical">
-                        
+
                         <materialDesign:Card
                             Background="#F8BBD0"
                             UniformCornerRadius="6"
@@ -130,10 +130,8 @@
             </ListBox.ItemsPanel>
         </ListBox>
         <Button
-            Background="#3f51b5"
             Content="{materialDesign:PackIcon Kind=Plus,
                                               Size=22}"
-            Foreground="White"
             Grid.Row="0"
             Height="50"
             HorizontalAlignment="Right"

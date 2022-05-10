@@ -5,15 +5,14 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Navigation;
 using MySql.Data.MySqlClient;
-using WpfApp3.ViewModel;
 
-namespace WpfApp3.View; 
+namespace WpfApp3.View;
 
 public partial class PostsPage : Page {
   public PostsPage() {
     InitializeComponent();
   }
-  
+
   private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e) {
     // for .NET Core you need to add UseShellExecute = true
     // see https://docs.microsoft.com/dotnet/api/system.diagnostics.processstartinfo.useshellexecute#property-value
@@ -21,8 +20,7 @@ public partial class PostsPage : Page {
     e.Handled = true;
   }
 
-  public void ButtonUpdateChanges_Click(object sender, RoutedEventArgs e) {
-  }
+  public void ButtonUpdateChanges_Click(object sender, RoutedEventArgs e) { }
 
   private Action Deshacer() {
     try { }
@@ -33,9 +31,7 @@ public partial class PostsPage : Page {
     return null;
   }
 
-  public void PostChanged(object sender, TextChangedEventArgs e) {
-    
-  }
+  public void PostChanged(object sender, TextChangedEventArgs e) { }
 
   private void ToggleButton_OnChecked(object sender, RoutedEventArgs e) {
     var toogleButton1 = toggleButtonFavorito;

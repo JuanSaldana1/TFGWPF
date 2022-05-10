@@ -1,18 +1,19 @@
 ﻿using System;
+using System.Collections;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace WpfApp3.Model;
 
 public class PostModel {
-  private int idPost;
-  private string title;
   private string description;
-  private string url;
-  private DateTime publishedAt;
-  private bool isFavorite;
+  private int idPost;
   private string image1;
   private string image2;
+  private bool isFavorite;
+  private DateTime publishedAt;
+  private string title;
+  private string url;
 
   public int PostId {
     get => idPost;
@@ -93,9 +94,9 @@ public class PostModel {
     }
   }
 
-  private System.Collections.IEnumerable posts;
+  private IEnumerable posts;
 
-  public System.Collections.IEnumerable Posts {
+  public IEnumerable Posts {
     get => posts;
     set => SetProperty(ref posts, value);
   }

@@ -6,26 +6,24 @@ using WpfApp3.Model;
 namespace WpfApp3.ViewModel;
 
 internal class UserViewModel {
-  public IList<UserModel> Usuarios { get; } = new List<UserModel>();
-
   private readonly string stringConexion = "server=" + MainWindow.Servidor + "; port=" + MainWindow.Puerto +
                                            "; user id=" +
                                            MainWindow.Usuario + "; password=" + MainWindow.Contrasena + "; database=" +
                                            MainWindow.BaseDatos + ";";
 
   public UserViewModel() {
-    string cadenaConexion = stringConexion;
-    string selectAllUsersQuery =
+    var cadenaConexion = stringConexion;
+    var selectAllUsersQuery =
       "SELECT UserId, Username, Name, Surname, Email, Rol, Follower, ProfilePhoto FROM Usuarios";
-    MySqlConnection conexion = new MySqlConnection(cadenaConexion);
-    MySqlCommand myCommand = new MySqlCommand(selectAllUsersQuery, conexion);
+    var conexion = new MySqlConnection(cadenaConexion);
+    var myCommand = new MySqlCommand(selectAllUsersQuery, conexion);
     conexion.Open();
     MySqlDataReader myReader;
     myReader = myCommand.ExecuteReader();
 
-    if (myReader.HasRows) {
-      while (myReader.Read()) {
-        Usuarios.Add(new UserModel() {
+    if (myReader.HasRows)
+      while (myReader.Read())
+        Usuarios.Add(new UserModel {
           UserId = myReader.GetInt32(0),
           Username = myReader.GetString(1),
           Name = myReader.GetString(2),
@@ -35,18 +33,18 @@ internal class UserViewModel {
           Follower = myReader.GetString(6),
           ProfilePhoto = myReader.GetString(7)
         });
-      }
-    }
 
     myReader.Close();
     conexion.Close();
   }
 
+  public IList<UserModel> Usuarios { get; } = new List<UserModel>();
+
   public bool ChangeName(string name, int userId) {
-    string cadenaConexion = stringConexion;
+    var cadenaConexion = stringConexion;
 
     try {
-      string updateNameQuery =
+      var updateNameQuery =
         "UPDATE Usuarios SET Name = '" + name + "' WHERE UserId = " + userId;
     }
     catch (Exception e) {

@@ -1,328 +1,332 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-  <PropertyGroup>
-    <AssemblyName>WpfApp3</AssemblyName>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Deterministic>true</Deterministic>
-    <FileAlignment>512</FileAlignment>
-    <LangVersion>latest</LangVersion>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
-    <OutputType>WinExe</OutputType>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{484FB70F-AACA-4553-902E-2999942F34F4}</ProjectGuid>
-    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <RootNamespace>WpfApp3</RootNamespace>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-    <WarningLevel>4</WarningLevel>
-    <Nullable>enable</Nullable>
-    <ApplicationIcon>Icon.ico</ApplicationIcon>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="mscorlib" />
-    <Reference Include="netstandard" />
-    <Reference Include="System" />
-    <Reference Include="System.ComponentModel" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Configuration.Install" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.IO.Compression" />
-    <Reference Include="System.Management" />
-    <Reference Include="System.Numerics" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.ServiceModel" />
-    <Reference Include="System.Speech" />
-    <Reference Include="System.Transactions" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Xml" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xaml">
-      <RequiredTargetFramework>4.0</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="WindowsBase" />
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
-  </ItemGroup>
-  <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
-    <Compile Include="Model\CategoryModel.cs" />
-    <Compile Include="Model\CommentModel.cs" />
-    <Compile Include="Model\OrderModel.cs" />
-    <Compile Include="Model\PostModel.cs" />
-    <Compile Include="Model\ProductModel.cs" />
-    <Compile Include="Model\UserModel.cs" />
-    <Compile Include="ViewModel\AnotherCommandImplementation.cs" />
-    <Compile Include="ViewModel\CategoryViewModel.cs" />
-    <Compile Include="ViewModel\CommentViewModel.cs" />
-    <Compile Include="ViewModel\OrderViewModel.cs" />
-    <Compile Include="ViewModel\PaletteSelectorViewModel.cs" />
-    <Compile Include="ViewModel\PostViewModel.cs" />
-    <Compile Include="ViewModel\ProductViewModel.cs" />
-    <Compile Include="ViewModel\ThemeSettingsViewModel.cs" />
-    <Compile Include="ViewModel\UserViewModel.cs" />
-    <Compile Include="ViewModel\ViewModelBase.cs" />
-    <Compile Include="View\CategoriasPage.xaml.cs">
-      <DependentUpon>CategoriasPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\CategoriasUserControl.xaml.cs">
-      <DependentUpon>CategoriasUserControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\ColoresUserControl.xaml.cs">
-      <DependentUpon>ColoresUserControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\ComentariosUserControl.xaml.cs">
-      <DependentUpon>ComentariosUserControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\ConsultasUserControl.xaml.cs">
-      <DependentUpon>ConsultasUserControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\ListaYCRUD.xaml.cs">
-      <DependentUpon>ListaYCRUD.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Page1.xaml.cs">
-      <DependentUpon>Page1.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\PaletteHelperExtensions.cs" />
-    <Compile Include="View\PaletteSelector.xaml.cs">
-      <DependentUpon>PaletteSelector.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\PedidosUserControl.xaml.cs">
-      <DependentUpon>PedidosUserControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\PostsPage.xaml.cs">
-      <DependentUpon>PostsPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\PostsUserControl.xaml.cs">
-      <DependentUpon>PostsUserControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\ProductosUserControl.xaml.cs">
-      <DependentUpon>ProductosUserControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\ThemeSettings.xaml.cs">
-      <DependentUpon>ThemeSettings.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\UsuariosUserControl.xaml.cs">
-      <DependentUpon>UsuariosUserControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Window1.xaml.cs">
-      <DependentUpon>Window1.xaml</DependentUpon>
-    </Compile>
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Page Include="View\CategoriasPage.xaml" />
-    <Page Include="View\CategoriasUserControl.xaml" />
-    <Page Include="View\ColoresUserControl.xaml" />
-    <Page Include="View\ComentariosUserControl.xaml" />
-    <Page Include="View\ConsultasUserControl.xaml" />
-    <Page Include="View\ListaYCRUD.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Page1.xaml" />
-    <Page Include="View\PaletteSelector.xaml" />
-    <Page Include="View\PedidosUserControl.xaml" />
-    <Page Include="View\PostsPage.xaml" />
-    <Page Include="View\PostsUserControl.xaml" />
-    <Page Include="View\ProductosUserControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\ThemeSettings.xaml" />
-    <Page Include="View\UsuariosUserControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Window1.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <None Include="Icon.ico" />
-    <None Include="Properties\NLog.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Antlr3.Runtime">
-      <Version>3.5.1</Version>
-    </PackageReference>
-    <PackageReference Include="BouncyCastle">
-      <Version>1.8.9</Version>
-    </PackageReference>
-    <PackageReference Include="ControlzEx">
-      <Version>5.0.1</Version>
-    </PackageReference>
-    <PackageReference Include="Extended.Wpf.Toolkit">
-      <Version>4.3.0</Version>
-    </PackageReference>
-    <PackageReference Include="Google.Protobuf">
-      <Version>3.20.1</Version>
-    </PackageReference>
-    <PackageReference Include="HandyControl">
-      <Version>3.3.0</Version>
-    </PackageReference>
-    <PackageReference Include="HandyControl.Lang.es">
-      <Version>3.3.0</Version>
-    </PackageReference>
-    <PackageReference Include="Iesi.Collections">
-      <Version>4.0.4</Version>
-    </PackageReference>
-    <PackageReference Include="K4os.Compression.LZ4">
-      <Version>1.2.16</Version>
-    </PackageReference>
-    <PackageReference Include="K4os.Compression.LZ4.Streams">
-      <Version>1.2.16</Version>
-    </PackageReference>
-    <PackageReference Include="K4os.Hash.xxHash">
-      <Version>1.0.7</Version>
-    </PackageReference>
-    <PackageReference Include="MahApps.Metro">
-      <Version>2.4.9</Version>
-    </PackageReference>
-    <PackageReference Include="MaterialDesignColors">
-      <Version>2.0.7-ci172</Version>
-    </PackageReference>
-    <PackageReference Include="MaterialDesignExtensions">
-      <Version>4.0.0-a02</Version>
-    </PackageReference>
-    <PackageReference Include="MaterialDesignThemes">
-      <Version>4.6.0-ci172</Version>
-    </PackageReference>
-    <PackageReference Include="MaterialDesignThemes.MahApps">
-      <Version>0.2.3-ci172</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.Windows.SDK.Contracts">
-      <Version>10.0.22000.196</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf">
-      <Version>1.1.39</Version>
-    </PackageReference>
-    <PackageReference Include="ModernWpf.MessageBox">
-      <Version>0.5.2</Version>
-    </PackageReference>
-    <PackageReference Include="ModernWpfUI">
-      <Version>0.9.4</Version>
-    </PackageReference>
-    <PackageReference Include="MySql.Data">
-      <Version>8.0.29</Version>
-    </PackageReference>
-    <PackageReference Include="MySqlConnector">
-      <Version>2.1.8</Version>
-    </PackageReference>
-    <PackageReference Include="NHibernate">
-      <Version>5.3.12</Version>
-    </PackageReference>
-    <PackageReference Include="NLog">
-      <Version>4.7.15</Version>
-    </PackageReference>
-    <PackageReference Include="Remotion.Linq">
-      <Version>2.2.0</Version>
-    </PackageReference>
-    <PackageReference Include="Remotion.Linq.EagerFetching">
-      <Version>2.2.0</Version>
-    </PackageReference>
-    <PackageReference Include="System.Buffers">
-      <Version>4.5.1</Version>
-    </PackageReference>
-    <PackageReference Include="System.Diagnostics.DiagnosticSource">
-      <Version>6.0.0</Version>
-    </PackageReference>
-    <PackageReference Include="System.Memory">
-      <Version>4.5.4</Version>
-    </PackageReference>
-    <PackageReference Include="System.Numerics.Vectors">
-      <Version>4.5.0</Version>
-    </PackageReference>
-    <PackageReference Include="System.Runtime.CompilerServices.Unsafe">
-      <Version>6.0.0</Version>
-    </PackageReference>
-    <PackageReference Include="System.Runtime.InteropServices.WindowsRuntime">
-      <Version>4.3.0</Version>
-    </PackageReference>
-    <PackageReference Include="System.Runtime.WindowsRuntime">
-      <Version>4.7.0</Version>
-    </PackageReference>
-    <PackageReference Include="System.Runtime.WindowsRuntime.UI.Xaml">
-      <Version>4.7.0</Version>
-    </PackageReference>
-    <PackageReference Include="System.Threading.Tasks.Extensions">
-      <Version>4.5.4</Version>
-    </PackageReference>
-    <PackageReference Include="System.ValueTuple">
-      <Version>4.5.0</Version>
-    </PackageReference>
-    <PackageReference Include="ToastNotifications">
-      <Version>2.5.1</Version>
-    </PackageReference>
-    <PackageReference Include="ToastNotifications.Messages">
-      <Version>2.5.1</Version>
-    </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="View\Components" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')"/>
+    <PropertyGroup>
+        <AssemblyName>CRMLasDiademasDeMisHijas</AssemblyName>
+        <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <Deterministic>true</Deterministic>
+        <FileAlignment>512</FileAlignment>
+        <LangVersion>latest</LangVersion>
+        <NuGetPackageImportStamp>
+        </NuGetPackageImportStamp>
+        <OutputType>WinExe</OutputType>
+        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+        <ProjectGuid>{484FB70F-AACA-4553-902E-2999942F34F4}</ProjectGuid>
+        <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+        <RootNamespace>CRMLasDiademasDeMisHijas</RootNamespace>
+        <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+        <WarningLevel>4</WarningLevel>
+        <Nullable>enable</Nullable>
+        <ApplicationIcon>Icon.ico</ApplicationIcon>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <Optimize>false</Optimize>
+        <OutputPath>bin\Debug\</OutputPath>
+        <DefineConstants>DEBUG;TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugType>pdbonly</DebugType>
+        <Optimize>true</Optimize>
+        <OutputPath>bin\Release\</OutputPath>
+        <DefineConstants>TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <ItemGroup>
+        <Reference Include="mscorlib"/>
+        <Reference Include="netstandard"/>
+        <Reference Include="System"/>
+        <Reference Include="System.ComponentModel"/>
+        <Reference Include="System.ComponentModel.DataAnnotations"/>
+        <Reference Include="System.Configuration"/>
+        <Reference Include="System.Configuration.Install"/>
+        <Reference Include="System.Data"/>
+        <Reference Include="System.IO.Compression"/>
+        <Reference Include="System.Management"/>
+        <Reference Include="System.Numerics"/>
+        <Reference Include="System.Runtime.Serialization"/>
+        <Reference Include="System.ServiceModel"/>
+        <Reference Include="System.Speech"/>
+        <Reference Include="System.Transactions"/>
+        <Reference Include="System.Web"/>
+        <Reference Include="System.Web.Extensions"/>
+        <Reference Include="System.Xml"/>
+        <Reference Include="Microsoft.CSharp"/>
+        <Reference Include="System.Core"/>
+        <Reference Include="System.Xml.Linq"/>
+        <Reference Include="System.Data.DataSetExtensions"/>
+        <Reference Include="System.Net.Http"/>
+        <Reference Include="System.Xaml">
+            <RequiredTargetFramework>4.0</RequiredTargetFramework>
+        </Reference>
+        <Reference Include="WindowsBase"/>
+        <Reference Include="PresentationCore"/>
+        <Reference Include="PresentationFramework"/>
+    </ItemGroup>
+    <ItemGroup>
+        <ApplicationDefinition Include="App.xaml">
+            <Generator>MSBuild:Compile</Generator>
+            <SubType>Designer</SubType>
+        </ApplicationDefinition>
+        <Compile Include="Model\CategoryModel.cs"/>
+        <Compile Include="Model\CommentModel.cs"/>
+        <Compile Include="Model\OrderModel.cs"/>
+        <Compile Include="Model\PostModel.cs"/>
+        <Compile Include="Model\ProductModel.cs"/>
+        <Compile Include="Model\UserModel.cs"/>
+        <Compile Include="ViewModel\AnotherCommandImplementation.cs"/>
+        <Compile Include="ViewModel\CategoryViewModel.cs"/>
+        <Compile Include="ViewModel\CommentViewModel.cs"/>
+        <Compile Include="ViewModel\OrderViewModel.cs"/>
+        <Compile Include="ViewModel\PaletteSelectorViewModel.cs"/>
+        <Compile Include="ViewModel\PostViewModel.cs"/>
+        <Compile Include="ViewModel\ProductViewModel.cs"/>
+        <Compile Include="ViewModel\ThemeSettingsViewModel.cs"/>
+        <Compile Include="ViewModel\UserViewModel.cs"/>
+        <Compile Include="ViewModel\ViewModelBase.cs"/>
+        <Compile Include="View\CardProductoUserControl.xaml.cs">
+            <DependentUpon>CardProductoUserControl.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="View\CategoriasPage.xaml.cs">
+            <DependentUpon>CategoriasPage.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="View\CategoriasUserControl.xaml.cs">
+            <DependentUpon>CategoriasUserControl.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="View\ColoresUserControl.xaml.cs">
+            <DependentUpon>ColoresUserControl.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="View\ComentariosUserControl.xaml.cs">
+            <DependentUpon>ComentariosUserControl.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="View\ConsultasUserControl.xaml.cs">
+            <DependentUpon>ConsultasUserControl.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="View\ListaYCRUD.xaml.cs">
+            <DependentUpon>ListaYCRUD.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="View\Page1.xaml.cs">
+            <DependentUpon>Page1.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="View\PaletteHelperExtensions.cs"/>
+        <Compile Include="View\PaletteSelector.xaml.cs">
+            <DependentUpon>PaletteSelector.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="View\PedidosUserControl.xaml.cs">
+            <DependentUpon>PedidosUserControl.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="View\PostsPage.xaml.cs">
+            <DependentUpon>PostsPage.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="View\PostsUserControl.xaml.cs">
+            <DependentUpon>PostsUserControl.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="View\ProductosUserControl.xaml.cs">
+            <DependentUpon>ProductosUserControl.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="View\ThemeSettings.xaml.cs">
+            <DependentUpon>ThemeSettings.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="View\UsuariosUserControl.xaml.cs">
+            <DependentUpon>UsuariosUserControl.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="Window1.xaml.cs">
+            <DependentUpon>Window1.xaml</DependentUpon>
+        </Compile>
+        <Page Include="MainWindow.xaml">
+            <Generator>MSBuild:Compile</Generator>
+            <SubType>Designer</SubType>
+        </Page>
+        <Compile Include="App.xaml.cs">
+            <DependentUpon>App.xaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Include="MainWindow.xaml.cs">
+            <DependentUpon>MainWindow.xaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Page Include="View\CardProductoUserControl.xaml"/>
+        <Page Include="View\CategoriasPage.xaml"/>
+        <Page Include="View\CategoriasUserControl.xaml"/>
+        <Page Include="View\ColoresUserControl.xaml"/>
+        <Page Include="View\ComentariosUserControl.xaml"/>
+        <Page Include="View\ConsultasUserControl.xaml"/>
+        <Page Include="View\ListaYCRUD.xaml">
+            <SubType>Designer</SubType>
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Include="View\Page1.xaml"/>
+        <Page Include="View\PaletteSelector.xaml"/>
+        <Page Include="View\PedidosUserControl.xaml"/>
+        <Page Include="View\PostsPage.xaml"/>
+        <Page Include="View\PostsUserControl.xaml"/>
+        <Page Include="View\ProductosUserControl.xaml">
+            <SubType>Designer</SubType>
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Include="View\ThemeSettings.xaml"/>
+        <Page Include="View\UsuariosUserControl.xaml">
+            <SubType>Designer</SubType>
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Include="Window1.xaml">
+            <SubType>Designer</SubType>
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="Properties\AssemblyInfo.cs">
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Include="Properties\Resources.Designer.cs">
+            <AutoGen>True</AutoGen>
+            <DesignTime>True</DesignTime>
+            <DependentUpon>Resources.resx</DependentUpon>
+        </Compile>
+        <Compile Include="Properties\Settings.Designer.cs">
+            <AutoGen>True</AutoGen>
+            <DependentUpon>Settings.settings</DependentUpon>
+            <DesignTimeSharedInput>True</DesignTimeSharedInput>
+        </Compile>
+        <EmbeddedResource Include="Properties\Resources.resx">
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+        <None Include="Icon.ico"/>
+        <None Include="Properties\NLog.config"/>
+        <None Include="Properties\Settings.settings">
+            <Generator>SettingsSingleFileGenerator</Generator>
+            <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+        </None>
+    </ItemGroup>
+    <ItemGroup>
+        <None Include="App.config"/>
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Antlr3.Runtime">
+            <Version>3.5.1</Version>
+        </PackageReference>
+        <PackageReference Include="BouncyCastle">
+            <Version>1.8.9</Version>
+        </PackageReference>
+        <PackageReference Include="ControlzEx">
+            <Version>5.0.1</Version>
+        </PackageReference>
+        <PackageReference Include="Extended.Wpf.Toolkit">
+            <Version>4.3.0</Version>
+        </PackageReference>
+        <PackageReference Include="Google.Protobuf">
+            <Version>3.20.1</Version>
+        </PackageReference>
+        <PackageReference Include="HandyControl">
+            <Version>3.3.0</Version>
+        </PackageReference>
+        <PackageReference Include="HandyControl.Lang.es">
+            <Version>3.3.0</Version>
+        </PackageReference>
+        <PackageReference Include="Iesi.Collections">
+            <Version>4.0.4</Version>
+        </PackageReference>
+        <PackageReference Include="K4os.Compression.LZ4">
+            <Version>1.2.16</Version>
+        </PackageReference>
+        <PackageReference Include="K4os.Compression.LZ4.Streams">
+            <Version>1.2.16</Version>
+        </PackageReference>
+        <PackageReference Include="K4os.Hash.xxHash">
+            <Version>1.0.7</Version>
+        </PackageReference>
+        <PackageReference Include="MahApps.Metro">
+            <Version>2.4.9</Version>
+        </PackageReference>
+        <PackageReference Include="MaterialDesignColors">
+            <Version>2.0.7-ci172</Version>
+        </PackageReference>
+        <PackageReference Include="MaterialDesignExtensions">
+            <Version>4.0.0-a02</Version>
+        </PackageReference>
+        <PackageReference Include="MaterialDesignThemes">
+            <Version>4.6.0-ci172</Version>
+        </PackageReference>
+        <PackageReference Include="MaterialDesignThemes.MahApps">
+            <Version>0.2.3-ci172</Version>
+        </PackageReference>
+        <PackageReference Include="Microsoft.Windows.SDK.Contracts">
+            <Version>10.0.22000.196</Version>
+        </PackageReference>
+        <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf">
+            <Version>1.1.39</Version>
+        </PackageReference>
+        <PackageReference Include="ModernWpf.MessageBox">
+            <Version>0.5.2</Version>
+        </PackageReference>
+        <PackageReference Include="ModernWpfUI">
+            <Version>0.9.4</Version>
+        </PackageReference>
+        <PackageReference Include="MySql.Data">
+            <Version>8.0.29</Version>
+        </PackageReference>
+        <PackageReference Include="MySqlConnector">
+            <Version>2.1.8</Version>
+        </PackageReference>
+        <PackageReference Include="NHibernate">
+            <Version>5.3.12</Version>
+        </PackageReference>
+        <PackageReference Include="NLog">
+            <Version>4.7.15</Version>
+        </PackageReference>
+        <PackageReference Include="Remotion.Linq">
+            <Version>2.2.0</Version>
+        </PackageReference>
+        <PackageReference Include="Remotion.Linq.EagerFetching">
+            <Version>2.2.0</Version>
+        </PackageReference>
+        <PackageReference Include="System.Buffers">
+            <Version>4.5.1</Version>
+        </PackageReference>
+        <PackageReference Include="System.Diagnostics.DiagnosticSource">
+            <Version>6.0.0</Version>
+        </PackageReference>
+        <PackageReference Include="System.Memory">
+            <Version>4.5.4</Version>
+        </PackageReference>
+        <PackageReference Include="System.Numerics.Vectors">
+            <Version>4.5.0</Version>
+        </PackageReference>
+        <PackageReference Include="System.Runtime.CompilerServices.Unsafe">
+            <Version>6.0.0</Version>
+        </PackageReference>
+        <PackageReference Include="System.Runtime.InteropServices.WindowsRuntime">
+            <Version>4.3.0</Version>
+        </PackageReference>
+        <PackageReference Include="System.Runtime.WindowsRuntime">
+            <Version>4.7.0</Version>
+        </PackageReference>
+        <PackageReference Include="System.Runtime.WindowsRuntime.UI.Xaml">
+            <Version>4.7.0</Version>
+        </PackageReference>
+        <PackageReference Include="System.Threading.Tasks.Extensions">
+            <Version>4.5.4</Version>
+        </PackageReference>
+        <PackageReference Include="System.ValueTuple">
+            <Version>4.5.0</Version>
+        </PackageReference>
+        <PackageReference Include="ToastNotifications">
+            <Version>2.5.1</Version>
+        </PackageReference>
+        <PackageReference Include="ToastNotifications.Messages">
+            <Version>2.5.1</Version>
+        </PackageReference>
+    </ItemGroup>
+    <ItemGroup>
+        <Folder Include="View\Components"/>
+    </ItemGroup>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
 </Project>

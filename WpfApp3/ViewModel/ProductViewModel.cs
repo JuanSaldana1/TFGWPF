@@ -5,20 +5,18 @@ using WpfApp3.Model;
 namespace WpfApp3.ViewModel;
 
 internal class ProductViewModel {
-  public IList<ProductoModel> Productos { get; } = new List<ProductoModel>();
-
   public ProductViewModel() {
-    string cadenaConexion = MainWindow.CadenaConexion;
-    MySqlConnection conexionBd = new MySqlConnection(cadenaConexion);
-    string mySelectQuery =
+    var cadenaConexion = MainWindow.CadenaConexion;
+    var conexionBd = new MySqlConnection(cadenaConexion);
+    var mySelectQuery =
       "SELECT ProductId, Name, Description, Price, C.Nombre, Stock, Rating, Image FROM Productos JOIN Categorias C on C.CategoryId = Productos.CategoryId";
-    MySqlCommand myCommand = new MySqlCommand(mySelectQuery, conexionBd);
+    var myCommand = new MySqlCommand(mySelectQuery, conexionBd);
     conexionBd.Open();
     MySqlDataReader myReader;
     myReader = myCommand.ExecuteReader();
 
-    if (myReader.HasRows) {
-      while (myReader.Read()) {
+    if (myReader.HasRows)
+      while (myReader.Read())
         Productos.Add(new ProductoModel {
           ProductId = myReader.GetInt32(0),
           ProductName = myReader.GetString(1),
@@ -29,25 +27,25 @@ internal class ProductViewModel {
           ProductRating = myReader.GetInt32(6),
           ProductImage = myReader.GetString(7)
         });
-      }
-    }
 
     myReader.Close();
     conexionBd.Close();
   }
 
+  public IList<ProductoModel> Productos { get; } = new List<ProductoModel>();
+
   public void GetAllProducts() {
     var cadenaConexion = MainWindow.CadenaConexion;
     var conexionBd = new MySqlConnection(cadenaConexion);
-    string mySelectQuery =
+    var mySelectQuery =
       "SELECT * FROM Productos";
-    MySqlCommand myCommand = new MySqlCommand(mySelectQuery, conexionBd);
+    var myCommand = new MySqlCommand(mySelectQuery, conexionBd);
     conexionBd.Open();
     MySqlDataReader myReader;
     myReader = myCommand.ExecuteReader();
 
-    if (myReader.HasRows) {
-      while (myReader.Read()) {
+    if (myReader.HasRows)
+      while (myReader.Read())
         Productos.Add(new ProductoModel {
           ProductId = myReader.GetInt32(0),
           ProductName = myReader.GetString(1),
@@ -56,10 +54,8 @@ internal class ProductViewModel {
           CategoryId = myReader.GetInt32(4),
           ProductStock = myReader.GetInt32(5),
           ProductImage = myReader.GetString(6),
-          PostId = myReader.GetInt32(7),
+          PostId = myReader.GetInt32(7)
         });
-      }
-    }
 
     myReader.Close();
     conexionBd.Close();

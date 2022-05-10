@@ -6,15 +6,15 @@ using System.Runtime.CompilerServices;
 namespace WpfApp3.Model;
 
 public class CommentModel {
-  private int commentId;
-  private string commentTitle;
   private string commentContent;
+  private int commentId;
   private DateTime commentPublishDate;
-  private int userId;
+  private string commentTitle;
   private bool isAnonymous;
-  private string userName;
-  private string userEmail;
   private string profilePhoto;
+  private string userEmail;
+  private int userId;
+  private string userName;
 
   public int CommentId {
     get => commentId;

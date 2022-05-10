@@ -9,7 +9,7 @@ public partial class CategoriasPage : Page {
   public CategoriasPage() {
     InitializeComponent();
   }
-  
+
   private void Button_Click(object sender, RoutedEventArgs e) {
     SnackbarSeven.MessageQueue?.Enqueue("Hello world! Showing message for seconds.", "hola", Deshacer(), false);
   }

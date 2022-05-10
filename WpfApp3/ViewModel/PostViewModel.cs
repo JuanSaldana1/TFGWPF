@@ -5,8 +5,6 @@ using WpfApp3.Model;
 namespace WpfApp3.ViewModel;
 
 public class PostViewModel {
-  public IList<PostModel> Posts { get; } = new List<PostModel>();
-
   public PostViewModel() {
     var cadenaConexion = MainWindow.CadenaConexion;
     var conexionBd = new MySqlConnection(cadenaConexion);
@@ -17,8 +15,8 @@ public class PostViewModel {
     MySqlDataReader myReader;
     myReader = myCommand.ExecuteReader();
 
-    if (myReader.HasRows) {
-      while (myReader.Read()) {
+    if (myReader.HasRows)
+      while (myReader.Read())
         Posts.Add(new PostModel {
           PostId = myReader.GetInt32(0),
           PostTitle = myReader.GetString(1),
@@ -28,10 +26,10 @@ public class PostViewModel {
           PostFirstImage = myReader.GetString(5),
           PostSecondImage = myReader.GetString(6)
         });
-      }
-    }
 
     myReader.Close();
     conexionBd.Close();
   }
+
+  public IList<PostModel> Posts { get; } = new List<PostModel>();
 }

@@ -17,7 +17,7 @@ public static class PaletteHelperExtensions {
   }
 
   public static void ChangeSecondaryColor(this PaletteHelper paletteHelper, Color color) {
-    ITheme theme = paletteHelper.GetTheme();
+    var theme = paletteHelper.GetTheme();
 
     theme.SecondaryLight = new ColorPair(color.Lighten());
     theme.SecondaryMid = new ColorPair(color);

@@ -29,89 +29,8 @@
                             UniformCornerRadius="6"
                             Padding="9"
                             Width="300">
+                            <UserControl Name="UserControlCard" />
 
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-
-                                <Image
-                                    Grid.Row="0"
-                                    Height="200"
-                                    Source="{Binding ProductImage}"
-                                    Stretch="Uniform"
-                                    VerticalAlignment="Center" />
-
-                                <StackPanel Grid.Row="1">
-                                    <TextBox
-                                        Name="textViewNombreArticulo"
-                                        Text="{Binding ProductName}"
-                                        TextChanged="ArticuloChanged" />
-
-                                    <TextBlock
-                                        Style="{StaticResource MaterialDesignBody1TextBlock}"
-                                        Text="{Binding ProductDescription}"
-                                        DataContextChanged="FrameworkElement_OnDataContextChanged"
-                                        TextWrapping="Wrap"
-                                        VerticalAlignment="Center" />
-
-                                    <CheckBox
-                                        Content="{Binding ProductCategory}"
-                                        IsChecked="True"
-                                        Style="{StaticResource MaterialDesignFilterChipPrimaryCheckBox}" />
-
-                                </StackPanel>
-
-                                <Separator
-                                    Grid.Row="2"
-                                    Style="{StaticResource MaterialDesignDarkSeparator}" />
-
-                                <TextBlock
-                                    Grid.Row="3"
-                                    Style="{StaticResource MaterialDesignBody2TextBlock}"
-                                    Text="Tonight's availability" />
-
-                                <Grid Grid.Row="4">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="Auto" />
-                                    </Grid.ColumnDefinitions>
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="Stock" />
-                                        <TextBlock Text="{Binding ProductStock}" Margin="2,0" />
-                                    </StackPanel>
-
-                                    <StackPanel Orientation="Horizontal" Grid.Column="1">
-                                        <Button Click="ButtonAddStock_OnClick" Name="ButtonAddStock"
-                                                ToolTip="Agrega un elemento del stock" Margin="2,0">
-                                            <materialDesign:PackIcon Kind="ArrowUp" />
-                                        </Button>
-                                        <Button Click="ButtonRestStock_OnClick" Name="ButtonRemoveStock"
-                                                ToolTip="Quita un elemento del stock" Margin="2,0">
-                                            <materialDesign:PackIcon Kind="ArrowDown" />
-                                        </Button>
-                                    </StackPanel>
-                                    <materialDesign:RatingBar
-                                        Grid.Column="2"
-                                        x:Name="BasicRatingBar"
-                                        Value="3"
-                                        ValueChanged="BasicRatingBar_ValueChanged" />
-                                </Grid>
-                                <StackPanel Grid.Row="5">
-                                    <Button
-                                        Click="Button_Click"
-                                        Content="Reservar"
-                                        ToolTip="Añáde el producto a la lista de reservas para crear un pedido"
-                                        HorizontalAlignment="Left"
-                                        Style="{StaticResource MaterialDesignFlatButton}" />
-                                </StackPanel>
-                            </Grid>
                         </materialDesign:Card>
                     </StackPanel>
                 </DataTemplate>
@@ -123,10 +42,8 @@
             </ListBox.ItemsPanel>
         </ListBox>
         <Button
-            Background="#3f51b5"
             Content="{materialDesign:PackIcon Kind=Plus,
                                               Size=22}"
-            Foreground="White"
             Grid.Row="0"
             Height="50"
             HorizontalAlignment="Right"
