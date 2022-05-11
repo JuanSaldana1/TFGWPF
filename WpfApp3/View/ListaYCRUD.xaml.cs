@@ -30,16 +30,6 @@ public partial class ListaYCRUD {
     userControlConsultas.Content = consultasUserControl;
     userControlColores.Content = coloresUserControl;
     var paletteHelper = new PaletteHelper();
-    /*var theme = paletteHelper.GetTheme();
-    DarkModeToggleButton.IsChecked = theme.GetBaseTheme() == BaseTheme.Dark;*/
-  }
-
-  private static void ModifyTheme(bool isDarkTheme) {
-    /*var paletteHelper = new PaletteHelper();
-    var theme = paletteHelper.GetTheme();
-
-    theme.SetBaseTheme(isDarkTheme ? Theme.Dark : Theme.Light);
-    paletteHelper.SetTheme(theme);*/
   }
 
   private void ButtonBase_OnClick(object sender, RoutedEventArgs e) {

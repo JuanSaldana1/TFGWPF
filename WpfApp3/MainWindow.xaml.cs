@@ -60,11 +60,11 @@ public partial class MainWindow {
     }
     else {
       try {
-        CadenaConexion = "server=" + Servidor + "; port=" + Puerto + "; user id=" + Usuario + "; password=" +
-                         Contrasena + "; database=" + BaseDatos + ";";
+        /*CadenaConexion = "server=" + Servidor + "; port=" + Puerto + "; user id=" + Usuario + "; password=" +
+                         Contrasena + "; database=" + BaseDatos + ";";*/
         switch (MotorBd) {
           case "MySQL":
-            BaseDatos = "sys";
+            /*BaseDatos = "sys";*/
             CadenaConexion = "server=" + Servidor + "; port=" + Puerto + "; user id=" + Usuario +
                              "; password=" + Contrasena + "; database=" + BaseDatos + ";";
             try {

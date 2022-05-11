@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="MaterialDesignDemo.Domain.Sample4Dialog"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
+             xmlns:domain="clr-namespace:MaterialDesignDemo.Domain"
+             xmlns:viewModel="clr-namespace:WpfApp3.ViewModel"
+             d:DataContext="{d:DesignInstance Type=viewModel:ProductViewModel}"
+             mc:Ignorable="d">
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />            
+        </Grid.RowDefinitions>
+        <TextBox wpf:HintAssist.Hint="Name"
+                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                 Margin="0 6 0 0"
+                 FontSize="18" Grid.Row="0"
+                 />
+        <StackPanel Orientation="Horizontal" Grid.Row="1"
+                    Margin="0 16 0 0">
+            <Button IsDefault="True"
+                    Style="{StaticResource MaterialDesignFlatButton}"
+                    Command="{Binding AcceptSample4DialogCommand}">
+                ACCEPT
+            </Button>
+            <Button IsCancel="True"
+                    Margin="8 0 0 0"
+                    Style="{StaticResource MaterialDesignFlatButton}"
+                    Command="{Binding CancelSample4DialogCommand}">
+                CANCEL
+            </Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows;
+using MaterialDesignThemes.Wpf;
 using MySql.Data.MySqlClient;
+using WpfApp3.Model;
 using WpfApp3.ViewModel;
 using MessageBox = ModernWpf.MessageBox;
 
@@ -47,6 +49,46 @@ public partial class ComentariosUserControl {
     }
     catch (Exception ex) {
       MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+    }
+  }
+
+  private void Sample5_DialogHost_OnDialogClosing(object sender, DialogClosingEventArgs eventArgs) {
+    if (!Equals(eventArgs.Parameter, true))
+      return;
+
+    if (!string.IsNullOrWhiteSpace(ProductNameEditText.Text) ||
+        !string.IsNullOrWhiteSpace(ProductDescriptionEditText.Text) ||
+        !string.IsNullOrWhiteSpace(ProductPriceEditText.Text) ||
+        !string.IsNullOrWhiteSpace(ProductStockEditText.Text) ||
+        !string.IsNullOrWhiteSpace(ProductCategoryIdEditText.Text)) {
+      try {
+        var newProduct = new CommentModel();
+        var viewModel = new ProductViewModel();
+        /*newProduct.ProductName = ProductNameEditText.Text;
+        newProduct.ProductDescription = ProductDescriptionEditText.Text;
+        newProduct.ProductPrice = Convert.ToDouble(ProductPriceEditText.Text);
+        newProduct.CategoryId = Convert.ToInt32(ProductCategoryIdEditText.Text);
+        newProduct.ProductStock = Convert.ToInt32(ProductStockEditText.Text);
+        newProduct.ProductRating = Convert.ToInt32(ProductRatingEditText.Text);
+        newProduct.ProductImage = ProductImageEditText.Text;
+        newProduct.PostId = Convert.ToInt32(ProductPostIdEditText.Text);*/
+        MyListView.Items.Add(new ProductoModel {
+          CategoryId = Convert.ToInt32(ProductCategoryIdEditText.Text),
+          ProductDescription = ProductDescriptionEditText.Text,
+          ProductImage = ProductImageEditText.Text,
+          ProductName = ProductNameEditText.Text,
+          ProductPrice = Convert.ToDouble(ProductPriceEditText.Text),
+          ProductRating = Convert.ToInt32(ProductRatingEditText.Text),
+          ProductStock = Convert.ToInt32(ProductStockEditText.Text),
+          PostId = Convert.ToInt32(ProductPostIdEditText.Text)
+        });
+        MyListView.Items.Refresh();
+        SnackbarSeven.MessageQueue?.Enqueue("Producto añadido correctamente");
+      }
+      catch (Exception e) {
+        MessageBox.Show(e.Message);
+        throw;
+      }
     }
   }
 }

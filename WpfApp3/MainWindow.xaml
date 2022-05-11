@@ -72,7 +72,7 @@
                 x:Name="OutlinedComboBox">
                 <ComboBoxItem Content="PostgreSQL" />
                 <ComboBoxItem Content="MySQL" />
-                <ComboBoxItem Content="Item 3" />
+                <ComboBoxItem Content="H2" />
             </ComboBox>
             <TextBlock
                 FontFamily="Roboto"
