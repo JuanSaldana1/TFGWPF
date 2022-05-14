@@ -4,15 +4,36 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:viewModel="clr-namespace:WpfApp3.ViewModel"
+    xmlns:mde="https://spiegelp.github.io/MaterialDesignExtensions/winfx/xaml"
     mc:Ignorable="d"
-    d:DataContext="{d:DesignInstance Type=viewModel:ProductViewModel}"
-    d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
+    d:DataContext="{d:DesignInstance Type=viewModel:ConsultasViewModel}"
+    d:DesignHeight="450"
+    d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary
+            Source="pack://application:,,,/MaterialDesignExtensions;component/Themes/Generic.xaml" />
+    </UserControl.Resources>
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <mde:PersistentSearch
+            Grid.Row="0"
+            VerticalAlignment="Top"
+            Margin="8"
+            SearchSuggestionsSource="{Binding Path=SearchSuggestionsSource}"
+            Search="SearchHandler1" />
+        <TextBlock
+            Grid.Row="1"
+            x:Name="searchResultTextBlock1" HorizontalAlignment="Center" VerticalAlignment="Top"
+            Margin="0,128,0,0" />
         <DataGrid
-            Name="CategoriesDataGrid"
-            CanUserAddRows="False"
+            Grid.Row="2"
+            Name="ConsultasDataGrid"
+            CanUserAddRows="True"
             SelectionUnit="Cell"
             SelectionMode="Extended" />
     </Grid>

@@ -2,16 +2,18 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using Windows.UI.Xaml.Controls;
 using MaterialDesignDemo.Domain;
 using MySql.Data.MySqlClient;
 using WpfApp3.Model;
+using MessageBox = ModernWpf.MessageBox;
 
 namespace WpfApp3.ViewModel;
 
 internal class ProductViewModel : ViewModelBase {
-  public ObservableCollection<ProductoModel> Productos { get; set; } = new ();
+  public ObservableCollection<ProductoModel> Productos { get; set; } = new();
   public IList<ProductoModel> SelectedProductos { get; set; } = new List<ProductoModel>();
 
   public ProductViewModel() {
@@ -69,6 +71,47 @@ internal class ProductViewModel : ViewModelBase {
 
     myReader.Close();
     conexionBd.Close();
+  }
+
+  public void SearchAllSelecrQuery(string parameters) {
+    try {
+      var cadenaConexion = MainWindow.CadenaConexion;
+      var conexionBd = new MySqlConnection(cadenaConexion);
+      var selectQuery =
+        "SELECT * FROM Productos JOIN Categorias C on C.CategoryId = Productos.CategoryId " +
+        "WHERE Productos.Name = '%" + parameters + "%'" + " OR Productos.Description ='%" +
+        parameters + "%' OR Productos.Price = '%" + parameters +
+        "%' OR Productos.CategoryId = '%" + parameters + "%';";
+      var myCommand = new MySqlCommand(selectQuery, conexionBd);
+      conexionBd.Open();
+      MySqlDataReader myReader;
+      try {
+        myReader = myCommand.ExecuteReader();
+        if (myReader.HasRows)
+          while (myReader.Read())
+            Productos.Add(new ProductoModel {
+              ProductId = myReader.GetInt32(0),
+              ProductName = myReader.GetString(1),
+              ProductDescription = myReader.GetString(2),
+              ProductPrice = myReader.GetDouble(3),
+              CategoryId = myReader.GetInt32(4),
+              ProductStock = myReader.GetInt32(5),
+              ProductImage = myReader.GetString(6),
+              PostId = myReader.GetInt32(7)
+            });
+      }
+      catch (Exception e) {
+        MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        throw;
+      }
+
+      myReader.Close();
+      conexionBd.Close();
+    }
+    catch (Exception e) {
+      MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+      throw;
+    }
   }
 
   #region SAMPLE 4

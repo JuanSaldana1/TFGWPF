@@ -15,7 +15,8 @@
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModel="clr-namespace:WpfApp3.ViewModel"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mde="https://spiegelp.github.io/MaterialDesignExtensions/winfx/xaml">
     <Grid>
         <materialDesign:DialogHost
             DialogClosing="Sample5_DialogHost_OnDialogClosing"
@@ -178,25 +179,16 @@
 
                                         <Grid Grid.Row="4">
                                             <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto" />
-                                                <ColumnDefinition Width="Auto" />
-                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="1*" />
+                                                <ColumnDefinition Width="1*" />
+                                                <ColumnDefinition Width="*" />
                                             </Grid.ColumnDefinitions>
-                                            <StackPanel Orientation="Horizontal">
-                                                <TextBlock Text="Stock" />
-                                                <TextBlock Text="{Binding ProductStock}" Margin="2,0" />
-                                            </StackPanel>
+                                            <TextBlock Text="Stock" />
+                                            <mde:OversizedNumberSpinner
+                                                Grid.Column="1"
+                                                Value="{Binding ProductStock, Mode=TwoWay}"
+                                                Min="0" Max="30" />
 
-                                            <StackPanel Orientation="Horizontal" Grid.Column="1">
-                                                <Button Name="ButtonAddStock"
-                                                        ToolTip="Agrega un elemento del stock" Margin="2,0">
-                                                    <materialDesign:PackIcon Kind="ArrowUp" />
-                                                </Button>
-                                                <Button Name="ButtonRemoveStock"
-                                                        ToolTip="Quita un elemento del stock" Margin="2,0">
-                                                    <materialDesign:PackIcon Kind="ArrowDown" />
-                                                </Button>
-                                            </StackPanel>
                                             <materialDesign:RatingBar
                                                 Grid.Column="2"
                                                 x:Name="BasicRatingBar"

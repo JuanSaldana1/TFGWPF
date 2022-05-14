@@ -75,12 +75,14 @@ public partial class MainWindow {
               MySqlDataReader reader;
               var command = new MySqlCommand("SHOW DATABASES", conexionBd);
               reader = command.ExecuteReader();
-              if (reader.HasRows)
-                while (reader.Read())
+              if (reader.HasRows) {
+                while (reader.Read()) {
                   listadeBasesDeDatos += reader.GetString(0) + '\n';
+                }
+              }
 
               MessageBox.Show(listadeBasesDeDatos, "Bases de datos de este puerto:",
-                MessageBoxButton.YesNoCancel, MessageBoxImage.Information);
+                MessageBoxButton.OK, MessageBoxImage.Information);
               DataContext = listadeBasesDeDatos;
               var listaYcrud = new ListaYCRUD();
               listaYcrud.Show();
@@ -108,7 +110,7 @@ public partial class MainWindow {
               while (reader.Read()) listadeBasesDeDatos += reader.GetString(0) + '\n';
 
               MessageBox.Show(listadeBasesDeDatos, "Bases de datos de este puerto:",
-                MessageBoxButton.YesNoCancel, MessageBoxImage.Information);
+                MessageBoxButton.OK, MessageBoxImage.Information);
               var listaYcrud = new ListaYCRUD();
               listaYcrud.Show();
               Close();
