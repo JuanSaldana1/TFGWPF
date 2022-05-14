@@ -16,7 +16,303 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModel="clr-namespace:WpfApp3.ViewModel"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <materialDesign:DialogHost DialogMargin="8" Style="{StaticResource MaterialDesignEmbeddedDialogHost}">
+    <Grid>
+        <materialDesign:DialogHost
+            DialogClosing="Sample5_DialogHost_OnDialogClosing"
+            Style="{StaticResource MaterialDesignEmbeddedDialogHost}"
+            DialogMargin="8">
+            <materialDesign:DialogHost.DialogContent>
+                <StackPanel
+                    Margin="16">
+                    <TextBlock
+                        Style="{StaticResource MaterialDesignTitleLargeTextBlock}"
+                        Text="Crea un usuario" />
+                    <TextBox
+                        materialDesign:HintAssist.Hint="Nombre corto (nombre de usuario)"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        VerticalAlignment="Center"
+                        Margin="0 8 0 0"
+                        HorizontalAlignment="Stretch"
+                        x:Name="UserUsernameEditText" />
+                    <TextBox
+                        materialDesign:HintAssist.Hint="Nombre completo"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        VerticalAlignment="Center"
+                        Margin="0 8 0 0"
+                        HorizontalAlignment="Stretch"
+                        x:Name="UserNameEditText" />
+                    <TextBox
+                        materialDesign:HintAssist.Hint="Apellidos"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        VerticalAlignment="Center"
+                        Margin="0 8 0 0"
+                        HorizontalAlignment="Stretch"
+                        x:Name="UserSurnameEditText" />
+                    <TextBox
+                        materialDesign:HintAssist.Hint="Correo"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        VerticalAlignment="Center"
+                        Margin="0 8 0 0"
+                        HorizontalAlignment="Stretch"
+                        x:Name="UserEmailEditText" />
+                    <ComboBox
+                        Name="UserRolComboBox"
+                        materialDesign:HintAssist.Hint="Rol del usuario"
+                        MinWidth="72"
+                        ItemsSource="{Binding Roles}">
+                        <ComboBoxItem Content="Admin" />
+                        <ComboBoxItem Content="Normal" />
+                    </ComboBox>
+                    <CheckBox
+                        Content="Seguidor"
+                        Style="{StaticResource MaterialDesignCheckBox}"
+                        Name="IsFollowerCheckBox" />
+                    <TextBox
+                        materialDesign:HintAssist.Hint="Imagen de perfil"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        VerticalAlignment="Center"
+                        Margin="0 8 0 0"
+                        HorizontalAlignment="Stretch"
+                        x:Name="UserProfileImageEditText" />
+                    <StackPanel
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Right">
+                        <Button
+                            Style="{StaticResource MaterialDesignFlatButton}"
+                            IsDefault="True"
+                            Margin="0 8 8 0"
+                            Content="ACCEPT"
+                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">
+                            <Button.CommandParameter>
+                                <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
+                                    True
+                                </system:Boolean>
+                            </Button.CommandParameter>
+                        </Button>
+                        <Button
+                            Style="{StaticResource MaterialDesignFlatButton}"
+                            IsCancel="True"
+                            Margin="0 8 8 0"
+                            Content="CANCEL"
+                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">
+                            <Button.CommandParameter>
+                                <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
+                                    False
+                                </system:Boolean>
+                            </Button.CommandParameter>
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+            </materialDesign:DialogHost.DialogContent>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition
+                        Height="*" />
+                    <RowDefinition
+                        Height="Auto" />
+                </Grid.RowDefinitions>
+                <ListBox
+                    ItemsSource="{Binding Usuarios}"
+                    ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                    x:Name="MyListView">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical">
+                                <materialDesign:Flipper
+                                    Height="auto"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    Width="auto"
+                                    materialDesign:ShadowAssist.ShadowDepth="Depth0">
+
+                                    <materialDesign:Flipper.FrontContent>
+                                        <Grid Height="auto" Width="300">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="*" />
+                                            </Grid.RowDefinitions>
+
+                                            <Image Source="{Binding ProfilePhoto}" />
+
+                                            <StackPanel
+                                                Grid.Row="1"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center">
+
+                                                <TextBlock Text="{Binding Username}" />
+
+                                                <Button
+                                                    Command="{x:Static materialDesign:Flipper.FlipCommand}"
+                                                    Margin="0,4,0,0"
+                                                    Style="{StaticResource MaterialDesignFlatButton}">
+
+                                                    <materialDesign:PackIcon Kind="PencilOutline" />
+                                                </Button>
+
+                                            </StackPanel>
+                                        </Grid>
+                                    </materialDesign:Flipper.FrontContent>
+
+                                    <materialDesign:Flipper.BackContent>
+                                        <Grid Height="auto" Width="300">
+                                            <StackPanel Orientation="Vertical">
+
+                                                <!-- Barra superior -->
+                                                <materialDesign:ColorZone Mode="SecondaryMid">
+
+                                                    <StackPanel Orientation="Horizontal">
+
+                                                        <Button
+                                                            Command="{x:Static materialDesign:Flipper.FlipCommand}"
+                                                            HorizontalAlignment="Left"
+                                                            Style="{StaticResource MaterialDesignToolForegroundButton}">
+
+                                                            <materialDesign:PackIcon HorizontalAlignment="Center"
+                                                                Kind="ArrowLeft" />
+                                                        </Button>
+
+                                                        <TextBlock Text="Editar usuario" VerticalAlignment="Center" />
+
+                                                    </StackPanel>
+                                                </materialDesign:ColorZone>
+
+                                                <StackPanel Orientation="Vertical">
+
+                                                    <!-- Nombre -->
+                                                    <TextBox
+                                                        Name="EditTextUserName"
+                                                        Text="{Binding Username}"
+                                                        materialDesign:HintAssist.Hint="First name"
+                                                        materialDesign:HintAssist.IsFloating="True"
+                                                        materialDesign:TextFieldAssist.HasClearButton="True" />
+                                                    <!--~2~  Apellido  @2@-->
+                                                    <TextBox
+                                                        Text="{Binding Surname}"
+                                                        materialDesign:HintAssist.Hint="Last name"
+                                                        materialDesign:HintAssist.IsFloating="True"
+                                                        materialDesign:TextFieldAssist.HasClearButton="True" />
+                                                    <!--~2~  Correo  @2@-->
+                                                    <TextBox
+                                                        Text="{Binding Email}"
+                                                        materialDesign:HintAssist.Hint="Correo"
+                                                        materialDesign:HintAssist.IsFloating="True"
+                                                        materialDesign:TextFieldAssist.HasClearButton="True" />
+                                                    <!--~2~  Imagen de perfil  @2@-->
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <Button
+                                                            Click="BtnOpenFile_Click"
+                                                            Content="Seleccionar Imagen de perfil"
+                                                            Name="BtnOpenFile"
+                                                            Style="{StaticResource MaterialDesignRaisedSecondaryLightButton}"
+                                                            ToolTip="Abrir archivo"
+                                                            Width="auto" />
+                                                        <TextBlock
+                                                            Foreground="Black"
+                                                            HorizontalAlignment="Center"
+                                                            Name="TextBlockFileName"
+                                                            Text="{Binding ProfilePhoto}"
+                                                            TextAlignment="Center"
+                                                            VerticalAlignment="Center"
+                                                            Width="auto" />
+                                                    </StackPanel>
+
+
+                                                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+
+                                                        <TextBlock Text="Email Contact" VerticalAlignment="Center" />
+
+                                                        <ToggleButton />
+
+                                                    </StackPanel>
+
+                                                    <StackPanel Orientation="Horizontal">
+
+                                                        <TextBlock Text="Telephone Contact" VerticalAlignment="Center" />
+
+                                                        <ToggleButton />
+
+                                                    </StackPanel>
+
+                                                    <StackPanel
+                                                        HorizontalAlignment="Center"
+                                                        Margin="0,40,0,0"
+                                                        Orientation="Horizontal"
+                                                        VerticalAlignment="Center">
+                                                        <StackPanel HorizontalAlignment="Right"
+                                                                    Orientation="Horizontal">
+                                                            <Button
+                                                                Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                                                                Content="ACCEPT"
+                                                                IsDefault="True"
+                                                                Margin="0,8,8,0"
+                                                                Style="{StaticResource MaterialDesignFlatButton}">
+                                                                <Button.CommandParameter>
+                                                                    <system:Boolean
+                                                                        xmlns:system="clr-namespace:System;assembly=mscorlib">
+                                                                        True
+                                                                    </system:Boolean>
+                                                                </Button.CommandParameter>
+                                                            </Button>
+                                                            <Button
+                                                                Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                                                                Content="CANCEL"
+                                                                IsCancel="True"
+                                                                Margin="0,8,8,0"
+                                                                Style="{StaticResource MaterialDesignFlatButton}">
+                                                                <Button.CommandParameter>
+                                                                    <system:Boolean
+                                                                        xmlns:system="clr-namespace:System;assembly=mscorlib">
+                                                                        False
+                                                                    </system:Boolean>
+                                                                </Button.CommandParameter>
+                                                            </Button>
+                                                        </StackPanel>
+
+                                                        <Button
+                                                            Click="ButtonSave_Click"
+                                                            Command="{x:Static materialDesign:Flipper.FlipCommand}"
+                                                            ToolTip="Guardar cambios"
+                                                            Margin="2,0,2,0"
+                                                            Name="ButtonSave" />
+
+                                                        <Button
+                                                            Command="{x:Static materialDesign:Flipper.FlipCommand}"
+                                                            Margin="2,0,2,0"
+                                                            Name="ButtonDelete" />
+
+                                                    </StackPanel>
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </Grid>
+                                    </materialDesign:Flipper.BackContent>
+                                </materialDesign:Flipper>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel IsItemsHost="True" Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                </ListBox>
+
+                <Button
+                    Style="{StaticResource MaterialDesignRaisedButton}"
+                    Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Right"
+                    Grid.Row="0"
+                    Height="50"
+                    materialDesign:ButtonAssist.CornerRadius="10"
+                    Margin="0,0,48,30"
+                    Content="{materialDesign:PackIcon Kind=Plus, Size=22}" />
+            </Grid>
+        </materialDesign:DialogHost>
+        <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}" x:Name="SnackbarSeven">
+            <materialDesign:SnackbarMessage ActionContent="UNDO" />
+        </materialDesign:Snackbar>
+    </Grid>
+    <!--<materialDesign:DialogHost DialogMargin="8" Style="{StaticResource MaterialDesignEmbeddedDialogHost}">
         <materialDesign:DialogHost.DialogContent>
             <StackPanel Margin="16">
                 <TextBlock
@@ -108,7 +404,7 @@
                                     <Grid Height="auto" Width="300">
                                         <StackPanel Orientation="Vertical">
 
-                                            <!--  Barra superior  -->
+                                            ~1~  Barra superior  @1@
                                             <materialDesign:ColorZone Mode="SecondaryMid">
 
                                                 <StackPanel Orientation="Horizontal">
@@ -129,7 +425,7 @@
 
                                             <StackPanel Orientation="Vertical">
 
-                                                <!--  Nombre  -->
+                                                ~1~  Nombre  @1@
                                                 <TextBox
                                                     Name="EditTextUserName"
                                                     Text="{Binding Username}"
@@ -137,21 +433,21 @@
                                                     materialDesign:HintAssist.IsFloating="True"
                                                     materialDesign:TextFieldAssist.HasClearButton="True" />
 
-                                                <!--  Apellido  -->
+                                                ~1~  Apellido  @1@
                                                 <TextBox
                                                     Text="{Binding Surname}"
                                                     materialDesign:HintAssist.Hint="Last name"
                                                     materialDesign:HintAssist.IsFloating="True"
                                                     materialDesign:TextFieldAssist.HasClearButton="True" />
 
-                                                <!--  Correo  -->
+                                                ~1~  Correo  @1@
                                                 <TextBox
                                                     Text="{Binding Email}"
                                                     materialDesign:HintAssist.Hint="Correo"
                                                     materialDesign:HintAssist.IsFloating="True"
                                                     materialDesign:TextFieldAssist.HasClearButton="True" />
 
-                                                <!--  Imagen de perfil  -->
+                                                ~1~  Imagen de perfil  @1@
                                                 <StackPanel Orientation="Horizontal">
                                                     <Button
                                                         Click="BtnOpenFile_Click"
@@ -263,5 +559,5 @@
             </materialDesign:Snackbar>
 
         </Grid>
-    </materialDesign:DialogHost>
+    </materialDesign:DialogHost>-->
 </UserControl>

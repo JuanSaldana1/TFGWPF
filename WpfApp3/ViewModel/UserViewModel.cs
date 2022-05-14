@@ -9,6 +9,7 @@ namespace WpfApp3.ViewModel;
 
 internal class UserViewModel {
   public IList<UserModel> Usuarios { get; } = new List<UserModel>();
+  public IList<string> Roles { get; } = new List<string>();
 
   public UserViewModel() {
     var cadenaConexion = MainWindow.CadenaConexion;
@@ -32,6 +33,23 @@ internal class UserViewModel {
           Follower = myReader.GetString(6),
           ProfilePhoto = myReader.GetString(7)
         });
+
+    myReader.Close();
+    conexion.Close();
+
+    const string selectRoles = "SELECT Rol FROM Usuarios GROUP BY Rol";
+    var rolSelectionCommand = new MySqlCommand(selectRoles, conexion);
+    conexion.Open();
+    MySqlDataReader myRolesReader;
+    rolSelectionCommand.ExecuteReader();
+    if (myReader.HasRows)
+      while (myReader.Read())
+        try {
+          Roles.Add(myReader.GetString(0));
+        }
+        catch (Exception e) {
+          MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
 
     myReader.Close();
     conexion.Close();
