@@ -60,73 +60,60 @@
                     </StackPanel>
                 </StackPanel>
             </materialDesign:DialogHost.DialogContent>
-            <Border
-                BorderThickness="1"
-                BorderBrush="{DynamicResource PrimaryHueMidBrush}"
-                ClipToBounds="True"
-                HorizontalAlignment="Stretch">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition
-                            Height="*" />
-                        <RowDefinition
-                            Height="Auto" />
-                    </Grid.RowDefinitions>
-                    <ListBox
-                        ItemsSource="{Binding Categorias}"
-                        ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                        x:Name="CategoriesListBox">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition
+                        Height="*" />
+                    <RowDefinition
+                        Height="Auto" />
+                </Grid.RowDefinitions>
+                <ListBox
+                    ItemsSource="{Binding Categorias}"
+                    ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                    x:Name="CategoriesListBox">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
                                 <ListBoxItem
                                     Content="{Binding CategoryName}" />
-                            </DataTemplate>
+                                <Button
+                                    Name="DeleteCategoryButton"
+                                    Click="DeleteCategoryButton_OnClick"
+                                    Grid.Column="1"
+                                    Style="{StaticResource MaterialDesignPaperButton}"
+                                    ToolTip="Eliminar categoría">
+                                    <materialDesign:PackIcon
+                                        Kind="DeleteOutline"
+                                        Height="20"
+                                        Width="20" />
+                                </Button>
+                            </Grid>
 
-                        </ListBox.ItemTemplate>
-                        <ListBox.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <WrapPanel IsItemsHost="True" Orientation="Vertical" />
-                            </ItemsPanelTemplate>
-                        </ListBox.ItemsPanel>
-                    </ListBox>
-                    <Button
-                        Style="{StaticResource MaterialDesignRaisedButton}"
-                        Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
-                        VerticalAlignment="Bottom"
-                        HorizontalAlignment="Right"
-                        Grid.Row="0"
-                        Height="50"
-                        materialDesign:ButtonAssist.CornerRadius="10"
-                        Margin="0,0,48,30"
-                        Content="{materialDesign:PackIcon Kind=Plus, Size=22}" />
-                </Grid>
-            </Border>
+                        </DataTemplate>
+
+                    </ListBox.ItemTemplate>
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel IsItemsHost="True" Orientation="Vertical" />
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                </ListBox>
+                <Button
+                    Style="{StaticResource MaterialDesignRaisedButton}"
+                    Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Right"
+                    Grid.Row="0"
+                    Height="50"
+                    materialDesign:ButtonAssist.CornerRadius="10"
+                    Margin="0,0,48,30"
+                    Content="{materialDesign:PackIcon Kind=Plus, Size=22}" />
+            </Grid>
         </materialDesign:DialogHost>
-        <!--<ListBox
-            ItemsSource="{Binding Categorias}"
-            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-            x:Name="MyListView">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Vertical" />
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-            <ListBox.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel IsItemsHost="True" Orientation="Horizontal" />
-                </ItemsPanelTemplate>
-            </ListBox.ItemsPanel>
-        </ListBox>
-        <Button
-            Content="{materialDesign:PackIcon Kind=Plus,
-                                              Size=22}"
-            Grid.Row="0"
-            Height="50"
-            HorizontalAlignment="Right"
-            Margin="0,0,48,30"
-            Style="{StaticResource MaterialDesignRaisedButton}"
-            VerticalAlignment="Bottom"
-            materialDesign:ButtonAssist.CornerRadius="10" />-->
         <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}" x:Name="SnackbarSeven">
             <materialDesign:SnackbarMessage ActionContent="UNDO" />
         </materialDesign:Snackbar>

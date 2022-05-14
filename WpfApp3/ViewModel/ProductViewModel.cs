@@ -11,6 +11,9 @@ using WpfApp3.Model;
 namespace WpfApp3.ViewModel;
 
 internal class ProductViewModel : ViewModelBase {
+  public ObservableCollection<ProductoModel> Productos { get; set; } = new ();
+  public IList<ProductoModel> SelectedProductos { get; set; } = new List<ProductoModel>();
+
   public ProductViewModel() {
     OpenSample4DialogCommand = new AnotherCommandImplementation(OpenSample4Dialog);
     AcceptSample4DialogCommand = new AnotherCommandImplementation(AcceptSample4Dialog);
@@ -41,8 +44,6 @@ internal class ProductViewModel : ViewModelBase {
     conexionBd.Close();
   }
 
-  public ObservableCollection<ProductoModel> Productos { get; } = new ObservableCollection<ProductoModel>();
-  public IList<ProductoModel> SelectedProductos { get; set; } = new List<ProductoModel>();
 
   public void GetAllProducts() {
     var cadenaConexion = MainWindow.CadenaConexion;

@@ -44,4 +44,12 @@ public partial class CategoriasUserControl {
     if (!string.IsNullOrWhiteSpace(CategoryNameEditText.Text))
       CategoriesListBox.Items.Add(CategoryNameEditText.Text.Trim());
   }
+
+  private void DeleteCategoryButton_OnClick(object sender, RoutedEventArgs e) {
+    var selectedItem = CategoriesListBox.SelectedItem;
+    if (selectedItem == null)
+      return;
+
+    CategoriesListBox.Items.Remove(selectedItem);
+  }
 }

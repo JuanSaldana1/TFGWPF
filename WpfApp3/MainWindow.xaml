@@ -73,6 +73,7 @@
                 <ComboBoxItem Content="PostgreSQL" />
                 <ComboBoxItem Content="MySQL" />
                 <ComboBoxItem Content="H2" />
+                <ComboBoxItem Content="SQLite" />
             </ComboBox>
             <TextBlock
                 FontFamily="Roboto"

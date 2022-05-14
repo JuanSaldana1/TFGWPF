@@ -8,6 +8,8 @@ namespace WpfApp3.View;
 public partial class ConsultasUserControl {
   public ConsultasUserControl() {
     InitializeComponent();
+    DataContext = new ProductViewModel();
+    /*AnimalListBox.ItemsSource = new ProductViewModel().Productos;*/
   }
 
   /*private void ButtonSelectAllProductsOnClick(object sender, RoutedEventArgs e) {
