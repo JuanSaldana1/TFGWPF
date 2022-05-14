@@ -73,15 +73,45 @@ internal class ProductViewModel : ViewModelBase {
     conexionBd.Close();
   }
 
-  public void SearchAllSelecrQuery(string parameters) {
+  public bool InsertMethod(ProductoModel producto) {
+    var isInserted = false;
+    var insertQuery =
+      "INSERT INTO Productos (Name, Description, Price, CategoryId, Stock, Rating, Image, PostId) values ('" +
+      producto.ProductName + "','" + producto.ProductDescription + "','" + producto.ProductPrice +
+      "','" + producto.CategoryId + "','" + producto.ProductStock + "','" + producto.ProductRating  + 
+      "','" + producto.ProductImage + "','" + producto.PostId + "')";
+    try {
+      var conexionBd = new MySqlConnection(MainWindow.CadenaConexion);
+      conexionBd.Open();
+      var command = new MySqlCommand(insertQuery, conexionBd);
+      command.ExecuteNonQuery();
+      isInserted = true;
+    }
+    catch (Exception e) {
+      MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+      isInserted = false;
+    }
+
+    return isInserted;
+  }
+
+  public List<Object> SearchAllSelecrQuery(string parameters) {
+    List<Object> lista = new List<Object>();
     try {
       var cadenaConexion = MainWindow.CadenaConexion;
       var conexionBd = new MySqlConnection(cadenaConexion);
-      var selectQuery =
-        "SELECT * FROM Productos JOIN Categorias C on C.CategoryId = Productos.CategoryId " +
-        "WHERE Productos.Name = '%" + parameters + "%'" + " OR Productos.Description ='%" +
-        parameters + "%' OR Productos.Price = '%" + parameters +
-        "%' OR Productos.CategoryId = '%" + parameters + "%';";
+      var selectQuery = "";
+      if (parameters == null) {
+        selectQuery = "SELECT * FROM Productos";
+      }
+      else {
+        selectQuery =
+          "SELECT * FROM Productos JOIN Categorias C on C.CategoryId = Productos.CategoryId " +
+          "WHERE Productos.Name = '%" + parameters + "%'" + " OR Productos.Description ='%" +
+          parameters + "%' OR Productos.Price = '%" + parameters +
+          "%' OR Productos.CategoryId = '%" + parameters + "%';";
+      }
+
       var myCommand = new MySqlCommand(selectQuery, conexionBd);
       conexionBd.Open();
       MySqlDataReader myReader;
@@ -112,7 +142,10 @@ internal class ProductViewModel : ViewModelBase {
       MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
       throw;
     }
+
+    return lista;
   }
+
 
   #region SAMPLE 4
 

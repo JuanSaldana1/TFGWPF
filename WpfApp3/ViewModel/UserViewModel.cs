@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows;
 using MySql.Data.MySqlClient;
 using WpfApp3.Model;
+using MessageBox = ModernWpf.MessageBox;
 
 namespace WpfApp3.ViewModel;
 
 internal class UserViewModel {
-  private readonly string stringConexion = "server=" + MainWindow.Servidor + "; port=" + MainWindow.Puerto +
-                                           "; user id=" +
-                                           MainWindow.Usuario + "; password=" + MainWindow.Contrasena + "; database=" +
-                                           MainWindow.BaseDatos + ";";
+  public IList<UserModel> Usuarios { get; } = new List<UserModel>();
 
   public UserViewModel() {
-    var cadenaConexion = stringConexion;
+    var cadenaConexion = MainWindow.CadenaConexion;
     var selectAllUsersQuery =
       "SELECT UserId, Username, Name, Surname, Email, Rol, Follower, ProfilePhoto FROM Usuarios";
     var conexion = new MySqlConnection(cadenaConexion);
@@ -38,18 +37,39 @@ internal class UserViewModel {
     conexion.Close();
   }
 
-  public IList<UserModel> Usuarios { get; } = new List<UserModel>();
+  public bool InsertMethod(UserModel usuario) {
+    var isInserted = false;
+    var insertQuery =
+      "INSERT INTO Usuarios (Username, Name, Surname, Email, Rol, Follower, ProfilePhoto) values ('" +
+      usuario.Username + "','" + usuario.Name + "','" + usuario.Surname +
+      "','" + usuario.Email + "','" + usuario.Rol + "','" + usuario.Follower +
+      "','" + usuario.ProfilePhoto + "')";
+    try {
+      var conexionBd = new MySqlConnection(MainWindow.CadenaConexion);
+      conexionBd.Open();
+      var command = new MySqlCommand(insertQuery, conexionBd);
+      command.ExecuteNonQuery();
+      isInserted = true;
+    }
+    catch (Exception e) {
+      MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+      isInserted = false;
+    }
+
+    return isInserted;
+  }
+
 
   public bool ChangeName(string name, int userId) {
-    var cadenaConexion = stringConexion;
+    var cadenaConexion = MainWindow.CadenaConexion;
 
     try {
       var updateNameQuery =
-        "UPDATE Usuarios SET Name = '" + name + "' WHERE UserId = " + userId;
+        "UPDATE Usuarios SET Name = '" + name + "' WHERE UserId = " + userId + ";";
     }
     catch (Exception e) {
-      Console.WriteLine(e);
-      throw;
+      MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+      return false;
     }
 
     return true;

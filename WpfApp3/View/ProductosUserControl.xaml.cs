@@ -73,7 +73,7 @@ public partial class ProductosUserControl {
   }
 
   private void Sample5_DialogHost_OnDialogClosing(object sender, DialogClosingEventArgs eventArgs) {
-    if (!Equals(eventArgs.Parameter, true))
+    /*if (!Equals(eventArgs.Parameter, true))
       return;
 
     if (!string.IsNullOrWhiteSpace(ProductNameEditText.Text) ||
@@ -107,9 +107,29 @@ public partial class ProductosUserControl {
         SnackbarSeven.MessageQueue?.Enqueue("Producto añadido correctamente");
       }
       catch (Exception e) {
-        MessageBox.Show(e.Message);
+        MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         throw;
       }
+    }
+    else {
+      SnackbarSeven.MessageQueue?.Enqueue("No se puede añadir un producto sin nombre");
+    }*/
+
+    var producto = new ProductoModel();
+    var viewModel = new ProductViewModel();
+    producto.ProductName = ProductNameEditText.Text;
+    producto.ProductDescription = ProductDescriptionEditText.Text;
+    producto.ProductPrice = Convert.ToDouble(ProductPriceEditText.Text);
+    producto.CategoryId = Convert.ToInt32(ProductCategoryIdEditText.Text);
+    producto.ProductStock = Convert.ToInt32(ProductStockEditText.Text);
+    producto.ProductRating = Convert.ToInt32(ProductRatingEditText.Text);
+    producto.ProductImage = ProductImageEditText.Text;
+    producto.PostId = Convert.ToInt32(ProductPostIdEditText.Text);
+    try {
+      viewModel.InsertMethod(producto);
+    }
+    catch (Exception e) {
+      MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
     }
   }
 }
