@@ -181,7 +181,7 @@
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="1*" />
                                                 <ColumnDefinition Width="1*" />
-                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="1*" />
                                             </Grid.ColumnDefinitions>
                                             <TextBlock Text="Stock" />
                                             <mde:OversizedNumberSpinner
@@ -192,7 +192,8 @@
                                             <materialDesign:RatingBar
                                                 Grid.Column="2"
                                                 x:Name="BasicRatingBar"
-                                                Value="3"
+                                                Max="5"
+                                                Value="{Binding ProductRating, Mode=TwoWay}"
                                                 ValueChanged="BasicRatingBar_ValueChanged" />
                                         </Grid>
                                         <StackPanel Grid.Row="5">

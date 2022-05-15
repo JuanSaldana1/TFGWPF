@@ -73,60 +73,27 @@ public partial class ProductosUserControl {
   }
 
   private void Sample5_DialogHost_OnDialogClosing(object sender, DialogClosingEventArgs eventArgs) {
-    /*if (!Equals(eventArgs.Parameter, true))
-      return;
-
-    if (!string.IsNullOrWhiteSpace(ProductNameEditText.Text) ||
-        !string.IsNullOrWhiteSpace(ProductDescriptionEditText.Text) ||
-        !string.IsNullOrWhiteSpace(ProductPriceEditText.Text) ||
-        !string.IsNullOrWhiteSpace(ProductStockEditText.Text) ||
-        !string.IsNullOrWhiteSpace(ProductCategoryIdEditText.Text)) {
+    var producto = new ProductoModel();
+    var viewModel = new ProductViewModel();
+    try {
+      producto.ProductName = ProductNameEditText.Text;
+      producto.ProductDescription = ProductDescriptionEditText.Text;
+      producto.ProductPrice = Convert.ToDecimal(ProductPriceEditText.Text);
+      producto.CategoryId = Convert.ToInt32(ProductCategoryIdEditText.Text);
+      producto.ProductStock = Convert.ToInt32(ProductStockEditText.Text);
+      producto.ProductRating = Convert.ToInt32(ProductRatingEditText.Text);
+      producto.ProductImage = ProductImageEditText.Text;
+      producto.PostId = Convert.ToInt32(ProductPostIdEditText.Text);
       try {
-        var newProduct = new ProductoModel();
-        var viewModel = new ProductViewModel();
-        newProduct.ProductName = ProductNameEditText.Text;
-        newProduct.ProductDescription = ProductDescriptionEditText.Text;
-        newProduct.ProductPrice = Convert.ToDouble(ProductPriceEditText.Text);
-        newProduct.CategoryId = Convert.ToInt32(ProductCategoryIdEditText.Text);
-        newProduct.ProductStock = Convert.ToInt32(ProductStockEditText.Text);
-        newProduct.ProductRating = Convert.ToInt32(ProductRatingEditText.Text);
-        newProduct.ProductImage = ProductImageEditText.Text;
-        newProduct.PostId = Convert.ToInt32(ProductPostIdEditText.Text);
-        MyListView.Items.Add(new ProductoModel {
-          CategoryId = Convert.ToInt32(ProductCategoryIdEditText.Text),
-          ProductDescription = ProductDescriptionEditText.Text,
-          ProductImage = ProductImageEditText.Text,
-          ProductName = ProductNameEditText.Text,
-          ProductPrice = Convert.ToDouble(ProductPriceEditText.Text),
-          ProductRating = Convert.ToInt32(ProductRatingEditText.Text),
-          ProductStock = Convert.ToInt32(ProductStockEditText.Text),
-          PostId = Convert.ToInt32(ProductPostIdEditText.Text)
-        });
-        viewModel.Productos.Add(newProduct);
-        MyListView.Items.Refresh();
-        SnackbarSeven.MessageQueue?.Enqueue("Producto añadido correctamente");
+        SnackbarSeven.MessageQueue?.Enqueue(viewModel.InsertMethod(producto)
+          ? "Producto insertado correctamente"
+          : "Error al insertar el producto");
+        viewModel.GetAllProducts();
       }
       catch (Exception e) {
         MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         throw;
       }
-    }
-    else {
-      SnackbarSeven.MessageQueue?.Enqueue("No se puede añadir un producto sin nombre");
-    }*/
-
-    var producto = new ProductoModel();
-    var viewModel = new ProductViewModel();
-    producto.ProductName = ProductNameEditText.Text;
-    producto.ProductDescription = ProductDescriptionEditText.Text;
-    producto.ProductPrice = Convert.ToDouble(ProductPriceEditText.Text);
-    producto.CategoryId = Convert.ToInt32(ProductCategoryIdEditText.Text);
-    producto.ProductStock = Convert.ToInt32(ProductStockEditText.Text);
-    producto.ProductRating = Convert.ToInt32(ProductRatingEditText.Text);
-    producto.ProductImage = ProductImageEditText.Text;
-    producto.PostId = Convert.ToInt32(ProductPostIdEditText.Text);
-    try {
-      viewModel.InsertMethod(producto);
     }
     catch (Exception e) {
       MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);

@@ -12,7 +12,7 @@ internal class ProductoModel : INotifyPropertyChanged {
   private int productId;
   private string productImage;
   private string productName;
-  private double productPrice;
+  private decimal productPrice;
   private int productRating;
   private int productStock;
 
@@ -40,7 +40,7 @@ internal class ProductoModel : INotifyPropertyChanged {
     }
   }
 
-  public double ProductPrice {
+  public decimal ProductPrice {
     get => productPrice;
     set {
       productPrice = value;

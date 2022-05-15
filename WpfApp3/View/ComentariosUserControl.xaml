@@ -17,177 +17,84 @@
     xmlns:viewModel="clr-namespace:WpfApp3.ViewModel"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Grid>
-        <materialDesign:DialogHost
-            DialogClosing="Sample5_DialogHost_OnDialogClosing"
-            Style="{StaticResource MaterialDesignEmbeddedDialogHost}"
-            DialogMargin="8">
-            <materialDesign:DialogHost.DialogContent>
-                <StackPanel
-                    Margin="16">
-                    <TextBlock
-                        Style="{StaticResource MaterialDesignTitleLargeTextBlock}"
-                        Text="Crea un producto" />
-                    <TextBox
-                        materialDesign:HintAssist.Hint="Nombre del producto"
-                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                        VerticalAlignment="Center"
-                        Margin="0 8 0 0"
-                        HorizontalAlignment="Stretch"
-                        x:Name="ProductNameEditText" />
-                    <TextBox
-                        materialDesign:HintAssist.Hint="Descripción del producto"
-                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                        VerticalAlignment="Center"
-                        Margin="0 8 0 0"
-                        HorizontalAlignment="Stretch"
-                        x:Name="ProductDescriptionEditText" />
-                    <TextBox
-                        materialDesign:HintAssist.Hint="Precio del producto"
-                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                        VerticalAlignment="Center"
-                        Margin="0 8 0 0"
-                        HorizontalAlignment="Stretch"
-                        x:Name="ProductPriceEditText" />
-                    <TextBox
-                        materialDesign:HintAssist.Hint="Categoria del producto"
-                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                        VerticalAlignment="Center"
-                        Margin="0 8 0 0"
-                        HorizontalAlignment="Stretch"
-                        x:Name="ProductCategoryIdEditText" />
-                    <TextBox
-                        materialDesign:HintAssist.Hint="Cantidad del producto"
-                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                        VerticalAlignment="Center"
-                        Margin="0 8 0 0"
-                        HorizontalAlignment="Stretch"
-                        x:Name="ProductStockEditText" />
-                    <TextBox
-                        materialDesign:HintAssist.Hint="Valoración del producto"
-                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                        VerticalAlignment="Center"
-                        Margin="0 8 0 0"
-                        HorizontalAlignment="Stretch"
-                        x:Name="ProductRatingEditText" />
-                    <TextBox
-                        materialDesign:HintAssist.Hint="Imagen del producto"
-                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                        VerticalAlignment="Center"
-                        Margin="0 8 0 0"
-                        HorizontalAlignment="Stretch"
-                        x:Name="ProductImageEditText" />
-                    <TextBox
-                        materialDesign:HintAssist.Hint="Post id al que pertenece el producto"
-                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                        VerticalAlignment="Center"
-                        Margin="0 8 0 0"
-                        HorizontalAlignment="Stretch"
-                        x:Name="ProductPostIdEditText" />
-                    <StackPanel
-                        Orientation="Horizontal"
-                        HorizontalAlignment="Right">
-                        <Button
-                            Style="{StaticResource MaterialDesignFlatButton}"
-                            IsDefault="True"
-                            Margin="0 8 8 0"
-                            Content="ACCEPT"
-                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">
-                            <Button.CommandParameter>
-                                <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
-                                    True
-                                </system:Boolean>
-                            </Button.CommandParameter>
-                        </Button>
-                        <Button
-                            Style="{StaticResource MaterialDesignFlatButton}"
-                            IsCancel="True"
-                            Margin="0 8 8 0"
-                            Content="CANCEL"
-                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">
-                            <Button.CommandParameter>
-                                <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
-                                    False
-                                </system:Boolean>
-                            </Button.CommandParameter>
-                        </Button>
-                    </StackPanel>
-                </StackPanel>
-            </materialDesign:DialogHost.DialogContent>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition
-                        Height="*" />
-                    <RowDefinition
-                        Height="Auto" />
-                </Grid.RowDefinitions>
-                <ListBox
-                    ItemsSource="{Binding Comments}"
-                    ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                    x:Name="MyListView">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Vertical">
-                                <materialDesign:Card
-                                    Background="{DynamicResource PrimaryHueLightBrush}"
-                                    UniformCornerRadius="6"
-                                    x:Uid="1"
-                                    Padding="9"
-                                    Width="300">
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="*" />
+            <RowDefinition
+                Height="Auto" />
+        </Grid.RowDefinitions>
+        <ListBox
+            ItemsSource="{Binding Comments}"
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+            x:Name="MyListView">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <materialDesign:Card
+                            Background="{DynamicResource PrimaryHueLightBrush}"
+                            UniformCornerRadius="6"
+                            x:Uid="1"
+                            Padding="9"
+                            Width="300">
 
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="*" />
-                                            <RowDefinition Height="*" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                        </Grid.RowDefinitions>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
 
-                                        <StackPanel Name="StackPanel1" Grid.Row="1">
-                                            <TextBox
-                                                Name="EditTextCommentTitle"
-                                                Text="{Binding CommentTitle}" />
+                                <StackPanel Name="StackPanel1" Grid.Row="1">
+                                    <TextBox
+                                        Name="EditTextCommentTitle"
+                                        Text="{Binding CommentTitle}" />
 
-                                            <TextBlock
-                                                x:Name="TextViewCommentContent"
-                                                Style="{StaticResource MaterialDesignHeadlineSmallTextBlock}"
-                                                Text="{Binding CommentContent}"
-                                                TextWrapping="Wrap"
-                                                VerticalAlignment="Center" />
+                                    <TextBlock
+                                        x:Name="TextViewCommentContent"
+                                        Style="{StaticResource MaterialDesignHeadlineSmallTextBlock}"
+                                        Text="{Binding CommentContent}"
+                                        TextWrapping="Wrap"
+                                        VerticalAlignment="Center" />
 
-                                            <DatePicker
-                                                HorizontalAlignment="Left"
-                                                Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
-                                                Text="{Binding CommentPublishDate}"
-                                                Width="150"
-                                                materialDesign:HintAssist.Hint="Pick Date"
-                                                materialDesign:TextFieldAssist.HasClearButton="True" />
+                                    <DatePicker
+                                        HorizontalAlignment="Left"
+                                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
+                                        Text="{Binding CommentPublishDate}"
+                                        Width="150"
+                                        materialDesign:HintAssist.Hint="Pick Date"
+                                        materialDesign:TextFieldAssist.HasClearButton="True" />
 
-                                            <CheckBox
-                                                Content="Anónimo"
-                                                IsChecked="{Binding IsAnonymous}"
-                                                Style="{StaticResource MaterialDesignFilterChipPrimaryCheckBox}" />
+                                    <CheckBox
+                                        Content="Anónimo"
+                                        IsChecked="{Binding IsAnonymous}"
+                                        Style="{StaticResource MaterialDesignFilterChipPrimaryCheckBox}" />
 
-                                        </StackPanel>
+                                </StackPanel>
 
-                                        <Separator
-                                            Grid.Row="2"
-                                            Style="{StaticResource MaterialDesignDarkSeparator}" />
+                                <Separator
+                                    Grid.Row="2"
+                                    Style="{StaticResource MaterialDesignDarkSeparator}" />
 
-                                        <TextBlock
-                                            Grid.Row="3"
-                                            Style="{StaticResource MaterialDesignBody2TextBlock}"
-                                            Text="Escrito por:" />
+                                <TextBlock
+                                    Grid.Row="3"
+                                    Style="{StaticResource MaterialDesignBody2TextBlock}"
+                                    Text="Escrito por:" />
 
-                                        <Grid Grid.Row="4">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto" />
-                                                <ColumnDefinition Width="Auto" />
-                                            </Grid.ColumnDefinitions>
+                                <Grid Grid.Row="4">
 
-                                            <ToggleButton
+                                    <materialDesign:Chip
+                                        Content="{Binding UserName}">
+                                        <materialDesign:Chip.Icon>
+                                            <Image
+                                                Source="{Binding ProfilePhoto}" />
+                                        </materialDesign:Chip.Icon>
+                                    </materialDesign:Chip>
+
+                                    <!--<ToggleButton
                                                 Grid.Column="0"
                                                 Style="{StaticResource MaterialDesignActionToggleButton}"
                                                 ToolTip="Selecciona la foto de perfil">
@@ -200,39 +107,39 @@
                                                 Grid.Column="1">
                                                 <TextBlock Text="{Binding UserName}" FontWeight="Bold" />
                                                 <TextBlock Text="{Binding UserEmail}" />
-                                            </StackPanel>
-                                        </Grid>
-                                        <Separator
-                                            Grid.Row="5"
-                                            Style="{StaticResource MaterialDesignDarkSeparator}" />
-                                        <StackPanel Grid.Row="6" Orientation="Horizontal">
-                                            <Button
-                                                Click="Button_Click"
-                                                Content="Editar"
-                                                ToolTip="Aplicar los cambios hechos."
-                                                HorizontalAlignment="Left"
-                                                Style="{StaticResource MaterialDesignFlatButton}" />
-                                            <Button
-                                                Name="ButtonEliminarComentario"
-                                                Click="ButtonEliminarComentario_Click"
-                                                Content="{materialDesign:PackIcon DeleteOutline}"
-                                                ToolTip="Aplicar los cambios hechos."
-                                                HorizontalAlignment="Left"
-                                                Style="{StaticResource MaterialDesignFlatButton}" />
-                                        </StackPanel>
-                                    </Grid>
-                                </materialDesign:Card>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                    <ListBox.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <WrapPanel IsItemsHost="True" Orientation="Horizontal" />
-                        </ItemsPanelTemplate>
-                    </ListBox.ItemsPanel>
-                </ListBox>
+                                            </StackPanel>-->
+                                </Grid>
+                                <Separator
+                                    Grid.Row="5"
+                                    Style="{StaticResource MaterialDesignDarkSeparator}" />
+                                <StackPanel Grid.Row="6" Orientation="Horizontal">
+                                    <Button
+                                        Click="Button_Click"
+                                        Content="Editar"
+                                        ToolTip="Aplicar los cambios hechos."
+                                        HorizontalAlignment="Left"
+                                        Style="{StaticResource MaterialDesignFlatButton}" />
+                                    <Button
+                                        Name="ButtonEliminarComentario"
+                                        Click="ButtonEliminarComentario_Click"
+                                        Content="{materialDesign:PackIcon DeleteOutline}"
+                                        ToolTip="Aplicar los cambios hechos."
+                                        HorizontalAlignment="Left"
+                                        Style="{StaticResource MaterialDesignFlatButton}" />
+                                </StackPanel>
+                            </Grid>
+                        </materialDesign:Card>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel IsItemsHost="True" Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+        </ListBox>
 
-                <Button
+        <!--<Button
                     Style="{StaticResource MaterialDesignRaisedButton}"
                     Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
                     VerticalAlignment="Bottom"
@@ -241,9 +148,8 @@
                     Height="50"
                     materialDesign:ButtonAssist.CornerRadius="10"
                     Margin="0,0,48,30"
-                    Content="{materialDesign:PackIcon Kind=Plus, Size=22}" />
-            </Grid>
-        </materialDesign:DialogHost>
+                    Content="{materialDesign:PackIcon Kind=Plus, Size=22}" />-->
+
         <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}" x:Name="SnackbarSeven">
             <materialDesign:SnackbarMessage ActionContent="UNDO" />
         </materialDesign:Snackbar>

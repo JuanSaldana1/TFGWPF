@@ -20,41 +20,55 @@ internal class ProductViewModel : ViewModelBase {
     OpenSample4DialogCommand = new AnotherCommandImplementation(OpenSample4Dialog);
     AcceptSample4DialogCommand = new AnotherCommandImplementation(AcceptSample4Dialog);
     CancelSample4DialogCommand = new AnotherCommandImplementation(CancelSample4Dialog);
-    var cadenaConexion = MainWindow.CadenaConexion;
-    var conexionBd = new MySqlConnection(cadenaConexion);
-    var mySelectQuery =
-      "SELECT ProductId, Name, Description, Price, C.Nombre, Stock, Rating, Image FROM Productos JOIN Categorias C on C.CategoryId = Productos.CategoryId";
-    var myCommand = new MySqlCommand(mySelectQuery, conexionBd);
-    conexionBd.Open();
-    MySqlDataReader myReader;
-    myReader = myCommand.ExecuteReader();
+    try {
+      var cadenaConexion = MainWindow.CadenaConexion;
+      var conexionBd = new MySqlConnection(cadenaConexion);
+      var mySelectQuery =
+        "SELECT ProductId, Name, Description, Price, C.Nombre, Stock, Rating, Image FROM Productos JOIN Categorias C on C.CategoryId = Productos.CategoryId ORDER BY ProductId";
+      var myCommand = new MySqlCommand(mySelectQuery, conexionBd);
+      conexionBd.Open();
+      MySqlDataReader myReader;
+      Productos.Clear();
+      try {
+        myReader = myCommand.ExecuteReader();
+        if (myReader.HasRows)
+          while (myReader.Read())
+            Productos.Add(new ProductoModel {
+              ProductId = myReader.GetInt32(0),
+              ProductName = myReader.GetString(1),
+              ProductDescription = myReader.GetString(2),
+              ProductPrice = myReader.GetDecimal(3),
+              ProductCategory = myReader.GetString(4),
+              ProductStock = myReader.GetInt32(5),
+              ProductRating = myReader.GetInt32(6),
+              ProductImage = myReader.GetString(7)
+            });
 
-    if (myReader.HasRows)
-      while (myReader.Read())
-        Productos.Add(new ProductoModel {
-          ProductId = myReader.GetInt32(0),
-          ProductName = myReader.GetString(1),
-          ProductDescription = myReader.GetString(2),
-          ProductPrice = myReader.GetDouble(3),
-          ProductCategory = myReader.GetString(4),
-          ProductStock = myReader.GetInt32(5),
-          ProductRating = myReader.GetInt32(6),
-          ProductImage = myReader.GetString(7)
-        });
+        myReader.Close();
+      }
+      catch (Exception e) {
+        MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        throw;
+      }
 
-    myReader.Close();
-    conexionBd.Close();
+      conexionBd.Close();
+    }
+    catch (Exception e) {
+      MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+      throw;
+    }
   }
 
 
   public void GetAllProducts() {
     var cadenaConexion = MainWindow.CadenaConexion;
     var conexionBd = new MySqlConnection(cadenaConexion);
-    var mySelectQuery = "SELECT * FROM Productos";
+    var mySelectQuery = "SELECT * FROM Productos  ORDER BY ProductId";
     var myCommand = new MySqlCommand(mySelectQuery, conexionBd);
     conexionBd.Open();
     MySqlDataReader myReader;
     myReader = myCommand.ExecuteReader();
+    Productos.Clear();
 
     if (myReader.HasRows)
       while (myReader.Read())
@@ -62,7 +76,7 @@ internal class ProductViewModel : ViewModelBase {
           ProductId = myReader.GetInt32(0),
           ProductName = myReader.GetString(1),
           ProductDescription = myReader.GetString(2),
-          ProductPrice = myReader.GetDouble(3),
+          ProductPrice = myReader.GetDecimal(3),
           CategoryId = myReader.GetInt32(4),
           ProductStock = myReader.GetInt32(5),
           ProductImage = myReader.GetString(6),
@@ -77,22 +91,49 @@ internal class ProductViewModel : ViewModelBase {
     var isInserted = false;
     var insertQuery =
       "INSERT INTO Productos (Name, Description, Price, CategoryId, Stock, Rating, Image, PostId) values ('" +
-      producto.ProductName + "','" + producto.ProductDescription + "','" + producto.ProductPrice +
-      "','" + producto.CategoryId + "','" + producto.ProductStock + "','" + producto.ProductRating  + 
-      "','" + producto.ProductImage + "','" + producto.PostId + "')";
+      producto.ProductName + "','" + producto.ProductDescription + "'," + producto.ProductPrice +
+      ", " + producto.CategoryId + "," + producto.ProductStock + "," + producto.ProductRating +
+      ",'" + producto.ProductImage + "'," + producto.PostId + ");";
     try {
       var conexionBd = new MySqlConnection(MainWindow.CadenaConexion);
       conexionBd.Open();
       var command = new MySqlCommand(insertQuery, conexionBd);
       command.ExecuteNonQuery();
       isInserted = true;
+      conexionBd.Close();
+      GetAllProducts(); //Actualizar la lista de productos
     }
     catch (Exception e) {
       MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+      throw;
       isInserted = false;
     }
 
     return isInserted;
+  }
+
+  public bool UpdateMethod(ProductoModel producto) {
+    var isUpdated = false;
+    var updateQuery =
+      "UPDATE Productos SET Name='" + producto.ProductName + "', Description='" + producto.ProductDescription +
+      "', Price='" + producto.ProductPrice + "', CategoryId='" + producto.CategoryId + "', Stock='" +
+      producto.ProductStock + "', Rating='" + producto.ProductRating + "', Image='" + producto.ProductImage +
+      "', PostId='" + producto.PostId + "' WHERE ProductId='" + producto.ProductId + "'";
+    try {
+      var conexionBd = new MySqlConnection(MainWindow.CadenaConexion);
+      conexionBd.Open();
+      var command = new MySqlCommand(updateQuery, conexionBd);
+      command.ExecuteNonQuery();
+      isUpdated = true;
+      conexionBd.Close();
+      GetAllProducts(); //Actualizar la lista de productos
+    }
+    catch (Exception e) {
+      MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+      isUpdated = false;
+    }
+
+    return isUpdated;
   }
 
   public List<Object> SearchAllSelecrQuery(string parameters) {
@@ -123,7 +164,7 @@ internal class ProductViewModel : ViewModelBase {
               ProductId = myReader.GetInt32(0),
               ProductName = myReader.GetString(1),
               ProductDescription = myReader.GetString(2),
-              ProductPrice = myReader.GetDouble(3),
+              ProductPrice = myReader.GetDecimal(3),
               CategoryId = myReader.GetInt32(4),
               ProductStock = myReader.GetInt32(5),
               ProductImage = myReader.GetString(6),
