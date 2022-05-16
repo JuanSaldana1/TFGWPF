@@ -31,7 +31,11 @@ public partial class UsuariosUserControl {
     usuario.Follower = (IsFollowerCheckBox.IsChecked.Value) ? "T" : "F";
     usuario.ProfilePhoto = UserProfileImageEditText.Text;
     try {
-      viewModel.InsertMethod(usuario);
+      if (UserUsernameEditText.Text != "" && UserNameEditText.Text != "" || UserSurnameEditText.Text != "" ||
+          UserEmailEditText.Text != "" && UserRolComboBox.Text != "" || UserProfileImageEditText.Text != "") {
+        viewModel.InsertMethod(usuario);
+        MyListView.DataContext = new UserViewModel();
+      }
     }
     catch (Exception e) {
       MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
