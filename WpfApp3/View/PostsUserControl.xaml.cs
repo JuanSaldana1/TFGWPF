@@ -2,10 +2,13 @@
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 using System.Windows.Navigation;
+using Windows.UI.Xaml.Controls.Primitives;
+using MaterialDesignThemes.Wpf;
 using MySql.Data.MySqlClient;
+using WpfApp3.Model;
 using WpfApp3.ViewModel;
+using MessageBox = ModernWpf.MessageBox;
 
 namespace WpfApp3.View;
 
@@ -27,6 +30,40 @@ public partial class PostsUserControl {
     SnackbarSeven.MessageQueue?.Enqueue("");
   }
 
+  private void Sample5_DialogHost_OnDialogClosing(object sender, DialogClosingEventArgs eventArgs) {
+    var post = new PostModel();
+    var viewModel = new PostViewModel();
+    try {
+      post.PostTitle = ProductNameEditText.Text;
+      post.PostDescription = ProductDescriptionEditText.Text;
+      post.PostUrl = ProductUrlEditText.Text;
+      post.PostPublishDate = Convert.ToDateTime(PostPublishDatePicker.Text);
+      post.IsFavorite = PostIsFavoriteCheckBox.IsChecked.Value;
+      post.PostFirstImage = ProductRatingEditText.Text;
+      post.PostSecondImage = ProductImageEditText.Text;
+      try {
+        if (
+          ProductDescriptionEditText.Text != "" && ProductNameEditText.Text != "" && ProductUrlEditText.Text != "" ||
+          PostPublishDatePicker.Text != "" && ProductRatingEditText.Text != "" && ProductImageEditText.Text != ""
+        ) {
+          SnackbarSeven.MessageQueue?.Enqueue(viewModel.InsertMethod(post)
+            ? "Post Creado correctamente"
+            : "Error al crear el producto");
+        }
+        /*viewModel.GetAllProducts();*/
+      }
+      catch (Exception e) {
+        MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        throw;
+      }
+    }
+    catch (Exception e) {
+      MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+    }
+
+    /*viewModel.GetAllProducts();*/
+  }
+
   private Action Deshacer() {
     try { }
     catch (NotImplementedException nIe) {
@@ -38,7 +75,6 @@ public partial class PostsUserControl {
 
   public void PostChanged(object sender, TextChangedEventArgs e) {
     SnackbarSeven.MessageQueue?.Enqueue(e.ToString());
-    SnackbarSeven.MessageQueue?.Enqueue(e.Changes.ToString());
   }
 
   private void ToggleButton_OnChecked(object sender, RoutedEventArgs e) {

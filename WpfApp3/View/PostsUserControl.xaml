@@ -18,127 +18,234 @@
     xmlns:viewModel="clr-namespace:WpfApp3.ViewModel"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Grid>
-        <!--<Page Name="PostComponentPage"/>-->
-        <ListBox
-            ItemsSource="{Binding Posts}"
-            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-            x:Name="MyListView">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Vertical">
-
-                        <materialDesign:Card
-                            Background="#F8BBD0"
-                            UniformCornerRadius="6"
-                            Padding="9"
-                            Width="400">
-
-                            <!--<Page Name="PostComponentPage"/>-->
-
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-                                <hc:TransitioningContentControl>
-                                    <hc:Carousel
-                                        Height="200"
-                                        IsCenter="True"
-                                        VerticalAlignment="Center"
-                                        Width="300">
-                                        <Image
-                                            Height="200"
-                                            Source="{Binding PostFirstImage}"
-                                            Stretch="UniformToFill"
-                                            VerticalAlignment="Center" />
-                                        <Image
-                                            Height="200"
-                                            Source="{Binding PostSecondImage}"
-                                            Stretch="UniformToFill"
-                                            VerticalAlignment="Center" />
-                                    </hc:Carousel>
-                                </hc:TransitioningContentControl>
-
-
-                                <TextBox
-                                    Grid.Row="1"
-                                    FontSize="19"
-                                    Name="textViewTituloPost"
-                                    Text="{Binding PostTitle}"
-                                    TextChanged="PostChanged" />
-                                <TextBlock
-                                    Grid.Row="2"
-                                    Style="{StaticResource MaterialDesignBodyLargeTextBlock}"
-                                    Text="{Binding PostDescription}"
-                                    TextWrapping="Wrap"
-                                    VerticalAlignment="Center" />
-
-                                <TextBlock Grid.Row="3">
-                                    <Hyperlink NavigateUri="{Binding PostUrl}">
-                                        <Run>
-                                            <Run.Text>
-                                                Enlace al post
-                                            </Run.Text>
-                                        </Run>
-                                    </Hyperlink>
-                                </TextBlock>
-
-                                <ToggleButton
-                                    Name="toggleButtonFavorito"
-                                    Checked="ToggleButton_OnChecked"
-                                    Grid.Row="4"
-                                    Content="{materialDesign:PackIcon Kind=Heart, Size=21}"
-                                    Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
-                                    ToolTip="Favorito"
-                                    IsChecked="{Binding IsFavorite}" />
-
-                                <DatePicker
-                                    Grid.Row="5"
-                                    HorizontalAlignment="Left"
-                                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
-                                    Text="{Binding PostPublishDate}"
-                                    Width="150"
-                                    materialDesign:HintAssist.Hint="Elija la fecha de publicación"
-                                    materialDesign:TextFieldAssist.HasClearButton="True" />
-
-                                <Separator
-                                    Grid.Row="6"
-                                    Style="{StaticResource MaterialDesignDarkSeparator}" />
-
-                                <Button
-                                    Grid.Row="7"
-                                    Click="ButtonUpdateChanges_Click"
-                                    Content="Guardar Cambios"
-                                    HorizontalAlignment="Left"
-                                    Style="{StaticResource MaterialDesignFlatButton}" />
-
-                            </Grid>
-                        </materialDesign:Card>
+        <materialDesign:DialogHost
+            DialogClosing="Sample5_DialogHost_OnDialogClosing"
+            Style="{StaticResource MaterialDesignEmbeddedDialogHost}"
+            DialogMargin="8">
+            <materialDesign:DialogHost.DialogContent>
+                <StackPanel
+                    Margin="16">
+                    <TextBlock
+                        Style="{StaticResource MaterialDesignTitleLargeTextBlock}"
+                        Text="Crea una publicación" />
+                    <TextBox
+                        materialDesign:HintAssist.Hint="Título de la publicación"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        VerticalAlignment="Center"
+                        Margin="0 8 0 0"
+                        HorizontalAlignment="Stretch"
+                        x:Name="ProductNameEditText" />
+                    <TextBox
+                        materialDesign:HintAssist.Hint="Descripción de la publicación"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        VerticalAlignment="Center"
+                        Margin="0 8 0 0"
+                        HorizontalAlignment="Stretch"
+                        x:Name="ProductDescriptionEditText" />
+                    <TextBox
+                        materialDesign:HintAssist.Hint="Enlace de la publicación"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        VerticalAlignment="Center"
+                        Margin="0 8 0 0"
+                        HorizontalAlignment="Stretch"
+                        x:Name="ProductUrlEditText" />
+                    <DatePicker
+                        Name="PostPublishDatePicker"
+                        HorizontalAlignment="Left"
+                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
+                        Width="150"
+                        materialDesign:HintAssist.Hint="Elija la fecha de publicación"
+                        materialDesign:TextFieldAssist.HasClearButton="True" />
+                    <CheckBox
+                        Name="PostIsFavoriteCheckBox"
+                        Content="Check"
+                        Style="{StaticResource MaterialDesignCheckBox}" />
+                    <TextBox
+                        materialDesign:HintAssist.Hint="Cantidad del producto"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        VerticalAlignment="Center"
+                        Margin="0 8 0 0"
+                        HorizontalAlignment="Stretch"
+                        x:Name="ProductStockEditText" />
+                    <TextBox
+                        materialDesign:HintAssist.Hint="Valoración del producto"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        VerticalAlignment="Center"
+                        Margin="0 8 0 0"
+                        HorizontalAlignment="Stretch"
+                        x:Name="ProductRatingEditText" />
+                    <TextBox
+                        materialDesign:HintAssist.Hint="Imagen del producto"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        VerticalAlignment="Center"
+                        Margin="0 8 0 0"
+                        HorizontalAlignment="Stretch"
+                        x:Name="ProductImageEditText" />
+                    <TextBox
+                        materialDesign:HintAssist.Hint="Post id al que pertenece el producto"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        VerticalAlignment="Center"
+                        Margin="0 8 0 0"
+                        HorizontalAlignment="Stretch"
+                        x:Name="ProductPostIdEditText" />
+                    <StackPanel
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Right">
+                        <Button
+                            Style="{StaticResource MaterialDesignFlatButton}"
+                            IsDefault="True"
+                            Margin="0 8 8 0"
+                            Content="ACCEPT"
+                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">
+                            <Button.CommandParameter>
+                                <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
+                                    True
+                                </system:Boolean>
+                            </Button.CommandParameter>
+                        </Button>
+                        <Button
+                            Style="{StaticResource MaterialDesignFlatButton}"
+                            IsCancel="True"
+                            Margin="0 8 8 0"
+                            Content="CANCEL"
+                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">
+                            <Button.CommandParameter>
+                                <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
+                                    False
+                                </system:Boolean>
+                            </Button.CommandParameter>
+                        </Button>
                     </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-            <ListBox.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel IsItemsHost="True" Orientation="Horizontal" />
-                </ItemsPanelTemplate>
-            </ListBox.ItemsPanel>
-        </ListBox>
-        <Button
-            Content="{materialDesign:PackIcon Kind=Plus,
-                                              Size=22}"
-            Grid.Row="0"
-            Height="50"
-            HorizontalAlignment="Right"
-            Margin="0,0,48,30"
-            Style="{StaticResource MaterialDesignRaisedButton}"
-            VerticalAlignment="Bottom"
-            materialDesign:ButtonAssist.CornerRadius="10" />
+                </StackPanel>
+            </materialDesign:DialogHost.DialogContent>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition
+                        Height="*" />
+                    <RowDefinition
+                        Height="Auto" />
+                </Grid.RowDefinitions>
+                <ListBox
+                    ItemsSource="{Binding Posts}"
+                    ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                    x:Name="MyListView">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical">
+                                <materialDesign:Card
+                                    Background="#F8BBD0"
+                                    UniformCornerRadius="6"
+                                    Padding="9"
+                                    Width="400">
+
+                                    <!--<Page Name="PostComponentPage"/>-->
+
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <hc:TransitioningContentControl>
+                                            <hc:Carousel
+                                                Height="200"
+                                                IsCenter="True"
+                                                VerticalAlignment="Center"
+                                                Width="300">
+                                                <Image
+                                                    Height="200"
+                                                    Source="{Binding PostFirstImage}"
+                                                    Stretch="UniformToFill"
+                                                    VerticalAlignment="Center" />
+                                                <Image
+                                                    Height="200"
+                                                    Source="{Binding PostSecondImage}"
+                                                    Stretch="UniformToFill"
+                                                    VerticalAlignment="Center" />
+                                            </hc:Carousel>
+                                        </hc:TransitioningContentControl>
+                                        <TextBox
+                                            Grid.Row="1"
+                                            FontSize="19"
+                                            Name="textViewTituloPost"
+                                            Text="{Binding PostTitle}"
+                                            TextChanged="PostChanged" />
+                                        <TextBlock
+                                            Grid.Row="2"
+                                            Style="{StaticResource MaterialDesignBodyLargeTextBlock}"
+                                            Text="{Binding PostDescription}"
+                                            TextWrapping="Wrap"
+                                            VerticalAlignment="Center" />
+
+                                        <TextBlock Grid.Row="3">
+                                            <Hyperlink NavigateUri="{Binding PostUrl}">
+                                                <Run>
+                                                    <Run.Text>
+                                                        Enlace al post
+                                                    </Run.Text>
+                                                </Run>
+                                            </Hyperlink>
+                                        </TextBlock>
+
+                                        <ToggleButton
+                                            Name="toggleButtonFavorito"
+                                            Checked="ToggleButton_OnChecked"
+                                            Grid.Row="4"
+                                            Content="{materialDesign:PackIcon Kind=Heart, Size=21}"
+                                            Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
+                                            ToolTip="Favorito"
+                                            IsChecked="{Binding IsFavorite}" />
+
+                                        <DatePicker
+                                            Grid.Row="5"
+                                            HorizontalAlignment="Left"
+                                            Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
+                                            Text="{Binding PostPublishDate}"
+                                            Width="150"
+                                            materialDesign:HintAssist.Hint="Elija la fecha de publicación"
+                                            materialDesign:TextFieldAssist.HasClearButton="True" />
+
+                                        <Separator
+                                            Grid.Row="6"
+                                            Style="{StaticResource MaterialDesignDarkSeparator}" />
+
+                                        <Button
+                                            Grid.Row="7"
+                                            Click="ButtonUpdateChanges_Click"
+                                            Content="Guardar Cambios"
+                                            HorizontalAlignment="Left"
+                                            Style="{StaticResource MaterialDesignFlatButton}" />
+
+                                    </Grid>
+                                </materialDesign:Card>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel IsItemsHost="True" Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                </ListBox>
+
+                <Button
+                    Style="{StaticResource MaterialDesignRaisedButton}"
+                    Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Right"
+                    Grid.Row="0"
+                    Height="50"
+                    materialDesign:ButtonAssist.CornerRadius="10"
+                    Margin="0,0,48,30"
+                    Content="{materialDesign:PackIcon Kind=Plus, Size=22}" />
+            </Grid>
+        </materialDesign:DialogHost>
+        <!--<Page Name="PostComponentPage"/>-->
         <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}" x:Name="SnackbarSeven">
             <materialDesign:SnackbarMessage ActionContent="UNDO" />
         </materialDesign:Snackbar>

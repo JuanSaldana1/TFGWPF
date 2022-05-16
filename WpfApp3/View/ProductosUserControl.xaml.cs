@@ -98,5 +98,7 @@ public partial class ProductosUserControl {
     catch (Exception e) {
       MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
     }
+
+    viewModel.GetAllProducts();
   }
 }

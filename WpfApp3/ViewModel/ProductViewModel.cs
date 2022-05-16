@@ -23,7 +23,7 @@ internal class ProductViewModel : ViewModelBase {
     try {
       var cadenaConexion = MainWindow.CadenaConexion;
       var conexionBd = new MySqlConnection(cadenaConexion);
-      var mySelectQuery =
+      const string mySelectQuery =
         "SELECT ProductId, Name, Description, Price, C.Nombre, Stock, Rating, Image FROM Productos JOIN Categorias C on C.CategoryId = Productos.CategoryId ORDER BY ProductId";
       var myCommand = new MySqlCommand(mySelectQuery, conexionBd);
       conexionBd.Open();
@@ -61,52 +61,64 @@ internal class ProductViewModel : ViewModelBase {
 
 
   public void GetAllProducts() {
-    var cadenaConexion = MainWindow.CadenaConexion;
-    var conexionBd = new MySqlConnection(cadenaConexion);
-    var mySelectQuery = "SELECT * FROM Productos  ORDER BY ProductId";
-    var myCommand = new MySqlCommand(mySelectQuery, conexionBd);
-    conexionBd.Open();
-    MySqlDataReader myReader;
-    myReader = myCommand.ExecuteReader();
     Productos.Clear();
+    try {
+      var cadenaConexion = MainWindow.CadenaConexion;
+      var conexionBd = new MySqlConnection(cadenaConexion);
+      var mySelectQuery = "SELECT * FROM Productos  ORDER BY ProductId";
+      var myCommand = new MySqlCommand(mySelectQuery, conexionBd);
+      conexionBd.Open();
+      MySqlDataReader myReader;
+      myReader = myCommand.ExecuteReader();
 
-    if (myReader.HasRows)
-      while (myReader.Read())
-        Productos.Add(new ProductoModel {
-          ProductId = myReader.GetInt32(0),
-          ProductName = myReader.GetString(1),
-          ProductDescription = myReader.GetString(2),
-          ProductPrice = myReader.GetDecimal(3),
-          CategoryId = myReader.GetInt32(4),
-          ProductStock = myReader.GetInt32(5),
-          ProductImage = myReader.GetString(6),
-          PostId = myReader.GetInt32(7)
-        });
+      if (myReader.HasRows)
+        while (myReader.Read())
+          Productos.Add(new ProductoModel {
+            ProductId = myReader.GetInt32(0),
+            ProductName = myReader.GetString(1),
+            ProductDescription = myReader.GetString(2),
+            ProductPrice = myReader.GetDecimal(3),
+            CategoryId = myReader.GetInt32(4),
+            ProductStock = myReader.GetInt32(5),
+            ProductImage = myReader.GetString(6),
+            PostId = myReader.GetInt32(7)
+          });
 
-    myReader.Close();
-    conexionBd.Close();
+      myReader.Close();
+      conexionBd.Close();
+    }
+    catch (Exception e) {
+      MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+      // throw;
+    }
   }
 
   public bool InsertMethod(ProductoModel producto) {
     var isInserted = false;
-    var insertQuery =
-      "INSERT INTO Productos (Name, Description, Price, CategoryId, Stock, Rating, Image, PostId) values ('" +
-      producto.ProductName + "','" + producto.ProductDescription + "'," + producto.ProductPrice +
-      ", " + producto.CategoryId + "," + producto.ProductStock + "," + producto.ProductRating +
-      ",'" + producto.ProductImage + "'," + producto.PostId + ");";
     try {
-      var conexionBd = new MySqlConnection(MainWindow.CadenaConexion);
-      conexionBd.Open();
-      var command = new MySqlCommand(insertQuery, conexionBd);
-      command.ExecuteNonQuery();
-      isInserted = true;
-      conexionBd.Close();
+      var insertQuery =
+        "INSERT INTO Productos (Name, Description, Price, CategoryId, Stock, Rating, Image, PostId) values ('" +
+        producto.ProductName + "','" + producto.ProductDescription + "'," + producto.ProductPrice +
+        "," + producto.CategoryId + "," + producto.ProductStock + "," + producto.ProductRating +
+        ",'" + producto.ProductImage + "'," + producto.PostId + ");";
+      try {
+        var conexionBd = new MySqlConnection(MainWindow.CadenaConexion);
+        conexionBd.Open();
+        var command = new MySqlCommand(insertQuery, conexionBd);
+        command.ExecuteNonQuery();
+        isInserted = true;
+        conexionBd.Close();
+      }
+      catch (Exception e) {
+        MessageBox.Show(e.Message, "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+        throw;
+      }
+
       GetAllProducts(); //Actualizar la lista de productos
     }
     catch (Exception e) {
-      MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+      MessageBox.Show(e.Message, "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
       throw;
-      isInserted = false;
     }
 
     return isInserted;

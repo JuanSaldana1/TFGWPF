@@ -11,53 +11,156 @@
     d:DesignHeight="450"
     d:DesignWidth="800">
     <Grid>
-        <ListBox
-            ItemsSource="{Binding Orders}"
-            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-            x:Name="MyListView">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Vertical">
-                        <materialDesign:Card>
-                            <StackPanel>
-                                <Expander
-                                    Name="Expander"
-                                    HorizontalAlignment="Stretch"
-                                    Header="{Binding OrderDate}">
-                                    <StackPanel
-                                        Orientation="Vertical"
-                                        TextBlock.Foreground="{DynamicResource MaterialDesignBody}"
-                                        Margin="24,8,24,16">
-
-                                        <TextBlock
-                                            Text="{Binding UserName}" />
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="{Binding ProductName}" />
-                                            <TextBlock Text="{Binding Quantity}" Margin="5, 0" />
-                                        </StackPanel>
-                                    </StackPanel>
-                                </Expander>
-                            </StackPanel>
-                        </materialDesign:Card>
+        <materialDesign:DialogHost
+            DialogClosing="Sample5_DialogHost_OnDialogClosing"
+            Style="{StaticResource MaterialDesignEmbeddedDialogHost}"
+            DialogMargin="8">
+            <materialDesign:DialogHost.DialogContent>
+                <StackPanel
+                    Margin="16">
+                    <TextBlock
+                        Style="{StaticResource MaterialDesignTitleLargeTextBlock}"
+                        Text="Crea un Pedido" />
+                    <TextBox
+                        materialDesign:HintAssist.Hint="Id del producto"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        VerticalAlignment="Center"
+                        Margin="0 8 0 0"
+                        HorizontalAlignment="Stretch"
+                        x:Name="OrderProductIdEditText" />
+                    <DatePicker
+                        Name="OrderDatePicker"
+                        Width="120"
+                        materialDesign:HintAssist.Hint="Locale Date" />
+                    <TextBox
+                        materialDesign:HintAssist.Hint="Cantidad"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        VerticalAlignment="Center"
+                        Margin="0 8 0 0"
+                        HorizontalAlignment="Stretch"
+                        x:Name="OrderQuantityEditText" />
+                    <TextBox
+                        materialDesign:HintAssist.Hint="Categoria del producto"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        VerticalAlignment="Center"
+                        Margin="0 8 0 0"
+                        HorizontalAlignment="Stretch"
+                        x:Name="ProductCategoryIdEditText" />
+                    <TextBox
+                        materialDesign:HintAssist.Hint="Cantidad del producto"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        VerticalAlignment="Center"
+                        Margin="0 8 0 0"
+                        HorizontalAlignment="Stretch"
+                        x:Name="ProductStockEditText" />
+                    <TextBox
+                        materialDesign:HintAssist.Hint="Valoración del producto"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        VerticalAlignment="Center"
+                        Margin="0 8 0 0"
+                        HorizontalAlignment="Stretch"
+                        x:Name="ProductRatingEditText" />
+                    <TextBox
+                        materialDesign:HintAssist.Hint="Imagen del producto"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        VerticalAlignment="Center"
+                        Margin="0 8 0 0"
+                        HorizontalAlignment="Stretch"
+                        x:Name="ProductImageEditText" />
+                    <TextBox
+                        materialDesign:HintAssist.Hint="Post id al que pertenece el producto"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        VerticalAlignment="Center"
+                        Margin="0 8 0 0"
+                        HorizontalAlignment="Stretch"
+                        x:Name="ProductPostIdEditText" />
+                    <StackPanel
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Right">
+                        <Button
+                            Style="{StaticResource MaterialDesignFlatButton}"
+                            IsDefault="True"
+                            Margin="0 8 8 0"
+                            Content="ACCEPT"
+                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">
+                            <Button.CommandParameter>
+                                <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
+                                    True
+                                </system:Boolean>
+                            </Button.CommandParameter>
+                        </Button>
+                        <Button
+                            Style="{StaticResource MaterialDesignFlatButton}"
+                            IsCancel="True"
+                            Margin="0 8 8 0"
+                            Content="CANCEL"
+                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">
+                            <Button.CommandParameter>
+                                <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
+                                    False
+                                </system:Boolean>
+                            </Button.CommandParameter>
+                        </Button>
                     </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-            <ListBox.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel IsItemsHost="True" Orientation="Horizontal" />
-                </ItemsPanelTemplate>
-            </ListBox.ItemsPanel>
-        </ListBox>
-        <Button
-            Content="{materialDesign:PackIcon Kind=Plus,
-                                              Size=22}"
-            Grid.Row="0"
-            Height="50"
-            HorizontalAlignment="Right"
-            Margin="0,0,48,30"
-            Style="{StaticResource MaterialDesignRaisedButton}"
-            VerticalAlignment="Bottom"
-            materialDesign:ButtonAssist.CornerRadius="10" />
+                </StackPanel>
+            </materialDesign:DialogHost.DialogContent>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition
+                        Height="*" />
+                    <RowDefinition
+                        Height="Auto" />
+                </Grid.RowDefinitions>
+                <ListBox
+                    ItemsSource="{Binding Orders}"
+                    ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                    x:Name="MyListView">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical">
+                                <materialDesign:Card>
+                                    <StackPanel>
+                                        <Expander
+                                            Name="Expander"
+                                            HorizontalAlignment="Stretch"
+                                            Header="{Binding OrderDate}">
+                                            <StackPanel
+                                                Orientation="Vertical"
+                                                TextBlock.Foreground="{DynamicResource MaterialDesignBody}"
+                                                Margin="24,8,24,16">
+
+                                                <TextBlock
+                                                    Text="{Binding UserName}" />
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="{Binding ProductName}" />
+                                                    <TextBlock Text="{Binding Quantity}" Margin="5, 0" />
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </Expander>
+                                    </StackPanel>
+                                </materialDesign:Card>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel IsItemsHost="True" Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                </ListBox>
+
+                <Button
+                    Style="{StaticResource MaterialDesignRaisedButton}"
+                    Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Right"
+                    Grid.Row="0"
+                    Height="50"
+                    materialDesign:ButtonAssist.CornerRadius="10"
+                    Margin="0,0,48,30"
+                    Content="{materialDesign:PackIcon Kind=Plus, Size=22}" />
+            </Grid>
+        </materialDesign:DialogHost>
         <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}" x:Name="SnackbarSeven">
             <materialDesign:SnackbarMessage ActionContent="UNDO" />
         </materialDesign:Snackbar>

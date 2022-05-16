@@ -7,6 +7,7 @@ namespace WpfApp3.Model;
 
 public class OrderModel {
   private int lineId;
+  private int userId;
   private DateTime orderDate;
   private int orderId;
   private int productId;
@@ -50,6 +51,14 @@ public class OrderModel {
     get => lineId;
     set {
       lineId = value;
+      OnPropertyChanged("LineId");
+    }
+  }
+
+  public int UserId {
+    get => userId;
+    set {
+      userId = value;
       OnPropertyChanged("LineId");
     }
   }
