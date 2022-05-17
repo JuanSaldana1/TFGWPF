@@ -14,7 +14,7 @@ internal class UserViewModel {
   public UserViewModel() {
     var cadenaConexion = MainWindow.CadenaConexion;
     const string selectAllUsersQuery =
-      "SELECT UserId, Username, Name, Surname, Email, Rol, Follower, ProfilePhoto FROM Usuarios";
+      "SELECT UserId, Username, Name, Surname, Email, Rol, Follower, ProfilePhoto FROM Users";
     var conexion = new MySqlConnection(cadenaConexion);
     var myCommand = new MySqlCommand(selectAllUsersQuery, conexion);
     conexion.Open();
@@ -37,7 +37,7 @@ internal class UserViewModel {
     myReader.Close();
     conexion.Close();
 
-    const string selectRoles = "SELECT Rol FROM Usuarios GROUP BY Rol";
+    const string selectRoles = "SELECT Rol FROM Users GROUP BY Rol";
     var rolSelectionCommand = new MySqlCommand(selectRoles, conexion);
     conexion.Open();
     MySqlDataReader myRolesReader;
@@ -84,7 +84,7 @@ internal class UserViewModel {
 
     try {
       var updateNameQuery =
-        "UPDATE Usuarios SET Name = '" + name + "' WHERE UserId = " + userId + ";";
+        "UPDATE Users SET Name = '" + name + "' WHERE UserId = " + userId + ";";
     }
     catch (Exception e) {
       MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
