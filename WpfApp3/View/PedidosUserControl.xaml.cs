@@ -23,8 +23,8 @@ public partial class PedidosUserControl {
       pedido.UserId = Convert.ToInt32(ProductStockEditText.Text);
       try {
         SnackbarSeven.MessageQueue?.Enqueue(viewModel.InsertMethod(pedido)
-          ? "Producto insertado correctamente"
-          : "Error al insertar el producto");
+          ? "Pedido creado correctamente"
+          : "Error al crear el pedido");
         viewModel.GetAllOrders();
       }
       catch (Exception e) {

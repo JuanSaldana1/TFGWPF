@@ -8,30 +8,44 @@ using MessageBox = ModernWpf.MessageBox;
 namespace WpfApp3.ViewModel;
 
 public class OrderViewModel {
+  public IList<OrderModel> Orders { get; } = new List<OrderModel>();
+
   public OrderViewModel() {
+    GetProductsForView();
+  }
+
+  private void GetProductsForView() {
     var cadenaConexion = MainWindow.CadenaConexion;
     var conexionBd = new MySqlConnection(cadenaConexion);
     var mySelectQuery =
       "SELECT OrderId, O.ProductId, OrderDate, Quantity, LineId, P.Name, U.Name FROM Orders O join Productos P on O.ProductId = P.ProductId JOIN Usuarios U on U.UserId = O.UserId";
     var myCommand = new MySqlCommand(mySelectQuery, conexionBd);
-    conexionBd.Open();
-    MySqlDataReader myReader;
-    myReader = myCommand.ExecuteReader();
+    try {
+      conexionBd.Open();
+      MySqlDataReader myReader;
+      myReader = myCommand.ExecuteReader();
 
-    if (myReader.HasRows)
-      while (myReader.Read())
-        Orders.Add(new OrderModel {
-          OrderId = myReader.GetInt32(0),
-          ProductId = myReader.GetInt32(1),
-          OrderDate = myReader.GetDateTime(2),
-          Quantity = myReader.GetInt32(3),
-          LineId = myReader.GetInt32(4),
-          ProductName = myReader.GetString(5),
-          UserName = myReader.GetString(6)
-        });
+      if (myReader.HasRows) {
+        while (myReader.Read()) {
+          Orders.Add(new OrderModel {
+            OrderId = myReader.GetInt32(0),
+            ProductId = myReader.GetInt32(1),
+            OrderDate = myReader.GetDateTime(2),
+            Quantity = myReader.GetInt32(3),
+            LineId = myReader.GetInt32(4),
+            ProductName = myReader.GetString(5),
+            UserName = myReader.GetString(6)
+          });
+        }
+      }
 
-    myReader.Close();
-    conexionBd.Close();
+      myReader.Close();
+      conexionBd.Close();
+    }
+    catch (Exception e) {
+      MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+      throw;
+    }
   }
 
   public void GetAllOrders() {
@@ -39,7 +53,7 @@ public class OrderViewModel {
     try {
       var cadenaConexion = MainWindow.CadenaConexion;
       var conexionBd = new MySqlConnection(cadenaConexion);
-      var mySelectQuery = "SELECT * FROM Orders  ORDER BY OrderID";
+      const string mySelectQuery = "SELECT * FROM Orders  ORDER BY OrderID";
       var myCommand = new MySqlCommand(mySelectQuery, conexionBd);
       conexionBd.Open();
       MySqlDataReader myReader;
@@ -47,7 +61,7 @@ public class OrderViewModel {
 
       if (myReader.HasRows)
         while (myReader.Read())
-          Orders.Add(new OrderModel() {
+          Orders.Add(new OrderModel {
             OrderId = myReader.GetInt32(0),
             ProductId = myReader.GetInt32(1),
             OrderDate = myReader.GetDateTime(2),
@@ -79,7 +93,7 @@ public class OrderViewModel {
         command.ExecuteNonQuery();
         isInserted = true;
         conexionBd.Close();
-        GetAllOrders(); //Actualizar la lista de productos
+        GetProductsForView(); //Actualizar la lista de productos
       }
       catch (Exception e) {
         MessageBox.Show(e.Message, "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -87,7 +101,7 @@ public class OrderViewModel {
         isInserted = false;
       }
 
-      GetAllOrders(); //Actualizar la lista de productos
+      GetProductsForView(); //Actualizar la lista de productos
     }
     catch (Exception e) {
       MessageBox.Show(e.Message, "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -96,6 +110,4 @@ public class OrderViewModel {
 
     return isInserted;
   }
-
-  public IList<OrderModel> Orders { get; } = new List<OrderModel>();
 }

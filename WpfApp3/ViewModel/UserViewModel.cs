@@ -13,7 +13,7 @@ internal class UserViewModel {
 
   public UserViewModel() {
     var cadenaConexion = MainWindow.CadenaConexion;
-    var selectAllUsersQuery =
+    const string selectAllUsersQuery =
       "SELECT UserId, Username, Name, Surname, Email, Rol, Follower, ProfilePhoto FROM Usuarios";
     var conexion = new MySqlConnection(cadenaConexion);
     var myCommand = new MySqlCommand(selectAllUsersQuery, conexion);
@@ -73,7 +73,6 @@ internal class UserViewModel {
     catch (Exception e) {
       MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
       throw;
-      isInserted = false;
     }
 
     return isInserted;

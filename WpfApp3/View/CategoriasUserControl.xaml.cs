@@ -11,8 +11,8 @@ namespace WpfApp3.View;
 public partial class CategoriasUserControl {
   public CategoriasUserControl() {
     InitializeComponent();
-    /*CategoriesListBox.DataContext = new CategoryViewModel();*/
-    CategoriesDataGrid.ItemsSource = new CategoryViewModel().Categorias;
+    CategoriesListBox.DataContext = new CategoryViewModel();
+    /*CategoriesDataGrid.ItemsSource = new CategoryViewModel().Categorias;*/
   }
 
   /*private void Button_Click(object sender, RoutedEventArgs e) {
@@ -33,7 +33,7 @@ public partial class CategoriasUserControl {
     SnackbarSeven.MessageQueue?.Enqueue("Artículo cambiado");
   }*/
 
-  /*private void Sample5_DialogHost_OnDialogClosing(object sender, DialogClosingEventArgs eventArgs) {
+  private void Sample5_DialogHost_OnDialogClosing(object sender, DialogClosingEventArgs eventArgs) {
     Debug.WriteLine($"SAMPLE 5: Closing dialog with parameter: {eventArgs.Parameter ?? string.Empty}");
 
     //you can cancel the dialog close:
@@ -44,7 +44,7 @@ public partial class CategoriasUserControl {
 
     if (!string.IsNullOrWhiteSpace(CategoryNameEditText.Text))
       CategoriesListBox.Items.Add(CategoryNameEditText.Text.Trim());
-  }*/
+  }
 
   /*private void DeleteCategoryButton_OnClick(object sender, RoutedEventArgs e) {
     var selectedItem = CategoriesListBox.SelectedItem;

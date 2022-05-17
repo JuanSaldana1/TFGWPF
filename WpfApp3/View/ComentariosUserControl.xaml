@@ -68,11 +68,6 @@
                                         materialDesign:HintAssist.Hint="Pick Date"
                                         materialDesign:TextFieldAssist.HasClearButton="True" />
 
-                                    <CheckBox
-                                        Content="Anónimo"
-                                        IsChecked="{Binding IsAnonymous}"
-                                        Style="{StaticResource MaterialDesignFilterChipPrimaryCheckBox}" />
-
                                 </StackPanel>
 
                                 <Separator

@@ -14,14 +14,15 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModel="clr-namespace:WpfApp3.ViewModel"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
     <Grid>
-        <DataGrid
+        <!--<DataGrid
             Name="CategoriesDataGrid"
             CanUserAddRows="True"
             SelectionUnit="Cell"
-            SelectionMode="Extended" />
-        <!--<materialDesign:DialogHost
+            SelectionMode="Extended" />-->
+        <materialDesign:DialogHost
             DialogClosing="Sample5_DialogHost_OnDialogClosing"
             Style="{StaticResource MaterialDesignEmbeddedDialogHost}"
             DialogMargin="8">
@@ -78,13 +79,9 @@
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
                                 <ListBoxItem
                                     Content="{Binding CategoryName}" />
-                                <Button
+                                <!--<Button
                                     Name="DeleteCategoryButton"
                                     Click="DeleteCategoryButton_OnClick"
                                     Grid.Column="1"
@@ -94,13 +91,9 @@
                                         Kind="DeleteOutline"
                                         Height="20"
                                         Width="20" />
-                                </Button>
+                                </Button>-->
                             </Grid>
-
-
                         </DataTemplate>
-
-
                     </ListBox.ItemTemplate>
                     <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>
@@ -122,6 +115,6 @@
         </materialDesign:DialogHost>
         <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}" x:Name="SnackbarSeven">
             <materialDesign:SnackbarMessage ActionContent="UNDO" />
-        </materialDesign:Snackbar>-->
+        </materialDesign:Snackbar>
     </Grid>
 </UserControl>

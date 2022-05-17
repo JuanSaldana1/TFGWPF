@@ -12,7 +12,8 @@ public partial class ListaYCRUD {
   public ListaYCRUD() {
     InitializeComponent();
     DataContext = new ThemeSettingsViewModel();
-    TextViewNombreBaseDatos.Text = "Estás editando " + MainWindow.BaseDatos;
+    var paletteHelper = new PaletteHelper();
+    TextViewNombreBaseDatos.Text = "Estás editando: " + MainWindow.BaseDatos;
     var productosUserControl = new ProductosUserControl();
     var usuariosUserControl = new UsuariosUserControl();
     var postsUserControl = new PostsUserControl();
@@ -29,7 +30,7 @@ public partial class ListaYCRUD {
     userControlPedidos.Content = pedidosUserControl;
     userControlConsultas.Content = consultasUserControl;
     userControlColores.Content = coloresUserControl;
-    var paletteHelper = new PaletteHelper();
+    
   }
 
   private void ButtonBase_OnClick(object sender, RoutedEventArgs e) {

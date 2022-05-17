@@ -33,7 +33,9 @@ public partial class UsuariosUserControl {
     try {
       if (UserUsernameEditText.Text != "" && UserNameEditText.Text != "" || UserSurnameEditText.Text != "" ||
           UserEmailEditText.Text != "" && UserRolComboBox.Text != "" || UserProfileImageEditText.Text != "") {
-        viewModel.InsertMethod(usuario);
+        SnackbarSeven.MessageQueue?.Enqueue(viewModel.InsertMethod(usuario)
+          ? "Producto insertado correctamente"
+          : "Error al insertar el producto");
         MyListView.DataContext = new UserViewModel();
       }
     }
