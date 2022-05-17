@@ -59,7 +59,7 @@ internal class UserViewModel {
   public bool InsertMethod(UserModel usuario) {
     var isInserted = false;
     var insertQuery =
-      "INSERT INTO Usuarios (Username, Name, Surname, Email, Rol, Follower, ProfilePhoto) values ('" +
+      "INSERT INTO Users (Username, Name, Surname, Email, Rol, Follower, ProfilePhoto) values ('" +
       usuario.Username + "','" + usuario.Name + "','" + usuario.Surname +
       "','" + usuario.Email + "','" + usuario.Rol + "','" + usuario.Follower +
       "','" + usuario.ProfilePhoto + "')";

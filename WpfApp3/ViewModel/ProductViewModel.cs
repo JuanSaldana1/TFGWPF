@@ -24,7 +24,7 @@ internal class ProductViewModel : ViewModelBase {
       var cadenaConexion = MainWindow.CadenaConexion;
       var conexionBd = new MySqlConnection(cadenaConexion);
       const string mySelectQuery =
-        "SELECT ProductId, Name, Description, Price, C.Nombre, Stock, Rating, Image FROM Productos JOIN Categorias C on C.CategoryId = Productos.CategoryId ORDER BY ProductId";
+        "SELECT ProductId, Products.Name, Description, Price, C.Name, Stock, Rating, Image FROM Products JOIN Categories C on C.CategoryId = Products.CategoryId ORDER BY ProductId";
       var myCommand = new MySqlCommand(mySelectQuery, conexionBd);
       conexionBd.Open();
       MySqlDataReader myReader;
@@ -65,7 +65,7 @@ internal class ProductViewModel : ViewModelBase {
     try {
       var cadenaConexion = MainWindow.CadenaConexion;
       var conexionBd = new MySqlConnection(cadenaConexion);
-      var mySelectQuery = "SELECT * FROM Productos  ORDER BY ProductId";
+      var mySelectQuery = "SELECT * FROM Products  ORDER BY ProductId";
       var myCommand = new MySqlCommand(mySelectQuery, conexionBd);
       conexionBd.Open();
       MySqlDataReader myReader;
@@ -97,7 +97,7 @@ internal class ProductViewModel : ViewModelBase {
     var isInserted = false;
     try {
       var insertQuery =
-        "INSERT INTO Productos (Name, Description, Price, CategoryId, Stock, Rating, Image, PostId) values ('" +
+        "INSERT INTO Products (Name, Description, Price, CategoryId, Stock, Rating, Image, PostId) values ('" +
         producto.ProductName + "','" + producto.ProductDescription + "'," + producto.ProductPrice +
         "," + producto.CategoryId + "," + producto.ProductStock + "," + producto.ProductRating +
         ",'" + producto.ProductImage + "'," + producto.PostId + ");";
@@ -127,7 +127,7 @@ internal class ProductViewModel : ViewModelBase {
   public bool UpdateMethod(ProductoModel producto) {
     var isUpdated = false;
     var updateQuery =
-      "UPDATE Productos SET Name='" + producto.ProductName + "', Description='" + producto.ProductDescription +
+      "UPDATE Products SET Name='" + producto.ProductName + "', Description='" + producto.ProductDescription +
       "', Price='" + producto.ProductPrice + "', CategoryId='" + producto.CategoryId + "', Stock='" +
       producto.ProductStock + "', Rating='" + producto.ProductRating + "', Image='" + producto.ProductImage +
       "', PostId='" + producto.PostId + "' WHERE ProductId='" + producto.ProductId + "'";
@@ -155,14 +155,14 @@ internal class ProductViewModel : ViewModelBase {
       var conexionBd = new MySqlConnection(cadenaConexion);
       var selectQuery = "";
       if (parameters == null) {
-        selectQuery = "SELECT * FROM Productos";
+        selectQuery = "SELECT * FROM Products";
       }
       else {
         selectQuery =
-          "SELECT * FROM Productos JOIN Categorias C on C.CategoryId = Productos.CategoryId " +
-          "WHERE Productos.Name = '%" + parameters + "%'" + " OR Productos.Description ='%" +
-          parameters + "%' OR Productos.Price = '%" + parameters +
-          "%' OR Productos.CategoryId = '%" + parameters + "%';";
+          "SELECT * FROM Products JOIN Categories C on C.CategoryId = Products.CategoryId " +
+          "WHERE Products.Name = '%" + parameters + "%'" + " OR Products.Description ='%" +
+          parameters + "%' OR Products.Price = '%" + parameters +
+          "%' OR Products.CategoryId = '%" + parameters + "%';";
       }
 
       var myCommand = new MySqlCommand(selectQuery, conexionBd);

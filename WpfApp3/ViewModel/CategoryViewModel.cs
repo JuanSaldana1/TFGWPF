@@ -11,7 +11,7 @@ internal class CategoryViewModel {
                          MainWindow.BaseDatos + ";";
     //string cadenaConexion = "server=192.168.1.208; port=3306; user id=Usuario; password=Lvepv.js12; database=LasDiademasDeMisHijas;";
     var conexionBd = new MySqlConnection(cadenaConexion);
-    var mySelectQuery = "SELECT CategoryId, Nombre FROM Categorias";
+    var mySelectQuery = "SELECT CategoryId, Name FROM Categories";
     var myCommand = new MySqlCommand(mySelectQuery, conexionBd);
     conexionBd.Open();
     MySqlDataReader myReader;

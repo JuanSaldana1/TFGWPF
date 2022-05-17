@@ -9,7 +9,7 @@ public class CommentViewModel {
     var cadenaConexion = MainWindow.CadenaConexion;
     var conexionBd = new MySqlConnection(cadenaConexion);
     var mySelectQuery =
-      "SELECT IdComentario, Titulo, Texto, FechaPublicacion, IdUsuario, Anonimo, Usuarios.Name, Usuarios.ProfilePhoto, Usuarios.Email FROM Comentarios join Usuarios on Comentarios.IdUsuario = Usuarios.UserId";
+      "SELECT CommentId, Title, Content, PublicationDate, Comments.UserId, IsAnonimous, Users.Name, Users.ProfilePhoto, Users.Email FROM Comments join Users on Comments.UserId = Users.UserId";
     var myCommand = new MySqlCommand(mySelectQuery, conexionBd);
     conexionBd.Open();
     MySqlDataReader myReader;
@@ -34,6 +34,4 @@ public class CommentViewModel {
   }
 
   public IList<CommentModel> Comments { get; } = new List<CommentModel>();
-
-  public void updateFavourite() { }
 }

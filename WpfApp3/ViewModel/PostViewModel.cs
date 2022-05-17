@@ -15,7 +15,7 @@ public class PostViewModel {
       var cadenaConexion = MainWindow.CadenaConexion;
       var conexionBd = new MySqlConnection(cadenaConexion);
       const string mySelectQuery =
-        "SELECT IdPost, Titulo, Descripcion, FechaPublicacion, Favorito, Imagen1, Imagen2 FROM Posts";
+        "SELECT PostId, Title, Description, PublicationDate, IsFavorite, Image1, Image2 FROM Posts";
       var myCommand = new MySqlCommand(mySelectQuery, conexionBd);
       conexionBd.Open();
       MySqlDataReader myReader;
@@ -46,7 +46,7 @@ public class PostViewModel {
     var isInserted = false;
     try {
       var insertQuery =
-        "INSERT INTO Posts (Titulo, Descripcion, Enlace, FechaPublicacion, Favorito, Imagen1, Imagen2) values ('" +
+        "INSERT INTO Posts (Title, Description, Link, PublicationDate, IsFavorite, Image1, Image2) values ('" +
         post.PostTitle + "','" + post.PostDescription + "','" + post.PostUrl + "','" + post.PostPublishDate + "'," +
         post.IsFavorite + ",'" + post.PostFirstImage + "','" + post.PostSecondImage + "');";
       try {
