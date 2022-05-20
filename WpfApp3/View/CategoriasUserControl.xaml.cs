@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using MaterialDesignThemes.Wpf;
+using WpfApp3.Model;
 using WpfApp3.ViewModel;
 using MessageBox = ModernWpf.MessageBox;
 
@@ -12,12 +13,7 @@ public partial class CategoriasUserControl {
   public CategoriasUserControl() {
     InitializeComponent();
     CategoriesListBox.DataContext = new CategoryViewModel();
-    /*CategoriesDataGrid.ItemsSource = new CategoryViewModel().Categorias;*/
   }
-
-  /*private void Button_Click(object sender, RoutedEventArgs e) {
-    SnackbarSeven.MessageQueue?.Enqueue("Hello world! Showing message for seconds.", "hola", Deshacer(), false);
-  }*/
 
   private Action Deshacer() {
     try { }
@@ -29,28 +25,29 @@ public partial class CategoriasUserControl {
     return null;
   }
 
-  /*private void CategoryChanged(object sender, TextChangedEventArgs e) {
-    SnackbarSeven.MessageQueue?.Enqueue("Artículo cambiado");
-  }*/
-
   private void Sample5_DialogHost_OnDialogClosing(object sender, DialogClosingEventArgs eventArgs) {
-    Debug.WriteLine($"SAMPLE 5: Closing dialog with parameter: {eventArgs.Parameter ?? string.Empty}");
+    var category = new CategoryModel();
+    var viewModel = new CategoryViewModel();
+    try {
+      category.CategoryName = CategoryNameEditText.Text;
+      try {
+        if (CategoryNameEditText.Text != "") {
+          SnackbarSeven.MessageQueue?.Enqueue(viewModel.InsertMethod(category)
+            ? "Categoría Creada correctamente"
+            : "Error al crear la categoría");
+        }
 
-    //you can cancel the dialog close:
-    //eventArgs.Cancel();
-
-    if (!Equals(eventArgs.Parameter, true))
-      return;
-
-    if (!string.IsNullOrWhiteSpace(CategoryNameEditText.Text))
-      CategoriesListBox.Items.Add(CategoryNameEditText.Text.Trim());
+        CategoriesListBox.DataContext = new CategoryViewModel();
+        viewModel.GetCategoriesForView();
+      }
+      catch (Exception e) {
+        MessageBox.Show(e.Message, "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+        throw;
+      }
+    }
+    catch (Exception e) {
+      MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+      throw;
+    }
   }
-
-  /*private void DeleteCategoryButton_OnClick(object sender, RoutedEventArgs e) {
-    var selectedItem = CategoriesListBox.SelectedItem;
-    if (selectedItem == null)
-      return;
-
-    CategoriesListBox.Items.Remove(selectedItem);
-  }*/
 }

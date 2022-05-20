@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Windows;
-using MaterialDesignThemes.Wpf;
 using MySql.Data.MySqlClient;
-using WpfApp3.Model;
 using WpfApp3.ViewModel;
 using MessageBox = ModernWpf.MessageBox;
 
@@ -15,8 +13,6 @@ public partial class ComentariosUserControl {
   }
 
   private void Button_Click(object sender, RoutedEventArgs e) {
-    /*var updateCommentQuery =
-      "UPDATE Comentarios SET Titulo = '" + EditTextCommentTitle.Text + "', Comentario = '" + ComentarioTextBox.Text + "';";*/
     SnackbarSeven.MessageQueue?.Enqueue("Hello world! Showing message for seconds.", "hola", Deshacer(), false);
   }
 
@@ -51,6 +47,4 @@ public partial class ComentariosUserControl {
       MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
     }
   }
-
-  
 }

@@ -8,7 +8,7 @@ public class CommentViewModel {
   public CommentViewModel() {
     var cadenaConexion = MainWindow.CadenaConexion;
     var conexionBd = new MySqlConnection(cadenaConexion);
-    var mySelectQuery =
+    const string mySelectQuery =
       "SELECT CommentId, Title, Content, PublicationDate, Comments.UserId, IsAnonimous, Users.Name, Users.ProfilePhoto, Users.Email FROM Comments join Users on Comments.UserId = Users.UserId";
     var myCommand = new MySqlCommand(mySelectQuery, conexionBd);
     conexionBd.Open();

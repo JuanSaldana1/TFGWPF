@@ -1,17 +1,21 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Windows;
 using MySql.Data.MySqlClient;
 using WpfApp3.Model;
+using MessageBox = ModernWpf.MessageBox;
 
 namespace WpfApp3.ViewModel;
 
 internal class CategoryViewModel {
   public CategoryViewModel() {
-    var cadenaConexion = "server=" + MainWindow.Servidor + "; port=" + MainWindow.Puerto + "; user id=" +
-                         MainWindow.Usuario + "; password=" + MainWindow.Contrasena + "; database=" +
-                         MainWindow.BaseDatos + ";";
-    //string cadenaConexion = "server=192.168.1.208; port=3306; user id=Usuario; password=Lvepv.js12; database=LasDiademasDeMisHijas;";
+    GetCategoriesForView();
+  }
+
+  public void GetCategoriesForView() {
+    var cadenaConexion = MainWindow.CadenaConexion;
     var conexionBd = new MySqlConnection(cadenaConexion);
-    var mySelectQuery = "SELECT CategoryId, Name FROM Categories";
+    const string mySelectQuery = "SELECT CategoryId, Name FROM Categories";
     var myCommand = new MySqlCommand(mySelectQuery, conexionBd);
     conexionBd.Open();
     MySqlDataReader myReader;
@@ -28,6 +32,36 @@ internal class CategoryViewModel {
 
     myReader.Close();
     conexionBd.Close();
+  }
+
+  public bool InsertMethod(CategoryModel categoria) {
+    var isInserted = false;
+    try {
+      var insertQuery =
+        "INSERT INTO Categories (Name) values ('" + categoria.CategoryName + "');";
+      try {
+        var conexionBd = new MySqlConnection(MainWindow.CadenaConexion);
+        conexionBd.Open();
+        var command = new MySqlCommand(insertQuery, conexionBd);
+        command.ExecuteNonQuery();
+        isInserted = true;
+        conexionBd.Close();
+        GetCategoriesForView(); //Actualizar la lista de categorias
+      }
+      catch (Exception e) {
+        MessageBox.Show(e.Message, "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+        throw;
+        isInserted = false;
+      }
+
+      GetCategoriesForView(); //Actualizar la lista de categorias
+    }
+    catch (Exception e) {
+      MessageBox.Show(e.Message, "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+      throw;
+    }
+
+    return isInserted;
   }
 
   public IList<CategoryModel> Categorias { get; set; } = new List<CategoryModel>();

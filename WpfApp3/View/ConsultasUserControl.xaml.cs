@@ -1,7 +1,4 @@
-﻿using System.Data.SqlClient;
-using MySqlConnector;
-using MaterialDesignExtensions.Controls;
-using WpfApp3.Model;
+﻿using MaterialDesignExtensions.Controls;
 using WpfApp3.ViewModel;
 
 namespace WpfApp3.View;

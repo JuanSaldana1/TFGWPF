@@ -11,13 +11,13 @@ public class OrderViewModel {
   public IList<OrderModel> Orders { get; } = new List<OrderModel>();
 
   public OrderViewModel() {
-    GetProductsForView();
+    GetOrdersForView();
   }
 
-  private void GetProductsForView() {
+  private void GetOrdersForView() {
     var cadenaConexion = MainWindow.CadenaConexion;
     var conexionBd = new MySqlConnection(cadenaConexion);
-    var mySelectQuery =
+    const string mySelectQuery =
       "SELECT OrderId, O.ProductId, OrderDate, Quantity, LineId, P.Name, U.Name FROM Orders O join Products P on O.ProductId = P.ProductId JOIN Users U on U.UserId = O.UserId";
     var myCommand = new MySqlCommand(mySelectQuery, conexionBd);
     try {
@@ -93,7 +93,7 @@ public class OrderViewModel {
         command.ExecuteNonQuery();
         isInserted = true;
         conexionBd.Close();
-        GetProductsForView(); //Actualizar la lista de productos
+        GetOrdersForView(); //Actualizar la lista de productos
       }
       catch (Exception e) {
         MessageBox.Show(e.Message, "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -101,7 +101,7 @@ public class OrderViewModel {
         isInserted = false;
       }
 
-      GetProductsForView(); //Actualizar la lista de productos
+      GetOrdersForView(); //Actualizar la lista de productos
     }
     catch (Exception e) {
       MessageBox.Show(e.Message, "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);

@@ -11,6 +11,10 @@ public class PostViewModel {
   public IList<PostModel> Posts { get; } = new List<PostModel>();
 
   public PostViewModel() {
+    GetPostsForView();
+  }
+
+  public void GetPostsForView() {
     try {
       var cadenaConexion = MainWindow.CadenaConexion;
       var conexionBd = new MySqlConnection(cadenaConexion);
@@ -56,13 +60,14 @@ public class PostViewModel {
         command.ExecuteNonQuery();
         isInserted = true;
         conexionBd.Close();
+        GetPostsForView();
       }
       catch (Exception e) {
         MessageBox.Show(e.Message, "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
         throw;
       }
 
-      /*GetAllProducts(); //Actualizar la lista de productos*/
+      GetPostsForView();
     }
     catch (Exception e) {
       MessageBox.Show(e.Message, "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
