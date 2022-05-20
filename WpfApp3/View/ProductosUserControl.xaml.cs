@@ -55,10 +55,14 @@ public partial class ProductosUserControl {
       producto.ProductImage = ProductImageEditText.Text;
       producto.PostId = Convert.ToInt32(ProductPostIdEditText.Text);
       try {
-        SnackbarSeven.MessageQueue?.Enqueue(viewModel.InsertMethod(producto)
-          ? "Producto insertado correctamente"
-          : "Error al insertar el producto");
-        viewModel.GetAllProducts();
+        if (ProductNameEditText.Text != "") {
+          SnackbarSeven.MessageQueue?.Enqueue(viewModel.InsertMethod(producto)
+            ? "Producto insertado correctamente"
+            : "Error al insertar el producto");
+        }
+
+        MyListView.DataContext = new ProductViewModel();
+        viewModel.GetProductsForView();
       }
       catch (Exception e) {
         MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);

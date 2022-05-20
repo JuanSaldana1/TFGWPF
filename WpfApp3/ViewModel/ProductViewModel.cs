@@ -20,38 +20,49 @@ internal class ProductViewModel : ViewModelBase {
     OpenSample4DialogCommand = new AnotherCommandImplementation(OpenSample4Dialog);
     AcceptSample4DialogCommand = new AnotherCommandImplementation(AcceptSample4Dialog);
     CancelSample4DialogCommand = new AnotherCommandImplementation(CancelSample4Dialog);
+    GetProductsForView();
+  }
+
+  public void GetProductsForView() {
     try {
       var cadenaConexion = MainWindow.CadenaConexion;
       var conexionBd = new MySqlConnection(cadenaConexion);
       const string mySelectQuery =
         "SELECT ProductId, Products.Name, Description, Price, C.Name, Stock, Rating, Image FROM Products JOIN Categories C on C.CategoryId = Products.CategoryId ORDER BY ProductId";
       var myCommand = new MySqlCommand(mySelectQuery, conexionBd);
-      conexionBd.Open();
-      MySqlDataReader myReader;
-      Productos.Clear();
       try {
-        myReader = myCommand.ExecuteReader();
-        if (myReader.HasRows)
-          while (myReader.Read())
-            Productos.Add(new ProductoModel {
-              ProductId = myReader.GetInt32(0),
-              ProductName = myReader.GetString(1),
-              ProductDescription = myReader.GetString(2),
-              ProductPrice = myReader.GetDecimal(3),
-              ProductCategory = myReader.GetString(4),
-              ProductStock = myReader.GetInt32(5),
-              ProductRating = myReader.GetInt32(6),
-              ProductImage = myReader.GetString(7)
-            });
+        conexionBd.Open();
+        MySqlDataReader myReader;
+        Productos.Clear();
+        try {
+          myReader = myCommand.ExecuteReader();
+          if (myReader.HasRows) {
+            while (myReader.Read()) {
+              Productos.Add(new ProductoModel {
+                ProductId = myReader.GetInt32(0),
+                ProductName = myReader.GetString(1),
+                ProductDescription = myReader.GetString(2),
+                ProductPrice = myReader.GetDecimal(3),
+                ProductCategory = myReader.GetString(4),
+                ProductStock = myReader.GetInt32(5),
+                ProductRating = myReader.GetInt32(6),
+                ProductImage = myReader.GetString(7)
+              });
+            }
+          }
+        }
+        catch (Exception e) {
+          MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+          throw;
+        }
 
         myReader.Close();
+        conexionBd.Close();
       }
       catch (Exception e) {
         MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         throw;
       }
-
-      conexionBd.Close();
     }
     catch (Exception e) {
       MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -108,13 +119,14 @@ internal class ProductViewModel : ViewModelBase {
         command.ExecuteNonQuery();
         isInserted = true;
         conexionBd.Close();
+        GetProductsForView();
       }
       catch (Exception e) {
         MessageBox.Show(e.Message, "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
         throw;
       }
 
-      GetAllProducts(); //Actualizar la lista de productos
+      GetProductsForView(); //Actualizar la lista de productos
     }
     catch (Exception e) {
       MessageBox.Show(e.Message, "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);

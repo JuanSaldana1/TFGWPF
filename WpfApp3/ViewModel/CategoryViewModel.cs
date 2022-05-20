@@ -23,15 +23,20 @@ internal class CategoryViewModel {
       try {
         conexionBd.Open();
         MySqlDataReader myReader;
-        myReader = myCommand.ExecuteReader();
-
-        if (myReader.HasRows) {
-          while (myReader.Read()) {
-            Categorias.Add(new CategoryModel {
-              CategoryId = myReader.GetInt32(0),
-              CategoryName = myReader.GetString(1)
-            });
+        try {
+          myReader = myCommand.ExecuteReader();
+          if (myReader.HasRows) {
+            while (myReader.Read()) {
+              Categorias.Add(new CategoryModel {
+                CategoryId = myReader.GetInt32(0),
+                CategoryName = myReader.GetString(1)
+              });
+            }
           }
+        }
+        catch (Exception e) {
+          MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+          throw;
         }
 
         myReader.Close();
