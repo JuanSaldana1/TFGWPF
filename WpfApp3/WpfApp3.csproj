@@ -33,7 +33,7 @@
     <TargetCulture>es-ES</TargetCulture>
     <ProductName>CRMLasDiademasDeMisHijas</ProductName>
     <PublisherName>Juan Saldaña Rived</PublisherName>
-    <ApplicationRevision>4</ApplicationRevision>
+    <ApplicationRevision>5</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -267,16 +267,16 @@
       <Version>2.4.9</Version>
     </PackageReference>
     <PackageReference Include="MaterialDesignColors">
-      <Version>2.0.7-ci176</Version>
+      <Version>2.0.7-ci182</Version>
     </PackageReference>
     <PackageReference Include="MaterialDesignExtensions">
       <Version>4.0.0-a02</Version>
     </PackageReference>
     <PackageReference Include="MaterialDesignThemes">
-      <Version>4.6.0-ci176</Version>
+      <Version>4.6.0-ci182</Version>
     </PackageReference>
     <PackageReference Include="MaterialDesignThemes.MahApps">
-      <Version>0.2.3-ci176</Version>
+      <Version>0.2.3-ci182</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Windows.SDK.Contracts">
       <Version>10.0.22000.196</Version>
