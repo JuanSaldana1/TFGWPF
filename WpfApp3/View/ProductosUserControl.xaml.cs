@@ -30,36 +30,6 @@ public partial class ProductosUserControl {
     MyListView.DataContext = new ProductViewModel();
   }
 
-  private void Button_Click(object sender, RoutedEventArgs e) {
-    SnackbarSeven.MessageQueue?.Enqueue("Hello world! Showing message for seconds.", "hola", Deshacer(), false);
-  }
-
-  private Action Deshacer() {
-    try { }
-    catch (NotImplementedException nIe) {
-      _ = MessageBox.Show(nIe.Message);
-    }
-
-    return null;
-  }
-
-  private void ArticuloChanged(object sender, TextChangedEventArgs e) {
-    SnackbarSeven.MessageQueue?.Enqueue($"BasicRatingBar value changed from {e.Changes}");
-  }
-
-  private void ButtonAddStock_OnClick(object sender, RoutedEventArgs e) {
-    var viewModel = new ProductViewModel();
-    SnackbarSeven.MessageQueue?.Enqueue("Has aumentado tu stock en 1");
-  }
-
-  private void ButtonRestStock_OnClick(object sender, RoutedEventArgs e) {
-    SnackbarSeven.MessageQueue?.Enqueue("Has reducido tu stock en 1");
-  }
-
-  private void FrameworkElement_OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs e) {
-    SnackbarSeven.MessageQueue?.Enqueue($"BasicRatingBar value changed from {e.OldValue} to {e.NewValue}.");
-  }
-
   private void BasicRatingBar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<int> e) {
     Debug.WriteLine($"La valoración ha cambiado de {e.OldValue} a {e.NewValue} estrellas.");
   }
@@ -98,7 +68,5 @@ public partial class ProductosUserControl {
     catch (Exception e) {
       MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
     }
-
-    viewModel.GetAllProducts();
   }
 }

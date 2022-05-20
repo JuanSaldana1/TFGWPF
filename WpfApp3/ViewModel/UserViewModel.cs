@@ -12,63 +12,89 @@ internal class UserViewModel {
   public IList<string> Roles { get; } = new List<string>();
 
   public UserViewModel() {
-    var cadenaConexion = MainWindow.CadenaConexion;
-    const string selectAllUsersQuery =
-      "SELECT UserId, Username, Name, Surname, Email, Rol, Follower, ProfilePhoto FROM Users";
-    var conexion = new MySqlConnection(cadenaConexion);
-    var myCommand = new MySqlCommand(selectAllUsersQuery, conexion);
-    conexion.Open();
-    MySqlDataReader myReader;
-    myReader = myCommand.ExecuteReader();
+    GetUsersForView();
+  }
 
-    if (myReader.HasRows)
-      while (myReader.Read())
-        Usuarios.Add(new UserModel {
-          UserId = myReader.GetInt32(0),
-          Username = myReader.GetString(1),
-          Name = myReader.GetString(2),
-          Surname = myReader.GetString(3),
-          Email = myReader.GetString(4),
-          Rol = myReader.GetString(5),
-          Follower = myReader.GetString(6),
-          ProfilePhoto = myReader.GetString(7)
-        });
+  public void GetUsersForView() {
+    try {
+      var cadenaConexion = MainWindow.CadenaConexion;
+      var conexion = new MySqlConnection(cadenaConexion);
+      const string selectAllUsersQuery =
+        "SELECT UserId, Username, Name, Surname, Email, Rol, Follower, ProfilePhoto FROM Users";
+      var myCommand = new MySqlCommand(selectAllUsersQuery, conexion);
+      try {
+        conexion.Open();
+        MySqlDataReader myReader;
+        myReader = myCommand.ExecuteReader();
 
-    myReader.Close();
-    conexion.Close();
+        if (myReader.HasRows)
+          while (myReader.Read())
+            Usuarios.Add(new UserModel {
+              UserId = myReader.GetInt32(0),
+              Username = myReader.GetString(1),
+              Name = myReader.GetString(2),
+              Surname = myReader.GetString(3),
+              Email = myReader.GetString(4),
+              Rol = myReader.GetString(5),
+              Follower = myReader.GetString(6),
+              ProfilePhoto = myReader.GetString(7)
+            });
 
-    const string selectRoles = "SELECT Rol FROM Users GROUP BY Rol";
-    var rolSelectionCommand = new MySqlCommand(selectRoles, conexion);
-    conexion.Open();
-    MySqlDataReader myRolesReader;
-    rolSelectionCommand.ExecuteReader();
-    if (myReader.HasRows)
-      while (myReader.Read())
-        try {
-          Roles.Add(myReader.GetString(0));
-        }
-        catch (Exception e) {
-          MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-          throw;
-        }
+        myReader.Close();
+        conexion.Close();
 
-    myReader.Close();
-    conexion.Close();
+        const string selectRoles = "SELECT Rol FROM Users GROUP BY Rol";
+        var rolSelectionCommand = new MySqlCommand(selectRoles, conexion);
+        conexion.Open();
+        MySqlDataReader myRolesReader;
+        rolSelectionCommand.ExecuteReader();
+        if (myReader.HasRows)
+          while (myReader.Read())
+            try {
+              Roles.Add(myReader.GetString(0));
+            }
+            catch (Exception e) {
+              MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+              throw;
+            }
+
+        myReader.Close();
+        conexion.Close();
+      }
+      catch (Exception e) {
+        MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        throw;
+      }
+    }
+    catch (Exception e) {
+      MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+      throw;
+    }
   }
 
   public bool InsertMethod(UserModel usuario) {
     var isInserted = false;
-    var insertQuery =
-      "INSERT INTO Users (Username, Name, Surname, Email, Rol, Follower, ProfilePhoto) values ('" +
-      usuario.Username + "','" + usuario.Name + "','" + usuario.Surname +
-      "','" + usuario.Email + "','" + usuario.Rol + "','" + usuario.Follower +
-      "','" + usuario.ProfilePhoto + "')";
     try {
-      var conexionBd = new MySqlConnection(MainWindow.CadenaConexion);
-      conexionBd.Open();
-      var command = new MySqlCommand(insertQuery, conexionBd);
-      command.ExecuteNonQuery();
-      isInserted = true;
+      var insertQuery =
+        "INSERT INTO Users (Username, Name, Surname, Email, Rol, Follower, ProfilePhoto) values ('" +
+        usuario.Username + "','" + usuario.Name + "','" + usuario.Surname +
+        "','" + usuario.Email + "','" + usuario.Rol + "','" + usuario.Follower +
+        "','" + usuario.ProfilePhoto + "')";
+      try {
+        var conexionBd = new MySqlConnection(MainWindow.CadenaConexion);
+        conexionBd.Open();
+        var command = new MySqlCommand(insertQuery, conexionBd);
+        command.ExecuteNonQuery();
+        isInserted = true;
+        conexionBd.Close();
+        GetUsersForView();
+      }
+      catch (Exception e) {
+        MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        throw;
+      }
+
+      GetUsersForView();
     }
     catch (Exception e) {
       MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);

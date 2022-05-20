@@ -16,14 +16,6 @@ public partial class PostsUserControl {
   public PostsUserControl() {
     InitializeComponent();
     MyListView.DataContext = new PostViewModel();
-    // PostComponentPage.DataContext = new PostViewModel();
-  }
-
-  private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e) {
-    // for .NET Core you need to add UseShellExecute = true
-    // see https://docs.microsoft.com/dotnet/api/system.diagnostics.processstartinfo.useshellexecute#property-value
-    Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
-    e.Handled = true;
   }
 
   public void ButtonUpdateChanges_Click(object sender, RoutedEventArgs e) {
@@ -39,18 +31,20 @@ public partial class PostsUserControl {
       post.PostUrl = ProductUrlEditText.Text;
       post.PostPublishDate = Convert.ToDateTime(PostPublishDatePicker.Text);
       post.IsFavorite = PostIsFavoriteCheckBox.IsChecked.Value;
-      post.PostFirstImage = ProductRatingEditText.Text;
-      post.PostSecondImage = ProductImageEditText.Text;
+      post.PostFirstImage = PostFirstImageEditText.Text;
+      post.PostSecondImage = PostSecondImageEditText.Text;
       try {
         if (
           ProductDescriptionEditText.Text != "" && ProductNameEditText.Text != "" && ProductUrlEditText.Text != "" ||
-          PostPublishDatePicker.Text != "" && ProductRatingEditText.Text != "" && ProductImageEditText.Text != ""
+          PostPublishDatePicker.Text != "" && PostFirstImageEditText.Text != "" && PostSecondImageEditText.Text != ""
         ) {
           SnackbarSeven.MessageQueue?.Enqueue(viewModel.InsertMethod(post)
             ? "Post Creado correctamente"
-            : "Error al crear el producto");
+            : "Error al crear el post");
         }
-        /*viewModel.GetAllProducts();*/
+
+        MyListView.DataContext = new PostViewModel();
+        viewModel.GetPostsForView();
       }
       catch (Exception e) {
         MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -59,9 +53,8 @@ public partial class PostsUserControl {
     }
     catch (Exception e) {
       MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+      throw;
     }
-
-    /*viewModel.GetAllProducts();*/
   }
 
   private Action Deshacer() {
@@ -87,14 +80,14 @@ public partial class PostsUserControl {
       var cadenaConexion = MainWindow.CadenaConexion;
       var conexionBd = new MySqlConnection(cadenaConexion);
       conexionBd.Open();
-      var isFavouriteQuery = "Update Posts SET Favorito = true WHERE IdPost ='" + ((ToggleButton) sender).Tag + "';";
+      var isFavouriteQuery = "Update Posts SET IsFavorite = true WHERE PostId ='" + ((ToggleButton) sender).Tag + "';";
       var myCommand = new MySqlCommand(isFavouriteQuery, conexionBd);
       myCommand.ExecuteNonQuery();
       conexionBd.Close();
       SnackbarSeven.MessageQueue?.Enqueue("Ahora este post está en favoritos");
     }
     catch (Exception exception) {
-      Console.WriteLine(exception);
+      MessageBox.Show(exception.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
       throw;
     }
   }

@@ -14,7 +14,7 @@ public class OrderViewModel {
     GetOrdersForView();
   }
 
-  private void GetOrdersForView() {
+  public void GetOrdersForView() {
     var cadenaConexion = MainWindow.CadenaConexion;
     var conexionBd = new MySqlConnection(cadenaConexion);
     const string mySelectQuery =
@@ -98,7 +98,6 @@ public class OrderViewModel {
       catch (Exception e) {
         MessageBox.Show(e.Message, "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
         throw;
-        isInserted = false;
       }
 
       GetOrdersForView(); //Actualizar la lista de productos

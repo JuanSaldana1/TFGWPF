@@ -3,6 +3,7 @@ using System.Windows;
 using MaterialDesignThemes.Wpf;
 using WpfApp3.Model;
 using WpfApp3.ViewModel;
+using MessageBox = ModernWpf.MessageBox;
 
 namespace WpfApp3.View;
 
@@ -25,7 +26,8 @@ public partial class PedidosUserControl {
         SnackbarSeven.MessageQueue?.Enqueue(viewModel.InsertMethod(pedido)
           ? "Pedido creado correctamente"
           : "Error al crear el pedido");
-        viewModel.GetAllOrders();
+        MyListView.DataContext = new OrderViewModel();
+        viewModel.GetOrdersForView();
       }
       catch (Exception e) {
         MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -35,16 +37,5 @@ public partial class PedidosUserControl {
     catch (Exception e) {
       MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
     }
-
-    viewModel.GetAllOrders();
-  }
-
-  private Action Deshacer() {
-    try { }
-    catch (NotImplementedException nIe) {
-      _ = MessageBox.Show(nIe.Message);
-    }
-
-    return null;
   }
 }

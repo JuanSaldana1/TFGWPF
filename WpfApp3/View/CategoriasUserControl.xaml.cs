@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Windows;
-using System.Windows.Controls;
 using MaterialDesignThemes.Wpf;
 using WpfApp3.Model;
 using WpfApp3.ViewModel;
@@ -13,16 +11,6 @@ public partial class CategoriasUserControl {
   public CategoriasUserControl() {
     InitializeComponent();
     CategoriesListBox.DataContext = new CategoryViewModel();
-  }
-
-  private Action Deshacer() {
-    try { }
-    catch (NotImplementedException nIe) {
-      _ = MessageBox.Show("This is a test text!", "Some title", MessageBoxButton.YesNoCancel,
-        MessageBoxImage.Question);
-    }
-
-    return null;
   }
 
   private void Sample5_DialogHost_OnDialogClosing(object sender, DialogClosingEventArgs eventArgs) {

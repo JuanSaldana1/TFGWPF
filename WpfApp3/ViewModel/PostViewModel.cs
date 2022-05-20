@@ -21,24 +21,30 @@ public class PostViewModel {
       const string mySelectQuery =
         "SELECT PostId, Title, Description, PublicationDate, IsFavorite, Image1, Image2 FROM Posts";
       var myCommand = new MySqlCommand(mySelectQuery, conexionBd);
-      conexionBd.Open();
-      MySqlDataReader myReader;
-      myReader = myCommand.ExecuteReader();
+      try {
+        conexionBd.Open();
+        MySqlDataReader myReader;
+        myReader = myCommand.ExecuteReader();
 
-      if (myReader.HasRows)
-        while (myReader.Read())
-          Posts.Add(new PostModel {
-            PostId = myReader.GetInt32(0),
-            PostTitle = myReader.GetString(1),
-            PostDescription = myReader.GetString(2),
-            PostPublishDate = myReader.GetDateTime(3),
-            IsFavorite = myReader.GetBoolean(4),
-            PostFirstImage = myReader.GetString(5),
-            PostSecondImage = myReader.GetString(6)
-          });
+        if (myReader.HasRows)
+          while (myReader.Read())
+            Posts.Add(new PostModel {
+              PostId = myReader.GetInt32(0),
+              PostTitle = myReader.GetString(1),
+              PostDescription = myReader.GetString(2),
+              PostPublishDate = myReader.GetDateTime(3),
+              IsFavorite = myReader.GetBoolean(4),
+              PostFirstImage = myReader.GetString(5),
+              PostSecondImage = myReader.GetString(6)
+            });
 
-      myReader.Close();
-      conexionBd.Close();
+        myReader.Close();
+        conexionBd.Close();
+      }
+      catch (Exception e) {
+        MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        throw;
+      }
     }
     catch (Exception e) {
       MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);

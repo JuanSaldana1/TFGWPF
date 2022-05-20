@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows;
+using MaterialDesignThemes.Wpf;
 using MySql.Data.MySqlClient;
+using WpfApp3.Model;
 using WpfApp3.ViewModel;
 using MessageBox = ModernWpf.MessageBox;
 

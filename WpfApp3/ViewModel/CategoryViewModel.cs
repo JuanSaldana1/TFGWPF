@@ -8,30 +8,44 @@ using MessageBox = ModernWpf.MessageBox;
 namespace WpfApp3.ViewModel;
 
 internal class CategoryViewModel {
+  public IList<CategoryModel> Categorias { get; } = new List<CategoryModel>();
+
   public CategoryViewModel() {
     GetCategoriesForView();
   }
 
   public void GetCategoriesForView() {
-    var cadenaConexion = MainWindow.CadenaConexion;
-    var conexionBd = new MySqlConnection(cadenaConexion);
-    const string mySelectQuery = "SELECT CategoryId, Name FROM Categories";
-    var myCommand = new MySqlCommand(mySelectQuery, conexionBd);
-    conexionBd.Open();
-    MySqlDataReader myReader;
-    myReader = myCommand.ExecuteReader();
+    try {
+      var cadenaConexion = MainWindow.CadenaConexion;
+      var conexionBd = new MySqlConnection(cadenaConexion);
+      const string mySelectQuery = "SELECT CategoryId, Name FROM Categories";
+      var myCommand = new MySqlCommand(mySelectQuery, conexionBd);
+      try {
+        conexionBd.Open();
+        MySqlDataReader myReader;
+        myReader = myCommand.ExecuteReader();
 
-    if (myReader.HasRows) {
-      while (myReader.Read()) {
-        Categorias.Add(new CategoryModel {
-          CategoryId = myReader.GetInt32(0),
-          CategoryName = myReader.GetString(1)
-        });
+        if (myReader.HasRows) {
+          while (myReader.Read()) {
+            Categorias.Add(new CategoryModel {
+              CategoryId = myReader.GetInt32(0),
+              CategoryName = myReader.GetString(1)
+            });
+          }
+        }
+
+        myReader.Close();
+        conexionBd.Close();
+      }
+      catch (Exception e) {
+        MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        throw;
       }
     }
-
-    myReader.Close();
-    conexionBd.Close();
+    catch (Exception e) {
+      MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+      throw;
+    }
   }
 
   public bool InsertMethod(CategoryModel categoria) {
@@ -51,7 +65,6 @@ internal class CategoryViewModel {
       catch (Exception e) {
         MessageBox.Show(e.Message, "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
         throw;
-        isInserted = false;
       }
 
       GetCategoriesForView(); //Actualizar la lista de categorias
@@ -63,6 +76,4 @@ internal class CategoryViewModel {
 
     return isInserted;
   }
-
-  public IList<CategoryModel> Categorias { get; set; } = new List<CategoryModel>();
 }

@@ -58,36 +58,22 @@
                         materialDesign:TextFieldAssist.HasClearButton="True" />
                     <CheckBox
                         Name="PostIsFavoriteCheckBox"
-                        Content="Check"
+                        Content="Favorito"
                         Style="{StaticResource MaterialDesignCheckBox}" />
                     <TextBox
-                        materialDesign:HintAssist.Hint="Cantidad del producto"
+                        materialDesign:HintAssist.Hint="Imagen 1"
                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                         VerticalAlignment="Center"
                         Margin="0 8 0 0"
                         HorizontalAlignment="Stretch"
-                        x:Name="ProductStockEditText" />
+                        x:Name="PostFirstImageEditText" />
                     <TextBox
-                        materialDesign:HintAssist.Hint="Valoración del producto"
+                        materialDesign:HintAssist.Hint="Imagen 2"
                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                         VerticalAlignment="Center"
                         Margin="0 8 0 0"
                         HorizontalAlignment="Stretch"
-                        x:Name="ProductRatingEditText" />
-                    <TextBox
-                        materialDesign:HintAssist.Hint="Imagen del producto"
-                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                        VerticalAlignment="Center"
-                        Margin="0 8 0 0"
-                        HorizontalAlignment="Stretch"
-                        x:Name="ProductImageEditText" />
-                    <TextBox
-                        materialDesign:HintAssist.Hint="Post id al que pertenece el producto"
-                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                        VerticalAlignment="Center"
-                        Margin="0 8 0 0"
-                        HorizontalAlignment="Stretch"
-                        x:Name="ProductPostIdEditText" />
+                        x:Name="PostSecondImageEditText" />
                     <StackPanel
                         Orientation="Horizontal"
                         HorizontalAlignment="Right">
