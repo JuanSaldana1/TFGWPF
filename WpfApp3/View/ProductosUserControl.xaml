@@ -198,12 +198,16 @@
                                         </Grid>
                                         <StackPanel Grid.Row="5">
                                             <Button
-                                                Name="ButtonAddProduct"
-                                                Click="ButtonBase_OnClick"
-                                                Content="Reservar"
-                                                ToolTip="Añáde el producto a la lista de reservas para crear un pedido"
+                                                Name="ButtonDeleteProduct"
+                                                Click="ButtonDeleteProduct_OnClick"
+                                                ToolTip="Elimina este producto"
                                                 HorizontalAlignment="Left"
-                                                Style="{StaticResource MaterialDesignFlatButton}" />
+                                                Style="{StaticResource MaterialDesignPaperSecondaryButton}">
+                                                <materialDesign:PackIcon
+                                                    Kind="DeleteOutline"
+                                                    Height="20"
+                                                    Width="20" />
+                                            </Button>
                                         </StackPanel>
                                     </Grid>
 

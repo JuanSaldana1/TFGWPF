@@ -29,7 +29,10 @@ public partial class PostsUserControl {
       post.PostTitle = ProductNameEditText.Text;
       post.PostDescription = ProductDescriptionEditText.Text;
       post.PostUrl = ProductUrlEditText.Text;
-      post.PostPublishDate = Convert.ToDateTime(PostPublishDatePicker.Text);
+      if (PostPublishDatePicker.SelectedDate == null || PostPublishDatePicker.SelectedDate.ToString() == "") {
+        post.PostPublishDate = DateTime.Now.ToString("dd-MM-yyyy");
+      }
+
       post.IsFavorite = PostIsFavoriteCheckBox.IsChecked.Value;
       post.PostFirstImage = PostFirstImageEditText.Text;
       post.PostSecondImage = PostSecondImageEditText.Text;

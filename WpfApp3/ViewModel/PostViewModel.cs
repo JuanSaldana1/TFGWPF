@@ -32,7 +32,7 @@ public class PostViewModel {
               PostId = myReader.GetInt32(0),
               PostTitle = myReader.GetString(1),
               PostDescription = myReader.GetString(2),
-              PostPublishDate = myReader.GetDateTime(3),
+              PostPublishDate = myReader.GetString(3),
               IsFavorite = myReader.GetBoolean(4),
               PostFirstImage = myReader.GetString(5),
               PostSecondImage = myReader.GetString(6)

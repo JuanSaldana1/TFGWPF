@@ -94,11 +94,11 @@ internal class UserModel : INotifyPropertyChanged {
     return true;
   }
 
-  private IEnumerable ventas;
+  private IEnumerable usuarios;
 
-  public IEnumerable Ventas {
-    get => ventas;
-    set => SetProperty(ref ventas, value);
+  public IEnumerable Usuarios {
+    get => usuarios;
+    set => SetProperty(ref usuarios, value);
   }
 
   #endregion

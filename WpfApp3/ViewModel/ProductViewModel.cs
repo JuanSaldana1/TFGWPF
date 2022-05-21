@@ -138,26 +138,62 @@ internal class ProductViewModel : ViewModelBase {
 
   public bool UpdateMethod(ProductoModel producto) {
     var isUpdated = false;
-    var updateQuery =
-      "UPDATE Products SET Name='" + producto.ProductName + "', Description='" + producto.ProductDescription +
-      "', Price='" + producto.ProductPrice + "', CategoryId='" + producto.CategoryId + "', Stock='" +
-      producto.ProductStock + "', Rating='" + producto.ProductRating + "', Image='" + producto.ProductImage +
-      "', PostId='" + producto.PostId + "' WHERE ProductId='" + producto.ProductId + "'";
     try {
-      var conexionBd = new MySqlConnection(MainWindow.CadenaConexion);
-      conexionBd.Open();
-      var command = new MySqlCommand(updateQuery, conexionBd);
-      command.ExecuteNonQuery();
-      isUpdated = true;
-      conexionBd.Close();
-      GetAllProducts(); //Actualizar la lista de productos
+      var updateQuery =
+        "UPDATE Products SET Name='" + producto.ProductName + "', Description='" + producto.ProductDescription +
+        "', Price='" + producto.ProductPrice + "', CategoryId='" + producto.CategoryId + "', Stock='" +
+        producto.ProductStock + "', Rating='" + producto.ProductRating + "', Image='" + producto.ProductImage +
+        "', PostId='" + producto.PostId + "' WHERE ProductId='" + producto.ProductId + "'";
+      try {
+        var conexionBd = new MySqlConnection(MainWindow.CadenaConexion);
+        conexionBd.Open();
+        var command = new MySqlCommand(updateQuery, conexionBd);
+        command.ExecuteNonQuery();
+        isUpdated = true;
+        conexionBd.Close();
+        GetAllProducts(); //Actualizar la lista de productos
+      }
+      catch (Exception e) {
+        MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        isUpdated = false;
+      }
+
+      GetProductsForView(); //Actualizar la lista de productos
     }
     catch (Exception e) {
-      MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-      isUpdated = false;
+      MessageBox.Show(e.Message, "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+      throw;
     }
 
+
     return isUpdated;
+  }
+
+  public bool DeleteMethod(int productId) {
+    var isDeleted = false;
+    try {
+      var deleteQuery = "DELETE FROM Products WHERE ProductId='" + productId + "'";
+      try {
+        var conexionBd = new MySqlConnection(MainWindow.CadenaConexion);
+        conexionBd.Open();
+        var command = new MySqlCommand(deleteQuery, conexionBd);
+        command.ExecuteNonQuery();
+        isDeleted = true;
+        conexionBd.Close();
+        GetProductsForView(); //Actualizar la lista de productos
+      }
+      catch (Exception e) {
+        MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        isDeleted = false;
+      }
+    }
+    catch (Exception e) {
+      MessageBox.Show(e.Message, "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+      throw;
+    }
+
+
+    return isDeleted;
   }
 
   public List<Object> SearchAllSelecrQuery(string parameters) {
