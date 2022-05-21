@@ -32,7 +32,7 @@ public class PostViewModel {
               PostId = myReader.GetInt32(0),
               PostTitle = myReader.GetString(1),
               PostDescription = myReader.GetString(2),
-              PostPublishDate = myReader.GetDateTime(3),
+              PostPublishDate = myReader.GetString(3),
               IsFavorite = myReader.GetBoolean(4),
               PostFirstImage = myReader.GetString(5),
               PostSecondImage = myReader.GetString(6)
@@ -81,5 +81,32 @@ public class PostViewModel {
     }
 
     return isInserted;
+  }
+  
+  public bool DeleteMethod(int productId) {
+    var isDeleted = false;
+    try {
+      var deleteQuery = "DELETE FROM Posts WHERE PostId='" + productId + "'";
+      try {
+        var conexionBd = new MySqlConnection(MainWindow.CadenaConexion);
+        conexionBd.Open();
+        var command = new MySqlCommand(deleteQuery, conexionBd);
+        command.ExecuteNonQuery();
+        isDeleted = true;
+        conexionBd.Close();
+        GetPostsForView(); //Actualizar la lista de productos
+      }
+      catch (Exception e) {
+        MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        isDeleted = false;
+      }
+    }
+    catch (Exception e) {
+      MessageBox.Show(e.Message, "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+      throw;
+    }
+
+
+    return isDeleted;
   }
 }

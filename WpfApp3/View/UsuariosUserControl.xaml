@@ -120,6 +120,7 @@
                             <StackPanel Orientation="Vertical">
                                 <materialDesign:Flipper
                                     Height="auto"
+                                    MinHeight="200"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top"
                                     Width="auto"
@@ -269,6 +270,7 @@
                                                         </StackPanel>
 
                                                         <Button
+                                                            Style="{StaticResource MaterialDesignPaperSecondaryButton}"
                                                             Click="ButtonSave_Click"
                                                             Command="{x:Static materialDesign:Flipper.FlipCommand}"
                                                             ToolTip="Guardar cambios"
@@ -277,8 +279,15 @@
 
                                                         <Button
                                                             Command="{x:Static materialDesign:Flipper.FlipCommand}"
+                                                            Style="{StaticResource MaterialDesignPaperSecondaryButton}"
+                                                            Click="ButtonDeleteUser_OnClick"
                                                             Margin="2,0,2,0"
-                                                            Name="ButtonDelete" />
+                                                            Name="ButtonDelete">
+                                                            <materialDesign:PackIcon
+                                                                Kind="DeleteOutline"
+                                                                Height="20"
+                                                                Width="20" />
+                                                        </Button>
 
                                                     </StackPanel>
                                                 </StackPanel>

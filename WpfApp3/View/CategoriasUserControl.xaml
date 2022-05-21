@@ -78,21 +78,17 @@
                     x:Name="CategoriesListBox">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <Grid>
+                            <StackPanel Orientation="Horizontal">
                                 <ListBoxItem
                                     Content="{Binding CategoryName}" />
-                                <!--<Button
-                                    Name="DeleteCategoryButton"
-                                    Click="DeleteCategoryButton_OnClick"
-                                    Grid.Column="1"
-                                    Style="{StaticResource MaterialDesignPaperButton}"
-                                    ToolTip="Eliminar categoría">
-                                    <materialDesign:PackIcon
-                                        Kind="DeleteOutline"
-                                        Height="20"
-                                        Width="20" />
-                                </Button>-->
-                            </Grid>
+                                <Button
+                                    Name="ButtonDeleteCategory"
+                                    Click="ButtonDeleteCategory_Click"
+                                    ToolTip="Elimina esta categoría"
+                                    Content="{materialDesign:PackIcon DeleteOutline}"
+                                    HorizontalAlignment="Left"
+                                    Style="{StaticResource MaterialDesignPaperSecondaryButton}" />
+                            </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                     <ListBox.ItemsPanel>

@@ -116,11 +116,11 @@
                                         Style="{StaticResource MaterialDesignFlatButton}" />
                                     <Button
                                         Name="ButtonEliminarComentario"
-                                        Click="ButtonEliminarComentario_Click"
+                                        Click="ButtonDeleteComment_Click"
                                         Content="{materialDesign:PackIcon DeleteOutline}"
                                         ToolTip="Aplicar los cambios hechos."
                                         HorizontalAlignment="Left"
-                                        Style="{StaticResource MaterialDesignFlatButton}" />
+                                        Style="{StaticResource MaterialDesignPaperSecondaryButton}" />
                                 </StackPanel>
                             </Grid>
                         </materialDesign:Card>

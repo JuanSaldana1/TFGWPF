@@ -79,9 +79,9 @@ internal class UserViewModel {
         "INSERT INTO Users (Username, Name, Surname, Email, Rol, Follower, ProfilePhoto) values ('" +
         usuario.Username + "','" + usuario.Name + "','" + usuario.Surname +
         "','" + usuario.Email + "','" + usuario.Rol + "','" + usuario.Follower +
-        "','" + usuario.ProfilePhoto + "')";
+        "','" + usuario.ProfilePhoto + "');";
+      var conexionBd = new MySqlConnection(MainWindow.CadenaConexion);
       try {
-        var conexionBd = new MySqlConnection(MainWindow.CadenaConexion);
         conexionBd.Open();
         var command = new MySqlCommand(insertQuery, conexionBd);
         command.ExecuteNonQuery();
@@ -103,9 +103,8 @@ internal class UserViewModel {
 
     return isInserted;
   }
-
-
-  public bool ChangeName(string name, int userId) {
+  
+  /*public bool ChangeName(string name, int userId) {
     var cadenaConexion = MainWindow.CadenaConexion;
 
     try {
@@ -118,5 +117,33 @@ internal class UserViewModel {
     }
 
     return true;
+  }*/
+
+  public bool DeleteMethod(int userId) {
+    var isDeleted = false;
+    try {
+      var deleteQuery = "DELETE FROM Users WHERE UserId='" + userId + "'";
+      var conexionBd = new MySqlConnection(MainWindow.CadenaConexion);
+      try {
+        conexionBd.Open();
+        var command = new MySqlCommand(deleteQuery, conexionBd);
+        command.ExecuteNonQuery();
+        isDeleted = true;
+        conexionBd.Close();
+        GetUsersForView(); //Actualizar la lista de productos
+      }
+      catch (Exception e) {
+        MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        isDeleted = false;
+      }
+      GetUsersForView();
+    }
+    catch (Exception e) {
+      MessageBox.Show(e.Message, "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+      throw;
+    }
+
+
+    return isDeleted;
   }
 }

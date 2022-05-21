@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="SqlDialectMappings">
-    <file url="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/25794883d61c4360940bf3559a67fdad15c600/7d/d3998436/MySqlDataReader.cs" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/WpfApp3/View/ProductosUserControl.xaml.cs" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/WpfApp3/ViewModel/PostViewModel.cs" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/WpfApp3/ViewModel/ProductViewModel.cs" dialect="MySQL" />

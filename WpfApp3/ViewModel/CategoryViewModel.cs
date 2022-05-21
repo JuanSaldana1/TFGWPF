@@ -81,4 +81,32 @@ internal class CategoryViewModel {
 
     return isInserted;
   }
+
+  public bool DeleteMethod(int categoryId) {
+    var isDeleted = false;
+    try {
+      var deleteQuery = "DELETE FROM Categories WHERE CategoryId='" + categoryId + "'";
+      var conexionBd = new MySqlConnection(MainWindow.CadenaConexion);
+      try {
+        conexionBd.Open();
+        var command = new MySqlCommand(deleteQuery, conexionBd);
+        command.ExecuteNonQuery();
+        isDeleted = true;
+        conexionBd.Close();
+        GetCategoriesForView(); //Actualizar la lista de productos
+      }
+      catch (Exception e) {
+        MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        isDeleted = false;
+      }
+
+      GetCategoriesForView(); //Actualizar la lista de productos
+    }
+    catch (Exception e) {
+      MessageBox.Show(e.Message, "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+      throw;
+    }
+
+    return isDeleted;
+  }
 }

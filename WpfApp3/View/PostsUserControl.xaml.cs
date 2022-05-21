@@ -18,8 +18,31 @@ public partial class PostsUserControl {
     MyListView.DataContext = new PostViewModel();
   }
 
-  public void ButtonUpdateChanges_Click(object sender, RoutedEventArgs e) {
-    SnackbarSeven.MessageQueue?.Enqueue("");
+  public void ButtonDeletePost_OnClick(object sender, RoutedEventArgs e) {
+    try {
+      var button = sender as Button;
+      dynamic item = button?.DataContext;
+      var id = item.PostId;
+      var viewModel = new PostViewModel();
+      try {
+        if (!id.Equals("") || !id.Equals(null)) {
+          SnackbarSeven.MessageQueue?.Enqueue(viewModel.DeleteMethod(id)
+            ? $"Entrada con id {id} eliminado correctamente"
+            : $"Error al Eliminar la entrada con id {id}");
+        }
+
+        MyListView.DataContext = new PostViewModel();
+        viewModel.GetPostsForView();
+      }
+      catch (Exception exception) {
+        MessageBox.Show(exception.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        throw;
+      }
+    }
+    catch (Exception exception) {
+      MessageBox.Show(exception.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+      throw;
+    }
   }
 
   private void Sample5_DialogHost_OnDialogClosing(object sender, DialogClosingEventArgs eventArgs) {
@@ -29,7 +52,10 @@ public partial class PostsUserControl {
       post.PostTitle = ProductNameEditText.Text;
       post.PostDescription = ProductDescriptionEditText.Text;
       post.PostUrl = ProductUrlEditText.Text;
-      post.PostPublishDate = Convert.ToDateTime(PostPublishDatePicker.Text);
+      if (PostPublishDatePicker.SelectedDate == null || PostPublishDatePicker.SelectedDate.ToString() == "") {
+        post.PostPublishDate = DateTime.Now.ToString("dd-MM-yyyy");
+      }
+
       post.IsFavorite = PostIsFavoriteCheckBox.IsChecked.Value;
       post.PostFirstImage = PostFirstImageEditText.Text;
       post.PostSecondImage = PostSecondImageEditText.Text;

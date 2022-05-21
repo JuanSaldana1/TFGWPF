@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Controls;
 using MaterialDesignThemes.Wpf;
 using Microsoft.Win32;
+using NHibernate.Util;
 using WpfApp3.Model;
 using WpfApp3.ViewModel;
 using MessageBox = ModernWpf.MessageBox;
@@ -61,5 +63,32 @@ public partial class UsuariosUserControl {
     openFileDialog.ShowDialog();
     SnackbarSeven.MessageQueue?.Enqueue(openFileDialog.FileName);
     ImagenPerfil = openFileDialog.FileName;
+  }
+
+  private void ButtonDeleteUser_OnClick(object sender, RoutedEventArgs e) {
+    try {
+      var button = sender as Button;
+      dynamic item = button?.DataContext;
+      var id = item.UserId;
+      var viewModel = new UserViewModel();
+      try {
+        if (!id.Equals("") || !id.Equals(null)) {
+          SnackbarSeven.MessageQueue?.Enqueue(viewModel.DeleteMethod(id)
+            ? $"Usuario con id {id} eliminado correctamente"
+            : $"Error al Eliminar el usuario con id {id}");
+        }
+
+        MyListView.DataContext = new UserViewModel();
+        viewModel.GetUsersForView();
+      }
+      catch (Exception exception) {
+        MessageBox.Show(exception.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        throw;
+      }
+    }
+    catch (Exception exception) {
+      MessageBox.Show(exception.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+      throw;
+    }
   }
 }

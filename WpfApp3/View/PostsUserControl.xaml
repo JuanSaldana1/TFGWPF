@@ -200,12 +200,29 @@
                                             Grid.Row="6"
                                             Style="{StaticResource MaterialDesignDarkSeparator}" />
 
-                                        <Button
-                                            Grid.Row="7"
-                                            Click="ButtonUpdateChanges_Click"
-                                            Content="Guardar Cambios"
-                                            HorizontalAlignment="Left"
-                                            Style="{StaticResource MaterialDesignFlatButton}" />
+                                        <StackPanel Grid.Row="7">
+                                            <Button
+                                                Name="ButtonDeletePost"
+                                                Click="ButtonDeletePost_OnClick"
+                                                HorizontalAlignment="Left"
+                                                Style="{StaticResource MaterialDesignFlatButton}">
+                                                <materialDesign:PackIcon
+                                                    Kind="DeleteOutline"
+                                                    Height="20"
+                                                    Width="20" />
+                                            </Button>
+
+                                            <Button
+                                                Name="OtherButton"
+                                                Click="ButtonDeletePost_OnClick"
+                                                HorizontalAlignment="Left"
+                                                Style="{StaticResource MaterialDesignFlatSecondaryMidBgButton}">
+                                                <materialDesign:PackIcon
+                                                    Kind="DeleteOutline"
+                                                    Height="20"
+                                                    Width="20" />
+                                            </Button>
+                                        </StackPanel>
 
                                     </Grid>
                                 </materialDesign:Card>

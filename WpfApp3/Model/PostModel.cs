@@ -11,7 +11,7 @@ public class PostModel {
   private string image1;
   private string image2;
   private bool isFavorite;
-  private DateTime publishedAt;
+  private string publishedAt;
   private string title;
   private string url;
 
@@ -47,10 +47,10 @@ public class PostModel {
     }
   }
 
-  public DateTime PostPublishDate {
-    get => publishedAt.Date;
+  public string PostPublishDate {
+    get => publishedAt;
     set {
-      publishedAt = value.Date;
+      publishedAt = value;
       OnPropertyChanged("PostPublishDate");
     }
   }

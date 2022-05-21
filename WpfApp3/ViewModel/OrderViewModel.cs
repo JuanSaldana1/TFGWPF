@@ -86,8 +86,8 @@ public class OrderViewModel {
         "INSERT INTO Orders (ProductId, OrderDate, Quantity, LineId, UserId) values ('" +
         pedido.ProductId + "','" + pedido.OrderDate + "'," + pedido.Quantity +
         ", " + pedido.LineId + "," + pedido.UserId + ");";
+      var conexionBd = new MySqlConnection(MainWindow.CadenaConexion);
       try {
-        var conexionBd = new MySqlConnection(MainWindow.CadenaConexion);
         conexionBd.Open();
         var command = new MySqlCommand(insertQuery, conexionBd);
         command.ExecuteNonQuery();
@@ -108,5 +108,33 @@ public class OrderViewModel {
     }
 
     return isInserted;
+  }
+
+  public bool DeleteMethod(int orderId) {
+    var isDeleted = false;
+    try {
+      var deleteQuery = "DELETE FROM Orders WHERE OrderID='" + orderId + "'";
+      var conexionBd = new MySqlConnection(MainWindow.CadenaConexion);
+      try {
+        conexionBd.Open();
+        var command = new MySqlCommand(deleteQuery, conexionBd);
+        command.ExecuteNonQuery();
+        isDeleted = true;
+        conexionBd.Close();
+        GetOrdersForView(); //Actualizar la lista de productos
+      }
+      catch (Exception e) {
+        MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        isDeleted = false;
+      }
+
+      GetOrdersForView();
+    }
+    catch (Exception e) {
+      MessageBox.Show(e.Message, "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+      throw;
+    }
+
+    return isDeleted;
   }
 }

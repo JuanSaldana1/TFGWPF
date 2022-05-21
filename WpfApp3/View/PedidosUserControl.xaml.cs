@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Controls;
 using MaterialDesignThemes.Wpf;
 using WpfApp3.Model;
 using WpfApp3.ViewModel;
@@ -11,6 +12,33 @@ public partial class PedidosUserControl {
   public PedidosUserControl() {
     InitializeComponent();
     MyListView.DataContext = new OrderViewModel();
+  }
+
+  private void ButtonDeleteOrder_Click(object sender, RoutedEventArgs e) {
+    try {
+      var button = sender as Button;
+      dynamic item = button?.DataContext;
+      var id = item.OrderId;
+      var viewModel = new OrderViewModel();
+      try {
+        if (!id.Equals("") || !id.Equals(null)) {
+          SnackbarSeven.MessageQueue?.Enqueue(viewModel.DeleteMethod(id)
+            ? $"Pedido con id {id} eliminado correctamente"
+            : $"Error al Eliminar el pedido con id {id}");
+        }
+
+        MyListView.DataContext = new OrderViewModel();
+        viewModel.GetOrdersForView();
+      }
+      catch (Exception exception) {
+        MessageBox.Show(exception.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        throw;
+      }
+    }
+    catch (Exception exception) {
+      MessageBox.Show(exception.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+      throw;
+    }
   }
 
   private void Sample5_DialogHost_OnDialogClosing(object sender, DialogClosingEventArgs eventArgs) {

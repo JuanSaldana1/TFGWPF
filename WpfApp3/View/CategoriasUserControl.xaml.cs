@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Controls;
 using MaterialDesignThemes.Wpf;
 using WpfApp3.Model;
 using WpfApp3.ViewModel;
@@ -35,6 +36,33 @@ public partial class CategoriasUserControl {
     }
     catch (Exception e) {
       MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+      throw;
+    }
+  }
+
+  private void ButtonDeleteCategory_Click(object sender, RoutedEventArgs e) {
+    try {
+      var button = sender as Button;
+      dynamic item = button?.DataContext;
+      var id = item.CategoryId;
+      var viewModel = new CategoryViewModel();
+      try {
+        if (!id.Equals("") || !id.Equals(null)) {
+          SnackbarSeven.MessageQueue?.Enqueue(viewModel.DeleteMethod(id)
+            ? $"Categoría con id {id} eliminada correctamente"
+            : $"Error al Eliminar la categoría con id {id}");
+        }
+
+        CategoriesListBox.DataContext = new CategoryViewModel();
+        viewModel.GetCategoriesForView();
+      }
+      catch (Exception exception) {
+        MessageBox.Show(exception.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        throw;
+      }
+    }
+    catch (Exception exception) {
+      MessageBox.Show(exception.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
       throw;
     }
   }

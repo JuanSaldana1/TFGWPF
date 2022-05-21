@@ -196,14 +196,26 @@
                                                 Value="{Binding ProductRating, Mode=TwoWay}"
                                                 ValueChanged="BasicRatingBar_ValueChanged" />
                                         </Grid>
-                                        <StackPanel Grid.Row="5">
+                                        <StackPanel Grid.Row="5" Orientation="Horizontal">
                                             <Button
-                                                Name="ButtonAddProduct"
-                                                Click="ButtonBase_OnClick"
-                                                Content="Reservar"
-                                                ToolTip="Añáde el producto a la lista de reservas para crear un pedido"
+                                                Name="ButtonDeleteProduct"
+                                                Click="ButtonDeleteProduct_OnClick"
+                                                ToolTip="Elimina este producto"
+                                                Content="{materialDesign:PackIcon DeleteOutline}"
                                                 HorizontalAlignment="Left"
-                                                Style="{StaticResource MaterialDesignFlatButton}" />
+                                                Style="{StaticResource MaterialDesignPaperSecondaryButton}" />
+                                            <Button
+                                                Name="ButtonCreateQrCode"
+                                                Click="BurronCreateQrCode_OnClick"
+                                                ToolTip="Elimina este producto"
+                                                IsEnabled="False"
+                                                HorizontalAlignment="Left"
+                                                Style="{StaticResource MaterialDesignPaperSecondaryButton}">
+                                                <materialDesign:PackIcon
+                                                    Kind="Qrcode"
+                                                    Height="20"
+                                                    Width="20" />
+                                            </Button>
                                         </StackPanel>
                                     </Grid>
 

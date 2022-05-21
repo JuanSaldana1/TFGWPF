@@ -1,11 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Windows;
 using MySql.Data.MySqlClient;
 using WpfApp3.Model;
+using MessageBox = ModernWpf.MessageBox;
 
 namespace WpfApp3.ViewModel;
 
 public class CommentViewModel {
+  public IList<CommentModel> Comments { get; } = new List<CommentModel>();
+
   public CommentViewModel() {
+    GetCommentsForView();
+  }
+
+  public void GetCommentsForView() {
     var cadenaConexion = MainWindow.CadenaConexion;
     var conexionBd = new MySqlConnection(cadenaConexion);
     const string mySelectQuery =
@@ -33,5 +42,29 @@ public class CommentViewModel {
     conexionBd.Close();
   }
 
-  public IList<CommentModel> Comments { get; } = new List<CommentModel>();
+  public bool DeleteMethod(int commentId) {
+    var isDeleted = false;
+    try {
+      var deleteQuery = "DELETE FROM Comments WHERE CommentId='" + commentId + "'";
+      try {
+        var conexionBd = new MySqlConnection(MainWindow.CadenaConexion);
+        conexionBd.Open();
+        var command = new MySqlCommand(deleteQuery, conexionBd);
+        command.ExecuteNonQuery();
+        isDeleted = true;
+        conexionBd.Close();
+        GetCommentsForView(); //Actualizar la lista de productos
+      }
+      catch (Exception e) {
+        MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        isDeleted = false;
+      }
+    }
+    catch (Exception e) {
+      MessageBox.Show(e.Message, "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+      throw;
+    }
+
+    return isDeleted;
+  }
 }

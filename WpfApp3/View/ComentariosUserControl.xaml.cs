@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Windows;
-using MaterialDesignThemes.Wpf;
-using MySql.Data.MySqlClient;
-using WpfApp3.Model;
+using System.Windows.Controls;
 using WpfApp3.ViewModel;
 using MessageBox = ModernWpf.MessageBox;
 
@@ -27,26 +25,30 @@ public partial class ComentariosUserControl {
     return null;
   }
 
-  private void ButtonEliminarComentario_Click(object sender, RoutedEventArgs e) {
-    MessageBox.Show(sender + "\n" + sender.GetType() + "\n" + e + "\n" + e.Source + "\n" +
-                    e.Source.GetType());
-    MessageBox.Show(MyListView.SelectedItem.ToString());
-    MessageBox.Show(MyListView.SelectedItem.GetHashCode().ToString());
-    MessageBox.Show(MyListView.SelectedItem.GetType().ToString());
-    MessageBox.Show(MyListView.SelectedItems.ToString());
-    MessageBox.Show(MyListView.Uid);
-    MessageBox.Show(MyListView.Items.ToString());
-    MessageBox.Show(MyListView.PersistId.ToString());
+  private void ButtonDeleteComment_Click(object sender, RoutedEventArgs e) {
     try {
-      var cadenaConexion = MainWindow.CadenaConexion;
-      var conexionBd = new MySqlConnection(cadenaConexion);
-      var deleteQuery = "DELETE FROM Comentarios WHERE IdComentario = '" + MyListView.SelectedItem.GetHashCode() + "';";
-      var myCommand = new MySqlCommand(deleteQuery, conexionBd);
-      conexionBd.Open();
-      myCommand.ExecuteReader();
+      var button = sender as Button;
+      dynamic item = button?.DataContext;
+      var id = item.CommentId;
+      var viewModel = new CommentViewModel();
+      try {
+        if (!id.Equals("") || !id.Equals(null)) {
+          SnackbarSeven.MessageQueue?.Enqueue(viewModel.DeleteMethod(id)
+            ? $"Comentario con id {id} eliminado correctamente"
+            : $"Error al Eliminar el comentario con id {id}");
+        }
+
+        MyListView.DataContext = new CommentViewModel();
+        viewModel.GetCommentsForView();
+      }
+      catch (Exception exception) {
+        MessageBox.Show(exception.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        throw;
+      }
     }
-    catch (Exception ex) {
-      MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+    catch (Exception exception) {
+      MessageBox.Show(exception.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+      throw;
     }
   }
 }

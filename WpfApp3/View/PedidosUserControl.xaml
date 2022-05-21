@@ -134,6 +134,15 @@
                                                 <StackPanel Orientation="Horizontal">
                                                     <TextBlock Text="{Binding ProductName}" />
                                                     <TextBlock Text="{Binding Quantity}" Margin="5, 0" />
+                                                    <Separator
+                                                        Style="{StaticResource MaterialDesignDarkSeparator}" />
+                                                    <Button
+                                                        Name="ButtonDeleteOrder"
+                                                        Click="ButtonDeleteOrder_Click"
+                                                        ToolTip="Elimina este pedido"
+                                                        Content="{materialDesign:PackIcon DeleteOutline}"
+                                                        HorizontalAlignment="Left"
+                                                        Style="{StaticResource MaterialDesignPaperSecondaryButton}" />
                                                 </StackPanel>
                                             </StackPanel>
                                         </Expander>

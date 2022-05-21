@@ -138,26 +138,63 @@ internal class ProductViewModel : ViewModelBase {
 
   public bool UpdateMethod(ProductoModel producto) {
     var isUpdated = false;
-    var updateQuery =
-      "UPDATE Products SET Name='" + producto.ProductName + "', Description='" + producto.ProductDescription +
-      "', Price='" + producto.ProductPrice + "', CategoryId='" + producto.CategoryId + "', Stock='" +
-      producto.ProductStock + "', Rating='" + producto.ProductRating + "', Image='" + producto.ProductImage +
-      "', PostId='" + producto.PostId + "' WHERE ProductId='" + producto.ProductId + "'";
     try {
-      var conexionBd = new MySqlConnection(MainWindow.CadenaConexion);
-      conexionBd.Open();
-      var command = new MySqlCommand(updateQuery, conexionBd);
-      command.ExecuteNonQuery();
-      isUpdated = true;
-      conexionBd.Close();
-      GetAllProducts(); //Actualizar la lista de productos
+      var updateQuery =
+        "UPDATE Products SET Name='" + producto.ProductName + "', Description='" + producto.ProductDescription +
+        "', Price='" + producto.ProductPrice + "', CategoryId='" + producto.CategoryId + "', Stock='" +
+        producto.ProductStock + "', Rating='" + producto.ProductRating + "', Image='" + producto.ProductImage +
+        "', PostId='" + producto.PostId + "' WHERE ProductId='" + producto.ProductId + "'";
+      try {
+        var conexionBd = new MySqlConnection(MainWindow.CadenaConexion);
+        conexionBd.Open();
+        var command = new MySqlCommand(updateQuery, conexionBd);
+        command.ExecuteNonQuery();
+        isUpdated = true;
+        conexionBd.Close();
+        GetAllProducts(); //Actualizar la lista de productos
+      }
+      catch (Exception e) {
+        MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        isUpdated = false;
+      }
+
+      GetProductsForView(); //Actualizar la lista de productos
     }
     catch (Exception e) {
-      MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-      isUpdated = false;
+      MessageBox.Show(e.Message, "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+      throw;
     }
 
+
     return isUpdated;
+  }
+
+  public bool DeleteMethod(int productId) {
+    var isDeleted = false;
+    try {
+      var deleteQuery = "DELETE FROM Products WHERE ProductId='" + productId + "'";
+      var conexionBd = new MySqlConnection(MainWindow.CadenaConexion);
+      try {
+        conexionBd.Open();
+        var command = new MySqlCommand(deleteQuery, conexionBd);
+        command.ExecuteNonQuery();
+        isDeleted = true;
+        conexionBd.Close();
+        GetProductsForView(); //Actualizar la lista de productos
+      }
+      catch (Exception e) {
+        MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        isDeleted = false;
+      }
+
+      GetProductsForView(); //Actualizar la lista de productos
+    }
+    catch (Exception e) {
+      MessageBox.Show(e.Message, "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+      throw;
+    }
+
+    return isDeleted;
   }
 
   public List<Object> SearchAllSelecrQuery(string parameters) {
@@ -211,14 +248,53 @@ internal class ProductViewModel : ViewModelBase {
     return lista;
   }
 
+  public string SelectAllFromProductId(int productId) {
+    var producto = new ProductoModel();
+    try {
+      var cadenaConexion = MainWindow.CadenaConexion;
+      var conexionBd = new MySqlConnection(cadenaConexion);
+      var selectQuery = "SELECT * FROM Products WHERE ProductId='" + productId + "';";
+
+      var myCommand = new MySqlCommand(selectQuery, conexionBd);
+      conexionBd.Open();
+      MySqlDataReader myReader;
+      myReader = myCommand.ExecuteReader();
+      if (myReader.HasRows) {
+        try {
+          while (myReader.Read()) {
+            producto.ProductId = myReader.GetInt32(0);
+            producto.ProductName = myReader.GetString(1);
+            producto.ProductDescription = myReader.GetString(2);
+            producto.ProductPrice = myReader.GetDecimal(3);
+            producto.CategoryId = myReader.GetInt32(4);
+            producto.ProductStock = myReader.GetInt32(5);
+            producto.ProductRating = myReader.GetInt32(6);
+            producto.ProductImage = myReader.GetString(7);
+            producto.PostId = myReader.GetInt32(8);
+          }
+        }
+        catch (Exception e) {
+          MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+          throw;
+        }
+
+        conexionBd.Close();
+      }
+    }
+    catch (Exception e) {
+      MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+      throw;
+    }
+
+    return producto.ToString();
+  }
 
   #region SAMPLE 4
 
-  //pretty much ignore all the stuff provided, and manage everything via custom commands and a binding for .IsOpen
+//pretty much ignore all the stuff provided, and manage everything via custom commands and a binding for .IsOpen
   public ICommand OpenSample4DialogCommand { get; }
   public ICommand AcceptSample4DialogCommand { get; }
   public ICommand CancelSample4DialogCommand { get; }
-
   private bool _isSample4DialogOpen;
   private object? _sample4Content;
 
