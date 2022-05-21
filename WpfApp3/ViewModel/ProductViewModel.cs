@@ -144,8 +144,8 @@ internal class ProductViewModel : ViewModelBase {
         "', Price='" + producto.ProductPrice + "', CategoryId='" + producto.CategoryId + "', Stock='" +
         producto.ProductStock + "', Rating='" + producto.ProductRating + "', Image='" + producto.ProductImage +
         "', PostId='" + producto.PostId + "' WHERE ProductId='" + producto.ProductId + "'";
+      var conexionBd = new MySqlConnection(MainWindow.CadenaConexion);
       try {
-        var conexionBd = new MySqlConnection(MainWindow.CadenaConexion);
         conexionBd.Open();
         var command = new MySqlCommand(updateQuery, conexionBd);
         command.ExecuteNonQuery();
@@ -295,6 +295,7 @@ internal class ProductViewModel : ViewModelBase {
   public ICommand OpenSample4DialogCommand { get; }
   public ICommand AcceptSample4DialogCommand { get; }
   public ICommand CancelSample4DialogCommand { get; }
+
   private bool _isSample4DialogOpen;
   private object? _sample4Content;
 
