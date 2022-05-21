@@ -295,7 +295,6 @@ internal class ProductViewModel : ViewModelBase {
   public ICommand OpenSample4DialogCommand { get; }
   public ICommand AcceptSample4DialogCommand { get; }
   public ICommand CancelSample4DialogCommand { get; }
-
   private bool _isSample4DialogOpen;
   private object? _sample4Content;
 
