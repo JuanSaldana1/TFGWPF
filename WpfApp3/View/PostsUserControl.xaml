@@ -200,25 +200,23 @@
                                             Grid.Row="6"
                                             Style="{StaticResource MaterialDesignDarkSeparator}" />
 
-                                        <StackPanel Grid.Row="7">
+                                        <StackPanel Grid.Row="7" Orientation="Horizontal">
                                             <Button
                                                 Name="ButtonDeletePost"
                                                 Click="ButtonDeletePost_OnClick"
                                                 HorizontalAlignment="Left"
-                                                Style="{StaticResource MaterialDesignFlatButton}">
-                                                <materialDesign:PackIcon
-                                                    Kind="DeleteOutline"
-                                                    Height="20"
-                                                    Width="20" />
-                                            </Button>
+                                                ToolTip="Elimina esta publicación"
+                                                Content="{materialDesign:PackIcon DeleteOutline}"
+                                                Style="{StaticResource MaterialDesignFlatButton}" />
 
                                             <Button
                                                 Name="OtherButton"
                                                 Click="ButtonDeletePost_OnClick"
                                                 HorizontalAlignment="Left"
+                                                IsEnabled="False"
                                                 Style="{StaticResource MaterialDesignFlatSecondaryMidBgButton}">
                                                 <materialDesign:PackIcon
-                                                    Kind="DeleteOutline"
+                                                    Kind="Qrcode"
                                                     Height="20"
                                                     Width="20" />
                                             </Button>
