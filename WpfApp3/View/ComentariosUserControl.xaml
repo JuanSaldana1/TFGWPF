@@ -110,7 +110,7 @@
                                 <StackPanel Grid.Row="6" Orientation="Horizontal">
                                     <Button
                                         Click="Button_Click"
-                                        Content="Editar"
+                                        Content="{materialDesign:PackIcon ContentSaveCheckOutline}"
                                         ToolTip="Aplicar los cambios hechos."
                                         HorizontalAlignment="Left"
                                         Style="{StaticResource MaterialDesignFlatButton}" />
@@ -118,7 +118,7 @@
                                         Name="ButtonEliminarComentario"
                                         Click="ButtonDeleteComment_Click"
                                         Content="{materialDesign:PackIcon DeleteOutline}"
-                                        ToolTip="Aplicar los cambios hechos."
+                                        ToolTip="Elimina este comentario"
                                         HorizontalAlignment="Left"
                                         Style="{StaticResource MaterialDesignPaperSecondaryButton}" />
                                 </StackPanel>

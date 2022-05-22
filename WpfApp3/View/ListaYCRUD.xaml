@@ -150,14 +150,6 @@
                             Grid.Row="1"
                             VerticalAlignment="Center"
                             Text="Dark" />
-
-
-                        <Button
-                            Grid.Column="0"
-                            Grid.Row="2"
-                            Grid.ColumnSpan="2"
-                            Click="ButtonBase_OnClick"
-                            Content="Abrir paleta de colores" />
                     </Grid>
                 </materialDesign:PopupBox>
 
