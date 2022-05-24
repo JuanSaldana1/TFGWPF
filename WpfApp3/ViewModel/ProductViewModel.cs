@@ -215,30 +215,36 @@ internal class ProductViewModel : ViewModelBase {
       }
 
       var myCommand = new MySqlCommand(selectQuery, conexionBd);
-      conexionBd.Open();
-      MySqlDataReader myReader;
       try {
-        myReader = myCommand.ExecuteReader();
-        if (myReader.HasRows)
-          while (myReader.Read())
-            Productos.Add(new ProductoModel {
-              ProductId = myReader.GetInt32(0),
-              ProductName = myReader.GetString(1),
-              ProductDescription = myReader.GetString(2),
-              ProductPrice = myReader.GetDecimal(3),
-              CategoryId = myReader.GetInt32(4),
-              ProductStock = myReader.GetInt32(5),
-              ProductImage = myReader.GetString(6),
-              PostId = myReader.GetInt32(7)
-            });
+        conexionBd.Open();
+        MySqlDataReader myReader;
+        try {
+          myReader = myCommand.ExecuteReader();
+          if (myReader.HasRows)
+            while (myReader.Read())
+              Productos.Add(new ProductoModel {
+                ProductId = myReader.GetInt32(0),
+                ProductName = myReader.GetString(1),
+                ProductDescription = myReader.GetString(2),
+                ProductPrice = myReader.GetDecimal(3),
+                CategoryId = myReader.GetInt32(4),
+                ProductStock = myReader.GetInt32(5),
+                ProductImage = myReader.GetString(6),
+                PostId = myReader.GetInt32(7)
+              });
+        }
+        catch (Exception e) {
+          MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+          throw;
+        }
+
+        myReader.Close();
+        conexionBd.Close();
       }
       catch (Exception e) {
         MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         throw;
       }
-
-      myReader.Close();
-      conexionBd.Close();
     }
     catch (Exception e) {
       MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);

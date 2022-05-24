@@ -1,3 +1,3 @@
-﻿namespace WpfApp3; 
+﻿namespace WpfApp3;
 
 public partial class App { }

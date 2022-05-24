@@ -2,11 +2,6 @@
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using CRMLasDiademasDeMisHijas.View;
-using Gma.QrCodeNet.Encoding;
-using Gma.QrCodeNet.Encoding.Windows.Render;
 using iText.IO.Font.Constants;
 using iText.Kernel.Font;
 using iText.Kernel.Geom;
@@ -103,28 +98,48 @@ public partial class ProductosUserControl {
   }
 
   private void ButtonCreateReport_OnClick(object sender, RoutedEventArgs e) {
-    CreateProductReport();
-  }
-
-  private static void CreateProductReport() {
-    var pdfWriter = new PdfWriter("Reporte producto.pdf");
+    var button = sender as Button;
+    dynamic item = button?.DataContext;
+    var id = item.ProductId;
+    var viewModel = new ProductViewModel();
+    var contenido = viewModel.SelectAllFromProductId(id);
+    var pdfWriter = new PdfWriter($"Reporte producto {id}.pdf");
     var pdf = new PdfDocument(pdfWriter);
     var document = new Document(pdf, PageSize.A4);
     document.SetFont(PdfFontFactory.CreateFont(StandardFonts.HELVETICA));
     document.SetMargins(60, 20, 55, 20);
-    var parragraf = new Paragraph("Reporte de productos");
+    var parragraf = new Paragraph(contenido);
     document.Add(parragraf);
     document.Close();
   }
 
-  private void BurronCreateQrCode_OnClick(object sender, RoutedEventArgs e) {
+  /*private void BurronCreateQrCode_OnClick(object sender, RoutedEventArgs e) {
     try {
       var button = sender as Button;
       dynamic item = button?.DataContext;
       var id = item.ProductId;
       var viewModel = new ProductViewModel();
       var contenido = viewModel.SelectAllFromProductId(id);
-      var encoder = new QrEncoder(ErrorCorrectionLevel.H);
+      var qrCodeGenerator = new QRCodeGenerator();
+      var qrCodeData = qrCodeGenerator.CreateQrCode(contenido, QRCodeGenerator.ECCLevel.Q);
+      var qrCode = new QRCode(qrCodeData);
+      var qrCodeImage = qrCode.GetGraphic(20);
+      var qrCodeWindow = new QRCodeAcrylicWindow();
+      qrCodeWindow.QrImage.Source = ToBitmapImage(qrCodeImage);
+      /*var encoder = new QRCodeEncoder();
+      encoder.QRCodeScale = 8;
+      var bitmap = encoder.Encode(contenido);
+      var qrCodeWindow = new QRCodeAcrylicWindow();
+      var qrGenerator = new QRCodeGenerator();
+      var qrCodeData = qrGenerator.CreateQrCode(contenido, QRCodeGenerator.ECCLevel.Q);
+      var qrCode = new QRCode(qrCodeData);
+      var qrCodeImage = qrCode.GetGraphic(20);
+      var bytes = (byte[]) (new ImageConverter()).ConvertTo(qrCodeImage, typeof(byte[]));
+      var bitmapImage = ConvertByteArrayToBitMapImage(bytes);
+      qrCodeWindow.Show();
+      qrCodeWindow.QrImage.Source = bitmapImage;#1#
+
+      /*var encoder = new QrEncoder(ErrorCorrectionLevel.H);
       var qrCode = new QrCode();
       encoder.TryEncode(contenido, out qrCode);
       var wRenderer =
@@ -133,11 +148,43 @@ public partial class ProductosUserControl {
       wRenderer.Draw(wBitmap, qrCode.Matrix);
       var qrCodeWindow = new QRCodeAcrylicWindow();
       qrCodeWindow.QrImage.Source = wBitmap;
-      qrCodeWindow.Show();
+      qrCodeWindow.Show();#1#
     }
     catch (Exception exception) {
       MessageBox.Show(exception.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
       throw;
     }
-  }
+  }*/
+
+  /*public BitmapImage ConvertByteArrayToBitMapImage(byte[] imageByteArray) {
+    var img = new BitmapImage();
+    using (MemoryStream memStream = new MemoryStream(imageByteArray)) {
+      img.BeginInit();
+      img.CacheOption = BitmapCacheOption.OnLoad;
+      img.StreamSource = memStream;
+      img.EndInit();
+      img.Freeze();
+    }
+
+    return img;
+  }*/
+
+  /*private void ButtonCreateBarCode_OnClick(object sender, RoutedEventArgs e) {
+    var qrCodeWindow = new QRCodeAcrylicWindow();
+    qrCodeWindow.BarcodeControl.Value = "123456789";
+    qrCodeWindow.Show();
+  }*/
+
+  /*private ImageSource ToBitmapImage(Bitmap bitmap) {
+    using (var memory = new MemoryStream()) {
+      bitmap.Save(memory, ImageFormat.Bmp);
+      memory.Position = 0;
+      var bitmapImage = new BitmapImage();
+      bitmapImage.BeginInit();
+      bitmapImage.StreamSource = memory;
+      bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+      bitmapImage.EndInit();
+      return Windows.UI.Xaml.Media.ImageSource(bitmapImage);
+    }
+  }*/
 }

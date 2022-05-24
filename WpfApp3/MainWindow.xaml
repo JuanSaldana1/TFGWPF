@@ -9,15 +9,15 @@
     TextOptions.TextRenderingMode="Auto"
     Title="MainWindow"
     Width="500"
-    d:DataContext="{d:DesignInstance Type=wpfApp3:MainWindow}"
+    d:DataContext="{d:DesignInstance Type=wpfApp31:MainWindow}"
     mc:Ignorable="d"
     x:Class="WpfApp3.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:wpfApp3="clr-namespace:WpfApp3"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:wpfApp31="clr-namespace:WpfApp3">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -40,7 +40,6 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-
     <Border
         BorderBrush="{DynamicResource PrimaryHueMidBrush}"
         BorderThickness="1"

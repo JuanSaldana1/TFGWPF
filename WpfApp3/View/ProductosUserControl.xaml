@@ -206,13 +206,35 @@
                                                 Style="{StaticResource MaterialDesignPaperSecondaryButton}" />
                                             <Button
                                                 Name="ButtonCreateQrCode"
-                                                Click="BurronCreateQrCode_OnClick"
-                                                ToolTip="Elimina este producto"
+                                                ToolTip="Crea un código QR"
                                                 IsEnabled="False"
                                                 HorizontalAlignment="Left"
                                                 Style="{StaticResource MaterialDesignPaperSecondaryButton}">
                                                 <materialDesign:PackIcon
                                                     Kind="Qrcode"
+                                                    Height="20"
+                                                    Width="20" />
+                                            </Button>
+                                            <Button
+                                                Name="ButtonCreateBarCode"
+                                                ToolTip="Genera un código de barras"
+                                                IsEnabled="False"
+                                                HorizontalAlignment="Left"
+                                                Style="{StaticResource MaterialDesignPaperSecondaryButton}">
+                                                <materialDesign:PackIcon
+                                                    Kind="Barcode"
+                                                    Height="20"
+                                                    Width="20" />
+                                            </Button>
+                                            <Button
+                                                Name="ButtonCreateReport"
+                                                ToolTip="Crea un informe"
+                                                Click="ButtonCreateReport_OnClick"
+                                                IsEnabled="True"
+                                                HorizontalAlignment="Left"
+                                                Style="{StaticResource MaterialDesignPaperSecondaryButton}">
+                                                <materialDesign:PackIcon
+                                                    Kind="FileDocumentEditOutline"
                                                     Height="20"
                                                     Width="20" />
                                             </Button>

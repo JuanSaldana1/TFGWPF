@@ -315,6 +315,24 @@
                 </TabItem.Header>
                 <UserControl Name="userControlColores" />
             </TabItem>
+            
+            <!--  PESTAÑA Analíticas  -->
+            <TabItem
+                Margin="20,0,0,0"
+                Padding="12"
+                Width="Auto">
+                <TabItem.Header>
+                    <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
+                        <materialDesign:PackIcon
+                            Height="24"
+                            HorizontalAlignment="Center"
+                            Kind="ChartBoxOutline"
+                            Width="24" />
+                        <TextBlock HorizontalAlignment="Center" Text="Analíticas" />
+                    </StackPanel>
+                </TabItem.Header>
+                <UserControl Name="userControlAnalytics" />
+            </TabItem>
         </TabControl>
     </Grid>
 </Window>

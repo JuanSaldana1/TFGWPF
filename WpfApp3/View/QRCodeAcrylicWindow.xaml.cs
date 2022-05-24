@@ -1,6 +1,4 @@
-﻿using System.Windows;
-
-namespace CRMLasDiademasDeMisHijas.View; 
+﻿namespace WpfApp3.View; 
 
 public partial class QRCodeAcrylicWindow {
   public QRCodeAcrylicWindow() {

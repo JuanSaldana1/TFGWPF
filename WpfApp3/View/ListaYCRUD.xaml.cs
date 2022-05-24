@@ -22,6 +22,7 @@ public partial class ListaYCRUD {
     var pedidosUserControl = new PedidosUserControl();
     var consultasUserControl = new ConsultasUserControl();
     var coloresUserControl = new ColoresUserControl();
+    var analiticasUserControl = new ChartUserControl();
     userControlProductos.Content = productosUserControl;
     userControlUsuarios.Content = usuariosUserControl;
     userControlPosts.Content = postsUserControl;
@@ -30,7 +31,7 @@ public partial class ListaYCRUD {
     userControlPedidos.Content = pedidosUserControl;
     userControlConsultas.Content = consultasUserControl;
     userControlColores.Content = coloresUserControl;
-    
+    userControlAnalytics.Content = analiticasUserControl;
   }
 
   private void ButtonBase_OnClick(object sender, RoutedEventArgs e) {
