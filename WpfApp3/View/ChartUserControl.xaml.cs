@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Media;
-using CommunityToolkit.Mvvm.ComponentModel;
 using LiveCharts;
 using LiveCharts.Wpf;
 using LiveChartsCore;
@@ -60,43 +59,35 @@ public partial class ChartUserControl {
   }
 
   public ISeries[] TodosLosGraficos { get; set; } = {
+    new ColumnSeries<int> {
+      Name = "Comentarios",
+      Values = new[] {21, 16, 4, 28, 14, 33, 72, 24, 19, 0, 5, 48, 13, 7, 14, 13, 13, 13, 1, 1, 2, 2, 2},
+      ScalesYAt = 0, // it will be scaled at the Axis[0] instance
+      Fill = new SolidColorPaint(s_red, 2),
+    },
+    new LineSeries<int> {
+      LineSmoothness = 1,
+      Name = "Entradas (posts)",
+      Values = new[] {10, 16, 20, 17, 7, 5, 17, 3, 5, 0, 7, 4, 1, 2, 3, 5, 4, 6, 1, 1, 2, 2, 2},
+      Stroke = new SolidColorPaint(s_blue, 2),
+      GeometrySize = 10,
+      GeometryStroke = new SolidColorPaint(s_blue, 2),
+      Fill = null,
+      ScalesYAt = 0 // it will be scaled at the Axis[0] instance 
+    },
+  };
+
+  public ISeries[] GraficoPublicaciones { get; set; } = {
     new LineSeries<double> {
       LineSmoothness = 1,
       Name = "Entradas (posts)",
-      Values = new double[] {20, 17, 7, 5, 17, 3, 5, 1, 7, 4, 1, 2, 3, 5, 4, 6, 1, 1, 2, 2, 2},
+      Values = new double[] {10, 16, 20, 17, 7, 5, 17, 3, 5, 1, 7, 4, 1, 2, 3, 5, 4, 6, 1, 1, 2, 2, 2},
       Stroke = new SolidColorPaint(s_blue, 2),
       GeometrySize = 10,
       GeometryStroke = new SolidColorPaint(s_blue, 2),
       Fill = null,
       ScalesYAt = 0 // it will be scaled at the Axis[0] instance 
     },
-    new LineSeries<double> {
-      Name = "Tens 2",
-      Values = new double[] {11, 12, 13, 10, 13},
-      Stroke = new SolidColorPaint(s_blue, 2),
-      GeometrySize = 10,
-      GeometryStroke = new SolidColorPaint(s_blue, 2),
-      Fill = null,
-      ScalesYAt = 0 // it will be scaled at the Axis[0] instance 
-    },
-    new LineSeries<double> {
-      Name = "Hundreds",
-      Values = new double[] {533, 586, 425, 579, 518},
-      Stroke = new SolidColorPaint(s_red, 2),
-      GeometrySize = 10,
-      GeometryStroke = new SolidColorPaint(s_red, 2),
-      Fill = null,
-      ScalesYAt = 1 // it will be scaled at the YAxes[1] instance 
-    },
-    new LineSeries<double> {
-      Name = "Thousands",
-      Values = new double[] {5493, 7843, 4368, 9018, 3902},
-      Stroke = new SolidColorPaint(s_yellow, 2),
-      GeometrySize = 10,
-      GeometryStroke = new SolidColorPaint(s_yellow, 2),
-      Fill = null,
-      ScalesYAt = 2 // it will be scaled at the YAxes[2] instance 
-    }
   };
 
   public Axis[] XAxes { get; set; } = {
@@ -105,12 +96,12 @@ public partial class ChartUserControl {
       NamePaint = new SolidColorPaint {Color = SKColors.Black},
       // Use the labels property for named or static labels 
       Labels = new string[] {
-        "Ene-14", "Feb-14", "Mar-14", "Abr-14", "May-14", "Jun-14", "Jul-14", "Ago-14", "Sep-14", "Oct-14", "Nov-14",
-        "Dic-14", "Ene-15", "Feb-15", "Mar-15", "Abr-15", "May-15", "Jun-15", "Jul-15", "Ago-15", "Sep-15", "Oct-15",
-        "Nov-15", "Dic-15", "Ene-16", "Feb-16", "Mar-16", "Abr-16", "May-16", "Jun-16", "Jul-16", "Ago-16", "Sep-16",
-        "Oct-16", "Nov-16", "Dic-16", "Ene-17", "Feb-17", "Mar-17", "Abr-17", "May-17", "Jun-17", "Jul-17", "Ago-17",
-        "Sep-17", "Oct-17", "Nov-17", "Dic-17", "Ene-18", "Feb-18", "Mar-18", "Abr-18", "May-18", "Jun-18", "Jul-18",
-        "Ago-18", "Sep-18", "Oct-18", "Nov-18", "Dic-18"
+        "Nov-13", "Dic-13", "Ene-14", "Feb-14", "Mar-14", "Abr-14", "May-14", "Jun-14", "Jul-14", "Ago-14", "Sep-14",
+        "Oct-14", "Nov-14", "Dic-14", "Ene-15", "Feb-15", "Mar-15", "Abr-15", "May-15", "Jun-15", "Jul-15", "Ago-15",
+        "Sep-15", "Oct-15", "Nov-15", "Dic-15", "Ene-16", "Feb-16", "Mar-16", "Abr-16", "May-16", "Jun-16", "Jul-16",
+        "Ago-16", "Sep-16", "Oct-16", "Nov-16", "Dic-16", "Ene-17", "Feb-17", "Mar-17", "Abr-17", "May-17", "Jun-17",
+        "Jul-17", "Ago-17", "Sep-17", "Oct-17", "Nov-17", "Dic-17", "Ene-18", "Feb-18", "Mar-18", "Abr-18", "May-18",
+        "Jun-18", "Jul-18", "Ago-18", "Sep-18", "Oct-18", "Nov-18", "Dic-18"
       },
       LabelsRotation = 15
     }
@@ -125,25 +116,5 @@ public partial class ChartUserControl {
       TextSize = 12,
       LabelsPaint = new SolidColorPaint(s_blue),
     },
-    new Axis // the "hundreds" series will be scaled on this axis
-    {
-      Name = "Hundreds",
-      NameTextSize = 14,
-      NamePaint = new SolidColorPaint(s_red),
-      TextSize = 12,
-      LabelsPaint = new SolidColorPaint(s_red),
-      ShowSeparatorLines = false,
-      Position = LiveChartsCore.Measure.AxisPosition.End
-    },
-    new Axis // the "thousands" series will be scaled on this axis
-    {
-      Name = "Thousands",
-      NameTextSize = 14,
-      NamePaint = new SolidColorPaint(s_yellow),
-      TextSize = 12,
-      LabelsPaint = new SolidColorPaint(s_yellow),
-      ShowSeparatorLines = false,
-      Position = LiveChartsCore.Measure.AxisPosition.End
-    }
   };
 }

@@ -8,39 +8,53 @@
              d:DesignWidth="800"
              d:DataContext="{d:DesignInstance Type=view:ChartUserControl}"
              xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
-             xmlns:viewModel="clr-namespace:WpfApp3.ViewModel"
-             xmlns:wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
              xmlns:view="clr-namespace:WpfApp3.View"
              xmlns:hc="https://handyorg.github.io/handycontrol">
     <!--<UserControl.DataContext>
         <viewModel:CharsViewModel />
     </UserControl.DataContext>-->
-    <Grid Height="250" Width="550" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="25">
-        <!--<lvc:CartesianChart
-            Series="{Binding Series}" />-->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
 
-        <!--<lvc:CartesianChart Series="{Binding SeriesCollection}" LegendLocation="Right">
-            <lvc:CartesianChart.AxisY>
-                <wpf:Axis Title="Sales" LabelFormatter="{Binding YFormatter}"></wpf:Axis>
-            </lvc:CartesianChart.AxisY>
-            <lvc:CartesianChart.AxisX>
-                <wpf:Axis Title="Month" Labels="{Binding Labels}"></wpf:Axis>
-            </lvc:CartesianChart.AxisX>
-        </lvc:CartesianChart>-->
         <hc:Card
+            Grid.Row="0"
+            Grid.Column="0"
             Effect="{DynamicResource EffectShadow2}"
+            Margin="35"
             Padding="8">
             <lvc:CartesianChart
                 Series="{Binding TodosLosGraficos}"
                 AnimationsSpeed="00:00:00.500"
                 XAxes="{Binding XAxes}"
-                YAxes="{Binding YAxes}"
                 LegendPosition="Right"
                 LegendFontFamily="Courier New"
                 LegendFontSize="12"
                 LegendTextBrush="#505050"
-                ZoomMode="Both">
-            </lvc:CartesianChart>
+                ZoomMode="Both" />
+        </hc:Card>
+        
+        <hc:Card
+            Grid.Row="0"
+            Grid.Column="1"
+            Effect="{DynamicResource EffectShadow2}"
+            Margin="35"
+            Padding="8">
+            <lvc:CartesianChart
+                Series="{Binding GraficoPublicaciones}"
+                AnimationsSpeed="00:00:00.500"
+                XAxes="{Binding XAxes}"
+                LegendPosition="Right"
+                LegendFontFamily="Courier New"
+                LegendFontSize="12"
+                LegendTextBrush="#505050"
+                ZoomMode="Both" />
         </hc:Card>
     </Grid>
 </UserControl>

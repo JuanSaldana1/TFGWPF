@@ -119,7 +119,7 @@
                         <DataTemplate>
                             <StackPanel Orientation="Vertical">
                                 <materialDesign:Card
-                                    Background="#F8BBD0"
+                                    Background="Gray"
                                     UniformCornerRadius="6"
                                     Padding="9"
                                     Width="400">
