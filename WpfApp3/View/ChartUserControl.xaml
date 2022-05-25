@@ -29,17 +29,24 @@
             Effect="{DynamicResource EffectShadow2}"
             Margin="35"
             Padding="8">
+            <hc:Card.Header>
+                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                    <TextBlock VerticalAlignment="Center" Margin="10 0">Search</TextBlock>
+                    <TextBox Name="Query" VerticalContentAlignment="Center" Width="100" Height="30">
+                    </TextBox>
+                </StackPanel>
+            </hc:Card.Header>
             <lvc:CartesianChart
                 Series="{Binding TodosLosGraficos}"
                 AnimationsSpeed="00:00:00.500"
-                XAxes="{Binding XAxes}"
+                XAxes="{Binding XAxesWithPublications}"
                 LegendPosition="Right"
-                LegendFontFamily="Courier New"
+                LegendFontFamily="Roboto"
                 LegendFontSize="12"
                 LegendTextBrush="#505050"
                 ZoomMode="Both" />
         </hc:Card>
-        
+
         <hc:Card
             Grid.Row="0"
             Grid.Column="1"
@@ -47,11 +54,33 @@
             Margin="35"
             Padding="8">
             <lvc:CartesianChart
+                x:Name="CartesianChart"
                 Series="{Binding GraficoPublicaciones}"
                 AnimationsSpeed="00:00:00.500"
-                XAxes="{Binding XAxes}"
+                XAxes="{Binding XAxesAllMonths}"
                 LegendPosition="Right"
-                LegendFontFamily="Courier New"
+                LegendFontFamily="Roboto"
+                LegendFontSize="12"
+                LegendTextBrush="#505050"
+                ZoomMode="Both" />
+            <hc:Card.Footer>
+                <Button Name="ButtonCreateChartImage" Content="Generar imagen" Margin="10,0,0,0" hc:BorderElement.CornerRadius="15" Click="ButtonCreateChartImage_OnClick" />
+            </hc:Card.Footer>
+        </hc:Card>
+
+        <hc:Card
+            Grid.Row="1"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Effect="{DynamicResource EffectShadow2}"
+            Margin="35"
+            Padding="8">
+            <lvc:CartesianChart
+                Series="{Binding GraficoComentarios}"
+                AnimationsSpeed="00:00:00.500"
+                XAxes="{Binding XAxesAllMonths}"
+                LegendPosition="Right"
+                LegendFontFamily="Roboto"
                 LegendFontSize="12"
                 LegendTextBrush="#505050"
                 ZoomMode="Both" />
