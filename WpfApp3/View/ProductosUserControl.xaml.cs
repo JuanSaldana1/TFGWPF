@@ -102,15 +102,7 @@ public partial class ProductosUserControl {
     dynamic item = button?.DataContext;
     var id = item.ProductId;
     var viewModel = new ProductViewModel();
-    var contenido = viewModel.SelectAllFromProductId(id);
-    var pdfWriter = new PdfWriter($"Reporte producto {id}.pdf");
-    var pdf = new PdfDocument(pdfWriter);
-    var document = new Document(pdf, PageSize.A4);
-    document.SetFont(PdfFontFactory.CreateFont(StandardFonts.HELVETICA));
-    document.SetMargins(60, 20, 55, 20);
-    var parragraf = new Paragraph(contenido);
-    document.Add(parragraf);
-    document.Close();
+    viewModel.SelectAllFromProductId(id);
   }
 
   /*private void BurronCreateQrCode_OnClick(object sender, RoutedEventArgs e) {

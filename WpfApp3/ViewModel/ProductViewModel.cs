@@ -5,6 +5,12 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using Windows.UI.Xaml.Controls;
+using iText.IO.Font.Constants;
+using iText.Kernel.Font;
+using iText.Kernel.Geom;
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
 using MaterialDesignDemo.Domain;
 using MySql.Data.MySqlClient;
 using WpfApp3.Model;
@@ -286,6 +292,19 @@ internal class ProductViewModel : ViewModelBase {
 
         conexionBd.Close();
       }
+
+      var pdfWriter = new PdfWriter($"Reporte producto {productId}.pdf");
+      var pdf = new PdfDocument(pdfWriter);
+      var document = new Document(pdf, PageSize.A4);
+      document.SetFont(PdfFontFactory.CreateFont(StandardFonts.HELVETICA));
+      document.SetMargins(60, 20, 55, 20);
+      var parragraf = new Paragraph($"Reporte de producto {producto.ProductName}.\n\n" + "Descripción: " +
+                                    producto.ProductDescription + "\n\n" + "Precio: " + producto.ProductPrice + "€.\n\n" +
+                                    "Stock: " + producto.ProductStock + "\n\n" + "Categoría: " + producto.CategoryId +
+                                    "\n\n" + "Rating: " + producto.ProductRating + "\n\n" + "Imagen: " +
+                                    producto.ProductImage + "\n\n" + "PostId: " + producto.PostId);
+      document.Add(parragraf);
+      document.Close();
     }
     catch (Exception e) {
       MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
