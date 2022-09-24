@@ -28,7 +28,7 @@ public partial class PostsUserControl {
         if (!(id?.Equals("") || id?.Equals(null))) {
           SnackbarSeven.MessageQueue?.Enqueue(viewModel.DeleteMethod(id)
             ? $"Entrada con id {id} eliminado correctamente"
-            : $"Error al Eliminar la entrada con id {id}");
+            : $"Error al eliminar la entrada con id {id}");
         }
 
         MyListView.DataContext = new PostViewModel();

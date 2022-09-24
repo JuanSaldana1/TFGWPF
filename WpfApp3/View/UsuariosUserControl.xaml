@@ -226,7 +226,7 @@
 
                                                     </StackPanel>
 
-                                                    <StackPanel Orientation="Horizontal">
+                                                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
 
                                                         <TextBlock Text="Telephone Contact" VerticalAlignment="Center" />
 

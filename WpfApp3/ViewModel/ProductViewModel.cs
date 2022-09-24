@@ -147,10 +147,10 @@ internal class ProductViewModel : ViewModelBase {
     var isUpdated = false;
     try {
       var updateQuery =
-        "UPDATE Products SET Name='" + producto.ProductName + "', Description='" + producto.ProductDescription +
+        "UPDATE Products SET Name=" + producto.ProductName + "', Description='" + producto.ProductDescription +
         "', Price='" + producto.ProductPrice + "', CategoryId='" + producto.CategoryId + "', Stock='" +
         producto.ProductStock + "', Rating='" + producto.ProductRating + "', Image='" + producto.ProductImage +
-        "', PostId='" + producto.PostId + "' WHERE ProductId='" + producto.ProductId + "'";
+        "', PostId='" + producto.PostId + "' " + " WHERE ProductId='" + producto.ProductId + "'";
       var conexionBd = new MySqlConnection(MainWindow.CadenaConexion);
       try {
         conexionBd.Open();
