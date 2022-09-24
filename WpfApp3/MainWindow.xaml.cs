@@ -147,8 +147,4 @@ public partial class MainWindow {
   private void ButtonConectar_Click(object sender, RoutedEventArgs e) {
     Conectar();
   }
-
-  private void Sample2_DialogHost_OnDialogClosing(object sender, DialogClosingEventArgs eventArgs) {
-    Debug.WriteLine($"SAMPLE 2: Closing dialog with parameter: {eventArgs.Parameter ?? string.Empty}");
-  }
 }

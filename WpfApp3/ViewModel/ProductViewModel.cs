@@ -13,6 +13,7 @@ using iText.Layout;
 using iText.Layout.Element;
 using MaterialDesignDemo.Domain;
 using MySql.Data.MySqlClient;
+using Syncfusion.Windows.Shared;
 using WpfApp3.Model;
 using MessageBox = ModernWpf.MessageBox;
 
@@ -209,7 +210,7 @@ internal class ProductViewModel : ViewModelBase {
       var cadenaConexion = MainWindow.CadenaConexion;
       var conexionBd = new MySqlConnection(cadenaConexion);
       var selectQuery = "";
-      if (parameters == null) {
+      if (parameters.IsNullOrWhiteSpace()) {
         selectQuery = "SELECT * FROM Products";
       }
       else {
@@ -269,8 +270,7 @@ internal class ProductViewModel : ViewModelBase {
 
       var myCommand = new MySqlCommand(selectQuery, conexionBd);
       conexionBd.Open();
-      MySqlDataReader myReader;
-      myReader = myCommand.ExecuteReader();
+      MySqlDataReader myReader = myCommand.ExecuteReader();
       if (myReader.HasRows) {
         try {
           while (myReader.Read()) {
@@ -298,12 +298,12 @@ internal class ProductViewModel : ViewModelBase {
       var document = new Document(pdf, PageSize.A4);
       document.SetFont(PdfFontFactory.CreateFont(StandardFonts.HELVETICA));
       document.SetMargins(60, 20, 55, 20);
-      var parragraf = new Paragraph($"Reporte de producto {producto.ProductName}.\n\n" + "Descripción: " +
+      var paragraph = new Paragraph($"Reporte de producto {producto.ProductName}.\n\n" + "Descripción: " +
                                     producto.ProductDescription + "\n\n" + "Precio: " + producto.ProductPrice + "€.\n\n" +
                                     "Stock: " + producto.ProductStock + "\n\n" + "Categoría: " + producto.CategoryId +
                                     "\n\n" + "Rating: " + producto.ProductRating + "\n\n" + "Imagen: " +
                                     producto.ProductImage + "\n\n" + "PostId: " + producto.PostId);
-      document.Add(parragraf);
+      document.Add(paragraph);
       document.Close();
     }
     catch (Exception e) {
@@ -316,21 +316,21 @@ internal class ProductViewModel : ViewModelBase {
 
   #region SAMPLE 4
 
-//pretty much ignore all the stuff provided, and manage everything via custom commands and a binding for .IsOpen
-  public ICommand OpenSample4DialogCommand { get; }
+  //pretty much ignore all the stuff provided, and manage everything via custom commands and a binding for .IsOpen
+  private ICommand OpenSample4DialogCommand { get; }
   public ICommand AcceptSample4DialogCommand { get; }
   public ICommand CancelSample4DialogCommand { get; }
-  private bool _isSample4DialogOpen;
-  private object? _sample4Content;
+  private bool isSample4DialogOpen;
+  private object? sample4Content;
 
-  public bool IsSample4DialogOpen {
-    get => _isSample4DialogOpen;
-    set => SetProperty(ref _isSample4DialogOpen, value);
+  private bool IsSample4DialogOpen {
+    get => isSample4DialogOpen;
+    set => SetProperty(ref isSample4DialogOpen, value);
   }
 
-  public object? Sample4Content {
-    get => _sample4Content;
-    set => SetProperty(ref _sample4Content, value);
+  private object? Sample4Content {
+    get => sample4Content;
+    set => SetProperty(ref sample4Content, value);
   }
 
   private void OpenSample4Dialog(object? _) {

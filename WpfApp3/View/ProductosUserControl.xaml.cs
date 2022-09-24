@@ -34,18 +34,14 @@ public partial class ProductosUserControl {
     MyListView.DataContext = new ProductViewModel();
   }
 
-  private void BasicRatingBar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<int> e) {
-    Debug.WriteLine($"La valoración ha cambiado de {e.OldValue} a {e.NewValue} estrellas.");
-  }
-
   private void ButtonDeleteProduct_OnClick(object sender, RoutedEventArgs e) {
     try {
       var button = sender as Button;
       dynamic item = button?.DataContext;
-      var id = item.ProductId;
+      var id = item?.ProductId;
       var viewModel = new ProductViewModel();
       try {
-        if (!id.Equals("") || !id.Equals(null)) {
+        if (!(id?.Equals("") || id?.Equals(null))) {
           SnackbarSeven.MessageQueue?.Enqueue(viewModel.DeleteMethod(id)
             ? $"Producto con id {id} eliminado correctamente"
             : $"Error al Eliminar el producto con id {id}");
@@ -100,7 +96,7 @@ public partial class ProductosUserControl {
   private void ButtonCreateReport_OnClick(object sender, RoutedEventArgs e) {
     var button = sender as Button;
     dynamic item = button?.DataContext;
-    var id = item.ProductId;
+    var id = item?.ProductId;
     var viewModel = new ProductViewModel();
     viewModel.SelectAllFromProductId(id);
   }
@@ -179,4 +175,8 @@ public partial class ProductosUserControl {
       return Windows.UI.Xaml.Media.ImageSource(bitmapImage);
     }
   }*/
+  private void BasicRatingBar_OnValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+  {
+    Debug.WriteLine($"La valoración ha cambiado de {e.OldValue} a {e.NewValue} estrellas.");
+  }
 }

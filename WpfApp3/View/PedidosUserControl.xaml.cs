@@ -18,10 +18,10 @@ public partial class PedidosUserControl {
     try {
       var button = sender as Button;
       dynamic item = button?.DataContext;
-      var id = item.OrderId;
+      var id = item?.OrderId;
       var viewModel = new OrderViewModel();
       try {
-        if (!id.Equals("") || !id.Equals(null)) {
+        if (!(id?.Equals("") || id?.Equals(null))) {
           SnackbarSeven.MessageQueue?.Enqueue(viewModel.DeleteMethod(id)
             ? $"Pedido con id {id} eliminado correctamente"
             : $"Error al Eliminar el pedido con id {id}");

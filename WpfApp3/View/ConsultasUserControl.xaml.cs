@@ -4,7 +4,7 @@ using WpfApp3.ViewModel;
 namespace WpfApp3.View;
 
 public partial class ConsultasUserControl {
-  ProductViewModel productoViewModel = new ProductViewModel();
+  ProductViewModel productoViewModel = new ();
 
   public ConsultasUserControl() {
     InitializeComponent();

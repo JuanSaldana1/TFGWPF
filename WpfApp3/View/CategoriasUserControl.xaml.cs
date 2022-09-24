@@ -44,10 +44,10 @@ public partial class CategoriasUserControl {
     try {
       var button = sender as Button;
       dynamic item = button?.DataContext;
-      var id = item.CategoryId;
+      var id = item?.CategoryId;
       var viewModel = new CategoryViewModel();
       try {
-        if (!id.Equals("") || !id.Equals(null)) {
+        if (!(id?.Equals("") || id?.Equals(null))) {
           SnackbarSeven.MessageQueue?.Enqueue(viewModel.DeleteMethod(id)
             ? $"Categoría con id {id} eliminada correctamente"
             : $"Error al Eliminar la categoría con id {id}");

@@ -194,7 +194,7 @@
                                                 x:Name="BasicRatingBar"
                                                 Max="5"
                                                 Value="{Binding ProductRating, Mode=TwoWay}"
-                                                ValueChanged="BasicRatingBar_ValueChanged" />
+                                                ValueChanged="BasicRatingBar_OnValueChanged" />
                                         </Grid>
                                         <StackPanel Grid.Row="5" Orientation="Horizontal">
                                             <Button

@@ -21,9 +21,9 @@ public partial class ChartUserControl {
   private static readonly SKColor s_yellow = new(198, 167, 0);
   public ChartValues<PostModel> Results { get; set; }
   public Func<double, string> MillionFormatter { get; set; }
-  public SeriesCollection SeriesCollection { get; set; }
-  public string[] Labels { get; set; }
-  public Func<double, string> YFormatter { get; set; }
+  private SeriesCollection SeriesCollection { get; }
+  private string[] Labels { get; }
+  private Func<double, string> YFormatter { get; }
 
   public ChartUserControl() {
     InitializeComponent();
@@ -74,7 +74,7 @@ public partial class ChartUserControl {
     new LineSeries<int> {
       LineSmoothness = 1,
       Name = "Entradas (posts)",
-      Values = new[] {10, 16, 20, 17, 7, 5, 17, 3, 5, 1, 7, 4, 1, 2, 3, 5, 4, 6, 1, 1, 2, 2, 2},
+      Values = new[] {10, 16, 20, 17, 7, 5, 17, 3, 5, 1, 7, 4, 1, 2, 3, 5, 4, 6, 1, 1, 2, 2, 2, 2},
       Stroke = new SolidColorPaint(s_blue, 2),
       GeometrySize = 10,
       GeometryStroke = new SolidColorPaint(s_blue, 2),

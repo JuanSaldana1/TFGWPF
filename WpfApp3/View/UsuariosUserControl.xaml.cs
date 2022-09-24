@@ -69,10 +69,10 @@ public partial class UsuariosUserControl {
     try {
       var button = sender as Button;
       dynamic item = button?.DataContext;
-      var id = item.UserId;
+      var id = item?.UserId;
       var viewModel = new UserViewModel();
       try {
-        if (!id.Equals("") || !id.Equals(null)) {
+        if (!(id?.Equals("") || id?.Equals(null))) {
           SnackbarSeven.MessageQueue?.Enqueue(viewModel.DeleteMethod(id)
             ? $"Usuario con id {id} eliminado correctamente"
             : $"Error al Eliminar el usuario con id {id}");

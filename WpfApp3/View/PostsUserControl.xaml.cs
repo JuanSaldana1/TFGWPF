@@ -18,14 +18,14 @@ public partial class PostsUserControl {
     MyListView.DataContext = new PostViewModel();
   }
 
-  public void ButtonDeletePost_OnClick(object sender, RoutedEventArgs e) {
+  private void ButtonDeletePost_OnClick(object sender, RoutedEventArgs e) {
     try {
       var button = sender as Button;
       dynamic item = button?.DataContext;
-      var id = item.PostId;
+      var id = item?.PostId;
       var viewModel = new PostViewModel();
       try {
-        if (!id.Equals("") || !id.Equals(null)) {
+        if (!(id?.Equals("") || id?.Equals(null))) {
           SnackbarSeven.MessageQueue?.Enqueue(viewModel.DeleteMethod(id)
             ? $"Entrada con id {id} eliminado correctamente"
             : $"Error al Eliminar la entrada con id {id}");
@@ -92,7 +92,7 @@ public partial class PostsUserControl {
     return null;
   }
 
-  public void PostChanged(object sender, TextChangedEventArgs e) {
+  private void PostChanged(object sender, TextChangedEventArgs e) {
     SnackbarSeven.MessageQueue?.Enqueue(e.ToString());
   }
 

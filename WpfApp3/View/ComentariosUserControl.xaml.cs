@@ -29,10 +29,10 @@ public partial class ComentariosUserControl {
     try {
       var button = sender as Button;
       dynamic item = button?.DataContext;
-      var id = item.CommentId;
+      var id = item?.CommentId;
       var viewModel = new CommentViewModel();
       try {
-        if (!id.Equals("") || !id.Equals(null)) {
+        if (!(id?.Equals("") || id?.Equals(null))) {
           SnackbarSeven.MessageQueue?.Enqueue(viewModel.DeleteMethod(id)
             ? $"Comentario con id {id} eliminado correctamente"
             : $"Error al Eliminar el comentario con id {id}");
