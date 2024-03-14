@@ -6,7 +6,7 @@ namespace WpfApp3.ViewModel;
 
 public class ConsultasViewModel {
   public ISearchSuggestionsSource SearchSuggestionsSource {
-    get { return new OperatingSystemsSearchSuggestionsSource(); }
+    get => new OperatingSystemsSearchSuggestionsSource();
   }
 }
 
