@@ -115,7 +115,7 @@
             DockPanel.Dock="Top"
             Mode="PrimaryLight"
             Padding="16"
-            materialDesign:ShadowAssist.ShadowDepth="Depth2">
+            >
             <DockPanel>
 
                 <materialDesign:PopupBox

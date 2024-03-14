@@ -39,7 +39,7 @@ public class ThemeSettingsViewModel : ViewModelBase {
     get => _isDarkTheme;
     set {
       if (SetProperty(ref _isDarkTheme, value))
-        ModifyTheme(theme => theme.SetBaseTheme(value ? Theme.Dark : Theme.Light));
+        ModifyTheme(theme => theme.SetBaseTheme(BaseTheme.Dark));
     }
   }
 
@@ -98,11 +98,11 @@ public class ThemeSettingsViewModel : ViewModelBase {
     }
   }
 
-  private static void ModifyTheme(Action<ITheme> modificationAction) {
+  private static void ModifyTheme(Action<Theme> modificationAction) {
     var paletteHelper = new PaletteHelper();
     var theme = paletteHelper.GetTheme();
 
-    modificationAction?.Invoke(theme);
+    modificationAction.Invoke(theme);
 
     paletteHelper.SetTheme(theme);
   }

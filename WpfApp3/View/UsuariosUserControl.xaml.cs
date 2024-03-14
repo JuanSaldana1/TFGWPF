@@ -89,4 +89,9 @@ public partial class UsuariosUserControl {
       throw;
     }
   }
+
+  private void ButtonSave_OnClick(object sender, RoutedEventArgs e)
+  {
+    throw new NotImplementedException();
+  }
 }

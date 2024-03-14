@@ -41,9 +41,8 @@
                 AnimationsSpeed="00:00:00.500"
                 XAxes="{Binding XAxesWithPublications}"
                 LegendPosition="Right"
-                LegendFontFamily="Roboto"
-                LegendFontSize="12"
-                LegendTextBrush="#505050"
+                LegendTextSize="12"
+                LegendTextPaint="#505050"
                 ZoomMode="Both" />
         </hc:Card>
 
@@ -59,9 +58,8 @@
                 AnimationsSpeed="00:00:00.500"
                 XAxes="{Binding XAxesAllMonths}"
                 LegendPosition="Right"
-                LegendFontFamily="Roboto"
-                LegendFontSize="12"
-                LegendTextBrush="#505050"
+                LegendTextSize="12"
+                LegendTextPaint="#505050"
                 ZoomMode="Both" />
             <hc:Card.Footer>
                 <Button Name="ButtonCreateChartImage" Content="Generar imagen" Margin="10,0,0,0" hc:BorderElement.CornerRadius="15" Click="ButtonCreateChartImage_OnClick" />
@@ -80,9 +78,8 @@
                 AnimationsSpeed="00:00:00.500"
                 XAxes="{Binding XAxesAllMonths}"
                 LegendPosition="Right"
-                LegendFontFamily="Roboto"
-                LegendFontSize="12"
-                LegendTextBrush="#505050"
+                LegendTextSize="12"
+                LegendTextPaint="#505050"
                 ZoomMode="Both" />
         </hc:Card>
     </Grid>

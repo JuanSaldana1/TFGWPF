@@ -124,7 +124,7 @@
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top"
                                     Width="auto"
-                                    materialDesign:ShadowAssist.ShadowDepth="Depth0">
+                                    >
 
                                     <materialDesign:Flipper.FrontContent>
                                         <Grid Height="auto" Width="300">
@@ -271,7 +271,7 @@
 
                                                         <Button
                                                             Style="{StaticResource MaterialDesignPaperSecondaryButton}"
-                                                            Click="ButtonSave_Click"
+                                                            Click="ButtonSave_OnClick"
                                                             Content="{materialDesign:PackIcon ContentSaveOutline, Kind=ContentSaveOutline, Size=24}"
                                                             Command="{x:Static materialDesign:Flipper.FlipCommand}"
                                                             ToolTip="Guardar cambios"

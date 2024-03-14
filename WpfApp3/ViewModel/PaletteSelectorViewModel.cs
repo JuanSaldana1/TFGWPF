@@ -19,20 +19,20 @@ public class PaletteSelectorViewModel : ViewModelBase {
 
 
   private static void ApplyPrimary(Swatch swatch) {
-    ModifyTheme(theme => theme.SetPrimaryColor(swatch.ExemplarHue.Color));
+    //ModifyTheme(theme => theme.SetPrimaryColor(swatch.ExemplarHue.Color));
   }
 
   private static void ApplyAccent(Swatch swatch) {
-    if (swatch is {AccentExemplarHue: not null})
-      ModifyTheme(theme => theme.SetSecondaryColor(swatch.AccentExemplarHue.Color));
+    /*if (swatch is {AccentExemplarHue: not null})
+      ModifyTheme(theme => theme.SetSecondaryColor(swatch.AccentExemplarHue.Color));*/
   }
 
-  private static void ModifyTheme(Action<ITheme> modificationAction) {
+  /*private static void ModifyTheme(Action<ITheme> modificationAction) {
     var paletteHelper = new PaletteHelper();
     var theme = paletteHelper.GetTheme();
 
-    modificationAction?.Invoke(theme);
+    //modificationAction?.Invoke(theme);
 
     paletteHelper.SetTheme(theme);
-  }
+  }*/
 }
