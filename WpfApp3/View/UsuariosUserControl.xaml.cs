@@ -54,8 +54,6 @@ public partial class UsuariosUserControl {
     }
   }
 
-  public void ButtonSave_Click(object sender, RoutedEventArgs e) { }
-
   private void BtnOpenFile_Click(object sender, RoutedEventArgs e) {
     var openFileDialog = new OpenFileDialog();
     openFileDialog.DefaultExt = ".png"; // Default file extension
