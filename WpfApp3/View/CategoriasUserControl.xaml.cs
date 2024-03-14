@@ -20,7 +20,7 @@ public partial class CategoriasUserControl {
     try {
       category.CategoryName = CategoryNameEditText.Text;
       try {
-        if (CategoryNameEditText.Text != "") {
+        if (!string.IsNullOrEmpty(CategoryNameEditText.Text)) {
           SnackbarSeven.MessageQueue?.Enqueue(viewModel.InsertMethod(category)
             ? "Categoría Creada correctamente"
             : "Error al crear la categoría");

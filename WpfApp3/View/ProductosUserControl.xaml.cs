@@ -74,7 +74,7 @@ public partial class ProductosUserControl {
       producto.ProductImage = ProductImageEditText.Text;
       producto.PostId = Convert.ToInt32(ProductPostIdEditText.Text);
       try {
-        if (ProductNameEditText.Text != "") {
+        if (!string.IsNullOrEmpty(ProductNameEditText.Text)) {
           SnackbarSeven.MessageQueue?.Enqueue(viewModel.InsertMethod(producto)
             ? "Producto insertado correctamente"
             : "Error al insertar el producto");
