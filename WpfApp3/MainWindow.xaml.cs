@@ -55,7 +55,7 @@ public partial class MainWindow {
       SnackbarSeven.MessageQueue?.Enqueue("Rellena todos los campos");
       SnackbarSeven.MessageQueue?.Enqueue("La opción seleccionada es " + OutlinedComboBox.Text);
     }
-    else if (Servidor.Contains("A")) {
+    else if (Servidor.Contains('A')) {
       SnackbarSeven.MessageQueue?.Enqueue("El campo servidor debe estar compuesto por números");
     }
     else {
