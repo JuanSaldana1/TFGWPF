@@ -32,7 +32,7 @@ public class ThemeSettingsViewModel : ViewModelBase {
     }
 
     if (paletteHelper.GetThemeManager() is { } themeManager)
-      themeManager.ThemeChanged += (_, e) => { IsDarkTheme = e.NewTheme?.GetBaseTheme() == BaseTheme.Dark; };
+      themeManager.ThemeChanged += (_, e) => IsDarkTheme = e.NewTheme?.GetBaseTheme() == BaseTheme.Dark;
   }
 
   public bool IsDarkTheme {
